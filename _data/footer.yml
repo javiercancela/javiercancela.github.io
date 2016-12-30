@@ -1,10 +1,8 @@
 left_links:
   - name: Blog
     link: /blog/
-  - name: About
-    link: /about/
-  - name: Contact
-    link: /contact/
+  - name: Contacto
+    link: /contacto/
 right_links:
   - name:
     link: https://facebook.com/
