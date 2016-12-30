@@ -1,7 +1,7 @@
 # ----
 # Site
 
-title: Frisco Template
+title: Página de Javier Cancela
 url: "https://brave-submarine.cloudvent.net"
 baseurl:
 google_analytics_key:
@@ -9,15 +9,15 @@ google_maps_javascript_api_key:
 
 # Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
 logo: /siteicon.png
-description: App marketing template for Jekyll.
+description: Página personal de Javier Cancela
 author:
-  name:
-  email:
-  twitter: # twitter username without the @ symbol
+  name: Javier Cancela
+  email: javier.cancela.vicente@gmail.com
+  twitter: jcanvic
 social:
-  name: Frisco Template
+  name: Javier Cancela
   links:
-    - https://github.com/CloudCannon/frisco-jekyll-template
+    - https://github.com/javiercancela/javiercancela.github.io
 
 # -----
 # Build
