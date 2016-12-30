@@ -1,7 +1,7 @@
 ---
-name: James Lopez
+name: Javier Cancela
 position: Developer
-image_path: https://source.unsplash.com/collection/139386/603x603?a=.png
-twitter_username: CloudCannonApp
-blurb: James spends his weekends watching his favourite NBA team - L.A. Clippers.
+image_path: https://lh3.googleusercontent.com/-oDIUYrPxJFw/AAAAAAAAAAI/AAAAAAAAGK4/DUHOys6Whno/s120-p-rw-no/photo.jpg
+twitter_username: jcanvic
+blurb: Non tal!
 ---
