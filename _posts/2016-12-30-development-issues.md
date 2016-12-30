@@ -1,12 +1,12 @@
 ---
 title: Un blog en GitHub (I)
-date: 2016-12-30
+date: 2016-12-30 00:00:00 +0200
 description: La experiencia de montar un blog en GitHub
 categories:
   - blog
   - github
 image: https://source.unsplash.com/V4EOZj7g1gw/2000x1322?a=.png
-author_staff_member: javier
+comments: true
 ---
 
 Todo empieza porque hay algo que quiero aprender. No importa qué, aunque si todo va bien será el tema principal de este blog dentro de unas semanas. Importa que leer y practicar no resulta suficiente para mí. Si quiero aprender algo tengo que reformularlo y exponerlo, como si estuviese dando clase. Y un blog me permite hacerlo de una manera formal. 
