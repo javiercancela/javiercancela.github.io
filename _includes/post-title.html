@@ -4,5 +4,10 @@
 			<a href="{{ site.baseurl }}/category/{{ category}}/">{{ category | capitalize }}</a>
 		</span>
 	{% endfor %}
-	<span class="post-date">{{ include.post.date | date: "%B %d, %Y" }}</span>
+	{% assign months = "Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre" | split: "|" %}
+	{% assign m = page.date | date: "%-m" | minus: 1 %}
+	{% assign day = page.date | date: "%d" %}
+	{% assign month = months[m] %}
+	{% assign year = page.date | date: "%Y" %}
+	<span class="post-date">{{ day }} de {{ month }} de {{ year }}</span>
 </p>
