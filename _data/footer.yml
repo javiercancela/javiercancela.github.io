@@ -5,19 +5,15 @@ left_links:
     link: /contacto/
 right_links:
   - name:
-    link: https://facebook.com/
-    new_window: true
-    social_icon: Facebook
-  - name:
-    link: https://twitter.com/
+    link: https://twitter.com/jcanvic
     social_icon: Twitter
     new_window: true
   - name:
-    link: https://youtube.com/
-    social_icon: YouTube
+    link: https://www.linkedin.com/in/javiercancela
+    social_icon: LinkedIn
     new_window: true
   - name:
-    link: https://plus.google.com/
+    link: https://plus.google.com/+JavierCancelaVicente
     social_icon: Google Plus
     new_window: true
   - name:
