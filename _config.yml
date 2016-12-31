@@ -40,8 +40,8 @@ collections:
   staff_members:
     _hide_content: true
 
-paginate: 10
-paginate_path: "/blog/:num/"
+paginate: 5
+paginate_path: "/num/"
 
 jekyll-archives:
   enabled: ['categories']
