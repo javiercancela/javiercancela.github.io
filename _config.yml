@@ -1,4 +1,8 @@
 # ----
+# Markdown
+kramdown:
+  input: GFM
+ 
 # Site
 
 title: Página de Javier Cancela
