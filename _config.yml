@@ -28,11 +28,11 @@ social:
 permalink: pretty
 
 gems:
-  - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-feed
   - jekyll-paginate
   - jekyll-archives
+  - jekyll-sitemap
 
 exclude:
   - Gemfile
