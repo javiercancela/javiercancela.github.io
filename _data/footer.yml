@@ -1,8 +1,8 @@
 left_links:
   - name: Blog
     link: /
-  - name: Contacto
-    link: /contacto/
+  - name: Sobre mí
+    link: /sobre-mi/
 right_links:
   - name:
     link: https://twitter.com/jcanvic
