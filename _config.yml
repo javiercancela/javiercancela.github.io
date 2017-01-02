@@ -9,6 +9,7 @@ title: Página de Javier Cancela
 url: "http://www.javiercancela.com"
 baseurl:
 google_maps_javascript_api_key:
+future: false
 
 # Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
 logo: /siteicon.png
