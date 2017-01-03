@@ -2,21 +2,27 @@
 layout: default
 ---
 
-<section class="hero" style="background-image: url(https://source.unsplash.com/o6GEPQXnqMY/2000x1322)">
-	<div class="inner-hero text-container">
-		<div class="hero-text-container">
-			<h1>Archivo</h1>
-			<p class="subtext">Conocimiento obsoleto</p>
-		</div>
-	</div>
-</section>
+<div class="post">
+  <header class="post-header">
+    <h1 class="h2">Posted in <em>{{page.monthName}}, {{page.year}}</em></h1>
+  </header>
 
-<section>
-	<div class="text-container">
-		<p class="change-category">Estás viendo posts de la categoría <strong>{{ page.title }}</strong>. <a href="{{ site.baseurl }}/">Ver posts de todas las categorías</a></p>
-
-		<ul class="blog-posts">
-			{% include list-posts.html posts=page.posts %}
-		</ul>
-	</div>
-</section>
+  {% assign posts = site.posts | sort: "date" | reverse %}
+  <article class="post-content">
+    <ol>
+      {% for post in posts %}
+        {% assign year = post.date | date: '%Y' %}
+        {% assign month = post.date | date: '%m' %}
+        {% if year == page.year and month == page.month %}
+        <li>
+          <a class="post-link" href="{{post.url | prepend: site.baseurl}}"><h3 class="post-title mb0">{{post.title}}</h3></a>
+          <p class="post-meta small">{{ post.date | date: site.date_format }}</p>
+          <div class="small">
+            {% include post_tags.html tags-class="small" %}
+          </div>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </article>
+</div>
