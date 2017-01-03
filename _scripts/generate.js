@@ -72,13 +72,10 @@ function createArchiveFiles(){
 
   return fs.list(__dirname + '/../_posts/')
   .then(function(files){
-    console.log("Archivos: " + files.length);
     var data = {};
     for(var i=0; i<files.length; ++i){
       var file = files[i];
       var date = getYearAndMonth(file);
-      console.log("Year: " + date.year);
-      console.log("Month: " + date.month);
       if(!data[date.year]){
         data[date.year] = [];
       }
