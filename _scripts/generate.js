@@ -72,6 +72,7 @@ function createArchiveFiles(){
 
   return fs.list(__dirname + '/../_posts/')
   .then(function(files){
+    console.log("Archivos: " + files.length);
     var data = {};
     for(var i=0; i<files.length; ++i){
       var file = files[i];
