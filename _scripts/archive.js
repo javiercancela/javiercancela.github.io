@@ -2,6 +2,7 @@ var fs = require("q-io/fs"),
     q = require("q"),
     git = require("gift-wrapper"),
     generate = require("./generate.js"),
+    ghi_create = require("./create_gh_issues.js"),
     exec = require('child_process').exec;
 
 var repoDir = __dirname + "/../"
@@ -59,6 +60,9 @@ function publishChanges(github_personal_access_token){
 
 // the main entry point
 generate()
+.then(function(){
+    return ghi_create(process.env.GH_TOKEN);
+})
 .then(function(){
   return repo.status();
 })
