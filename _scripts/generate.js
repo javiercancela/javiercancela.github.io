@@ -77,6 +77,7 @@ function createArchiveFiles(){
     for(var i=0; i<files.length; ++i){
       var file = files[i];
       var date = getYearAndMonth(file);
+      console.log("Date: " + date);
       if(!data[date.year]){
         data[date.year] = [];
       }
