@@ -48,8 +48,8 @@ collections:
 paginate: 5
 paginate_path: "/num/"
 
-#jekyll-archives:
-#  enabled: ['categories']
+jekyll-archives:
+  enabled: ['categories']
 
 defaults:
   -
