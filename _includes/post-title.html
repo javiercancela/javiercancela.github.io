@@ -9,7 +9,7 @@
 	{% else %}	
 		{% assign postdate = page.date %}
 	{% endif %}
-	{% assign months = "Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre" | split: "|" %}
+	{% assign months = "enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre" | split: "|" %}
 	{% assign m = postdate | date: "%-m" | minus: 1 %}
 	{% assign day = postdate | date: "%d" %}
 	{% assign month = months[m] %}
