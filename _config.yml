@@ -46,7 +46,7 @@ collections:
     _hide_content: true
 
 paginate: 5
-paginate_path: "/num/"
+paginate_path: "/:num/"
 
 jekyll-archives:
   enabled: ['categories']
