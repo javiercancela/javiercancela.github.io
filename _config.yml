@@ -62,11 +62,6 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-  -
-    scope:
-      path: "contact-success.html"
-    values:
-      layout: "page"
 
 # -----------
 # CloudCannon
