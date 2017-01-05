@@ -1,6 +1,6 @@
 ---
 title: Un blog en GitHub (II - Estructura del sitio)
-date: 2017-01-10 22:00:00 +0200
+date: 2017-01-09 22:00:00 +0200
 description: La experiencia de montar un blog en GitHub
 categories:
   - blog
