@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-01-05T22:56:59+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Un blog en GitHub (I - Jekyll)</title><link href="https://www.javiercancela.com/blog/github/2017/01/03/un-blog-en-github-i/" rel="alternate" type="text/html" title="Un blog en GitHub (I - Jekyll)" /><published>2017-01-03T01:00:00+00:00</published><updated>2017-01-03T01:00:00+00:00</updated><id>https://www.javiercancela.com/blog/github/2017/01/03/un-blog-en-github-i</id><content type="html" xml:base="https://www.javiercancela.com/blog/github/2017/01/03/un-blog-en-github-i/">&lt;p&gt;Para crear un blog en GitHub usaremos &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;. Cada cuenta de GitHub dispone de un sitio gratuito en el que alojar recursos estáticos; para usarlo tan solo hay que crear un repositorio con el nombre &lt;em&gt;nombreusuario&lt;/em&gt;.github.io. Los archivos que subamos a ese repositorio serán accesibles a través de http://nombreusuario.github.io.&lt;/p&gt;
+
+&lt;p&gt;Además, GitHub Pages soporta &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll&lt;/a&gt;. Jekyll es un generador de sitios web desarrollado en Ruby. Es fácil de usar, y permite hacer todo lo que se necesita en un blog personal.&lt;/p&gt;
+
+&lt;p&gt;El proceso de instalación de Jekyll en Windows 10 pasa por:&lt;/p&gt;
+
+&lt;h3 id=&quot;1-instalar-chocolatey&quot;&gt;1. Instalar Chocolatey&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://chocolatey.org/&quot;&gt;Chocolatey&lt;/a&gt; es un gestor de paquetes para Windows. Desde la ventana de comandos lanzada en modo administrador, ejecutamos:&lt;/p&gt;
+&lt;div style=&quot;font-family: monospace;&quot;&gt;
+script
+@powershell -NoProfile -ExecutionPolicy Bypass -Command &quot;iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))&quot; &amp;amp;&amp;amp; SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+&lt;/div&gt;
+&lt;p&gt;Esa línea se encarga de ejecutar un script de PowerShell que instala Chocolatey, y añade el ejecutable al path.&lt;/p&gt;
+
+&lt;p&gt;Tras esto cerramos la línea de comandos.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-instalar-ruby&quot;&gt;2. Instalar Ruby&lt;/h3&gt;
+&lt;p&gt;Ruby es un lenguaje de programación bastante popular. Para instalarlo abrimos de nuevo la consola en modo administrador y escribimos:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-script&quot;&gt;choco install ruby -y
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;3-instalar-jekyll&quot;&gt;3. Instalar Jekyll&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://guides.rubygems.org&quot;&gt;Gem&lt;/a&gt; es el gestor de paquetes de Ruby. Permite instalar tanto librerías como programas. Así que lo usaremos para instalar Jekyll:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-script&quot;&gt;gem install jekyll
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;En este paso yo me encontré un error. Un problema con SSL: “SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed”. Para solucionarlo seguí las instrucciones de esta página: http://guides.rubygems.org/ssl-certificate-update/#manual-solution-to-ssl-issue. Hay que descargar este certificado: &lt;a href=&quot;https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/index.rubygems.org/GlobalSignRootCA.pem&quot;&gt;GlobalSignRootCA.pem&lt;/a&gt; y copiarlo en la carpeta de certificados de Gem (en mi caso, C:/tools/ruby23/lib/ruby/2.3.0/rubygems).&lt;/p&gt;
+
+&lt;p&gt;Y listo. Con&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-script&quot;&gt;jekyll -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;comprobamos que jekyll se ha instalado correctamente.&lt;/p&gt;
+
+&lt;p&gt;El siguiente paso: montar el blog.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Para crear un blog en GitHub usaremos GitHub Pages. Cada cuenta de GitHub dispone de un sitio gratuito en el que alojar recursos estáticos; para usarlo tan solo hay que crear un repositorio con el nombre nombreusuario.github.io. Los archivos que subamos a ese repositorio serán accesibles a través de http://nombreusuario.github.io.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://source.unsplash.com/V4EOZj7g1gw/2000x1322" /></entry><entry><title type="html">Un blog en GitHub (Introducción)</title><link href="https://www.javiercancela.com/blog/github/2016/12/29/un-blog-en-github-intro/" rel="alternate" type="text/html" title="Un blog en GitHub (Introducción)" /><published>2016-12-29T22:00:00+00:00</published><updated>2016-12-29T22:00:00+00:00</updated><id>https://www.javiercancela.com/blog/github/2016/12/29/un-blog-en-github-intro</id><content type="html" xml:base="https://www.javiercancela.com/blog/github/2016/12/29/un-blog-en-github-intro/">&lt;p&gt;Todo empieza porque hay algo que quiero aprender. No importa qué, aunque si todo va bien será el tema principal de este blog dentro de unas semanas. Importa que leer y practicar no me resulta suficiente. Si quiero aprender algo tengo que reformularlo y exponerlo, como si estuviese dando clase. Así que de eso va este blog.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/github-pages.jpg&quot; alt=&quot;GitHub Pages&quot; /&gt;
+Ya tengo un blog en Wordpress (&lt;a href=&quot;https://javiercancela.wordpress.com/&quot; title=&quot;Bitácora de Javier Cancela&quot;&gt;Bitácora de Javier Cancela&lt;/a&gt;), pero voy a empezar de cero para montarlo todo en &lt;a href=&quot;https://pages.github.com/&quot; title=&quot;GitHub Pages&quot;&gt;GitHub Pages&lt;/a&gt;. Hay dos motivos para ello. En primer lugar, me permite tener el blog en un alojamiento externo (sin los costes ni el trabajo que conlleva tener un servidor propio) con un  nivel de personalización mucho mayor que otros hospedajes gratuitos. En segundo lugar, me da una excusa para practicar con Git y Markdown.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://source.unsplash.com/IClZBVw5W5A/750x265&quot; alt=&quot;Herramientas&quot; /&gt;
+Los siguientes posts estarán dedicados a describir los pasos que he dado para crear este blog, los problemas que me he encontrado, las herramientas que estoy usando para escribirlo y el flujo de trabajo que uso para publicar.&lt;/p&gt;
+
+&lt;p&gt;Hasta el próximo post.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Todo empieza porque hay algo que quiero aprender. No importa qué, aunque si todo va bien será el tema principal de este blog dentro de unas semanas. Importa que leer y practicar no me resulta suficiente. Si quiero aprender algo tengo que reformularlo y exponerlo, como si estuviese dando clase. Así que de eso va este blog.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://source.unsplash.com/V4EOZj7g1gw/2000x1322" /></entry></feed>
