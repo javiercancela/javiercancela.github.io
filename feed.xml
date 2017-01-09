@@ -1,4 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-01-07T23:19:08+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Un blog en GitHub (I - Jekyll)</title><link href="https://www.javiercancela.com/blog/github/2017/01/03/un-blog-en-github-i/" rel="alternate" type="text/html" title="Un blog en GitHub (I - Jekyll)" /><published>2017-01-03T01:00:00+00:00</published><updated>2017-01-03T01:00:00+00:00</updated><id>https://www.javiercancela.com/blog/github/2017/01/03/un-blog-en-github-i</id><content type="html" xml:base="https://www.javiercancela.com/blog/github/2017/01/03/un-blog-en-github-i/">&lt;p&gt;Para crear un blog en GitHub usaremos &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;. Cada cuenta de GitHub dispone de un sitio gratuito en el que alojar recursos estáticos; para usarlo tan solo hay que crear un repositorio con el nombre &lt;em&gt;nombreusuario&lt;/em&gt;.github.io. Los archivos que subamos a ese repositorio serán accesibles a través de http://nombreusuario.github.io.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-01-09T06:48:40+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Un blog en GitHub (II - Estructura del sitio)</title><link href="https://www.javiercancela.com/blog/github/2017/01/09/un-blog-en-github-ii/" rel="alternate" type="text/html" title="Un blog en GitHub (II - Estructura del sitio)" /><published>2017-01-09T01:00:00+00:00</published><updated>2017-01-09T01:00:00+00:00</updated><id>https://www.javiercancela.com/blog/github/2017/01/09/un-blog-en-github-ii</id><content type="html" xml:base="https://www.javiercancela.com/blog/github/2017/01/09/un-blog-en-github-ii/">&lt;p&gt;La forma más eficiente de montar un blog con Jekyll consiste en descargarse una plantilla y modificarla según nuestras necesidades. La página &lt;a href=&quot;http://jekyll.tips/templates/&quot;&gt;Jekyll Tips&lt;/a&gt; tiene varias plantillas para elegir. Yo me decanté por &lt;a href=&quot;https://github.com/CloudCannon/frisco-jekyll-template&quot;&gt;Frisco&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Para instalar la plantilla basta con hacer un fork del repositorio, y renombrarlo como nombreusuario.github.io. Sin hacer nada más tendremos un sitio de ejemplo instalado en nuestra página (http://nombreusuario.github.io).&lt;/p&gt;
+
+&lt;p&gt;La página de este blog es &lt;a href=&quot;http://javiercancela.github.io&quot;&gt;http://javiercancela.github.io&lt;/a&gt;, y el repositorio es &lt;a href=&quot;https://github.com/javiercancela/javiercancela.github.io&quot;&gt;https://github.com/javiercancela/javiercancela.github.io&lt;/a&gt;, donde se puede encontrar todo el código al que me refiero más abajo.&lt;/p&gt;
+
+&lt;p&gt;Como esta plantilla está pensada como página corporativa, lo primero que hice fue eliminar todo salvo el blog (que pasé al raíz de la web). Después añadí una página “Sobre mí” usando el html de la página raíz original. Para estos cambios sólo hizo falta mover los archivos de sitio, cambiar alguna ruta relativa y actualizar el menú y el pie de página (los archivos footer.yml y navigatio.yml de la carpeta _data). En el footer actualicé también los enlaces de las redes sociales. Tampoco hay que olvidarse de actualizar los datos del _config.yml.&lt;/p&gt;
+
+&lt;h2 id=&quot;front-matter&quot;&gt;Front matter&lt;/h2&gt;
+&lt;p&gt;Los archivos html y md (Markdown) de los sitios creados en Jekyll suelen comenzar por una sección delimitada por tres guiones. Algo así:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
+title: Blog
+layout: default
+description: El blog de Javier Cancela.
+image: https://source.unsplash.com/EZSm8xRjnX0/2000x1322
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;El propósito de esta cabecera, llamada en inglés &lt;em&gt;front matter&lt;/em&gt;, es definir valores y metadatos para su archivo. El ejemplo de arriba está sacado del archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; de la raíz de la página. Ese archivo contiene únicamente un par de elementos &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;section&amp;gt;&lt;/code&gt; con el html específico de la pantalla de inicio. El resto del html es compartido con más páginas y está en &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts\default.html&lt;/code&gt; para ser reutilizado fácilmente (los archivos &lt;em&gt;layout&lt;/em&gt; contienen un elemento &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;/code&gt; que se sustituye por el contenido del archivo al que se aplica el &lt;em&gt;layout&lt;/em&gt;). Así, la línea&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;layout: default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;del &lt;em&gt;front matter&lt;/em&gt; es un metadato de la página. Y la línea&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;image: https://source.unsplash.com/EZSm8xRjnX0/2000x1322
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;es una variable, que permite que dentro del html de la página accedamos a esa url con &lt;code class=&quot;highlighter-rouge&quot;&gt;page.image&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Para no tener que indicar el &lt;em&gt;layout&lt;/em&gt; en cada página, podemos definir en el archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; el layout por defecto, así como &lt;em&gt;layouts&lt;/em&gt; específicos para tipos de archivos o para ciertas rutas:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defaults:
+  -
+    scope:
+      path: &quot;&quot;
+    values:
+      layout: &quot;default&quot;
+  -
+    scope:
+      type: &quot;posts&quot;
+    values:
+      layout: &quot;post&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;includes&quot;&gt;Includes&lt;/h2&gt;
+&lt;p&gt;El &lt;em&gt;layout&lt;/em&gt; nos sirve para compartir una estructura html común entre páginas. Pero a veces necesitamos reutilizar pequeños trozos de código en distintas partes de nuestra web. En estos casos utilizamos la carpeta &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes&lt;/code&gt;, donde guardaremos el código a reutilizar en archivos html. Veamos un ejemplo.&lt;/p&gt;
+
+&lt;p&gt;El &lt;em&gt;layout&lt;/em&gt; para los archivos de tipo post de este sitio (los incluidos en la carpeta &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt;) es &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts\post.html&lt;/code&gt;. Este archivo (que usa a su vez otro &lt;em&gt;layout&lt;/em&gt;, no hay problema en encadenarlos) contiene la siguiente línea:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;post-title.html&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;post=page&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Esta línea nos dice que en ese punto del archivo se va a insertar el código incluido en &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes\post-title.html&lt;/code&gt;, y se le va a pasar la propiedad &lt;code class=&quot;highlighter-rouge&quot;&gt;page&lt;/code&gt; en la variable &lt;code class=&quot;highlighter-rouge&quot;&gt;post&lt;/code&gt;. La propiedad &lt;code class=&quot;highlighter-rouge&quot;&gt;page&lt;/code&gt; nos da acceso a las variables definidas en el &lt;em&gt;front matter&lt;/em&gt;, así como a otras propiedades como la url de la página. Al pasarla al &lt;em&gt;include&lt;/em&gt; conseguimos que estas propiedades también estén disponibles allí.&lt;/p&gt;
+
+&lt;p&gt;El archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes\post-title.html&lt;/code&gt; contiene este código:&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-details&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    {% for category in include.post.categories %}
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;blog-filter&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ site.baseurl }}/category/{{ category}}/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ category | capitalize }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+    {% endfor %}
+    {% if post.date %}
+        {% assign postdate = post.date %}
+    {% else %}  
+        {% assign postdate = page.date %}
+    {% endif %}
+    {% assign months = &quot;enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre&quot; | split: &quot;|&quot; %}
+    {% assign m = postdate | date: &quot;%-m&quot; | minus: 1 %}
+    {% assign day = postdate | date: &quot;%d&quot; %}
+    {% assign month = months[m] %}
+    {% assign year = postdate | date: &quot;%Y&quot; %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-date&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ day }} de {{ month }} de {{ year }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Las partes rodeadas de &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; son código &lt;a href=&quot;http://shopify.github.io/liquid/&quot;&gt;Liquid&lt;/a&gt;, un lenguaje de plantillas usado en Jekyll para generar html estático de forma simple.&lt;/p&gt;
+
+&lt;p&gt;En el código vemos como se recorren los valores de &lt;code class=&quot;highlighter-rouge&quot;&gt;include.post.categories&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;include.post&lt;/code&gt; nos da acceso a la variable &lt;code class=&quot;highlighter-rouge&quot;&gt;post&lt;/code&gt; a la que hacíamos referencia más arriba, correspondiente a la propiedad &lt;code class=&quot;highlighter-rouge&quot;&gt;page&lt;/code&gt; de la página donde se va a incluir el código. &lt;code class=&quot;highlighter-rouge&quot;&gt;categories&lt;/code&gt; es una propiedad añadida por el &lt;em&gt;plugin&lt;/em&gt; &lt;a href=&quot;https://github.com/jekyll/jekyll-archives&quot;&gt;jekyll-archives&lt;/a&gt;, y nos da acceso a las categorías que hayamos asignado al post en su &lt;em&gt;front matter&lt;/em&gt;. Con ellas se crea un enlace para ver todos los posts de cada categoría.&lt;/p&gt;
+
+&lt;p&gt;El resto del código crea la fecha del post. El código está adaptado de esta &lt;a href=&quot;http://stackoverflow.com/a/32914455&quot;&gt;respuesta de StackOverflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Con esto ya estamos listos para empezar a escribir el blog.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">La forma más eficiente de montar un blog con Jekyll consiste en descargarse una plantilla y modificarla según nuestras necesidades. La página Jekyll Tips tiene varias plantillas para elegir. Yo me decanté por Frisco.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://source.unsplash.com/V4EOZj7g1gw/2000x1322" /></entry><entry><title type="html">Un blog en GitHub (I - Jekyll)</title><link href="https://www.javiercancela.com/blog/github/2017/01/03/un-blog-en-github-i/" rel="alternate" type="text/html" title="Un blog en GitHub (I - Jekyll)" /><published>2017-01-03T01:00:00+00:00</published><updated>2017-01-03T01:00:00+00:00</updated><id>https://www.javiercancela.com/blog/github/2017/01/03/un-blog-en-github-i</id><content type="html" xml:base="https://www.javiercancela.com/blog/github/2017/01/03/un-blog-en-github-i/">&lt;p&gt;Para crear un blog en GitHub usaremos &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;. Cada cuenta de GitHub dispone de un sitio gratuito en el que alojar recursos estáticos; para usarlo tan solo hay que crear un repositorio con el nombre &lt;em&gt;nombreusuario&lt;/em&gt;.github.io. Los archivos que subamos a ese repositorio serán accesibles a través de http://nombreusuario.github.io.&lt;/p&gt;
 
 &lt;p&gt;Además, GitHub Pages soporta &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll&lt;/a&gt;. Jekyll es un generador de sitios web desarrollado en Ruby. Es fácil de usar, y permite hacer todo lo que se necesita en un blog personal.&lt;/p&gt;
 
