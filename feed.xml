@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-01-15T22:15:35+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">El recuerdo del pasado de la tierra</title><link href="https://www.javiercancela.com/libros/ciencia%20ficcion/2017/01/15/el-recuerdo-del-pasado-de-la-tierra/" rel="alternate" type="text/html" title="El recuerdo del pasado de la tierra" /><published>2017-01-15T20:00:00+00:00</published><updated>2017-01-15T20:00:00+00:00</updated><id>https://www.javiercancela.com/libros/ciencia%20ficcion/2017/01/15/el-recuerdo-del-pasado-de-la-tierra</id><content type="html" xml:base="https://www.javiercancela.com/libros/ciencia%20ficcion/2017/01/15/el-recuerdo-del-pasado-de-la-tierra/">&lt;p&gt;&lt;em&gt;El recuerdo del pasado de la tierra&lt;/em&gt; es una trilogía de ciencia ficción escrita por el autor chino Cixin Liu. En español sólo se ha publicado el primer volumen, &lt;em&gt;&lt;a href=&quot;http://www.edicionesb.com/catalogo/libro/el-problema-de-los-tres-cuerpos_4120.html&quot;&gt;El problema de los Tres Cuerpos&lt;/a&gt;&lt;/em&gt; , y están en proceso de traducción los otros dos, &lt;a href=&quot;http://novalibros.com/2016/10/bosque-oscuro-fin-la-muerte-cixin-liu/&quot;&gt;&lt;em&gt;El bosque oscuro&lt;/em&gt; y &lt;em&gt;El fin de la muerte&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-01-22T20:21:41+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Un blog en GitHub (III - Crear un post)</title><link href="https://www.javiercancela.com/blog/github/2017/01/21/un-blog-en-github-iii/" rel="alternate" type="text/html" title="Un blog en GitHub (III - Crear un post)" /><published>2017-01-21T22:00:00+00:00</published><updated>2017-01-21T22:00:00+00:00</updated><id>https://www.javiercancela.com/blog/github/2017/01/21/un-blog-en-github-iii</id><content type="html" xml:base="https://www.javiercancela.com/blog/github/2017/01/21/un-blog-en-github-iii/">&lt;p&gt;Los posts son archivos en formato &lt;a href=&quot;https://daringfireball.net/projects/markdown/&quot;&gt;markdown&lt;/a&gt; (aunque también se puede usar html), que se guardan en la carpeta &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt;. Como otros archivos, tienen un &lt;em&gt;front matter&lt;/em&gt; que permite asignarles propiedades. Por ejemplo, este es el &lt;em&gt;front matter&lt;/em&gt; de este post:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
+title: Un blog en GitHub (III - Crear un post)
+date: 2017-01-12 22:00:00 +0200
+description: La experiencia de montar un blog en GitHub
+categories:
+  - blog
+  - github
+image: https://source.unsplash.com/V4EOZj7g1gw/2000x1322
+comments: true
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Las propiedades ahí indicadas serán usadas por el archivo de &lt;em&gt;layout&lt;/em&gt; del post (&lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts/post.html&lt;/code&gt;) y sus &lt;em&gt;includes&lt;/em&gt; para mostrar la imagen en la cabecera, poner la fecha del post, mostrar o no los comentarios de &lt;a href=&quot;https://disqus.com/&quot;&gt;disqus&lt;/a&gt;, y mostrar las categorías correspondientes.&lt;/p&gt;
+
+&lt;p&gt;Para publicar el post, y en general para actualizar cualquier aspecto de nuestro sitio web, bastará con hacer un push a la rama por defecto del repositorio (si no la hemos cambiado, será la rama &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;). Para los que no conozcan nada de Git, una buena guía básica en castellano es &lt;a href=&quot;http://rogerdudler.github.io/git-guide/index.es.html&quot;&gt;esta&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;markdown&quot;&gt;Markdown&lt;/h2&gt;
+&lt;p&gt;Markdown es un formato muy simple, y lo habitual es utilizar un editor de texto para crear los documentos. Yo uso &lt;a href=&quot;https://www.sublimetext.com/3&quot;&gt;Sublime Text 3&lt;/a&gt; por varios motivos: es increíblemente rápido, tiene montones de extensiones para todo tipo de cosas, es multiplataforma y permite exportar toda su configuración de forma sencilla. De hecho lo utilizo para editar todo el blog: html, js, css,…&lt;/p&gt;
+
+&lt;p&gt;También está el detalle de que es gratuito. Bueno, en realidad se puede usar sin licencia para evaluarlo, aunque incluye un recordatorio periódico para que compres una licencia si tienes pensado darle un uso continuado. La licencia vale 70$, y permite que una persona use la aplicación en todos los dispositivos que desee.&lt;/p&gt;
+
+&lt;p&gt;Una buena referencia del formato es la guía de GitHub &lt;a href=&quot;https://guides.github.com/features/mastering-markdown/&quot;&gt;Mastering Markdwon&lt;/a&gt;. Incluye ejemplos detallados y la referencia de los aspectos específicos del Markdown que acepta GitHub.&lt;/p&gt;
+
+&lt;h2 id=&quot;publicar-un-post&quot;&gt;Publicar un post&lt;/h2&gt;
+&lt;p&gt;Los posts en Markdown se convierten a html, con lo que su aspecto dependerá tanto de los formatos que hayamos especificado como de los estilos que tenga nuestro sitio web. Para ver cómo queda un post basta con que jekyll se esté ejecutando en el directorio local de nuestro repositorio. Esto se puede hacer con el comando&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll serve --future
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;El parámetro &lt;code class=&quot;highlighter-rouge&quot;&gt;--future&lt;/code&gt; le dice a Jekyll que muestre la información publicada en una fecha futura. Una práctica habitual consiste en indicar una fecha futura en el &lt;em&gt;front matter&lt;/em&gt; del post. De este modo podemos publicarlo en cualquier momento, pero sólo será visible cuando llegue la fecha indicada. Sin embargo, para revisar localmente cómo queda un post nos interesa verlo con independencia de su fecha, lo que conseguimos con este parámetro.&lt;/p&gt;
+
+&lt;p&gt;En el caso de mi blog, y debido a que la plantilla usada utiliza varios &lt;em&gt;plugins&lt;/em&gt; Ruby, necesitamos ejecutar Jekyll en el contexto del bundle Ruby asociado. Esto lo hacemos así:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle exec jekyll serve --future
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Los posts son archivos en formato markdown (aunque también se puede usar html), que se guardan en la carpeta _posts. Como otros archivos, tienen un front matter que permite asignarles propiedades. Por ejemplo, este es el front matter de este post:
+---
+title: Un blog en GitHub (III - Crear un post)
+date: 2017-01-12 22:00:00 +0200
+description: La experiencia de montar un blog en GitHub
+categories:
+  - blog
+  - github
+image: https://source.unsplash.com/V4EOZj7g1gw/2000x1322
+comments: true
+---
+
+
+Las propiedades ahí indicadas serán usadas por el archivo de layout del post (_layouts/post.html) y sus includes para mostrar la imagen en la cabecera, poner la fecha del post, mostrar o no los comentarios de disqus, y mostrar las categorías correspondientes.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://source.unsplash.com/V4EOZj7g1gw/2000x1322" /></entry><entry><title type="html">El recuerdo del pasado de la tierra</title><link href="https://www.javiercancela.com/libros/ciencia%20ficcion/2017/01/15/el-recuerdo-del-pasado-de-la-tierra/" rel="alternate" type="text/html" title="El recuerdo del pasado de la tierra" /><published>2017-01-15T20:00:00+00:00</published><updated>2017-01-15T20:00:00+00:00</updated><id>https://www.javiercancela.com/libros/ciencia%20ficcion/2017/01/15/el-recuerdo-del-pasado-de-la-tierra</id><content type="html" xml:base="https://www.javiercancela.com/libros/ciencia%20ficcion/2017/01/15/el-recuerdo-del-pasado-de-la-tierra/">&lt;p&gt;&lt;em&gt;El recuerdo del pasado de la tierra&lt;/em&gt; es una trilogía de ciencia ficción escrita por el autor chino Cixin Liu. En español sólo se ha publicado el primer volumen, &lt;em&gt;&lt;a href=&quot;http://www.edicionesb.com/catalogo/libro/el-problema-de-los-tres-cuerpos_4120.html&quot;&gt;El problema de los Tres Cuerpos&lt;/a&gt;&lt;/em&gt; , y están en proceso de traducción los otros dos, &lt;a href=&quot;http://novalibros.com/2016/10/bosque-oscuro-fin-la-muerte-cixin-liu/&quot;&gt;&lt;em&gt;El bosque oscuro&lt;/em&gt; y &lt;em&gt;El fin de la muerte&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
 
 &lt;div style=&quot;text-align:center&quot;&gt;&lt;img alt=&quot;Portada de El problema de los Tres Cuerpos&quot; src=&quot;/images/3cuerpos.jpg&quot; /&gt;&lt;/div&gt;
 
