@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://www.javiercancela.com/hardware/2017/01/29/raton-vertical-CSL/</loc>
+<lastmod>2017-01-29T01:00:00+00:00</lastmod>
+</url>
+<url>
 <loc>https://www.javiercancela.com/blog/github/2017/01/21/un-blog-en-github-iii/</loc>
 <lastmod>2017-01-21T22:00:00+00:00</lastmod>
 </url>
@@ -42,7 +46,25 @@
 <loc>https://www.javiercancela.com/category/ciencia-ficcion/</loc>
 </url>
 <url>
+<loc>https://www.javiercancela.com/category/hardware/</loc>
+</url>
+<url>
+<loc>https://www.javiercancela.com/2016/</loc>
+</url>
+<url>
+<loc>https://www.javiercancela.com/2016/12/</loc>
+</url>
+<url>
+<loc>https://www.javiercancela.com/2017/</loc>
+</url>
+<url>
+<loc>https://www.javiercancela.com/2017/01/</loc>
+</url>
+<url>
+<loc>https://www.javiercancela.com/2/</loc>
+</url>
+<url>
 <loc>https://www.javiercancela.com/static/CV.pdf</loc>
-<lastmod>2017-01-27T19:28:30+00:00</lastmod>
+<lastmod>2017-01-29T10:27:29+00:00</lastmod>
 </url>
 </urlset>

@@ -1,4 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-01-27T19:29:06+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Un blog en GitHub (III - Crear un post)</title><link href="https://www.javiercancela.com/blog/github/2017/01/21/un-blog-en-github-iii/" rel="alternate" type="text/html" title="Un blog en GitHub (III - Crear un post)" /><published>2017-01-21T22:00:00+00:00</published><updated>2017-01-21T22:00:00+00:00</updated><id>https://www.javiercancela.com/blog/github/2017/01/21/un-blog-en-github-iii</id><content type="html" xml:base="https://www.javiercancela.com/blog/github/2017/01/21/un-blog-en-github-iii/">&lt;p&gt;Los posts son archivos en formato &lt;a href=&quot;https://daringfireball.net/projects/markdown/&quot;&gt;markdown&lt;/a&gt; (aunque también se puede usar html), que se guardan en la carpeta &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt;. Como otros archivos, tienen un &lt;em&gt;front matter&lt;/em&gt; que permite asignarles propiedades. Por ejemplo, este es el &lt;em&gt;front matter&lt;/em&gt; de este post:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-01-29T10:27:57+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Ratón vertical CSL</title><link href="https://www.javiercancela.com/hardware/2017/01/29/raton-vertical-CSL/" rel="alternate" type="text/html" title="Ratón vertical CSL" /><published>2017-01-29T01:00:00+00:00</published><updated>2017-01-29T01:00:00+00:00</updated><id>https://www.javiercancela.com/hardware/2017/01/29/raton-vertical-CSL</id><content type="html" xml:base="https://www.javiercancela.com/hardware/2017/01/29/raton-vertical-CSL/">&lt;p&gt;Tenía ganas de comprarme un ratón nuevo. Bueno, en realidad se me había roto el teclado de casa, así que me puse a buscar teclados por internet y acabé comprando un ratón. El teclado también, pero más tarde. Amazon es un invento del demonio.&lt;/p&gt;
+
+&lt;p&gt;Hace un par de años me pasó una cosa curiosa. Estaba con un cliente mirando algo en su ordenador. Yo quise mostrarle alguna cosa, y para ello lo más rápido era coger su teclado y su ratón. Así que me acerqué a ambos, me dispuse a teclear y… no supe cómo. Me encontré con un teclado sin caracteres marcados, y con un &lt;em&gt;layout&lt;/em&gt; rarísimo. Creo que el teclado &lt;a href=&quot;https://www.trulyergonomic.com/store/truly-ergonomic-mechanical-keyboard-soft-tactile-kailh-cherry-mx-compatible-brown-keyswitches-227-english&quot;&gt;era este&lt;/a&gt;, pero con las teclas sin marcar:&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Ahora imaginaos que todas las teclas están borradas y os haréis una idea&quot; src=&quot;/images/Truly_Ergonomic_Keyboard2.jpg&quot; /&gt;
+        &lt;figcaption&gt;Ahora imaginaos que todas las teclas están borradas y os haréis una idea&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Mantuve las manos unos centímetros por encima del teclado durante un rato, sin decidirme a tocarlo. Finalmente cambié de estrategia y moví una de ellas hacia el ratón. Me encontré &lt;a href=&quot;http://www.posturite.co.uk/penguin-mouse.html&quot;&gt;con esto&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Esto es un joystick de toda la vida de dios&quot; src=&quot;/images/penguin_vertical_mouse.jpg&quot; /&gt;
+        &lt;figcaption&gt;Esto es un joystick de toda la vida de dios&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En mi defensa diré que lo intenté: lo agarré como un joystick, pulsé botones al azar, lo moví como si fuera una palanca, y finalmente devolví todo a su dueño con la poca dignidad que me quedaba.&lt;/p&gt;
+
+&lt;p&gt;Así que después de romper el teclado de casa me acordé de esta historia y pensé: ¿y si pruebo uno de estos cacharros raros?&lt;/p&gt;
+
+&lt;h2 id=&quot;ratones-ergonómicos&quot;&gt;Ratones ergonómicos&lt;/h2&gt;
+&lt;p&gt;No hace falta pasarte el día usando el ordenador para notar que la postura con la  que se sujeta un ratón convencional es un poco forzada. Sin embargo, así como en teclados existe desde hace tiempo una gran cantidad de modelos ergonómicos, la oferta en ratones ha sido siempre mucho más escasa. Al menos hasta hace unos pocos años, con la aparición de los ratones verticales.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Bonito, pero incómodo&quot; src=&quot;/images/night-apple-mouse-mac.jpg&quot; /&gt;
+        &lt;figcaption&gt;Bonito, pero incómodo&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Un ratón vertical es un ratón que no se sujeta con la mano por encima, sino agarrándolo de forma parecida a un &lt;em&gt;joystick&lt;/em&gt;: la mano apoyada de canto, el pulgar por un lado y el resto de los dedos por el otro. El agarre varía entre modelos, pero la idea es siempre que la muñeca no se mantenga en horizontal, liberando tensión sobre los tendones. Esa es la teoría.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;La teoría explicada en un bonito dibujo&quot; src=&quot;/images/Why-use-a-Vertical-Mouse3.jpg&quot; /&gt;
+        &lt;figcaption&gt;La teoría explicada en un bonito dibujo&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Un par de personas del trabajo han sustituido sus ratones corporativos por modelos verticales (aunque más convenciones que el &lt;a href=&quot;http://www.posturite.co.uk/penguin-mouse.html&quot;&gt;Penguin Ambidextrous Vertical Mouse&lt;/a&gt;), como el &lt;a href=&quot;http://www.logitech.com/en-us/product/mx-master?crid=7&quot;&gt;Logitech MX Master&lt;/a&gt;, que es realmente bonito, pero que vale &lt;a href=&quot;https://www.amazon.es/Logitech-MX-Master-Rat%C3%B3n-inal%C3%A1mbrico/dp/B00ULNAOMA/ref=sr_1_5?s=computers&amp;amp;ie=UTF8&amp;amp;qid=1485540765&amp;amp;sr=1-5&quot;&gt;75€ en Amazon&lt;/a&gt;. Así que me decidí a intentarlo, pero probando un modelo más económico, por si acaso.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;El Armani de los ratones&quot; src=&quot;https://images-na.ssl-images-amazon.com/images/I/61fs%2B1Mz1TL._SX522_.jpg
+&quot; /&gt;
+        &lt;figcaption&gt;El Armani de los ratones&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;buscando-la-mejor-opción&quot;&gt;Buscando la mejor opción&lt;/h2&gt;
+
+&lt;p&gt;A la hora de decidir qué modelo comprar de ordenador, móvil, televisión, o de cualquier otro dispositivo electrónico del que exista una gran oferta, siempre sigo la misma estrategia: me fijo un presupuesto, listo los principales modelos analizados en sitios como &lt;a href=&quot;https://arstechnica.com/gadgets/&quot;&gt;Ars Technica&lt;/a&gt; y &lt;a href=&quot;http://www.tomshardware.com/articles/review/&quot;&gt;Tom’s Hardware&lt;/a&gt;, y finalmente compro lo que recomienda el primer blog desconocido que me encuentro buscado por Google. En este caso, &lt;a href=&quot;http://blog.pythonaro.com/2016/08/csl-vertical-mouse-review.html&quot;&gt;este&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;¡Lo recomiendan en un blog! ¡Tiene que ser bueno!&quot; src=&quot;https://images-na.ssl-images-amazon.com/images/I/81uKkvC%2BG4L._SL1500_.jpg
+&quot; /&gt;
+        &lt;figcaption&gt;¡Lo recomiendan en un blog! ¡Tiene que ser bueno!&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lo cierto es que el ratón tiene &lt;a href=&quot;https://www.amazon.es/gp/product/B00KXRWR1A/ref=oh_aui_detailpage_o02_s00?ie=UTF8&amp;amp;psc=1&quot;&gt;buenas críticas en Amazon, y un precio razonable&lt;/a&gt;. En el lado negativo, la marca es totalmente desconocida, y la &lt;a href=&quot;https://www.csl-computer.com/shop/&quot;&gt;página web&lt;/a&gt; no inspira mucha confianza. Es decir, no es que la web tenga nada de malo, más allá de parecer una tienda online de los 90 sólo disponible en alemán, pero no es lo que esperas si quieres reforzar tu decisión de comprar esta marca.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;¿Veis la sección dedicada al ratón que he comprado? Yo tampoco&quot; src=&quot;/images/csl.jpg&quot; /&gt;
+        &lt;figcaption&gt;¿Veis la sección dedicada al ratón que he comprado? Yo tampoco&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Naturalmente, mi análisis fue mucho más allá, revisando todo tipo de comparativas y recomendaciones, como el &lt;a href=&quot;https://wiki.ezvid.com/best-vertical-mice&quot;&gt;ranking de esta página&lt;/a&gt;, donde destacaban el &lt;a href=&quot;https://www.amazon.co.uk/SHARKK%C2%AE-Wireless-Ergonomic-Vertical-Computer/dp/B0155JLOC8/ref=as_li_ss_tl?ie=UTF8&amp;amp;qid=1470307692&amp;amp;sr=8-1&amp;amp;keywords=sharkk+mouse&amp;amp;linkCode=sl1&amp;amp;tag=subclassed-21&amp;amp;linkId=3cd730faba892a050e6d85033b08c689&quot;&gt;SHARKK 5-Button Optical&lt;/a&gt; (puesto 6), y el &lt;a href=&quot;https://www.amazon.com/Anker-Wireless-Vertical-Ergonomic-Optical/dp/B00BIFNTMC&quot;&gt;Anker 2.4G wireless vertical ergonomic&lt;/a&gt; (puesto 2).&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;De tanto mirar ratones ya veo doble&quot; src=&quot;https://images-na.ssl-images-amazon.com/images/I/61m0uo2D05L._SX522_.jpg&quot; /&gt;
+        &lt;img alt=&quot;De tanto mirar ratones ya veo doble&quot; src=&quot;https://images-na.ssl-images-amazon.com/images/I/71d7r9qzUpL._SX522_.jpg&quot; /&gt;
+        &lt;figcaption&gt;De tanto mirar ratones ya veo doble&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Ok, mi nuevo ratón es un modelo fabricado en China y vendido a otras empresas para lo vendan bajo su propia marca. Eso sí, con cierto reparo, porque ni &lt;a href=&quot;https://www.anker.com/&quot;&gt;Anker&lt;/a&gt; ni &lt;a href=&quot;https://www.sharkk.com/&quot;&gt;Sharkk&lt;/a&gt; tienen ratones entre su catálogo web. Vender ratones fabricados por otra empresa dará dinero, pero no buena imagen.&lt;/p&gt;
+
+&lt;h2 id=&quot;todo-eso-está-muy-bien-pero-qué-tal-el-ratón&quot;&gt;Todo eso está muy bien, pero ¿qué tal el ratón?&lt;/h2&gt;
+&lt;p&gt;Pues estupendamente. La principal preocupación al comprar un ratón de este tipo es ‘¿me adaptaré?’. En mi caso no tardé ni cinco minutos. La posición de la mano me resulta totalmente natural, la precisión del movimiento me parece mayor (incluso sin usar el botón que pasa de 1600 a 1000 &lt;a href=&quot;https://www.taringa.net/post/info/16991929/Que-son-los-DPI-PPP-en-un-Mouse.html&quot;&gt;dpi&lt;/a&gt;) y ya echo de menos el ratón cuando estoy en el trabajo (acabaré comprando uno para trabajar). Sólo he tenido que adaptarme un poco para hacer click con la rueda central (para abrir enlaces en nueva pestaña, cerrar pestaña, …), pero ha sido cosa de un par de días.&lt;/p&gt;
+
+&lt;p&gt;El ratón incluye dos botones, accesibles con el pulgar, que realizan funciones de adelante y atrás. Pero nunca recuerdo que están ahí, así que aún no les he sacado provecho. Veremos como resulta la calidad del ratón en cuanto a su deterioro con el tiempo, pero de momento no puedo estar más satisfecho con la compra.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;El Equipo A aprueba esta compra&quot; src=&quot;/images/i-love-it-when-a-plan-comes-together.jpg&quot; /&gt;
+        &lt;figcaption&gt;El Equipo A aprueba esta compra&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Tenía ganas de comprarme un ratón nuevo. Bueno, en realidad se me había roto el teclado de casa, así que me puse a buscar teclados por internet y acabé comprando un ratón. El teclado también, pero más tarde. Amazon es un invento del demonio.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images-na.ssl-images-amazon.com/images/I/81uKkvC%2BG4L._SL1500_.jpg" /></entry><entry><title type="html">Un blog en GitHub (III - Crear un post)</title><link href="https://www.javiercancela.com/blog/github/2017/01/21/un-blog-en-github-iii/" rel="alternate" type="text/html" title="Un blog en GitHub (III - Crear un post)" /><published>2017-01-21T22:00:00+00:00</published><updated>2017-01-21T22:00:00+00:00</updated><id>https://www.javiercancela.com/blog/github/2017/01/21/un-blog-en-github-iii</id><content type="html" xml:base="https://www.javiercancela.com/blog/github/2017/01/21/un-blog-en-github-iii/">&lt;p&gt;Los posts son archivos en formato &lt;a href=&quot;https://daringfireball.net/projects/markdown/&quot;&gt;markdown&lt;/a&gt; (aunque también se puede usar html), que se guardan en la carpeta &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt;. Como otros archivos, tienen un &lt;em&gt;front matter&lt;/em&gt; que permite asignarles propiedades. Por ejemplo, este es el &lt;em&gt;front matter&lt;/em&gt; de este post:&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
 title: Un blog en GitHub (III - Crear un post)
 date: 2017-01-12 22:00:00 +0200
