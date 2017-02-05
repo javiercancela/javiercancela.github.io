@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<script type="text/javascript">
+		    var host = "www.javiercancela.com";
+		    if ((host == window.location.host) && (window.location.protocol != "https:"))
+		        window.location.protocol = "https";
+		</script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="generator" content="Jekyll v3.3.1">
+
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
+		<link rel="stylesheet" href="/css/screen.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="/manifest.json">
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+		<meta name="theme-color" content="#ffffff">
+
+		<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Un blog en GitHub (IV - Asignar un dominio) - Página de Javier Cancela</title>
+<meta property="og:title" content="Un blog en GitHub (IV - Asignar un dominio)" />
+<meta name="description" content="La experiencia de montar un blog en GitHub" />
+<meta property="og:description" content="La experiencia de montar un blog en GitHub" />
+<link rel="canonical" href="https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/" />
+<meta property="og:url" content="https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/" />
+<meta property="og:site_name" content="Página de Javier Cancela" />
+<meta property="og:image" content="https://source.unsplash.com/V4EOZj7g1gw/2000x1322" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-02-05T01:00:00+00:00" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Un blog en GitHub (IV - Asignar un dominio)",
+"image": "https://source.unsplash.com/V4EOZj7g1gw/2000x1322",
+"datePublished": "2017-02-05T01:00:00+00:00",
+"description": "La experiencia de montar un blog en GitHub",
+"publisher": {"@type": "Organization",
+"logo": {"@type": "ImageObject",
+"url": "https://www.javiercancela.com/siteicon.png"}},
+"url": "https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<link type="application/atom+xml" rel="alternate" href="https://www.javiercancela.com/feed.xml" title="Página de Javier Cancela" />
+
+		
+			<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-58458863-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+		
+	</head>
+
+	<body>
+		<header id="mainHeader">
+			<div class="container">
+				<div class="company-name">
+					<a href="/">
+						<span class="dark-logo"><img width="104" height="38" src="/images/logo/dark.png" alt="dark frisco logo"></span>
+						<span class="light-logo"><img width="104" height="38" src="/images/logo/light.png" alt="light frisco logo"></span>
+					</a>
+				</div>
+				<nav>
+	<a class="nav-toggle" id="open-nav" href="#">&#9776;</a>
+	
+		
+		
+
+		
+		<a href="/" class="" >Blog</a>
+	
+		
+		
+
+		
+		<a href="/archivo/" class="" >Archivo</a>
+	
+		
+		
+
+		
+		<a href="/sobre-mi/" class="" >Sobre mí</a>
+	
+</nav>
+
+			</div>
+		</header>
+
+		<section class="hero" style="background-image: url(https://source.unsplash.com/V4EOZj7g1gw/2000x1322)">
+	<div class="inner-hero text-container">
+		<div class="hero-text-container">
+			<h1>Un blog en GitHub (IV - Asignar un dominio)</h1>
+			<p class="subtext">La experiencia de montar un blog en GitHub</p>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="blog-post text-container">
+		<p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/blog/"></a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/github/">GitHub</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">05 de febrero de 2017</span>
+</p>
+
+
+		<div class="post-content">
+			<p>Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es <a href="http://www.javiercancela.com">http://www.javiercancela.com</a>, en vez de <a href="http://javiercancela.github.io">http://javiercancela.github.io</a>. Veamos cómo se realiza este cambio.</p>
+
+<p>En primer lugar, nos vamos a nuestro repositorio en GitHub y entramos en el apartado Settings. En mi caso, la url es https://github.com/javiercancela/javiercancela.github.io/settings. Aquí, en la parte inferior, en la sección “GitHub Pages”, encontramos el campo “Custom domain”. Escribo aquí <code class="highlighter-rouge">www.javiercancela.com</code> y pulso “Save”. La parte de <code class="highlighter-rouge">www.</code> es opcional. Sin embargo, GitHub recomienda que use por cuestiones de rendimiento y estabilidad. Ver <a href="https://help.github.com/articles/about-supported-custom-domains/#www-subdomains">www subdomains</a> (en inglés).</p>
+
+<p>Una vez asignado el dominio en GitHub, configuraremos un par de cosas en nuestro proveedor de dominios. Vamos a añadir registros para el dominio javiercancela.com y su subdominio www.javiercancela.com. La forma de hacerlo varía según el proveedor, pero debería ser algo así:</p>
+<ul>
+  <li>Añadimos un registro ALIAS o ANAME para javiercancela.com. Si no se soportan ALIAS ni ANAME, usaremos un registro A. Este tipo de registros asignan un dominio a una ip. Las ips que proporciona GitHub son 192.30.252.153 y 192.30.252.154. En mi caso mi proveedor no permite asignar registros ALIAS ni ANAME, por lo que los registros quedan así:
+    <div class="highlighter-rouge"><pre class="highlight"><code>A   @   192.30.252.153
+A   @   192.30.252.154
+</code></pre>
+    </div>
+  </li>
+  <li>Añadimos un registro CNAME para www.javiercancela.com. Este tipo de registros asocia un subdominio a otro dominio, que será el que sirva el contenido. el registro quedará así:
+    <div class="highlighter-rouge"><pre class="highlight"><code>CNAME   www   javiercancela.github.io
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<p>El cambio tardará un rato en propagarse, pero al cabo de unas horas el blog estará disponible en http://www.javiercancela.com. Al poner el subdominio <code class="highlighter-rouge">www.javiercancela.com</code> como dominio personalizado tanto http://javiercancela.com como http://javiercancela.github.io redirigirán a este.</p>
+
+<h2 id="configurar-acceso-ssl">Configurar acceso SSL</h2>
+<p>Una limitación de lo que hemos hecho hasta ahora es que nuestro dominio no va a funcionar (correctamente, al menos) a través de https. Los navegadores comprueban que el certificado del servidor, con el que se cifra la conexión SSL, sea válido para el dominio al que se está accediendo. Como nuestra página está en los servidores de GitHub, el certificado sólo cubre dominios *.github.io, por lo que los navegadores mostrarán un mensaje de error alertando de la posibilidad de que la página tenga un propósito fraudulento.</p>
+
+<p>Hoy en día cualquier página debería estar disponible a través de https, así que tenemos que corregir este problema. Para ello vamos a usar <a href="https://www.cloudflare.com">Cloudeflare</a>, un <a href="https://es.wikipedia.org/wiki/Red_de_entrega_de_contenidos">CDN</a> con servicios SSL gratuitos. La información que se indica a continuación está sacada de estos dos posts:</p>
+<ul>
+  <li><a href="https://blog.keanulee.com/2014/10/11/setting-up-ssl-on-github-pages.html">Setting up SSL on GitHub Pages</a></li>
+  <li><a href="https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/">Set Up SSL on Github Pages With Custom Domains for Free</a></li>
+</ul>
+
+<p>Lo primero que haremos será crear una cuenta con nuestro dominio (<code class="highlighter-rouge">javiercancela.com</code>, en este caso usamos el dominio principal, ya que el certificado cubrirá todos los subdominios). Después tendremos que ir a nuestro proveedor de dominios y cambiar los nameservers que estemos usando por los que proporciona Cloudeflare: <code class="highlighter-rouge">curt.ns.cloudflare.com</code> y <code class="highlighter-rouge">jessica.ns.cloudflare.com</code>. Finalmente accederemos a la opción Crypto-&gt;SSL de nuestro dominio y cambiaremos el valor “Full” por “Flexible”.</p>
+
+<p>El cambio debería ser casi inmediato, si probamos en unos minutos a acceder a nuestro blog vía https comprobaremos que la conexión ya es segura.</p>
+
+<p>Como último paso vamos a modificar la plantilla por defecto para asegurarnos de que los usuarios acceden siempre por https. En el archivo <code class="highlighter-rouge">_layouts\default.html</code>, añadimos justo tras el <code class="highlighter-rouge">&lt;head&gt;</code>:</p>
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+    <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="s2">"www.javiercancela.com"</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">host</span> <span class="o">==</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">host</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">!=</span> <span class="s2">"https:"</span><span class="p">))</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">=</span> <span class="s2">"https"</span><span class="p">;</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+</div>
+<p>Este código javascript le indica al navegador que cambie el protocolo a https, si no es el que ya está usando.</p>
+
+
+
+			<div class="blog-navigation">
+				
+					<a class="prev" href="/2017/01/29/raton-vertical-CSL/">&laquo; Ratón vertical CSL</a>
+				
+				
+			</div>
+
+
+			
+				<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    
+    var disqus_config = function () {
+        this.page.url = "http://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "/2017/02/05/un-blog-en-github-iv"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//javiercancela.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+			
+		</div>
+	</div>
+</section>
+
+
+
+		<footer>
+			<div class="container">
+				<p class="editor-link"><a href="cloudcannon:collections/_data/footer.yml" class="btn"><strong>&#9998;</strong> Edit footer</a></p>
+				<ul class="footer-left-links">
+					
+						<li>
+							<a  href="/" >
+								
+								Blog
+							</a>
+						</li>
+					
+						<li>
+							<a  href="/archivo/" >
+								
+								Archivo
+							</a>
+						</li>
+					
+						<li>
+							<a  href="/sobre-mi/" >
+								
+								Sobre mí
+							</a>
+						</li>
+					
+				</ul>
+				<ul class="footer-right-links">
+					
+						<li>
+							<a target="_blank" href="https://twitter.com/jcanvic" class="twitter-icon">
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg>
+	
+								
+							</a>
+						</li>
+					
+						<li>
+							<a target="_blank" href="https://www.linkedin.com/in/javiercancela" class="linkedin-icon">
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19,19H16V13.7A1.5,1.5 0 0,0 14.5,12.2A1.5,1.5 0 0,0 13,13.7V19H10V10H13V11.2C13.5,10.36 14.59,9.8 15.5,9.8A3.5,3.5 0 0,1 19,13.3M6.5,8.31C5.5,8.31 4.69,7.5 4.69,6.5A1.81,1.81 0 0,1 6.5,4.69C7.5,4.69 8.31,5.5 8.31,6.5A1.81,1.81 0 0,1 6.5,8.31M8,19H5V10H8M20,2H4C2.89,2 2,2.89 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" /></svg>
+	
+								
+							</a>
+						</li>
+					
+						<li>
+							<a target="_blank" href="https://plus.google.com/+JavierCancelaVicente" class="google-plus-icon">
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M23,11H21V9H19V11H17V13H19V15H21V13H23M8,11V13.4H12C11.8,14.4 10.8,16.4 8,16.4C5.6,16.4 3.7,14.4 3.7,12C3.7,9.6 5.6,7.6 8,7.6C9.4,7.6 10.3,8.2 10.8,8.7L12.7,6.9C11.5,5.7 9.9,5 8,5C4.1,5 1,8.1 1,12C1,15.9 4.1,19 8,19C12,19 14.7,16.2 14.7,12.2C14.7,11.7 14.7,11.4 14.6,11H8Z" /></svg>
+	
+								
+							</a>
+						</li>
+					
+						<li>
+							<a  href="/feed.xml" class="rss-icon">
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+	
+								
+							</a>
+						</li>
+					
+				</ul>
+				<p class="copyright">
+					<a href="https://cloudcannon.com/">
+						Template by CloudCannon
+					</a>
+				</p>
+			</div>
+		</footer>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="/js/main.js"></script>
+		<script id="dsq-count-scr" src="//javiercancela.disqus.com/count.js" async></script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	</body>
+</html>
