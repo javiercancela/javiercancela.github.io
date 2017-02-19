@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://www.javiercancela.com/2017/02/19/un-blog-en-github-y-v/</loc>
+<lastmod>2017-02-19T01:00:00+00:00</lastmod>
+</url>
+<url>
 <loc>https://www.javiercancela.com/2017/02/12/teclado-mecanico-logitech/</loc>
 <lastmod>2017-02-12T01:00:00+00:00</lastmod>
 </url>
@@ -75,6 +79,9 @@
 <loc>https://www.javiercancela.com/2017/02/</loc>
 </url>
 <url>
+<loc>https://www.javiercancela.com/2017/02/19/</loc>
+</url>
+<url>
 <loc>https://www.javiercancela.com/2017/02/12/</loc>
 </url>
 <url>
@@ -103,6 +110,6 @@
 </url>
 <url>
 <loc>https://www.javiercancela.com/static/CV.pdf</loc>
-<lastmod>2017-02-12T20:29:34+00:00</lastmod>
+<lastmod>2017-02-19T20:58:57+00:00</lastmod>
 </url>
 </urlset>
