@@ -28,13 +28,13 @@
 <link rel="canonical" href="https://www.javiercancela.com/2/" />
 <meta property="og:url" content="https://www.javiercancela.com/2/" />
 <meta property="og:site_name" content="Página de Javier Cancela" />
-<meta property="og:image" content="https://source.unsplash.com/EZSm8xRjnX0/2000x1322" />
+<meta property="og:image" content="https://www.javiercancela.com/images/main.jpg" />
 <link rel="prev" href="https://www.javiercancela.com/">
 <script type="application/ld+json">
 {"@context": "http://schema.org",
 "@type": "WebPage",
 "headline": "Blog",
-"image": "https://source.unsplash.com/EZSm8xRjnX0/2000x1322",
+"image": "https://www.javiercancela.com/images/main.jpg",
 "description": "El blog de Javier Cancela.",
 "publisher": {"@type": "Organization",
 "logo": {"@type": "ImageObject",
@@ -93,7 +93,7 @@
 			</div>
 		</header>
 
-		<section class="hero" style="background-image: url(https://source.unsplash.com/EZSm8xRjnX0/2000x1322)">
+		<section class="hero" style="background-image: url(/images/main.jpg)">
 	<div class="inner-hero text-container">
 		<div class="hero-text-container">
 			<h1 class="editable">Apuntes en sucio</h1>
@@ -139,7 +139,7 @@ description: La experiencia de montar un blog en GitHub
 categories:
   - blog
   - github
-image: https://source.unsplash.com/V4EOZj7g1gw/2000x1322
+image: /images/blog.jpg
 comments: true
 ---
 </code></pre>
@@ -381,5 +381,31 @@ comments: true
 		<script src="/js/prism.js"></script>
 		<script id="dsq-count-scr" src="//javiercancela.disqus.com/count.js" async></script>
 		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script type="text/javascript">
+			MathJax.Hub.Config({
+				config: ["MMLorHTML.js"],
+				extensions: ["tex2jax.js"],
+				jax: ["input/TeX"],
+				displayAlign: "center",
+				tex2jax: {
+					inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+					displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+					processEscapes: false
+				},
+				TeX: {
+					extensions: ["AMSmath.js", "AMSsymbols.js"],
+					TagSide: "right",
+					TagIndent: ".8em",
+					MultLineWidth: "85%",
+					equationNumbers: {
+						autoNumber: "AMS",
+					},
+					unicode: {
+						fonts: "STIXGeneral,'Arial Unicode MS'"
+					}
+				},
+				showProcessingMessages: false
+			});
+		</script>		
 	</body>
 </html>

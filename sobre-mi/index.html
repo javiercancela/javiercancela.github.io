@@ -28,12 +28,12 @@
 <link rel="canonical" href="https://www.javiercancela.com/sobre-mi/" />
 <meta property="og:url" content="https://www.javiercancela.com/sobre-mi/" />
 <meta property="og:site_name" content="Página de Javier Cancela" />
-<meta property="og:image" content="https://source.unsplash.com/pCZq5tVnbwU/2000x1322?a=.png" />
+<meta property="og:image" content="https://www.javiercancela.com/images/cv.jpg" />
 <script type="application/ld+json">
 {"@context": "http://schema.org",
 "@type": "WebPage",
 "headline": "Contacto",
-"image": "https://source.unsplash.com/pCZq5tVnbwU/2000x1322?a=.png",
+"image": "https://www.javiercancela.com/images/cv.jpg",
 "description": "Envíame un mensaje",
 "publisher": {"@type": "Organization",
 "logo": {"@type": "ImageObject",
@@ -92,7 +92,7 @@
 			</div>
 		</header>
 
-		<section class="hero" style="background-image: url(https://source.unsplash.com/pCZq5tVnbwU/2000x1322?a=.png)">
+		<section class="hero" style="background-image: url(/images/cv.jpg)">
 	<div class="inner-hero text-container">
 		<div class="hero-text-container">
 			<h1 class="editable">Sobre mí</h1>
@@ -109,7 +109,7 @@
 				<p class="editable">Licenciado en Ciencias Físicas en una Universidad de Santiago de Compostela Especidalidad de Electrónica y Computación (1991 - 1999)</p>
 			</div>
 			<div class="image">
-				<img class="editable" src="https://source.unsplash.com/5mZ_M06Fc9g/325x650" alt="Screenshot" />
+				<img class="editable" src="/images/estudios.jpg" alt="Estudios" />
 			</div>
 		</div>
 	</section>
@@ -121,7 +121,7 @@
 				<p class="editable">Desde 1999 participando en proyectos de desarrollo de software, como desarrollador, analista o jefe de proyecto. Tanto para el sector industrial como para la administración pública.</p>
 			</div>
 			<div class="image">
-				<img class="editable" src="https://source.unsplash.com/5fNmWej4tAA/325x650" alt="Screenshot" />
+				<img class="editable" src="/images/experiencia.jpg" alt="Experiencia" />
 			</div>
 		</div>
 	</section>
@@ -133,7 +133,7 @@
 				<p class="editable">Experiencia en desarrollo back con Java y .NET. Desarrollo Front-End. Desarrollo de aplicaciones móviles. Comercio electrónico. Conocimiento de Scrum y PMP. Git, SVN, Jira, Redmine, Bamboo, Jenkins, Artifactory, Nexus, etc... Hablo un inglés aceptable.</p>
 			</div>
 			<div class="image">
-				<img class="editable" src="https://source.unsplash.com/5Ntkpxqt54Y/325x650" alt="Screenshot" />
+				<img class="editable" src="/images/conocimientos.jpg" alt="Conocimientos" />
 			</div>
 		</div>
 	</section>
@@ -145,7 +145,7 @@
 				<p class="editable">Mi familia. Los <del>libros</del> <del>e-books</del> audiolibros. El buen comer y el buen beber. Viajar. Los ordenadores. Intentar levantarme para ir al gimnasio. Escribir un blog.</p>
 			</div>
 			<div class="image">
-				<img class="editable" src="https://source.unsplash.com/7bYARiDY7lQ/325x650" alt="Screenshot" />
+				<img class="editable" src="/images/intereses.jpg" alt="Intereses" />
 			</div>
 		</div>
 	</section>
@@ -271,5 +271,31 @@
 		<script src="/js/prism.js"></script>
 		<script id="dsq-count-scr" src="//javiercancela.disqus.com/count.js" async></script>
 		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script type="text/javascript">
+			MathJax.Hub.Config({
+				config: ["MMLorHTML.js"],
+				extensions: ["tex2jax.js"],
+				jax: ["input/TeX"],
+				displayAlign: "center",
+				tex2jax: {
+					inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+					displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+					processEscapes: false
+				},
+				TeX: {
+					extensions: ["AMSmath.js", "AMSsymbols.js"],
+					TagSide: "right",
+					TagIndent: ".8em",
+					MultLineWidth: "85%",
+					equationNumbers: {
+						autoNumber: "AMS",
+					},
+					unicode: {
+						fonts: "STIXGeneral,'Arial Unicode MS'"
+					}
+				},
+				showProcessingMessages: false
+			});
+		</script>		
 	</body>
 </html>

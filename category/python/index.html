@@ -90,7 +90,7 @@
 			</div>
 		</header>
 
-		<section class="hero" style="background-image: url(https://source.unsplash.com/o6GEPQXnqMY)">
+		<section class="hero" style="background-image: url(/images/archivo.jpg)">
   <div class="inner-hero text-container">
     <div class="hero-text-container">
       <h1>Archivo</h1>
@@ -233,5 +233,31 @@
 		<script src="/js/prism.js"></script>
 		<script id="dsq-count-scr" src="//javiercancela.disqus.com/count.js" async></script>
 		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		<script type="text/javascript">
+			MathJax.Hub.Config({
+				config: ["MMLorHTML.js"],
+				extensions: ["tex2jax.js"],
+				jax: ["input/TeX"],
+				displayAlign: "center",
+				tex2jax: {
+					inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+					displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+					processEscapes: false
+				},
+				TeX: {
+					extensions: ["AMSmath.js", "AMSsymbols.js"],
+					TagSide: "right",
+					TagIndent: ".8em",
+					MultLineWidth: "85%",
+					equationNumbers: {
+						autoNumber: "AMS",
+					},
+					unicode: {
+						fonts: "STIXGeneral,'Arial Unicode MS'"
+					}
+				},
+				showProcessingMessages: false
+			});
+		</script>		
 	</body>
 </html>
