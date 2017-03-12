@@ -1,4 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-03-11T22:10:01+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Ready Player One</title><link href="https://www.javiercancela.com/2017/03/05/ready-player-one/" rel="alternate" type="text/html" title="Ready Player One" /><published>2017-03-05T01:00:00+00:00</published><updated>2017-03-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/05/ready-player-one</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/05/ready-player-one/">&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://www.artstation.com/artwork/bg49G&quot;&gt;Imagen de la cabecera&lt;/a&gt; de &lt;a href=&quot;https://www.artstation.com/artist/degesart&quot;&gt;Florian de Gesincourt&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-03-12T08:38:56+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Machine Learning con Python - Tema 1</title><link href="https://www.javiercancela.com/2017/03/12/python-machine-learning-i/" rel="alternate" type="text/html" title="Machine Learning con Python - Tema 1" /><published>2017-03-12T01:00:00+00:00</published><updated>2017-03-12T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/12/python-machine-learning-i</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/12/python-machine-learning-i/">&lt;p&gt;El foco de estas entradas se pondrá en el &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book&quot;&gt;código Python publicado en GitHub&lt;/a&gt;, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.&lt;/p&gt;
+
+&lt;h2 id=&quot;tipos-de-machine-learning&quot;&gt;Tipos de &lt;em&gt;machine learning&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;Existen tres estrategias distintas de aprendizaje automático: supervisado, no supervisado y reforzado&lt;/p&gt;
+
+&lt;h3 id=&quot;supervisado&quot;&gt;Supervisado&lt;/h3&gt;
+
+&lt;p&gt;En el aprendizaje supervisado se entrena el modelo con datos para los que ya se conoce el resultado correcto. En función del tipo de resultado que esperemos obtener, podemos encontrarnos con que los datos de entrenamiento llevan asociada una etiqueta que indica a qué categoría pertenece, o un valor numérico. En el primer caso hablamos de &lt;strong&gt;clasificación&lt;/strong&gt;, y en el segundo de &lt;strong&gt;regresión&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Un ejemplo de problema de clasificación es el mencionado en la entrada anterior: la clasificación de spam. Al modelo se le presenta con una serie de correos que ya han sido identificados con una etiqueta ‘spam’ o ‘no spam’. El modelo utiliza esos correos para calibrar ciertos valores internos, de forma que pueda identificar correctamente futuros correos sin intervención humana.&lt;/p&gt;
+
+&lt;p&gt;En los problemas de regresión el valor esperado pertenece a un rango continuo. Un ejemplo, &lt;a href=&quot;http://setosa.io/ev/ordinary-least-squares-regression/&quot;&gt;sacado de este post (en inglés)&lt;/a&gt;, sería un modelo para predecir la altura de una persona a partir del tamaño de su mano. Para ello entrenaríamos el modelo con una muestra aleatoria de personas, para las cuales tendríamos tanto el tamaño de su mano como su altura real. El resultado sería una ecuación del tipo &lt;script type=&quot;math/tex&quot;&gt;y = A + Bx&lt;/script&gt;
+donde &lt;em&gt;x&lt;/em&gt; sería el tamaño de la mano, &lt;em&gt;A&lt;/em&gt; y &lt;em&gt;B&lt;/em&gt; valores definidos tras el proceso de aprendizaje, e &lt;em&gt;y&lt;/em&gt; la altura predicha para el valor x.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Ejemplo de regresión lineal&quot; src=&quot;/images/pml/1_regression.png&quot; /&gt;
+        &lt;figcaption&gt;Ejemplo de regresión lineal&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;reforzado&quot;&gt;Reforzado&lt;/h3&gt;
+
+&lt;p&gt;El aprendizaje reforzado entrena un modelo para que consiga un objetivo. Para ello se alimenta el modelo con el resultado de una función que evalúa cómo de cerca estamos del objetivo. Se establece un ciclo en el que el modelo genera una salida, la función evalúa cómo de satisfactoria ha sido esta salida, y la evaluación se utiliza para ajustar el modelo.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;El modelo ('Agent') cambia el estado a través de una acción. Este cambio nos acerca más o menos al objetivo. Realimentamos el modelo con una recompensa, así como con la acción que generó dicha recompensa&quot; src=&quot;/images/pml/1_refuerzo.png&quot; /&gt;
+        &lt;figcaption&gt;El modelo ('Agent') cambia el estado a través de una acción. Este cambio nos acerca más o menos al objetivo. Realimentamos el modelo con una recompensa, así como con la acción que generó dicha recompensa&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Los ejemplos habituales de aplicación de esta técnica son los juegos: ajedrez, tres en raya, juegos de cartas… En ellos el programa va aprendiendo según juega partidas y comprueba qué acciones llevan a la victoria.&lt;/p&gt;
+
+&lt;h3 id=&quot;no-supervisado&quot;&gt;No supervisado&lt;/h3&gt;
+
+&lt;p&gt;En algunas ocasiones nos encontramos con datos de los que no sabemos qué información extraer. Para estos casos se usan técnicas de aprendizaje no supervisado, en las que se analiza la estructura de los datos para intentar extraer información útil. El libro menciona dos aproximaciones a esta técnica: &lt;strong&gt;agrupación (&lt;em&gt;clustering&lt;/em&gt;)&lt;/strong&gt; y &lt;strong&gt;reducción de dimensionalidad&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;En la agrupación se buscan elementos que, según algún criterio, son algo similares entre sí y algo distintos a los demás. Por ejemplo, si tenemos un conjunto de animales con gatos, caballos, palomas y águilas, y proporcionamos al modelo sus tamaños y el número de patas de cada animal, el aprendizaje no supervisado le permitiría identificar correctamente cuatro tipos de animales: grande con dos patas (águila), grande con cuatro patas (caballo), pequeño con dos patas (paloma) y pequeño con cuatro patas (gato).&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Un ejemplo un poco más real de clustering&quot; src=&quot;https://docs.microsoft.com/en-us/azure/machine-learning/media/machine-learning-algorithm-choice/image9.png&quot; /&gt;
+        &lt;figcaption&gt;Un ejemplo un poco más real de clustering&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En cuanto a la reducción de dimensionalidad, consiste en reducir los datos de forma que se retenga la información relevante. La idea es disminuir tanto el espacio ocupado por los datos como el tiempo necesario para ejecutar los algoritmos. Usando un ejemplo sacado de &lt;a href=&quot;http://stackoverflow.com/a/1994481&quot;&gt;esta respuesta de stackoverflow&lt;/a&gt;, supongamos un conjunto de datos en el que 1000 personas indican si les gusta o no cada una de 100 películas seleccionadas. Podríamos almacenar esta información en 1000 vectores de 100 elementos cada uno, donde cada elemento fuese un 1 o un 0 según la película hubiese gustado o no. Una forma de reducir la dimensionalidad del conjunto de datos sería asignar a cada película uno de cinco géneros (comedia, terror, … los que fuesen más representativos), y usar los datos originales para construir un nuevo vector de cinco elementos para cada persona, donde se indicase si el género es no de su agrado. Pasaríamos así de 100.000 a 5.000 elementos. Como contrapartida, perderíamos información (a una persona le pueden gustar un par de películas de un género que no le gusta).&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;El ejemplo del libro reduce una muestra de datos en 3 dimensionaes a otra equivalente en 2 dimensiones&quot; src=&quot;/images/pml/1_compression.png&quot; /&gt;
+        &lt;figcaption&gt;El ejemplo del libro reduce una muestra de datos en 3 dimensiones a otra equivalente en 2 dimensiones&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;terminología-y-notación&quot;&gt;Terminología y notación&lt;/h2&gt;
+
+&lt;p&gt;Como es de esperar en cualquier disciplina técnica que se precie, el &lt;em&gt;machine learning&lt;/em&gt; incluye un montón de terminología propia que es preciso conocer. El siguiente punto del tema 1 presenta algunos de estos términos.&lt;/p&gt;
+
+&lt;p&gt;En aprendizaje automático existe un conjunto de datos muy conocido que se usa en todos los cursos para principiantes, algo así como el “Hola Mundo” de los conjuntos de datos. Se llama &lt;a href=&quot;https://es.wikipedia.org/wiki/Iris_flor_conjunto_de_datos&quot;&gt;conjunto de datos Iris&lt;/a&gt;, e incluye datos de 50 ejemplares de cada una de las 3 especies de la flor Iris. Para cada ejemplar se da el largo y ancho del pétalo y el sépalo, así como la especie a la que pertenece (&lt;em&gt;setosa&lt;/em&gt;, &lt;em&gt;versicolor&lt;/em&gt; o &lt;em&gt;virginica&lt;/em&gt;).&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Algunos datos de Iris y una ilustración de la flor&quot; src=&quot;/images/pml/1_iris.png&quot; /&gt;
+        &lt;figcaption&gt;Algunos datos de Iris y una ilustración de la flor&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Como se puede apreciar en la imagen superior, cada fila de datos es una &lt;em&gt;muestra&lt;/em&gt;, &lt;em&gt;instancia&lt;/em&gt; u &lt;em&gt;observación&lt;/em&gt;. Para cada una de estas muestras se proporciona una serie de datos, a los que nos solemos referir como &lt;em&gt;características&lt;/em&gt;, aunque también &lt;em&gt;atributos&lt;/em&gt;, &lt;em&gt;medidas&lt;/em&gt; o &lt;em&gt;dimensiones&lt;/em&gt;. Finalmente, la especie de la flor sería la &lt;em&gt;etiqueta&lt;/em&gt; u &lt;em&gt;objetivo&lt;/em&gt;. La consistencia en la terminología no es un fuerte del &lt;em&gt;machine learning&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;En este punto el libro también nos habla de notación algebraica. El trabajo con matrices es fundamental en el &lt;em&gt;machine learning&lt;/em&gt;, así que este el autor nos cuenta qué notación utiliza para representar matices, vectores y elementos dentro de los mismos.&lt;/p&gt;
+
+&lt;p&gt;Por ejemplo, el conjunto de datos Iris se puede representar como una matriz de 150 filas (una por muestra) y 4 columnas (una por característica):&lt;/p&gt;
+
+&lt;p&gt;\begin{bmatrix}
+x_1^{(1)} &amp;amp; x_2^{(1)} &amp;amp; x_3^{(1)} &amp;amp; x_4^{(1)} \cr
+x_1^{(2)} &amp;amp; x_2^{(2)} &amp;amp; x_3^{(2)} &amp;amp; x_4^{(2)} \cr
+\vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots \cr
+x_1^{(150)} &amp;amp; x_2^{(150)} &amp;amp; x_3^{(150)} &amp;amp; x_4^{(150)} \cr
+\end{bmatrix}&lt;/p&gt;
+
+&lt;p&gt;En general, un elemento &lt;script type=&quot;math/tex&quot;&gt;x_n^{(m)}&lt;/script&gt; se refiere al elemento de la fila m y la columna n de una matriz. Usaremos negritas en minúsculas para los vectores (&lt;script type=&quot;math/tex&quot;&gt;\bf x \in \mathbb R^{nx1}&lt;/script&gt;), y negritas en mayúsculas para las matrices (&lt;script type=&quot;math/tex&quot;&gt;\bf X \in \mathbb R^{nxm}&lt;/script&gt;).&lt;/p&gt;
+
+&lt;h2 id=&quot;otros-aspectos-importantes-del-aprendizaje-automático&quot;&gt;Otros aspectos importantes del aprendizaje automático&lt;/h2&gt;
+
+&lt;p&gt;Además del algoritmo de aprendizaje, el libro nos habla en este tema de otros aspectos importantes del &lt;em&gt;machine learning&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;preprocesado&quot;&gt;Preprocesado&lt;/h3&gt;
+
+&lt;p&gt;El preprocesado es la fase inicial del proceso de aprendizaje. Consiste en disponer los datos existentes en un formato adecuado para su procesamiento: se normalizan valores, se pasan textos a números, se separan datos de entrenamiento y datos de prueba,…&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Ejemplo de flujo de modelado predictivo&quot; src=&quot;/images/pml/1_flujo.png&quot; /&gt;
+        &lt;figcaption&gt;Ejemplo de flujo de modelado predictivo&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;entrenamiento-y-selección-del-proceso-predictivo&quot;&gt;Entrenamiento y selección del proceso predictivo&lt;/h3&gt;
+
+&lt;p&gt;La otra tarea fundamental a realizar al empezar es la correcta selección del algoritmo a utilizar. Queremos obtener el modelo que presente un mejor rendimiento, pero para ello necesitamos definir una métrica que mida este rendimiento. La más común es la proporción de muestras correctamente clasificadas.&lt;/p&gt;
+
+&lt;h3 id=&quot;evaluación-de-modelos-y-predcción-de-instancias-de-datos-no-vistas&quot;&gt;Evaluación de modelos y predcción de instancias de datos no vistas&lt;/h3&gt;
+
+&lt;p&gt;El modelo se entrena con los datos de entrenamiento, y se evalúa con la parte del conjunto de datos reservada para ello. En función de la tasa de error encontrada en la evaluación decidiremos si el modelo es válido.&lt;/p&gt;
+
+&lt;h2 id=&quot;python&quot;&gt;Python&lt;/h2&gt;
+
+&lt;p&gt;El tema finaliza hablando de Python y de cómo instalarlo. Python es uno de los lenguajes más populares en el mundo del &lt;em&gt;machine learning&lt;/em&gt;, en parte por su versatilidad, en parte por la gran cantidad de librerías especialidadas de las que dispone. Especialmente relevantes para el aprendizaje máquina son &lt;a href=&quot;http://www.numpy.org/&quot;&gt;NumPy&lt;/a&gt; y &lt;a href=&quot;https://www.scipy.org/&quot;&gt;SciPy&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;La opción más cómoda para instalar Python con todo lo necesario para este libro es descargar &lt;a href=&quot;https://docs.continuum.io/anaconda/install#&quot;&gt;Anaconda&lt;/a&gt;, un gestor de instalaciones de Python.&lt;/p&gt;
+
+&lt;p&gt;El libro no habla del entorno de desarrollo, pero yo uso desde hace unos meses el &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt;. Con la &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=donjayamanne.python&quot;&gt;extensión de Python&lt;/a&gt; proporcionando autocompletado, &lt;a href=&quot;https://es.wikipedia.org/wiki/Lint&quot;&gt;&lt;em&gt;linting&lt;/em&gt;&lt;/a&gt;, formateado de código y depuración, el Visual Studio Code supera al resto de entornos Python disponibles de forma gratuita.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusión&quot;&gt;Conclusión&lt;/h2&gt;
+
+&lt;p&gt;El tema 1 nos familiariza con los conceptos más básicos del aprendizaje máquina. En el tema 2 empezaremos ya a ver código para avanzar en la materia.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">El foco de estas entradas se pondrá en el código Python publicado en GitHub, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry><entry><title type="html">Ready Player One</title><link href="https://www.javiercancela.com/2017/03/05/ready-player-one/" rel="alternate" type="text/html" title="Ready Player One" /><published>2017-03-05T01:00:00+00:00</published><updated>2017-03-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/05/ready-player-one</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/05/ready-player-one/">&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://www.artstation.com/artwork/bg49G&quot;&gt;Imagen de la cabecera&lt;/a&gt; de &lt;a href=&quot;https://www.artstation.com/artist/degesart&quot;&gt;Florian de Gesincourt&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.amazon.es/Ready-player-one-Grandes-novelas/dp/8466649174/&quot;&gt;&lt;em&gt;Ready Player One&lt;/em&gt;, de Ernest Cline&lt;/a&gt; es un homenaje a la cultura pop de los años 80 en su vertiente más friki: máquinas recreativas, videoconsolas, juegos de rol, y novelas, comics, películas de componente más o menos fantástico. Conmigo la fórmula funcionó muy bien, y lo devoré como se devora una hamburguesa un viernes a las 7 de la mañana antes de irte a dormir.&lt;/p&gt;
 
@@ -227,7 +345,49 @@ Light Switch + &quot;Plus Key&quot; - Increase speed of effect.
 Light Switch + &quot;Minus Key&quot; - Decrease speed of effect.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;Problema resuelto.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Comprar un ratón nuevo no resolvió mi problema con el teclado roto. Mi teclado de los últimos años ha sido un Logitech K270. No es un mal teclado: económico, resistente, inalámbrico, con buen tacto y no muy grande. Digo resistente pese a la rotura, porque su único problema fue una pata rota tras ser aporreado repetidamente por un niño pequeño, así que no creo que se pueda culpar al teclado del percance.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/LogitechG610.jpg" /></entry><entry><title type="html">Un blog en GitHub (IV - Asignar un dominio)</title><link href="https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/" rel="alternate" type="text/html" title="Un blog en GitHub (IV - Asignar un dominio)" /><published>2017-02-05T01:00:00+00:00</published><updated>2017-02-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv</id><content type="html" xml:base="https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/">&lt;p&gt;Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es &lt;a href=&quot;http://www.javiercancela.com&quot;&gt;http://www.javiercancela.com&lt;/a&gt;, en vez de &lt;a href=&quot;http://javiercancela.github.io&quot;&gt;http://javiercancela.github.io&lt;/a&gt;. Veamos cómo se realiza este cambio.&lt;/p&gt;
+&lt;p&gt;Problema resuelto.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Comprar un ratón nuevo no resolvió mi problema con el teclado roto. Mi teclado de los últimos años ha sido un Logitech K270. No es un mal teclado: económico, resistente, inalámbrico, con buen tacto y no muy grande. Digo resistente pese a la rotura, porque su único problema fue una pata rota tras ser aporreado repetidamente por un niño pequeño, así que no creo que se pueda culpar al teclado del percance.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/LogitechG610.jpg" /></entry><entry><title type="html">Un blog en GitHub (IV - Asignar un dominio)</title><link href="https://www.javiercancela.com/2017/02/05/tutorial-de-git-i/" rel="alternate" type="text/html" title="Un blog en GitHub (IV - Asignar un dominio)" /><published>2017-02-05T01:00:00+00:00</published><updated>2017-02-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/02/05/tutorial-de-git-i</id><content type="html" xml:base="https://www.javiercancela.com/2017/02/05/tutorial-de-git-i/">&lt;p&gt;Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es &lt;a href=&quot;http://www.javiercancela.com&quot;&gt;http://www.javiercancela.com&lt;/a&gt;, en vez de &lt;a href=&quot;http://javiercancela.github.io&quot;&gt;http://javiercancela.github.io&lt;/a&gt;. Veamos cómo se realiza este cambio.&lt;/p&gt;
+
+&lt;p&gt;En primer lugar, nos vamos a nuestro repositorio en GitHub y entramos en el apartado Settings. En mi caso, la url es https://github.com/javiercancela/javiercancela.github.io/settings. Aquí, en la parte inferior, en la sección “GitHub Pages”, encontramos el campo “Custom domain”. Escribo aquí &lt;code class=&quot;highlighter-rouge&quot;&gt;www.javiercancela.com&lt;/code&gt; y pulso “Save”. La parte de &lt;code class=&quot;highlighter-rouge&quot;&gt;www.&lt;/code&gt; es opcional. Sin embargo, GitHub recomienda que use por cuestiones de rendimiento y estabilidad. Ver &lt;a href=&quot;https://help.github.com/articles/about-supported-custom-domains/#www-subdomains&quot;&gt;www subdomains&lt;/a&gt; (en inglés).&lt;/p&gt;
+
+&lt;p&gt;Una vez asignado el dominio en GitHub, configuraremos un par de cosas en nuestro proveedor de dominios. Vamos a añadir registros para el dominio javiercancela.com y su subdominio www.javiercancela.com. La forma de hacerlo varía según el proveedor, pero debería ser algo así:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Añadimos un registro ALIAS o ANAME para javiercancela.com. Si no se soportan ALIAS ni ANAME, usaremos un registro A. Este tipo de registros asignan un dominio a una ip. Las ips que proporciona GitHub son 192.30.252.153 y 192.30.252.154. En mi caso mi proveedor no permite asignar registros ALIAS ni ANAME, por lo que los registros quedan así:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;A   @   192.30.252.153
+A   @   192.30.252.154
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Añadimos un registro CNAME para www.javiercancela.com. Este tipo de registros asocia un subdominio a otro dominio, que será el que sirva el contenido. el registro quedará así:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CNAME   www   javiercancela.github.io
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;El cambio tardará un rato en propagarse, pero al cabo de unas horas el blog estará disponible en http://www.javiercancela.com. Al poner el subdominio &lt;code class=&quot;highlighter-rouge&quot;&gt;www.javiercancela.com&lt;/code&gt; como dominio personalizado tanto http://javiercancela.com como http://javiercancela.github.io redirigirán a este.&lt;/p&gt;
+
+&lt;h2 id=&quot;configurar-acceso-ssl&quot;&gt;Configurar acceso SSL&lt;/h2&gt;
+&lt;p&gt;Una limitación de lo que hemos hecho hasta ahora es que nuestro dominio no va a funcionar (correctamente, al menos) a través de https. Los navegadores comprueban que el certificado del servidor, con el que se cifra la conexión SSL, sea válido para el dominio al que se está accediendo. Como nuestra página está en los servidores de GitHub, el certificado sólo cubre dominios *.github.io, por lo que los navegadores mostrarán un mensaje de error alertando de la posibilidad de que la página tenga un propósito fraudulento.&lt;/p&gt;
+
+&lt;p&gt;Hoy en día cualquier página debería estar disponible a través de https, así que tenemos que corregir este problema. Para ello vamos a usar &lt;a href=&quot;https://www.cloudflare.com&quot;&gt;Cloudeflare&lt;/a&gt;, un &lt;a href=&quot;https://es.wikipedia.org/wiki/Red_de_entrega_de_contenidos&quot;&gt;CDN&lt;/a&gt; con servicios SSL gratuitos. La información que se indica a continuación está sacada de estos dos posts:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.keanulee.com/2014/10/11/setting-up-ssl-on-github-pages.html&quot;&gt;Setting up SSL on GitHub Pages&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/&quot;&gt;Set Up SSL on Github Pages With Custom Domains for Free&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Lo primero que haremos será crear una cuenta con nuestro dominio (&lt;code class=&quot;highlighter-rouge&quot;&gt;javiercancela.com&lt;/code&gt;, en este caso usamos el dominio principal, ya que el certificado cubrirá todos los subdominios). Después tendremos que ir a nuestro proveedor de dominios y cambiar los nameservers que estemos usando por los que proporciona Cloudeflare: &lt;code class=&quot;highlighter-rouge&quot;&gt;curt.ns.cloudflare.com&lt;/code&gt; y &lt;code class=&quot;highlighter-rouge&quot;&gt;jessica.ns.cloudflare.com&lt;/code&gt;. Finalmente accederemos a la opción Crypto-&amp;gt;SSL de nuestro dominio y cambiaremos el valor “Full” por “Flexible”.&lt;/p&gt;
+
+&lt;p&gt;El cambio debería ser casi inmediato, si probamos en unos minutos a acceder a nuestro blog vía https comprobaremos que la conexión ya es segura.&lt;/p&gt;
+
+&lt;p&gt;Como último paso vamos a modificar la plantilla por defecto para asegurarnos de que los usuarios acceden siempre por https. En el archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts\default.html&lt;/code&gt;, añadimos justo tras el &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;www.javiercancela.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Este código javascript le indica al navegador que cambie el protocolo a https, si no es el que ya está usando.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es http://www.javiercancela.com, en vez de http://javiercancela.github.io. Veamos cómo se realiza este cambio.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/blog.jpg" /></entry><entry><title type="html">Un blog en GitHub (IV - Asignar un dominio)</title><link href="https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/" rel="alternate" type="text/html" title="Un blog en GitHub (IV - Asignar un dominio)" /><published>2017-02-05T01:00:00+00:00</published><updated>2017-02-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv</id><content type="html" xml:base="https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/">&lt;p&gt;Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es &lt;a href=&quot;http://www.javiercancela.com&quot;&gt;http://www.javiercancela.com&lt;/a&gt;, en vez de &lt;a href=&quot;http://javiercancela.github.io&quot;&gt;http://javiercancela.github.io&lt;/a&gt;. Veamos cómo se realiza este cambio.&lt;/p&gt;
 
 &lt;p&gt;En primer lugar, nos vamos a nuestro repositorio en GitHub y entramos en el apartado Settings. En mi caso, la url es https://github.com/javiercancela/javiercancela.github.io/settings. Aquí, en la parte inferior, en la sección “GitHub Pages”, encontramos el campo “Custom domain”. Escribo aquí &lt;code class=&quot;highlighter-rouge&quot;&gt;www.javiercancela.com&lt;/code&gt; y pulso “Save”. La parte de &lt;code class=&quot;highlighter-rouge&quot;&gt;www.&lt;/code&gt; es opcional. Sin embargo, GitHub recomienda que use por cuestiones de rendimiento y estabilidad. Ver &lt;a href=&quot;https://help.github.com/articles/about-supported-custom-domains/#www-subdomains&quot;&gt;www subdomains&lt;/a&gt; (en inglés).&lt;/p&gt;
 
@@ -424,119 +584,4 @@ Las propiedades ahí indicadas serán usadas por el archivo de layout del post (
 
 &lt;p&gt;La trilogía utiliza el contacto con una civilización extraterrestre para plantear una serie de escenarios científicos, morales y existenciales que constituyen la verdadera razón de ser de la obra. Esta contiene conjeturas extremas sobre física, biología e incluso sociología. Hasta propone una explicación (para mí fascinante) a la &lt;a href=&quot;https://es.wikipedia.org/wiki/Paradoja_de_Fermi&quot;&gt;paradoja de Fermi&lt;/a&gt; (aunque no sé si es una idea original). En este aspecto el libro muestra una capacidad de sugestión que  compensa de sobra sus defectos.&lt;/p&gt;
 
-&lt;p&gt;En resumen, un libro muy recomendable para los amantes de la ciencia ficción dura, que no tengan miedo a largas descripciones científico-técnicas y que disfruten con tramas pensadas para motivar discusiones metafísicas.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">El recuerdo del pasado de la tierra es una trilogía de ciencia ficción escrita por el autor chino Cixin Liu. En español sólo se ha publicado el primer volumen, El problema de los Tres Cuerpos , y están en proceso de traducción los otros dos, El bosque oscuro y El fin de la muerte.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/ttbp.jpg" /></entry><entry><title type="html">Un blog en GitHub (II - Estructura del sitio)</title><link href="https://www.javiercancela.com/2017/01/09/un-blog-en-github-ii/" rel="alternate" type="text/html" title="Un blog en GitHub (II - Estructura del sitio)" /><published>2017-01-09T01:00:00+00:00</published><updated>2017-01-09T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/01/09/un-blog-en-github-ii</id><content type="html" xml:base="https://www.javiercancela.com/2017/01/09/un-blog-en-github-ii/">&lt;p&gt;La forma más eficiente de montar un blog con Jekyll consiste en descargarse una plantilla y modificarla según nuestras necesidades. La página &lt;a href=&quot;http://jekyll.tips/templates/&quot;&gt;Jekyll Tips&lt;/a&gt; tiene varias plantillas para elegir. Yo me decanté por &lt;a href=&quot;https://github.com/CloudCannon/frisco-jekyll-template&quot;&gt;Frisco&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Para instalar la plantilla basta con hacer un fork del repositorio, y renombrarlo como nombreusuario.github.io. Sin hacer nada más tendremos un sitio de ejemplo instalado en nuestra página (http://nombreusuario.github.io).&lt;/p&gt;
-
-&lt;p&gt;La página de este blog es &lt;a href=&quot;http://javiercancela.github.io&quot;&gt;http://javiercancela.github.io&lt;/a&gt;, y el repositorio es &lt;a href=&quot;https://github.com/javiercancela/javiercancela.github.io&quot;&gt;https://github.com/javiercancela/javiercancela.github.io&lt;/a&gt;, donde se puede encontrar todo el código al que me refiero más abajo.&lt;/p&gt;
-
-&lt;p&gt;Como esta plantilla está pensada como página corporativa, lo primero que hice fue eliminar todo salvo el blog (que pasé al raíz de la web). Después añadí una página “Sobre mí” usando el html de la página raíz original. Para estos cambios sólo hizo falta mover los archivos de sitio, cambiar alguna ruta relativa y actualizar el menú y el pie de página (los archivos footer.yml y navigatio.yml de la carpeta _data). En el footer actualicé también los enlaces de las redes sociales. Tampoco hay que olvidarse de actualizar los datos del _config.yml.&lt;/p&gt;
-
-&lt;h2 id=&quot;front-matter&quot;&gt;Front matter&lt;/h2&gt;
-&lt;p&gt;Los archivos html y md (Markdown) de los sitios creados en Jekyll suelen comenzar por una sección delimitada por tres guiones. Algo así:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
-title: Blog
-layout: default
-description: El blog de Javier Cancela.
-image: https://source.unsplash.com/EZSm8xRjnX0/2000x1322
----
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;El propósito de esta cabecera, llamada en inglés &lt;em&gt;front matter&lt;/em&gt;, es definir valores y metadatos para su archivo. El ejemplo de arriba está sacado del archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; de la raíz de la página. Ese archivo contiene únicamente un par de elementos &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;section&amp;gt;&lt;/code&gt; con el html específico de la pantalla de inicio. El resto del html es compartido con más páginas y está en &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts\default.html&lt;/code&gt; para ser reutilizado fácilmente (los archivos &lt;em&gt;layout&lt;/em&gt; contienen un elemento &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;/code&gt; que se sustituye por el contenido del archivo al que se aplica el &lt;em&gt;layout&lt;/em&gt;). Así, la línea&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;layout: default
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;del &lt;em&gt;front matter&lt;/em&gt; es un metadato de la página. Y la línea&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;image: https://source.unsplash.com/EZSm8xRjnX0/2000x1322
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;es una variable, que permite que dentro del html de la página accedamos a esa url con &lt;code class=&quot;highlighter-rouge&quot;&gt;page.image&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Para no tener que indicar el &lt;em&gt;layout&lt;/em&gt; en cada página, podemos definir en el archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; el layout por defecto, así como &lt;em&gt;layouts&lt;/em&gt; específicos para tipos de archivos o para ciertas rutas:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defaults:
-  -
-    scope:
-      path: &quot;&quot;
-    values:
-      layout: &quot;default&quot;
-  -
-    scope:
-      type: &quot;posts&quot;
-    values:
-      layout: &quot;post&quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;includes&quot;&gt;Includes&lt;/h2&gt;
-&lt;p&gt;El &lt;em&gt;layout&lt;/em&gt; nos sirve para compartir una estructura html común entre páginas. Pero a veces necesitamos reutilizar pequeños trozos de código en distintas partes de nuestra web. En estos casos utilizamos la carpeta &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes&lt;/code&gt;, donde guardaremos el código a reutilizar en archivos html. Veamos un ejemplo.&lt;/p&gt;
-
-&lt;p&gt;El &lt;em&gt;layout&lt;/em&gt; para los archivos de tipo post de este sitio (los incluidos en la carpeta &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt;) es &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts\post.html&lt;/code&gt;. Este archivo (que usa a su vez otro &lt;em&gt;layout&lt;/em&gt;, no hay problema en encadenarlos) contiene la siguiente línea:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;post-title.html&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;post=page&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Esta línea nos dice que en ese punto del archivo se va a insertar el código incluido en &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes\post-title.html&lt;/code&gt;, y se le va a pasar la propiedad &lt;code class=&quot;highlighter-rouge&quot;&gt;page&lt;/code&gt; en la variable &lt;code class=&quot;highlighter-rouge&quot;&gt;post&lt;/code&gt;. La propiedad &lt;code class=&quot;highlighter-rouge&quot;&gt;page&lt;/code&gt; nos da acceso a las variables definidas en el &lt;em&gt;front matter&lt;/em&gt;, así como a otras propiedades como la url de la página. Al pasarla al &lt;em&gt;include&lt;/em&gt; conseguimos que estas propiedades también estén disponibles allí.&lt;/p&gt;
-
-&lt;p&gt;El archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes\post-title.html&lt;/code&gt; contiene este código:&lt;/p&gt;
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;p&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-details&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    {% for category in include.post.categories %}
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;blog-filter&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ site.baseurl }}/category/{{ category}}/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ category | capitalize }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
-    {% endfor %}
-    {% if post.date %}
-        {% assign postdate = post.date %}
-    {% else %}  
-        {% assign postdate = page.date %}
-    {% endif %}
-    {% assign months = &quot;enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre&quot; | split: &quot;|&quot; %}
-    {% assign m = postdate | date: &quot;%-m&quot; | minus: 1 %}
-    {% assign day = postdate | date: &quot;%d&quot; %}
-    {% assign month = months[m] %}
-    {% assign year = postdate | date: &quot;%Y&quot; %}
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-date&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ day }} de {{ month }} de {{ year }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Las partes rodeadas de &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; son código &lt;a href=&quot;http://shopify.github.io/liquid/&quot;&gt;Liquid&lt;/a&gt;, un lenguaje de plantillas usado en Jekyll para generar html estático de forma simple.&lt;/p&gt;
-
-&lt;p&gt;En el código vemos como se recorren los valores de &lt;code class=&quot;highlighter-rouge&quot;&gt;include.post.categories&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;include.post&lt;/code&gt; nos da acceso a la variable &lt;code class=&quot;highlighter-rouge&quot;&gt;post&lt;/code&gt; a la que hacíamos referencia más arriba, correspondiente a la propiedad &lt;code class=&quot;highlighter-rouge&quot;&gt;page&lt;/code&gt; de la página donde se va a incluir el código. &lt;code class=&quot;highlighter-rouge&quot;&gt;categories&lt;/code&gt; es una propiedad añadida por el &lt;em&gt;plugin&lt;/em&gt; &lt;a href=&quot;https://github.com/jekyll/jekyll-archives&quot;&gt;jekyll-archives&lt;/a&gt;, y nos da acceso a las categorías que hayamos asignado al post en su &lt;em&gt;front matter&lt;/em&gt;. Con ellas se crea un enlace para ver todos los posts de cada categoría.&lt;/p&gt;
-
-&lt;p&gt;El resto del código crea la fecha del post. El código está adaptado de esta &lt;a href=&quot;http://stackoverflow.com/a/32914455&quot;&gt;respuesta de StackOverflow&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Con esto ya estamos listos para empezar a escribir el blog.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">La forma más eficiente de montar un blog con Jekyll consiste en descargarse una plantilla y modificarla según nuestras necesidades. La página Jekyll Tips tiene varias plantillas para elegir. Yo me decanté por Frisco.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/blog.jpg" /></entry><entry><title type="html">Un blog en GitHub (I - Jekyll)</title><link href="https://www.javiercancela.com/2017/01/03/un-blog-en-github-i/" rel="alternate" type="text/html" title="Un blog en GitHub (I - Jekyll)" /><published>2017-01-03T01:00:00+00:00</published><updated>2017-01-03T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/01/03/un-blog-en-github-i</id><content type="html" xml:base="https://www.javiercancela.com/2017/01/03/un-blog-en-github-i/">&lt;p&gt;Para crear un blog en GitHub usaremos &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;. Cada cuenta de GitHub dispone de un sitio gratuito en el que alojar recursos estáticos; para usarlo tan solo hay que crear un repositorio con el nombre &lt;em&gt;nombreusuario&lt;/em&gt;.github.io. Los archivos que subamos a ese repositorio serán accesibles a través de http://nombreusuario.github.io.&lt;/p&gt;
-
-&lt;p&gt;Además, GitHub Pages soporta &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll&lt;/a&gt;. Jekyll es un generador de sitios web desarrollado en Ruby. Es fácil de usar, y permite hacer todo lo que se necesita en un blog personal.&lt;/p&gt;
-
-&lt;p&gt;El proceso de instalación de Jekyll en Windows 10 pasa por:&lt;/p&gt;
-
-&lt;h3 id=&quot;1-instalar-chocolatey&quot;&gt;1. Instalar Chocolatey&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;https://chocolatey.org/&quot;&gt;Chocolatey&lt;/a&gt; es un gestor de paquetes para Windows. Desde la ventana de comandos lanzada en modo administrador, ejecutamos:&lt;/p&gt;
-&lt;div style=&quot;font-family: monospace;&quot;&gt;
-script
-@powershell -NoProfile -ExecutionPolicy Bypass -Command &quot;iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))&quot; &amp;amp;&amp;amp; SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
-&lt;/div&gt;
-&lt;p&gt;Esa línea se encarga de ejecutar un script de PowerShell que instala Chocolatey, y añade el ejecutable al path.&lt;/p&gt;
-
-&lt;p&gt;Tras esto cerramos la línea de comandos.&lt;/p&gt;
-
-&lt;h3 id=&quot;2-instalar-ruby&quot;&gt;2. Instalar Ruby&lt;/h3&gt;
-&lt;p&gt;Ruby es un lenguaje de programación bastante popular. Para instalarlo abrimos de nuevo la consola en modo administrador y escribimos:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-script&quot;&gt;choco install ruby -y
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;3-instalar-jekyll&quot;&gt;3. Instalar Jekyll&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&quot;http://guides.rubygems.org&quot;&gt;Gem&lt;/a&gt; es el gestor de paquetes de Ruby. Permite instalar tanto librerías como programas. Así que lo usaremos para instalar Jekyll:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-script&quot;&gt;gem install jekyll
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;En este paso yo me encontré un error. Un problema con SSL: “SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed”. Para solucionarlo seguí las instrucciones de esta página: http://guides.rubygems.org/ssl-certificate-update/#manual-solution-to-ssl-issue. Hay que descargar este certificado: &lt;a href=&quot;https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/index.rubygems.org/GlobalSignRootCA.pem&quot;&gt;GlobalSignRootCA.pem&lt;/a&gt; y copiarlo en la carpeta de certificados de Gem (en mi caso, C:/tools/ruby23/lib/ruby/2.3.0/rubygems).&lt;/p&gt;
-
-&lt;p&gt;Y listo. Con&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-script&quot;&gt;jekyll -v
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;comprobamos que jekyll se ha instalado correctamente.&lt;/p&gt;
-
-&lt;p&gt;El siguiente paso: montar el blog.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Para crear un blog en GitHub usaremos GitHub Pages. Cada cuenta de GitHub dispone de un sitio gratuito en el que alojar recursos estáticos; para usarlo tan solo hay que crear un repositorio con el nombre nombreusuario.github.io. Los archivos que subamos a ese repositorio serán accesibles a través de http://nombreusuario.github.io.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/blog.jpg" /></entry></feed>
+&lt;p&gt;En resumen, un libro muy recomendable para los amantes de la ciencia ficción dura, que no tengan miedo a largas descripciones científico-técnicas y que disfruten con tramas pensadas para motivar discusiones metafísicas.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">El recuerdo del pasado de la tierra es una trilogía de ciencia ficción escrita por el autor chino Cixin Liu. En español sólo se ha publicado el primer volumen, El problema de los Tres Cuerpos , y están en proceso de traducción los otros dos, El bosque oscuro y El fin de la muerte.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/ttbp.jpg" /></entry></feed>
