@@ -1,4 +1,382 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-03-12T08:38:56+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Machine Learning con Python - Tema 1</title><link href="https://www.javiercancela.com/2017/03/12/python-machine-learning-i/" rel="alternate" type="text/html" title="Machine Learning con Python - Tema 1" /><published>2017-03-12T01:00:00+00:00</published><updated>2017-03-12T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/12/python-machine-learning-i</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/12/python-machine-learning-i/">&lt;p&gt;El foco de estas entradas se pondrá en el &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book&quot;&gt;código Python publicado en GitHub&lt;/a&gt;, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-03-19T10:44:37+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Machine Learning con Python - Tema 2 - El perceptrón</title><link href="https://www.javiercancela.com/2017/03/19/python-machine-learning-ii/" rel="alternate" type="text/html" title="Machine Learning con Python - Tema 2 - El perceptrón" /><published>2017-03-19T01:00:00+00:00</published><updated>2017-03-19T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/19/python-machine-learning-ii</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/19/python-machine-learning-ii/">&lt;p&gt;Empezamos con los algoritmos. Vamos a implementar un perceptrón en Python, y entrenarlo para que sepa clasificar las diferentes especies de flores en Iris. El libro comienza mostrando el &lt;a href=&quot;https://es.wikipedia.org/wiki/Neurona_de_McCulloch-Pitts&quot;&gt;modelo de neurona de McCulloch-Pitts&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;En este modelo se emite una señal de salida si el resultado de aplicar una función a la suma de las entradas supera cierto umbral&quot; src=&quot;https://raw.githubusercontent.com/rasbt/python-machine-learning-book/master/code/ch02/images/02_01.png&quot; /&gt;
+        &lt;figcaption&gt;En este modelo se emite una señal de salida si el resultado de aplicar una función a la suma de las entradas supera cierto umbral&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Tomando este modelo como base, Frank Rosenblatt diseñó un dispositivo electrónico con capacidad para aprender. El algoritmo usado por ese dispositivo se conoce como Perceptrón.&lt;/p&gt;
+
+&lt;h2 id=&quot;perceptrón&quot;&gt;Perceptrón&lt;/h2&gt;
+
+&lt;p&gt;El &lt;a href=&quot;https://es.wikipedia.org/wiki/Perceptr%C3%B3n&quot;&gt;perceptrón&lt;/a&gt; es un algoritmo de aprendizaje supervisado para realizar tareas de clasificación binaria, es decir, para determinar si una muestra pertenece o no a una clase.&lt;/p&gt;
+
+&lt;div style=&quot;background-color: #EEEEEE; padding: 1em&quot;&gt;
+El libro asume cierta familiaridad trabajando con vectores y matrices. Para refrescar conceptos recomiendo revisar los &lt;a href=&quot;https://es.wikipedia.org/wiki/%C3%81lgebra_lineal#Enlaces_externos&quot;&gt;enlaces externos referenciados en la página de la Wikipedia dedicada al Álgebra Lineal&lt;/a&gt;. También tiene buena pinta [el curso de la Khan Academy](https://es.khanacademy.org/math/linear-algebra). &lt;br /&gt;
+En inglés hay varios libros gratuitos disponibles, como [este](https://www.math.ucdavis.edu/~linear/linear-guest.pdf) y [este](http://www.cs.cmu.edu/~zkolter/course/linalg/linalg_notes.pdf).
+&lt;/div&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;a href=&quot;https://commons.wikimedia.org/wiki/File:Perceptr%C3%B3n_5_unidades.svg#/media/File:Perceptr%C3%B3n_5_unidades.svg&quot;&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Perceptr%C3%B3n_5_unidades.svg/1200px-Perceptr%C3%B3n_5_unidades.svg.png&quot; alt=&quot;Perceptrón 5 unidades.svg&quot; /&gt;&lt;/a&gt;
+        &lt;figcaption&gt;
+            De &lt;a href=&quot;//commons.wikimedia.org/w/index.php?title=User:Alejandro.cartas&amp;amp;action=edit&amp;amp;redlink=1&quot; class=&quot;new&quot; title=&quot;User:Alejandro.cartas (page does not exist)&quot;&gt;Alejandro Cartas&lt;/a&gt; - &lt;span class=&quot;int-own-work&quot; lang=&quot;es&quot;&gt;Trabajo propio&lt;/span&gt;, &lt;a href=&quot;http://creativecommons.org/licenses/by-sa/4.0&quot; title=&quot;Creative Commons Attribution-Share Alike 4.0&quot;&gt;CC BY-SA 4.0&lt;/a&gt;, &lt;a href=&quot;https://commons.wikimedia.org/w/index.php?curid=41534843&quot;&gt;Enlace&lt;/a&gt;
+        &lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Como podemos ver en la figura anterior, la señal de entrada está compuesta por un array &lt;script type=&quot;math/tex&quot;&gt;\bf x&lt;/script&gt; al que se aplica una serie de pesos definidos por un array &lt;script type=&quot;math/tex&quot;&gt;\bf w&lt;/script&gt;. Es decir, cada elemento &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt; se multiplica por &lt;script type=&quot;math/tex&quot;&gt;w_i&lt;/script&gt;, y se suma el resultado de cada uno de estos productos. De una manera más formal, definimos&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x = \begin{bmatrix}
+x_1 \cr
+\vdots \cr
+x_m \cr
+\end{bmatrix}, w = \begin{bmatrix}
+w_1 \cr
+\vdots \cr
+w_m \cr
+\end{bmatrix}
+\tag{2.1}&lt;/script&gt;
+
+&lt;p&gt;Y la entrada resultante &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; será la suma de cada entrada ponderada:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;z = \sum{w_ix_i} = w_1x_1 + \cdots + w_mx_m
+\tag{2.2}&lt;/script&gt;
+
+&lt;p&gt;Ya tenemos la entrada &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; a la función de activación &lt;script type=&quot;math/tex&quot;&gt;\phi(z)&lt;/script&gt;. Para nuestro caso vamos a usar como función de activación la &lt;a href=&quot;https://es.wikipedia.org/wiki/Funci%C3%B3n_escal%C3%B3n_de_Heaviside&quot;&gt;función escalón&lt;/a&gt;. Esta función se define de la siguiente forma:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi(z) = \begin{cases}
+\text{1 si } z \ge \theta \cr
+\text{-1 en otro caso}
+\end{cases}
+\tag{2.3}&lt;/script&gt;
+
+&lt;p&gt;Ese valor &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; es el umbral que tiene que superar &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; para disparar la señal. Para simplificar los cálculos, definimos un peso 0 con &lt;script type=&quot;math/tex&quot;&gt;w_0 = -\theta&lt;/script&gt; y &lt;script type=&quot;math/tex&quot;&gt;x_0 = 1&lt;/script&gt;, de esta forma podemos escribir:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;z = w_0x_0 + w_1x_1 + \cdots + w_mx_m
+\tag{2.4}
+\label{2.4}&lt;/script&gt;
+
+&lt;p&gt;y&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi(z) = \begin{cases}
+\text{1 si } z \ge 0 \cr
+\text{-1 en otro caso}
+\end{cases}
+\tag{2.5}
+\label{2.5}&lt;/script&gt;
+
+&lt;p&gt;El valor de &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; se puede escribir también como &lt;script type=&quot;math/tex&quot;&gt;z = \mathbf{w}^T\bf x&lt;/script&gt;. El superíndice T indica que la matriz (en este caso un array, que tratamos como una matriz de 1 columna y n filas) está traspuesta, o lo que es lo mismo, se han convertidos sus columnas en filas. Por lo tanto:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\mathbf{w}^T\bf x = \begin{bmatrix} w_0 &amp; w_1 &amp; \cdots &amp; w_m \end{bmatrix} \begin{bmatrix}
+x_1 \cr
+\vdots \cr
+x_m \cr
+\end{bmatrix}
+
+\tag{2.6} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Esto nos permite usar la operación de producto escalar entre matrices. En una operación entre matrices, si la primera tiene dimensiones &lt;script type=&quot;math/tex&quot;&gt;n \times m&lt;/script&gt;, la segunda debe tener &lt;script type=&quot;math/tex&quot;&gt;m \times p&lt;/script&gt;, dando como resultado una matriz &lt;script type=&quot;math/tex&quot;&gt;n \times p&lt;/script&gt;. En nuestro caso, la dimensiones serían &lt;script type=&quot;math/tex&quot;&gt;1 \times n&lt;/script&gt; y &lt;script type=&quot;math/tex&quot;&gt;n \times 1&lt;/script&gt;, dando como resultado una matriz &lt;script type=&quot;math/tex&quot;&gt;1 \times 1&lt;/script&gt;, es decir, un escalar. Por ello esta operación es realmente un producto escalar entre vectores, cuyo resultado es la ya conocida expresión \eqref{2.4}&lt;/p&gt;
+
+&lt;h2 id=&quot;entrenando-el-modelo&quot;&gt;Entrenando el modelo&lt;/h2&gt;
+
+&lt;p&gt;Pretendemos modificar los valores de los pesos (&lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}&lt;/script&gt;) de forma que las salidas del preceptrón se vayan acercando a los valores esperados. Para ello se inicializan los pesos a cero, o a un valor muy pequeño, se obtiene la salida, y se actualizan los pesos.&lt;/p&gt;
+
+&lt;p&gt;¿Cómo se actualizan los pesos? Sumándoles una cantidad (positiva o negativa) que depende de la entrada, de la diferencia entre la salida real y la salida esperada, y de la tasa de aprendizaje (&lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt;), que es una constante que vale entre 0 y 1:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Delta w_j = \eta(y^{(i)} - \hat y^{(i)})x_j^{(i)}
+\tag{2.7}&lt;/script&gt;
+
+&lt;p&gt;En esta fórmula &lt;script type=&quot;math/tex&quot;&gt;y^{(i)}&lt;/script&gt; es la clase a la que pertenece la muestra (i), &lt;script type=&quot;math/tex&quot;&gt;\hat y^{(i)}&lt;/script&gt; es la clase predicha por el perceptrón, y &lt;script type=&quot;math/tex&quot;&gt;x_j^{(i)}&lt;/script&gt; es la entrada de la característica j para la muestra (i). Todo esto se multiplica para calcular la variación en la característica j: &lt;script type=&quot;math/tex&quot;&gt;\Delta w_j&lt;/script&gt;. Con cada muestra se recalculan los pesos:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;w_j := w_j + \Delta w_j
+\tag{2.8}&lt;/script&gt;
+
+&lt;h3 id=&quot;condiciones-de-convergencia&quot;&gt;Condiciones de convergencia&lt;/h3&gt;
+
+&lt;p&gt;Este proceso iterativo puede converger o no. Para que el perceptrón clasifique correctamente las muestras , el valor de &lt;script type=&quot;math/tex&quot;&gt;w_j&lt;/script&gt; debe ir acercándose cada vez más a un valor final, o lo que es lo mismo, &lt;script type=&quot;math/tex&quot;&gt;\Delta w_j&lt;/script&gt; debe tender a cero.&lt;/p&gt;
+
+&lt;p&gt;Para que se de esta situación deben cumplirse dos requisitos. En primer lugar, la tasa de aprendizaje debe ser suficientemente pequeña. En general, cuanto más grande sea &lt;script type=&quot;math/tex&quot;&gt;\eta&lt;/script&gt; más rápido será el aprendizaje, pero pasado cierto valor el proceso de aprendizaje nunca convergerá. En segundo lugar, las dos clases deben ser linealmente separables. Es decir, si representamos los elementos de ambas clases en un diagrama de 2 dimensiones (suponeniendo que las muestras tienen dos características), debe existir una línea que separe a todos los de una clase a un lado, y a todos los de la otra clase al otro lado.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Ejemplos con muestras de dos clases. Sólo el primero es linearmente separable.&quot; src=&quot;https://raw.githubusercontent.com/rasbt/python-machine-learning-book/master/code/ch02/images/02_03.png&quot; /&gt;
+        &lt;figcaption&gt;Ejemplos con muestras de dos clases. Sólo el primero es linearmente separable.&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;perceptrón-en-python&quot;&gt;Perceptrón en Python&lt;/h2&gt;
+
+&lt;p&gt;El código del capítulo 2 (y de los demás capítulos) está, como comentamos, &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book/blob/master/code/ch02/ch02.ipynb&quot;&gt;subido a GitHub&lt;/a&gt; en formato &lt;a href=&quot;http://jupyter.org/&quot;&gt;Jupyter&lt;/a&gt;. Jupyter (originalmente iPython) es una aplicación web que permite crear y compartir documentos que contengan código, gráficas, animaciones… de un forma muy sencilla. Jupyter viene incluido en Anaconda, que es el entorno Python que recomendamos en &lt;a href=&quot;/2017/03/12/python-machine-learning-i/&quot;&gt;una entrada anterior&lt;/a&gt;. También se puede ver el código completo de cada capítulo como archivo Python &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book/tree/master/code/optional-py-scripts&quot;&gt;aquí&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;El código comienza declarando una clase &lt;code class=&quot;highlighter-rouge&quot;&gt;Perceptron&lt;/code&gt; en la que se definen en constructor y tres métodos:&lt;/p&gt;
+&lt;pre class=&quot;line-numbers&quot;&gt;
+  &lt;code class=&quot;language-python&quot;&gt;
+    import numpy as np
+
+    class Perceptron(object):
+      def __init__(self, eta=0.01, n_iter=10):
+        self.eta = eta
+        self.n_iter = n_iter
+
+      def fit(self, X, y):
+        self.w_ = np.zeros(1 + X.shape[1])
+        self.errors_ = []
+
+        for _ in range(self.n_iter):
+          errors = 0
+          for xi, target in zip(X, y):
+            update = self.eta * (target - self.predict(xi))
+            self.w_[1:] += update * xi
+            self.w_[0] += update
+            errors += int(update != 0.0)
+          self.errors_.append(errors)
+        return self
+
+      def net_input(self, X):
+        return np.dot(X, self.w_[1:]) + self.w_[0]
+
+      def predict(self, X):
+        return np.where(self.net_input(X) &amp;gt;= 0.0, 1, -1)
+  &lt;/code&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Inicializamos el perceptrón con dos parámetros: &lt;code class=&quot;highlighter-rouge&quot;&gt;eta&lt;/code&gt;, que es la tasa de aprendizaje, y &lt;code class=&quot;highlighter-rouge&quot;&gt;n_iter&lt;/code&gt;, que es el número de veces que vamos a recorrer el conjunto de datos de entrenamiento. A cada una de estas veces se les llama “épocas”.&lt;/p&gt;
+
+&lt;p&gt;Una vez instanciado el perceptrón llamaremos al método &lt;code class=&quot;highlighter-rouge&quot;&gt;fit&lt;/code&gt; para entrenar nuestro modelo. Se le pasan dos parámetros: una matriz &lt;script type=&quot;math/tex&quot;&gt;\bf X&lt;/script&gt;, que contiene una fila por cada muestra y una columna por cada característica, y que constituye nuestro conjunto de datos de entrenamiento, y un array &lt;script type=&quot;math/tex&quot;&gt;\bf y&lt;/script&gt;, que contiene el resultado objetivo para cada muestra.&lt;/p&gt;
+
+&lt;p&gt;Lo primero que hace el método &lt;code class=&quot;highlighter-rouge&quot;&gt;fit&lt;/code&gt; es inicializar los pesos y los errores:&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+  &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;errors_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Los pesos se inicializan a un array con el mismo número de elementos que muestras tiene la matriz &lt;script type=&quot;math/tex&quot;&gt;\bf X&lt;/script&gt; más uno. Ese más uno es debido a que vamos a almacenar también el parámetro &lt;script type=&quot;math/tex&quot;&gt;w_0&lt;/script&gt; corresondiente al umbral &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; que pasamos a la izquiera en la equación \eqref{2.4}. Como estamos inicializando todo a cero consideramos el umbral inicial de activación como cero.&lt;/p&gt;
+
+&lt;p&gt;A continuación comienza un precose que se ejecutará &lt;code class=&quot;highlighter-rouge&quot;&gt;n_iter&lt;/code&gt; veces. En el se itera sobre los datos proporcionados mediante esta instrucción:&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lo que va a hacer la instrucción &lt;code class=&quot;highlighter-rouge&quot;&gt;zip&lt;/code&gt; es devolver un elemento por cada lista que se le pase de parámetro. Así, si &lt;script type=&quot;math/tex&quot;&gt;\bf X&lt;/script&gt; es una matriz de 100 filas (muestras) y 2 columnas (características), e &lt;script type=&quot;math/tex&quot;&gt;\bf y&lt;/script&gt; es un array de 100 elementos (las clases reales de cada muestra), la instrucción anterior iterará para cada muestra almacenando en &lt;code class=&quot;highlighter-rouge&quot;&gt;xi&lt;/code&gt; las características y en &lt;code class=&quot;highlighter-rouge&quot;&gt;target&lt;/code&gt; su clase real.&lt;/p&gt;
+
+&lt;p&gt;Con esos datos vamos a calcular los nuevos pesos. La fórmula era la siguiente:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Delta w_j = \eta(y^{(i)} - \hat y^{(i)})x_j^{(i)}
+w_j := w_j + \Delta w_j&lt;/script&gt;
+
+&lt;p&gt;En nuestro caso hacemos esto:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;update&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;update&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xi&lt;/span&gt;
+    &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;errors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Calculamos primero el factor &lt;script type=&quot;math/tex&quot;&gt;\eta(y^{(i)} - \hat y^{(i)})&lt;/script&gt;, y después lo multiplicamos por &lt;script type=&quot;math/tex&quot;&gt;\bf{x^{(i)}}&lt;/script&gt; para sumárselo al array de pesos, salvo el peso 0. Al ser tanto ‘self.w_[1:]’ como ‘xi’ arrays con un elemento por cada característica, estamos aplicando la corrección a todos los pesos. En el peso &lt;script type=&quot;math/tex&quot;&gt;w_0&lt;/script&gt; no multiplicamos por &lt;script type=&quot;math/tex&quot;&gt;\bf{x_0^{(i)}}&lt;/script&gt;, ya que este por definición vale uno. Finalmente acumulamos el error de cada muestra, y al final de cada época lo añadimos a un array. Esto nos permitirá ver la evolución del error por épocas.&lt;/p&gt;
+
+&lt;p&gt;Veamos ahora cómo calcular el término &lt;script type=&quot;math/tex&quot;&gt;\hat y^{(i)}&lt;/script&gt;, que en código se obtiene llamando a &lt;code class=&quot;highlighter-rouge&quot;&gt;self.predict(xi)&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;net_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;w_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;net_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lo primero que hace &lt;code class=&quot;highlighter-rouge&quot;&gt;predict&lt;/code&gt; con &lt;code class=&quot;highlighter-rouge&quot;&gt;xi&lt;/code&gt; es usarlo para invocar &lt;code class=&quot;highlighter-rouge&quot;&gt;net_input&lt;/code&gt;. En esta función usamos &lt;code class=&quot;highlighter-rouge&quot;&gt;np.dot&lt;/code&gt; para realizar un producto escalar entre &lt;code class=&quot;highlighter-rouge&quot;&gt;xi&lt;/code&gt; y &lt;code class=&quot;highlighter-rouge&quot;&gt;self.w_[1:]&lt;/code&gt;. Es decir, suponiendo una muestra con dos características, y por tanto dos entradas y dos pesos, &lt;code class=&quot;highlighter-rouge&quot;&gt;np.dot(xi, self.w_[1:])&lt;/code&gt; equivale a &lt;script type=&quot;math/tex&quot;&gt;w_1x_1 + w_2x_2&lt;/script&gt;. A esto le sumamos &lt;script type=&quot;math/tex&quot;&gt;w_0&lt;/script&gt; (ya que &lt;script type=&quot;math/tex&quot;&gt;x_0&lt;/script&gt; es igual a uno), y tenemnos que &lt;code class=&quot;highlighter-rouge&quot;&gt;net_input&lt;/code&gt; devuelve el valor &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt;, tal como se define en \eqref{2.4}. La última parte, &lt;code class=&quot;highlighter-rouge&quot;&gt;np.where(self.net_input(xi) &amp;gt;= 0.0, 1, -1)&lt;/code&gt; devuelve 1 si &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; es mayor o igual que 0, y -1 en otro caso. En resumen, el método &lt;code class=&quot;highlighter-rouge&quot;&gt;predict&lt;/code&gt; es la función &lt;script type=&quot;math/tex&quot;&gt;\phi(z)&lt;/script&gt; (\eqref{2.5}).&lt;/p&gt;
+
+&lt;h3 id=&quot;perceptrón-con-el-conjunto-de-datos-iris&quot;&gt;Perceptrón con el conjunto de datos Iris&lt;/h3&gt;
+
+&lt;p&gt;Toda la lógica del perceptrón está implementada en la clase anterior. Vamos a utilizarla con el conjunto de datos Iris ya mencionado anteriormente. El ejemplo del libro utilizan la librería &lt;code class=&quot;highlighter-rouge&quot;&gt;pandas&lt;/code&gt;, especializada en análisis de datos y estructuras, para cargar los datos de Iris. Estos datos se almacenan en un tipo de datos de la librería llamado &lt;a href=&quot;http://pandas.pydata.org/pandas-docs/stable/dsintro.html#dataframe&quot;&gt;DataFrame&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pd&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'https://archive.ics.uci.edu/ml/'&lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;'machine-learning-databases/iris/iris.data'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;                
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;El archivo de datos lo estamos descargando de internet, pero también está disponible en el código de ejemplo para usar en local.&lt;/p&gt;
+
+&lt;p&gt;El código de ejemplo imprime las últimas líneas de la estructura de datos cargada:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;th&gt;4&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;145&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;6.7&lt;/td&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;5.2&lt;/td&gt;
+      &lt;td&gt;2.3&lt;/td&gt;
+      &lt;td&gt;Iris-virginica&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;146&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;6.3&lt;/td&gt;
+      &lt;td&gt;2.5&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+      &lt;td&gt;1.9&lt;/td&gt;
+      &lt;td&gt;Iris-virginica&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;147&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;6.5&lt;/td&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;5.2&lt;/td&gt;
+      &lt;td&gt;2.0&lt;/td&gt;
+      &lt;td&gt;Iris-virginica&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;148&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;6.2&lt;/td&gt;
+      &lt;td&gt;3.4&lt;/td&gt;
+      &lt;td&gt;5.4&lt;/td&gt;
+      &lt;td&gt;2.3&lt;/td&gt;
+      &lt;td&gt;Iris-virginica&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;149&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;5.9&lt;/td&gt;
+      &lt;td&gt;3.0&lt;/td&gt;
+      &lt;td&gt;5.1&lt;/td&gt;
+      &lt;td&gt;1.8&lt;/td&gt;
+      &lt;td&gt;Iris-virginica&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;A continuación preprocesamos los datos, para dejarlos en el formato adecuado para trabajar con ellos. Usaremos las librerías &lt;code class=&quot;highlighter-rouge&quot;&gt;numpy&lt;/code&gt;, para tratar los datos, y &lt;code class=&quot;highlighter-rouge&quot;&gt;matplotlib&lt;/code&gt;, para dibujarlos en una gráfica&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;plt&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En primer lugar hemos seleccionado los 100 primeros registros del DataFrame, pero cogiendo sólo la quinta columna (la 4 por comenzar el índice en 0). Esto nos devuelve un array con 100 valores, cada uno de los cuales es el nombre de la especie. Es decir, cogemos las etiquetas de la clase de cada muestra.&lt;/p&gt;
+
+&lt;p&gt;En el conjunto de datos Iris los datos están ordenados de tal forma que los 50 primeros son Iris-setosa, y los 50 siguientes Iris-versicolor. De esta forma limitarnos a los 100 primeros registros nos permite realizar una clasificación binaria.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Iris-setosa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;El siguiente paso consiste en sustituir las etiquetas de texto por valores numéricos. El valor objetivo pasará a ser -1 para las Iris-setosa y 1 para las Iris-versicolor. Almacenamos los datos en un array &lt;script type=&quot;math/tex&quot;&gt;\bf y&lt;/script&gt; de 100 elementos.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;De las cuatro características posibles nos vamos a quedar con dos: la longitud del sépalo y la longitud del pétalo. Esto nos permitirá dibujar los datos en una gráfica de dos dimensiones. Al igual que hicimos con el valor objetivo, cogemos los cien primeros valores del conjunto de datos, quedándonos con la primera y la tercera columna. Esto nos devuelve una matriz &lt;script type=&quot;math/tex&quot;&gt;\bf X \in \mathbb R^{100x2}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'red'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;marker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'o'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'setosa'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'blue'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;marker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'versicolor'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'sepal length [cm]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'petal length [cm]'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;legend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'upper left'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tight_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Dibujamos los datos almacenados. Marcamos con una ‘o’ roja las Iris-setosa (las 50 primeras), y con una ‘x’ azul las Iris-versicolor. El resultado es este:&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Datos de entrenamiento&quot; src=&quot;https://raw.githubusercontent.com/rasbt/python-machine-learning-book/master/code/ch02/images/02_06.png&quot; /&gt;
+        &lt;figcaption&gt;Datos de entrenamiento&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Con los datos listos podemos realizar el entrenamiento.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ppn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Perceptron&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_iter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ppn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Instanciamos el perceptrón con un &lt;script type=&quot;math/tex&quot;&gt;\eta = 0.1&lt;/script&gt; y 10 épocas. Para entrenar  basta con llamar al método &lt;code class=&quot;highlighter-rouge&quot;&gt;fit&lt;/code&gt; pasando &lt;script type=&quot;math/tex&quot;&gt;\bf X&lt;/script&gt;  e &lt;script type=&quot;math/tex&quot;&gt;\bf y&lt;/script&gt; como parámetros.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ppn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;errors_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ppn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;errors_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;marker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'o'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Epochs'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Number of updates'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tight_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# plt.savefig('./perceptron_1.png', dpi=300)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Una vez entrenado el modelo, pintamos en un gráfico los errores encontrados en cada generación. En  el eje X pintamos las épocas (la longitud del array de errores), y en el Y mostramos el número de errores.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Errores por época&quot; src=&quot;https://raw.githubusercontent.com/rasbt/python-machine-learning-book/master/code/ch02/images/02_07.png&quot; /&gt;
+        &lt;figcaption&gt;Errores por época&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A partir de la 6ª época el modelo ya no comete errores. Ahora vamos a dibujar los datos de entrenamiento, pero marcando las zonas que el modelo ya entrenado considera como de una clase u otra.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.colors&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListedColormap&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;plot_decision_regions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resolution&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.02&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;markers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'s'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'o'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'^'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'v'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'red'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'blue'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'lightgreen'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'gray'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'cyan'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cmap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ListedColormap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unique&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Definimos una nueva función que nos permita dibujar en distintos colores las zonas que serían de Iris-setosa e Iris-versicolor si una muestra tuviese unas características que estuviesen en ese punto.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;plot_decision_regions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resolution&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.02&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# ... Continuación&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;x1_min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x1_max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;x2_min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x2_max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;xx1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xx2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meshgrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x1_min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x1_max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resolution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                           &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x2_min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x2_max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resolution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xx1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ravel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xx2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ravel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Z&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xx1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contourf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xx1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xx2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xx1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xx1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xx2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xx2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;# plot class samples&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cl&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;enumerate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unique&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;marker&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;markers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Definimos los valores mínimo y máximo del sépalo (&lt;code class=&quot;highlighter-rouge&quot;&gt;x1_min&lt;/code&gt; y &lt;code class=&quot;highlighter-rouge&quot;&gt;x1_max&lt;/code&gt;) y del pétalo (&lt;code class=&quot;highlighter-rouge&quot;&gt;x2_min&lt;/code&gt; y &lt;code class=&quot;highlighter-rouge&quot;&gt;x2_max&lt;/code&gt;), restando uno al mínimo y sumándolo al máximo para tener un rango con margen. La función &lt;a href=&quot;https://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;np.arange&lt;/code&gt;&lt;/a&gt; devuelve una lista de valores que van del primer parámetro al segundo en intervalos marcados por el tercer parámetro. Las dos llamadas a &lt;code class=&quot;highlighter-rouge&quot;&gt;np.arange&lt;/code&gt; devolverán un array de valores separados por 0.02. En el primer caso van del 3.30 al 7.98, en el segundo del 0 al 6.08.  Con ambos arrays construimos una matriz que pasamos al predictor, el cual nos devolverá el valor predicho para todos los puntos del plano definido.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Regiones predichas para cada clase&quot; src=&quot;https://raw.githubusercontent.com/rasbt/python-machine-learning-book/master/code/ch02/images/02_08.png&quot; /&gt;
+        &lt;figcaption&gt;Regiones predichas para cada clase&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Empezamos con los algoritmos. Vamos a implementar un perceptrón en Python, y entrenarlo para que sepa clasificar las diferentes especies de flores en Iris. El libro comienza mostrando el modelo de neurona de McCulloch-Pitts:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry><entry><title type="html">Machine Learning con Python - Tema 1</title><link href="https://www.javiercancela.com/2017/03/12/python-machine-learning-i/" rel="alternate" type="text/html" title="Machine Learning con Python - Tema 1" /><published>2017-03-12T01:00:00+00:00</published><updated>2017-03-12T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/12/python-machine-learning-i</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/12/python-machine-learning-i/">&lt;p&gt;El foco de estas entradas se pondrá en el &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book&quot;&gt;código Python publicado en GitHub&lt;/a&gt;, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.&lt;/p&gt;
 
 &lt;h2 id=&quot;tipos-de-machine-learning&quot;&gt;Tipos de &lt;em&gt;machine learning&lt;/em&gt;&lt;/h2&gt;
 
@@ -116,7 +494,33 @@ x_1^{(150)} &amp;amp; x_2^{(150)} &amp;amp; x_3^{(150)} &amp;amp; x_4^{(150)} \c
 
 &lt;h2 id=&quot;conclusión&quot;&gt;Conclusión&lt;/h2&gt;
 
-&lt;p&gt;El tema 1 nos familiariza con los conceptos más básicos del aprendizaje máquina. En el tema 2 empezaremos ya a ver código para avanzar en la materia.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">El foco de estas entradas se pondrá en el código Python publicado en GitHub, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry><entry><title type="html">Ready Player One</title><link href="https://www.javiercancela.com/2017/03/05/ready-player-one/" rel="alternate" type="text/html" title="Ready Player One" /><published>2017-03-05T01:00:00+00:00</published><updated>2017-03-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/05/ready-player-one</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/05/ready-player-one/">&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://www.artstation.com/artwork/bg49G&quot;&gt;Imagen de la cabecera&lt;/a&gt; de &lt;a href=&quot;https://www.artstation.com/artist/degesart&quot;&gt;Florian de Gesincourt&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;El tema 1 nos familiariza con los conceptos más básicos del aprendizaje máquina. En el tema 2 empezaremos ya a ver código para avanzar en la materia.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">El foco de estas entradas se pondrá en el código Python publicado en GitHub, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry><entry><title type="html">Materia oscura</title><link href="https://www.javiercancela.com/2017/03/05/materia-oscura-blake-crouch/" rel="alternate" type="text/html" title="Materia oscura" /><published>2017-03-05T01:00:00+00:00</published><updated>2017-03-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/05/materia-oscura-blake-crouch</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/05/materia-oscura-blake-crouch/">&lt;p&gt;&lt;a href=&quot;https://www.amazon.com/Materia-oscura-Spanish-Blake-Crouch/dp/6075270477&quot;&gt;&lt;em&gt;Materia oscura&lt;/em&gt;, de Blake Crouch&lt;/a&gt; es una novela de ciencia ficción protagonizada por Jason Dessen, un profesor de física que vive felizmente con su mujer y su hijo en Chicago. El libro nos sumerge en una trama que comienza cuando Jason es secuestrado por un misterioso hombre encapuchado.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img style=&quot;width:400px&quot; alt=&quot;La portada de la edición en castellano es mucho más chula que la inglesa&quot; src=&quot;https://images-na.ssl-images-amazon.com/images/I/61ToEf-IziL.jpg&quot; /&gt;  
+        &lt;figcaption&gt;La portada de la edición en castellano es mucho más chula que la inglesa&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Materia oscura&lt;/em&gt; es una historia sobre universos paralelos. Fundamentalmente es un &lt;em&gt;thriller&lt;/em&gt; con ingredientes de ciencia ficción, toques románticos, y reflexiones sobre aquello que nos hace únicos, sobre la esencia de nuestra identidad. Todo se mezcla en una historia que avanza a un ritmo muy alto, a veces atropellado. Este ritmo permite que no nos entretengamos demasiado demasiado profundos para ser tratados en un libro de este tipo, pero a cambio le da a la historia un tono superficial en varios puntos.&lt;/p&gt;
+
+&lt;p&gt;El libro se lee de un tirón. Al estar protagonizado por un físico y tener el viaje entre universos paralelos como eje, contiene las inevitables descripciones de fenómenos cuánticos que justifiquen la trama. Pero estas descripciones son las justas para dar un poco de sentido a la trama, y no entorpecen la narración.&lt;/p&gt;
+
+&lt;p&gt;Quizás me lo perdí por haberlo escuchado (en audiolibro) en vez de leído, pero no acabé de entender bien él por qué del título. El término ‘materia oscura’ se utiliza en física para denominar a un tipo de materia que no emite radiación electromagnética ni interactúa con ella, pero cuya existencia se puede deducir por el efecto gravitatorio que ejerce sobre la materia convencional. Sin embargo esta materia no juega ningún papel en la trama, así que supongo que se menciona en algún momento durante las explicaciones, y se me pasó la mención.&lt;/p&gt;
+
+&lt;p&gt;Escuchar el libro tiene otro efecto: he leido algunas quejas sobre el hábito del autor de incluir párrafos compuestos de una frase corta, o incluso una única palabra, para dar ritmo a algunas escenas, provocando un efecto en el texto que no agrada a todo el mundo. En audiolibro este efecto no se aprecia, por el buen hacer del actor encargado de la lectura.&lt;/p&gt;
+
+&lt;p&gt;La única traducción al español que he encontrado es &lt;a href=&quot;http://www.oceano.com.mx/obras/materia-oscura-blake-crouch-13955.aspx&quot;&gt;la de la editorial mexicana Oceano&lt;/a&gt;. Curiosamente, esta edición &lt;a href=&quot;https://www.amazon.com/Materia-oscura-Spanish-Blake-Crouch/dp/6075270477&quot;&gt;está disponible en la tienda americana de Amazon&lt;/a&gt;, mientras que en la española sólo están disponibles &lt;a href=&quot;https://www.amazon.es/Dark-Matter-Blake-Crouch/dp/0451496418&quot;&gt;la edición inglesa&lt;/a&gt; y &lt;a href=&quot;https://www.amazon.es/Mat%C3%A9ria-escura-Portuguese-Blake-Crouch-ebook/dp/B01MZCVP6L&quot;&gt;la portuguesa&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;En resumen, &lt;em&gt;Materia oscura&lt;/em&gt; es un libro adecuado para aficionados a los &lt;em&gt;thriller&lt;/em&gt; a los que no les importe un toque fantástico en la trama.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img style=&quot;width:400px&quot; alt=&quot;&quot; src=&quot;&quot; /&gt;  
+        &lt;figcaption&gt;&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Materia oscura, de Blake Crouch es una novela de ciencia ficción protagonizada por Jason Dessen, un profesor de física que vive felizmente con su mujer y su hijo en Chicago. El libro nos sumerge en una trama que comienza cuando Jason es secuestrado por un misterioso hombre encapuchado.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://i.imgur.com/q2ZEHxF.jpg" /></entry><entry><title type="html">Ready Player One</title><link href="https://www.javiercancela.com/2017/03/05/ready-player-one/" rel="alternate" type="text/html" title="Ready Player One" /><published>2017-03-05T01:00:00+00:00</published><updated>2017-03-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/05/ready-player-one</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/05/ready-player-one/">&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://www.artstation.com/artwork/bg49G&quot;&gt;Imagen de la cabecera&lt;/a&gt; de &lt;a href=&quot;https://www.artstation.com/artist/degesart&quot;&gt;Florian de Gesincourt&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.amazon.es/Ready-player-one-Grandes-novelas/dp/8466649174/&quot;&gt;&lt;em&gt;Ready Player One&lt;/em&gt;, de Ernest Cline&lt;/a&gt; es un homenaje a la cultura pop de los años 80 en su vertiente más friki: máquinas recreativas, videoconsolas, juegos de rol, y novelas, comics, películas de componente más o menos fantástico. Conmigo la fórmula funcionó muy bien, y lo devoré como se devora una hamburguesa un viernes a las 7 de la mañana antes de irte a dormir.&lt;/p&gt;
 
@@ -345,49 +749,7 @@ Light Switch + &quot;Plus Key&quot; - Increase speed of effect.
 Light Switch + &quot;Minus Key&quot; - Decrease speed of effect.
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;Problema resuelto.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Comprar un ratón nuevo no resolvió mi problema con el teclado roto. Mi teclado de los últimos años ha sido un Logitech K270. No es un mal teclado: económico, resistente, inalámbrico, con buen tacto y no muy grande. Digo resistente pese a la rotura, porque su único problema fue una pata rota tras ser aporreado repetidamente por un niño pequeño, así que no creo que se pueda culpar al teclado del percance.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/LogitechG610.jpg" /></entry><entry><title type="html">Un blog en GitHub (IV - Asignar un dominio)</title><link href="https://www.javiercancela.com/2017/02/05/tutorial-de-git-i/" rel="alternate" type="text/html" title="Un blog en GitHub (IV - Asignar un dominio)" /><published>2017-02-05T01:00:00+00:00</published><updated>2017-02-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/02/05/tutorial-de-git-i</id><content type="html" xml:base="https://www.javiercancela.com/2017/02/05/tutorial-de-git-i/">&lt;p&gt;Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es &lt;a href=&quot;http://www.javiercancela.com&quot;&gt;http://www.javiercancela.com&lt;/a&gt;, en vez de &lt;a href=&quot;http://javiercancela.github.io&quot;&gt;http://javiercancela.github.io&lt;/a&gt;. Veamos cómo se realiza este cambio.&lt;/p&gt;
-
-&lt;p&gt;En primer lugar, nos vamos a nuestro repositorio en GitHub y entramos en el apartado Settings. En mi caso, la url es https://github.com/javiercancela/javiercancela.github.io/settings. Aquí, en la parte inferior, en la sección “GitHub Pages”, encontramos el campo “Custom domain”. Escribo aquí &lt;code class=&quot;highlighter-rouge&quot;&gt;www.javiercancela.com&lt;/code&gt; y pulso “Save”. La parte de &lt;code class=&quot;highlighter-rouge&quot;&gt;www.&lt;/code&gt; es opcional. Sin embargo, GitHub recomienda que use por cuestiones de rendimiento y estabilidad. Ver &lt;a href=&quot;https://help.github.com/articles/about-supported-custom-domains/#www-subdomains&quot;&gt;www subdomains&lt;/a&gt; (en inglés).&lt;/p&gt;
-
-&lt;p&gt;Una vez asignado el dominio en GitHub, configuraremos un par de cosas en nuestro proveedor de dominios. Vamos a añadir registros para el dominio javiercancela.com y su subdominio www.javiercancela.com. La forma de hacerlo varía según el proveedor, pero debería ser algo así:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Añadimos un registro ALIAS o ANAME para javiercancela.com. Si no se soportan ALIAS ni ANAME, usaremos un registro A. Este tipo de registros asignan un dominio a una ip. Las ips que proporciona GitHub son 192.30.252.153 y 192.30.252.154. En mi caso mi proveedor no permite asignar registros ALIAS ni ANAME, por lo que los registros quedan así:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;A   @   192.30.252.153
-A   @   192.30.252.154
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Añadimos un registro CNAME para www.javiercancela.com. Este tipo de registros asocia un subdominio a otro dominio, que será el que sirva el contenido. el registro quedará así:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CNAME   www   javiercancela.github.io
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;El cambio tardará un rato en propagarse, pero al cabo de unas horas el blog estará disponible en http://www.javiercancela.com. Al poner el subdominio &lt;code class=&quot;highlighter-rouge&quot;&gt;www.javiercancela.com&lt;/code&gt; como dominio personalizado tanto http://javiercancela.com como http://javiercancela.github.io redirigirán a este.&lt;/p&gt;
-
-&lt;h2 id=&quot;configurar-acceso-ssl&quot;&gt;Configurar acceso SSL&lt;/h2&gt;
-&lt;p&gt;Una limitación de lo que hemos hecho hasta ahora es que nuestro dominio no va a funcionar (correctamente, al menos) a través de https. Los navegadores comprueban que el certificado del servidor, con el que se cifra la conexión SSL, sea válido para el dominio al que se está accediendo. Como nuestra página está en los servidores de GitHub, el certificado sólo cubre dominios *.github.io, por lo que los navegadores mostrarán un mensaje de error alertando de la posibilidad de que la página tenga un propósito fraudulento.&lt;/p&gt;
-
-&lt;p&gt;Hoy en día cualquier página debería estar disponible a través de https, así que tenemos que corregir este problema. Para ello vamos a usar &lt;a href=&quot;https://www.cloudflare.com&quot;&gt;Cloudeflare&lt;/a&gt;, un &lt;a href=&quot;https://es.wikipedia.org/wiki/Red_de_entrega_de_contenidos&quot;&gt;CDN&lt;/a&gt; con servicios SSL gratuitos. La información que se indica a continuación está sacada de estos dos posts:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.keanulee.com/2014/10/11/setting-up-ssl-on-github-pages.html&quot;&gt;Setting up SSL on GitHub Pages&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/&quot;&gt;Set Up SSL on Github Pages With Custom Domains for Free&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Lo primero que haremos será crear una cuenta con nuestro dominio (&lt;code class=&quot;highlighter-rouge&quot;&gt;javiercancela.com&lt;/code&gt;, en este caso usamos el dominio principal, ya que el certificado cubrirá todos los subdominios). Después tendremos que ir a nuestro proveedor de dominios y cambiar los nameservers que estemos usando por los que proporciona Cloudeflare: &lt;code class=&quot;highlighter-rouge&quot;&gt;curt.ns.cloudflare.com&lt;/code&gt; y &lt;code class=&quot;highlighter-rouge&quot;&gt;jessica.ns.cloudflare.com&lt;/code&gt;. Finalmente accederemos a la opción Crypto-&amp;gt;SSL de nuestro dominio y cambiaremos el valor “Full” por “Flexible”.&lt;/p&gt;
-
-&lt;p&gt;El cambio debería ser casi inmediato, si probamos en unos minutos a acceder a nuestro blog vía https comprobaremos que la conexión ya es segura.&lt;/p&gt;
-
-&lt;p&gt;Como último paso vamos a modificar la plantilla por defecto para asegurarnos de que los usuarios acceden siempre por https. En el archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;_layouts\default.html&lt;/code&gt;, añadimos justo tras el &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;www.javiercancela.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;Este código javascript le indica al navegador que cambie el protocolo a https, si no es el que ya está usando.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es http://www.javiercancela.com, en vez de http://javiercancela.github.io. Veamos cómo se realiza este cambio.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/blog.jpg" /></entry><entry><title type="html">Un blog en GitHub (IV - Asignar un dominio)</title><link href="https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/" rel="alternate" type="text/html" title="Un blog en GitHub (IV - Asignar un dominio)" /><published>2017-02-05T01:00:00+00:00</published><updated>2017-02-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv</id><content type="html" xml:base="https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/">&lt;p&gt;Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es &lt;a href=&quot;http://www.javiercancela.com&quot;&gt;http://www.javiercancela.com&lt;/a&gt;, en vez de &lt;a href=&quot;http://javiercancela.github.io&quot;&gt;http://javiercancela.github.io&lt;/a&gt;. Veamos cómo se realiza este cambio.&lt;/p&gt;
+&lt;p&gt;Problema resuelto.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Comprar un ratón nuevo no resolvió mi problema con el teclado roto. Mi teclado de los últimos años ha sido un Logitech K270. No es un mal teclado: económico, resistente, inalámbrico, con buen tacto y no muy grande. Digo resistente pese a la rotura, porque su único problema fue una pata rota tras ser aporreado repetidamente por un niño pequeño, así que no creo que se pueda culpar al teclado del percance.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/LogitechG610.jpg" /></entry><entry><title type="html">Un blog en GitHub (IV - Asignar un dominio)</title><link href="https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/" rel="alternate" type="text/html" title="Un blog en GitHub (IV - Asignar un dominio)" /><published>2017-02-05T01:00:00+00:00</published><updated>2017-02-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv</id><content type="html" xml:base="https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/">&lt;p&gt;Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es &lt;a href=&quot;http://www.javiercancela.com&quot;&gt;http://www.javiercancela.com&lt;/a&gt;, en vez de &lt;a href=&quot;http://javiercancela.github.io&quot;&gt;http://javiercancela.github.io&lt;/a&gt;. Veamos cómo se realiza este cambio.&lt;/p&gt;
 
 &lt;p&gt;En primer lugar, nos vamos a nuestro repositorio en GitHub y entramos en el apartado Settings. En mi caso, la url es https://github.com/javiercancela/javiercancela.github.io/settings. Aquí, en la parte inferior, en la sección “GitHub Pages”, encontramos el campo “Custom domain”. Escribo aquí &lt;code class=&quot;highlighter-rouge&quot;&gt;www.javiercancela.com&lt;/code&gt; y pulso “Save”. La parte de &lt;code class=&quot;highlighter-rouge&quot;&gt;www.&lt;/code&gt; es opcional. Sin embargo, GitHub recomienda que use por cuestiones de rendimiento y estabilidad. Ver &lt;a href=&quot;https://help.github.com/articles/about-supported-custom-domains/#www-subdomains&quot;&gt;www subdomains&lt;/a&gt; (en inglés).&lt;/p&gt;
 
@@ -572,16 +934,4 @@ comments: true
 ---
 
 
-Las propiedades ahí indicadas serán usadas por el archivo de layout del post (_layouts/post.html) y sus includes para mostrar la imagen en la cabecera, poner la fecha del post, mostrar o no los comentarios de disqus, y mostrar las categorías correspondientes.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/blog.jpg" /></entry><entry><title type="html">El recuerdo del pasado de la tierra</title><link href="https://www.javiercancela.com/2017/01/15/el-recuerdo-del-pasado-de-la-tierra/" rel="alternate" type="text/html" title="El recuerdo del pasado de la tierra" /><published>2017-01-15T20:00:00+00:00</published><updated>2017-01-15T20:00:00+00:00</updated><id>https://www.javiercancela.com/2017/01/15/el-recuerdo-del-pasado-de-la-tierra</id><content type="html" xml:base="https://www.javiercancela.com/2017/01/15/el-recuerdo-del-pasado-de-la-tierra/">&lt;p&gt;&lt;em&gt;El recuerdo del pasado de la tierra&lt;/em&gt; es una trilogía de ciencia ficción escrita por el autor chino Cixin Liu. En español sólo se ha publicado el primer volumen, &lt;em&gt;&lt;a href=&quot;http://www.edicionesb.com/catalogo/libro/el-problema-de-los-tres-cuerpos_4120.html&quot;&gt;El problema de los Tres Cuerpos&lt;/a&gt;&lt;/em&gt; , y están en proceso de traducción los otros dos, &lt;a href=&quot;http://novalibros.com/2016/10/bosque-oscuro-fin-la-muerte-cixin-liu/&quot;&gt;&lt;em&gt;El bosque oscuro&lt;/em&gt; y &lt;em&gt;El fin de la muerte&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;&lt;img alt=&quot;Portada de El problema de los Tres Cuerpos&quot; src=&quot;/images/3cuerpos.jpg&quot; /&gt;&lt;/div&gt;
-
-&lt;p&gt;Leí (más bien escuché) la traducción inglesa el año pasado: &lt;em&gt;The Three-Body Problem&lt;/em&gt; y &lt;em&gt;The Dark Forest&lt;/em&gt; a principios de año,  y &lt;em&gt;Death’s End&lt;/em&gt; cuando se publicó tras el verano. Oí hablar de ellos porque el primer libro &lt;a href=&quot;http://www.thehugoawards.org/2015/08/2014-hugo-award-winners-announced/&quot;&gt;ganó el premio Hugo en el 2015&lt;/a&gt;. La traducción me pareció muy buena; es decir, en ningún momento tuve la impresión de que se tratase de una traducción.&lt;/p&gt;
-
-&lt;p&gt;El ritmo de los libros, especialmente del primero, resulta a veces lento. Más de un lector habrá abandonado al principio sin llegar a las partes más interesantes de la saga, que comienzan bien entrado el segundo libro.&lt;/p&gt;
-
-&lt;p&gt;Los personajes no resultan demasiado interesantes. El autor no muestra mucho interés en explicarnos las motivaciones de los protagonistas, salvo cuando es necesario para aclarar la trama. No hay un “héroe” con el que identificarnos. Los personajes están al servicio de la trama, y esta sirve de excusa para explorar ideas extremas sobre la sociedad humana y el universo.&lt;/p&gt;
-
-&lt;p&gt;La trilogía utiliza el contacto con una civilización extraterrestre para plantear una serie de escenarios científicos, morales y existenciales que constituyen la verdadera razón de ser de la obra. Esta contiene conjeturas extremas sobre física, biología e incluso sociología. Hasta propone una explicación (para mí fascinante) a la &lt;a href=&quot;https://es.wikipedia.org/wiki/Paradoja_de_Fermi&quot;&gt;paradoja de Fermi&lt;/a&gt; (aunque no sé si es una idea original). En este aspecto el libro muestra una capacidad de sugestión que  compensa de sobra sus defectos.&lt;/p&gt;
-
-&lt;p&gt;En resumen, un libro muy recomendable para los amantes de la ciencia ficción dura, que no tengan miedo a largas descripciones científico-técnicas y que disfruten con tramas pensadas para motivar discusiones metafísicas.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">El recuerdo del pasado de la tierra es una trilogía de ciencia ficción escrita por el autor chino Cixin Liu. En español sólo se ha publicado el primer volumen, El problema de los Tres Cuerpos , y están en proceso de traducción los otros dos, El bosque oscuro y El fin de la muerte.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/ttbp.jpg" /></entry></feed>
+Las propiedades ahí indicadas serán usadas por el archivo de layout del post (_layouts/post.html) y sus includes para mostrar la imagen en la cabecera, poner la fecha del post, mostrar o no los comentarios de disqus, y mostrar las categorías correspondientes.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/blog.jpg" /></entry></feed>

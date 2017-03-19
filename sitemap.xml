@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://www.javiercancela.com/2017/03/19/python-machine-learning-ii/</loc>
+<lastmod>2017-03-19T01:00:00+00:00</lastmod>
+</url>
+<url>
 <loc>https://www.javiercancela.com/2017/03/12/python-machine-learning-i/</loc>
 <lastmod>2017-03-12T01:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://www.javiercancela.com/2017/03/05/materia-oscura-blake-crouch/</loc>
+<lastmod>2017-03-05T01:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.javiercancela.com/2017/03/05/ready-player-one/</loc>
@@ -19,10 +27,6 @@
 <url>
 <loc>https://www.javiercancela.com/2017/02/12/teclado-mecanico-logitech/</loc>
 <lastmod>2017-02-12T01:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://www.javiercancela.com/2017/02/05/tutorial-de-git-i/</loc>
-<lastmod>2017-02-05T01:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>https://www.javiercancela.com/2017/02/05/un-blog-en-github-iv/</loc>
@@ -104,6 +108,9 @@
 <loc>https://www.javiercancela.com/2017/03/</loc>
 </url>
 <url>
+<loc>https://www.javiercancela.com/2017/03/19/</loc>
+</url>
+<url>
 <loc>https://www.javiercancela.com/2017/03/12/</loc>
 </url>
 <url>
@@ -150,6 +157,6 @@
 </url>
 <url>
 <loc>https://www.javiercancela.com/static/CV.pdf</loc>
-<lastmod>2017-03-12T08:38:24+00:00</lastmod>
+<lastmod>2017-03-19T10:43:35+00:00</lastmod>
 </url>
 </urlset>
