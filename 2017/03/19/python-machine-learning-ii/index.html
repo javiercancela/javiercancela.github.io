@@ -287,7 +287,7 @@ x_m \cr
 
 <p>Inicializamos el perceptrón con dos parámetros: <code class="highlighter-rouge">eta</code>, que es la tasa de aprendizaje, y <code class="highlighter-rouge">n_iter</code>, que es el número de veces que vamos a recorrer el conjunto de datos de entrenamiento. A cada una de estas veces se les llama “épocas”.</p>
 
-<p>Una vez instanciado el perceptrón llamaremos al método <code class="highlighter-rouge">fit</code> para entrenar nuestro modelo. Se le pasan dos parámetros: una matriz <script type="math/tex">\bf X</script>, que contiene una fila por cada muestra y una columna por cada característica, y que constituye nuestro conjunto de datos de entrenamiento, y un array <script type="math/tex">\bf y</script>, que contiene el resultado objetivo para cada muestra.</p>
+<p>Una vez instanciado el perceptrón llamaremos al método <code class="highlighter-rouge">fit</code> para entrenar nuestro modelo. Se le pasan dos parámetros: una matriz <script type="math/tex">\bf X</script>, que contiene una fila por cada muestra y una columna por cada característica, y que constituye nuestro conjunto de datos de entrenamiento; y un array <script type="math/tex">\bf y</script>, que contiene el resultado objetivo para cada muestra.</p>
 
 <p>Lo primero que hace el método <code class="highlighter-rouge">fit</code> es inicializar los pesos y los errores:</p>
 <div class="language-python highlighter-rouge"><pre class="highlight"><code>  <span class="bp">self</span><span class="o">.</span><span class="n">w_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -524,6 +524,8 @@ w_j := w_j + \Delta w_j</script>
 				
 					<a class="prev" href="/2017/03/12/python-machine-learning-i/">&laquo; Machine Learning con Python - Tema 1</a>
 				
+				
+					<a class="next" href="/2017/03/26/materia-oscura-blake-crouch/">Materia oscura &raquo;</a>
 				
 			</div>
 
