@@ -267,7 +267,7 @@
 
 <script type="math/tex; mode=display">\Delta w_{j} := \eta \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x_{j}^{(i)},</script>
 
-<p>tenemos que los elementos <script type="math/tex">error^{(i)}</script> del array <code class="highlighter-rouge">errors</code> se corresponden con <script type="math/tex">error^{(i)} = y^{(i)} - \phi(z)_{A}^{(i)}</script>. Por lo tanto, el producto escalar entre la traspuesta de la matriz de atributos de cada muestra <code class="highlighter-rouge">X</code> y el array de errores <code class="highlighter-rouge">errors</code> (<code class="highlighter-rouge">X.T.dot(errors)</code>) se corresonden con el sumatorio <script type="math/tex">\sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x_{j}^{(i)}</script>.</p>
+<p>tenemos que los elementos <script type="math/tex">error^{(i)}</script> del array <code class="highlighter-rouge">errors</code> se corresponden con <script type="math/tex">error^{(i)} = y^{(i)} - \phi(z)_{A}^{(i)}</script>. Por lo tanto, el producto escalar entre la traspuesta de la matriz de atributos de cada muestra <code class="highlighter-rouge">X</code> y el array de errores <code class="highlighter-rouge">errors</code> (<code class="highlighter-rouge">X.T.dot(errors)</code>) se corresponden con el sumatorio <script type="math/tex">\sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x_{j}^{(i)}</script>.</p>
 
 <p>Para el caso del elemento <script type="math/tex">w_0</script>, al ser el valor de los atributos de esa muestra ficticia igual a uno, basta con sumar los errores para obtener el incremento de peso (también podríamos haber añadido una fila con valores unitarios a la matriz <code class="highlighter-rouge">X</code>).</p>
 
@@ -275,7 +275,7 @@
 
 <h3 id="cálculo-de-costos">Cálculo de costos</h3>
 
-<p>Recordemos la funcón de costos:</p>
+<p>Recordemos la función de costos:</p>
 
 <script type="math/tex; mode=display">J({\mathbf{w}}) = \frac{1}{2} \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big)^2.</script>
 
