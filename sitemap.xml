@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://www.javiercancela.com/2017/04/02/python-machine-learning-iii/</loc>
+<lastmod>2017-04-02T01:00:00+00:00</lastmod>
+</url>
+<url>
 <loc>https://www.javiercancela.com/2017/03/26/materia-oscura-blake-crouch/</loc>
 <lastmod>2017-03-26T01:00:00+00:00</lastmod>
 </url>
@@ -105,6 +109,12 @@
 <loc>https://www.javiercancela.com/2017/</loc>
 </url>
 <url>
+<loc>https://www.javiercancela.com/2017/04/</loc>
+</url>
+<url>
+<loc>https://www.javiercancela.com/2017/04/02/</loc>
+</url>
+<url>
 <loc>https://www.javiercancela.com/2017/03/</loc>
 </url>
 <url>
@@ -160,6 +170,6 @@
 </url>
 <url>
 <loc>https://www.javiercancela.com/static/CV.pdf</loc>
-<lastmod>2017-03-26T19:26:33+00:00</lastmod>
+<lastmod>2017-04-02T09:31:11+00:00</lastmod>
 </url>
 </urlset>
