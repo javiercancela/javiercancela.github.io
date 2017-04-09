@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://www.javiercancela.com/2017/04/09/python-machine-learning-iv/</loc>
+<lastmod>2017-04-09T01:00:00+00:00</lastmod>
+</url>
+<url>
 <loc>https://www.javiercancela.com/2017/04/02/python-machine-learning-iii/</loc>
 <lastmod>2017-04-02T01:00:00+00:00</lastmod>
 </url>
@@ -112,6 +116,9 @@
 <loc>https://www.javiercancela.com/2017/04/</loc>
 </url>
 <url>
+<loc>https://www.javiercancela.com/2017/04/09/</loc>
+</url>
+<url>
 <loc>https://www.javiercancela.com/2017/04/02/</loc>
 </url>
 <url>
@@ -169,7 +176,10 @@
 <loc>https://www.javiercancela.com/3/</loc>
 </url>
 <url>
+<loc>https://www.javiercancela.com/4/</loc>
+</url>
+<url>
 <loc>https://www.javiercancela.com/static/CV.pdf</loc>
-<lastmod>2017-04-02T19:59:04+00:00</lastmod>
+<lastmod>2017-04-09T07:24:53+00:00</lastmod>
 </url>
 </urlset>
