@@ -1,4 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-04-24T20:26:04+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Machine Learning con Python - Tema 3 - Introducción a Scikit-learn</title><link href="https://www.javiercancela.com/2017/04/23/python-machine-learning-v/" rel="alternate" type="text/html" title="Machine Learning con Python - Tema 3 - Introducción a Scikit-learn" /><published>2017-04-23T01:00:00+00:00</published><updated>2017-04-23T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/04/23/python-machine-learning-v</id><content type="html" xml:base="https://www.javiercancela.com/2017/04/23/python-machine-learning-v/">&lt;p&gt;El propósito del tema 3 es revisar algoritmos comunes de aprendizaje máquina. Las diferencias existentes entre estos algoritmos hacen que cada uno sea más adecuado para unas tareas que para otras. En unos casos el criterio de elección será la naturaleza de nuestros datos (número de características, ruido, separabilidad lineal,…), mientras que en otros nos basaremos en la direfencia de rendimientos.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-05-14T20:56:01+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">Machine Learning con Python - Tema 3 - Regresión lineal</title><link href="https://www.javiercancela.com/2017/05/14/python-machine-learning-vi/" rel="alternate" type="text/html" title="Machine Learning con Python - Tema 3 - Regresión lineal" /><published>2017-05-14T01:00:00+00:00</published><updated>2017-05-14T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/05/14/python-machine-learning-vi</id><content type="html" xml:base="https://www.javiercancela.com/2017/05/14/python-machine-learning-vi/">&lt;p&gt;La regresión logística es un modelo de clasificación que permite superar algunos de los problemas del perceptrón, como su incapacidad para converger si las clases no son linearmente separables. Para estudiarlo, empezaremos con un pequeño recordatorio sobre los conceptos estadísticos involucrados.&lt;/p&gt;
+
+&lt;h2 id=&quot;análisis-por-regresión&quot;&gt;Análisis por regresión&lt;/h2&gt;
+
+&lt;p&gt;El análisis por regresión es un proceso que permite estimar la relación entre dos o más variables. En este proceso se parte de una o más variables conocidas (variables independientes o predictoras) y se busca construir un modelo que prediga el comportamiento de otra variable desconocida, llamada variable dependiente. Típicamente se busca calcular el valor medio de la variable dependiente para unos valores fijos de las variables independientes.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Un ejemplo de regresión lineal sacado de la wikipedia&quot; src=&quot;https://upload.wikimedia.org/wikipedia/commons/3/3a/Linear_regression.svg&quot; /&gt;
+        &lt;figcaption&gt;Un ejemplo de regresión lineal sacado de la wikipedia&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;regresión-lineal&quot;&gt;Regresión lineal&lt;/h3&gt;
+
+&lt;p&gt;Dependiendo de la naturaleza de las variables involucradas se pueden llevar a cabo análisis por regresión de distintos tipos. Uno de los más habituales es la &lt;a href=&quot;https://es.wikipedia.org/wiki/Regresión_lineal&quot;&gt;regresión lineal&lt;/a&gt;. En este tipo de análisis se busca una relación lineal entre la variables:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbf{y} = \mathbf{X}\beta + \epsilon&lt;/script&gt;
+
+&lt;p&gt;Un ejemplo de regresión lineal sería el siguiente: imaginemos un curso universitario que tiene un examen final puntuado de 0 a 10. Para ese examen tenemos la lista de notas sacadas por los alumnos en los últimos años, así como el número de horas que cada alumno empleó preparando la asignatura:&lt;/p&gt;
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Datos de horas estudiadas y notas conseguidas para 50 alumnos de una misma asignatura&quot; src=&quot;/images/pml/3_reg_lineal_1.png&quot; /&gt;
+        &lt;figcaption&gt;Datos de horas estudiadas y notas conseguidas para 50 alumnos de una misma asignatura&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;En este caso tenemos dos variables: las horas empleadas en el estudio (el predictor), y la nota conseguida en el alcance (la respuesta). Llamamos predictor a la primera variable porque la regresión lineal nos permitirá calcular una función (lineal) que prediga la nota de un estudiante a partir de las horas estudiadas, con un cierto margen de error. Este ejemplo constituye además una regresión lineal simple, ya que sólo tiene una variable predictora.&lt;/p&gt;
+
+&lt;p&gt;El propósito de la regresión lineal es obtener una línea recta que, en cada punto del eje &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; (para cada valor del predictor) tenga un valor medio sobre los datos reales de la muestra. Como es lógico, esto no es posible para cada conjunto de datos. Existen una serie de condiciones que los datos deben cumplir para que esto sea posible:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;La media de las respuestas debe ser una función lineal de la variable predictora&lt;/li&gt;
+  &lt;li&gt;Los errores de cada muestra (la cantidad que cada muestra se desvía sobre esta media) deben ser independientes&lt;/li&gt;
+  &lt;li&gt;Los errores de las muestras con un mismo predictor deben seguir una distribución normal&lt;/li&gt;
+  &lt;li&gt;Los errores de las muestras de cada predictor deben tener la misma varianza&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Calcular la regresión lineal consiste en calcular los valores &lt;script type=&quot;math/tex&quot;&gt;b_0&lt;/script&gt; y &lt;script type=&quot;math/tex&quot;&gt;b_1&lt;/script&gt; tales que&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{y}_i=b_0+b_1x_i&lt;/script&gt;
+
+&lt;p&gt;donde &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt; es el predictor de la muestra &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;y_i&lt;/script&gt; es el valor de la muestra &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;, y &lt;script type=&quot;math/tex&quot;&gt;\hat{y}&lt;/script&gt; es el valor esperado (según la regresión calculada) de la muestra &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;. El cálculo de &lt;script type=&quot;math/tex&quot;&gt;b_0&lt;/script&gt; y &lt;script type=&quot;math/tex&quot;&gt;b_1&lt;/script&gt; se realiza minimizando el error de cada error &lt;script type=&quot;math/tex&quot;&gt;e_i=y_i-\hat{y}_i&lt;/script&gt;. Una forma de conseguir esto, como ya vimos anteriormente, es minimizar la suma del cuadrado de los errores. Es decir, minimizamos&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Q=\sum_{i=1}^{n}(y_i-(b_0+b_1x_i))^2,&lt;/script&gt;
+
+&lt;p&gt;lo que nos da&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;b_0=\bar{y}-b_1\bar{x}&lt;/script&gt;
+
+&lt;p&gt;y&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;b_1=\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^{n}(x_i-\bar{x})^2}.&lt;/script&gt;
+
+&lt;p&gt;En estas ecuaciones &lt;script type=&quot;math/tex&quot;&gt;\bar{y}&lt;/script&gt; y &lt;script type=&quot;math/tex&quot;&gt;\bar{x}&lt;/script&gt; representan la media de los valores &lt;script type=&quot;math/tex&quot;&gt;y_i&lt;/script&gt; y &lt;script type=&quot;math/tex&quot;&gt;x_i&lt;/script&gt;, respectivamente.&lt;/p&gt;
+
+&lt;p&gt;Para nuestro ejemplo, la recta resultante es&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{y}_i=2.37+0.39x_i&lt;/script&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Datos de horas estudiadas y notas conseguidas para 50 alumnos de una misma asignatura, y regresión calculada&quot; src=&quot;/images/pml/3_reg_lineal_2.png&quot; /&gt;
+        &lt;figcaption&gt;Datos de horas estudiadas y notas conseguidas para 50 alumnos de una misma asignatura, y regresión calculada&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">La regresión logística es un modelo de clasificación que permite superar algunos de los problemas del perceptrón, como su incapacidad para converger si las clases no son linearmente separables. Para estudiarlo, empezaremos con un pequeño recordatorio sobre los conceptos estadísticos involucrados.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry><entry><title type="html">Notas rápidas de la semana</title><link href="https://www.javiercancela.com/2017/05/13/autenticacion-en-dos-pasos-y-otras-cosas/" rel="alternate" type="text/html" title="Notas rápidas de la semana" /><published>2017-05-13T01:00:00+00:00</published><updated>2017-05-13T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/05/13/autenticacion-en-dos-pasos-y-otras-cosas</id><content type="html" xml:base="https://www.javiercancela.com/2017/05/13/autenticacion-en-dos-pasos-y-otras-cosas/">&lt;p&gt;Algunas notas rápidas sobre cosas que he visto esta semana.&lt;/p&gt;
+
+&lt;h2 id=&quot;nueva-autenticación-en-dos-pasos-de-google&quot;&gt;Nueva autenticación en dos pasos de Google&lt;/h2&gt;
+
+&lt;p&gt;La autenticación en dos pasos con las cuentas de Google solicita en el primer paso usuario y contraseña, y después envía al móvil un código que se debe introducir en el segundo paso.&lt;/p&gt;
+
+&lt;p&gt;Esta mañana se me ha activado la versión simplificada del mecanismo. Tras preguntarme, durante el login en el ordenador, si quería probarlo, el segundo paso se ha convertido en una simple pregunta en el móvil:&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Sin necesidad de mensajes SMS&quot; src=&quot;https://2.bp.blogspot.com/-qFPA-JLCm9E/V5ujKPWvyzI/AAAAAAAAEyw/riCGK9YWu8UUGYl-9NElLIBPCidKTTJcACLcB/s1600/Prompt.png&quot; /&gt;
+        &lt;figcaption&gt;Sin necesidad de mensajes SMS&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Nada de SMSs ni códigos adicionales: simplemente pulsando un botón en el móvil verificamos que el login es legítimo. No sé si es más seguro, pero desde luego es más cómodo.&lt;/p&gt;
+
+&lt;h2 id=&quot;mashup&quot;&gt;¿&lt;em&gt;Mashup&lt;/em&gt;?&lt;/h2&gt;
+
+&lt;p&gt;Buscando información sobre la api de Google Maps me vino a la cabeza la palabra &lt;a href=&quot;https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)&quot;&gt;&lt;em&gt;mashup&lt;/em&gt;&lt;/a&gt;, que se utilizaba hace unos años para describir las aplicaciones que mezclan en una aplicación datos obtenidos de otras aplicaciones distintas. El término se usó especialmente con aplicaciones que usaban Google Maps para mostrar todo tipo de información geolocalizada.&lt;/p&gt;
+
+&lt;p&gt;Pero mi sensación era que este término dejó de usarse de forma bastante repentina. De hecho, creo que hace años que no me la encuentro es este contexto. Y con motivo, a juzgar por los datos que muestra Google Trends:&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Evolución del término mashup en los últimos años&quot; src=&quot;/images/mashup-trend.jpg&quot; /&gt;
+        &lt;figcaption&gt;Evolución del término mashup en los últimos años&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;zips-con-javascript-en-gmail&quot;&gt;Zips con javascript en GMail&lt;/h2&gt;
+
+&lt;p&gt;Google no permite descargar desde GMail una zip que contenga javascript. El servidor detecta que el contenido puede ser peligroso y no permite descargarlo.&lt;/p&gt;
+
+&lt;p&gt;Sin embargo, esta limitación parece sólo de la aplicación web. Usando un cliente de correo electrónico como Thunderbird (que abrí para esto por primera vez desde que instalé Ubuntu) el archivo se descarga sin problemas. Eso sí, conectaros vía IMAP si no queréis descargaros todo el correo que tengáis almacenado en el inbox de GMail (en mi caso, todo el personal correo desde el 2008)&lt;/p&gt;
+
+&lt;h2 id=&quot;visual-studio-code&quot;&gt;Visual Studio Code&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.sublimetext.com/3&quot;&gt;Sublime Text 3&lt;/a&gt; es un editor estupendo: potente, flexible, multiplataforma y extremadamente rápido. Es superior a las otras opciones que he probado para desarrollo front y Python, creación de documentos Markdown, y gestión de archivos de texto en general.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;Visual Studio Code, bueno, bonito y barato&quot; src=&quot;/images/vsc.png&quot; /&gt;
+        &lt;figcaption&gt;Visual Studio Code, bueno, bonito y barato&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Sorprendentemente, la mejora alternativa viene de la mano de Microsoft: &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt;. Gratuito, &lt;em&gt;open source&lt;/em&gt;, multiplataforma y rápido. Pese al nombre  se parece más a Sublime Text que al &lt;a href=&quot;https://www.visualstudio.com/es/vs/whatsnew&quot;&gt;Visual Studio tradicional&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Está orientado al desarrollo desde el inicio, así que incluye de serie depurador para diversos lenguajes, autocompletado, integración con Git… Tiene también un sistema extensiones que permite adaptarlo a casi cualquier necesidad.&lt;/p&gt;
+
+&lt;p&gt;Destaca como entorno de desarrollo &lt;em&gt;front&lt;/em&gt;, con depuración nativa de javascript, integración con Chrome, &lt;em&gt;linting&lt;/em&gt; para diversos sabores de javascript, … Pero también es una gran herramienta para Python, Go y &lt;em&gt;scripting&lt;/em&gt; en general. Totalmente recomendable.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Algunas notas rápidas sobre cosas que he visto esta semana.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/varios.jpg" /></entry><entry><title type="html">Machine Learning con Python - Tema 3 - Regresión logística</title><link href="https://www.javiercancela.com/2017/04/30/python-machine-learning-vii/" rel="alternate" type="text/html" title="Machine Learning con Python - Tema 3 - Regresión logística" /><published>2017-04-30T01:00:00+00:00</published><updated>2017-04-30T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/04/30/python-machine-learning-vii</id><content type="html" xml:base="https://www.javiercancela.com/2017/04/30/python-machine-learning-vii/">&lt;p&gt;La regresión logística es un modelo de clasificación que permite superar algunos de los problemas del perceptrón, como su incapacidad para converger si las clases no son linearmente separables. Para estudiarlo, empezaremos con un pequeño recordatorio sobre los conceptos estadísticos involucrados.&lt;/p&gt;
+
+&lt;h3 id=&quot;regresión-logística&quot;&gt;Regresión logística&lt;/h3&gt;
+
+&lt;p&gt;La principal característica de la regresión logística es que la variable respuesta es una categoría, no un valor continuo. Siguiendo con nuestro ejemplo, la regresión logística nos permitiría relacionar las horas dedicadas al estudio con la categoría final de la nota: suspenso o aprobado. Este tipo de regresión logística, con dos posibles categorías para el resultado, se llama regresión logística binaria.&lt;/p&gt;
+
+&lt;p&gt;Este tipo de regresión estima la probabilidad de que una característica dada un única variable predictora.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">La regresión logística es un modelo de clasificación que permite superar algunos de los problemas del perceptrón, como su incapacidad para converger si las clases no son linearmente separables. Para estudiarlo, empezaremos con un pequeño recordatorio sobre los conceptos estadísticos involucrados.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry><entry><title type="html">Machine Learning con Python - Tema 3 - Introducción a Scikit-learn</title><link href="https://www.javiercancela.com/2017/04/23/python-machine-learning-v/" rel="alternate" type="text/html" title="Machine Learning con Python - Tema 3 - Introducción a Scikit-learn" /><published>2017-04-23T01:00:00+00:00</published><updated>2017-04-23T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/04/23/python-machine-learning-v</id><content type="html" xml:base="https://www.javiercancela.com/2017/04/23/python-machine-learning-v/">&lt;p&gt;El propósito del tema 3 es revisar algoritmos comunes de aprendizaje máquina. Las diferencias existentes entre estos algoritmos hacen que cada uno sea más adecuado para unas tareas que para otras. En unos casos el criterio de elección será la naturaleza de nuestros datos (número de características, ruido, separabilidad lineal,…), mientras que en otros nos basaremos en la direfencia de rendimientos.&lt;/p&gt;
 
 &lt;p&gt;Como paso previo el libro realiza una presentación de &lt;a href=&quot;http://scikit-learn.org/stable/index.html&quot;&gt;&lt;em&gt;scikit-learn&lt;/em&gt;&lt;/a&gt;, una librería para Python que incluye varios de los algoritmos más usados en &lt;em&gt;machine learning&lt;/em&gt;. El código de esta librería es abierto y &lt;a href=&quot;https://github.com/scikit-learn/scikit-learn&quot;&gt;está disponible en GitHub&lt;/a&gt;.&lt;/p&gt;
 
@@ -975,153 +1096,4 @@ x_1^{(150)} &amp;amp; x_2^{(150)} &amp;amp; x_3^{(150)} &amp;amp; x_4^{(150)} \c
 
 &lt;h2 id=&quot;conclusión&quot;&gt;Conclusión&lt;/h2&gt;
 
-&lt;p&gt;El tema 1 nos familiariza con los conceptos más básicos del aprendizaje máquina. En el tema 2 empezaremos ya a ver código para avanzar en la materia.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">El foco de estas entradas se pondrá en el código Python publicado en GitHub, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry><entry><title type="html">Ready Player One</title><link href="https://www.javiercancela.com/2017/03/05/ready-player-one/" rel="alternate" type="text/html" title="Ready Player One" /><published>2017-03-05T01:00:00+00:00</published><updated>2017-03-05T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/05/ready-player-one</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/05/ready-player-one/">&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://www.artstation.com/artwork/bg49G&quot;&gt;Imagen de la cabecera&lt;/a&gt; de &lt;a href=&quot;https://www.artstation.com/artist/degesart&quot;&gt;Florian de Gesincourt&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.amazon.es/Ready-player-one-Grandes-novelas/dp/8466649174/&quot;&gt;&lt;em&gt;Ready Player One&lt;/em&gt;, de Ernest Cline&lt;/a&gt; es un homenaje a la cultura pop de los años 80 en su vertiente más friki: máquinas recreativas, videoconsolas, juegos de rol, y novelas, comics, películas de componente más o menos fantástico. Conmigo la fórmula funcionó muy bien, y lo devoré como se devora una hamburguesa un viernes a las 7 de la mañana antes de irte a dormir.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img style=&quot;width:400px&quot; alt=&quot;Cuando devoré mi última hamburguesa a las 7 de la mañana aun había maquinitas de Invaders en los bares&quot; src=&quot;https://images-na.ssl-images-amazon.com/images/I/71teOCvL2TL.jpg&quot; /&gt;  
-        &lt;figcaption&gt;Cuando devoré mi última hamburguesa a las 7 de la mañana aun había maquinitas de Invaders en los bares&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Estamos en el año 2044. Wade Watts es una adolescente huérfano que vive con una tía que le odia en un asentamiento donde las caravanas se apilan a varias alturas, y cuya única ilusión en la vida es evadirse a través de OASIS, un híbrido de internet y MMORPG que sirve lo mismo para jugar al rol que para ir a clase. Ernest Cline aprovecha este entorno para sumergirnos en una fantasía casi sin límites, a partir de un concurso que se convierte en una aventura repleta de guiños nostálgicos al pasado.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img style=&quot;width:400px&quot; alt=&quot;Aquí las caravanas apiladas&quot; src=&quot;http://t2.gstatic.com/images?q=tbn:ANd9GcQWpxNZupWTxKEoVaD-U0C_wC7cIkfUFtRRj12M4an8tl1rwj9p&quot; /&gt;  
-        &lt;figcaption&gt;Aquí las caravanas apiladas&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;El libro está bien escrito. Tiene ritmo, sobre todo al principio, y los personajes son estereotipos bien desarrollados, al menos lo suficiente como para que te encariñes con ellos. El libro está lleno de tópicos, con malos muy malos, buenos muy buenos, chico, chica, amigo del chico, figura paterna,… pero todo encaja en el juego que propone el autor.&lt;/p&gt;
-
-&lt;p&gt;¿Cómo reciben el libro los que no entren en este juego? Con cierta dificultad, por lo que se lee en las críticas. Los más jóvenes, y los que pasaron por los 80 haciendo una vida normal (o siendo parte de la Movida, o ligando, o vete a saber haciendo qué) puede que no le encuentren interés a un libro que rinde culto a un mundo que nunca fue el suyo.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img alt=&quot;Perspectiva isométrica, robots japoneses, llaves y castillos. Todo esto y mucho más en Ready Player One&quot; src=&quot;/images/rpo.jpg&quot; /&gt;  
-        &lt;figcaption&gt;Perspectiva isométrica, robots japoneses, llaves y castillos. Todo esto y mucho más en Ready Player One&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Tras leer el libro me encontré con que &lt;a href=&quot;https://es.wikipedia.org/wiki/Ready_Player_One_(pel%C3%ADcula)&quot;&gt;Steven Spielberg está rodando una versión para el cine&lt;/a&gt;. Imagino que la idea es apuntar al &lt;em&gt;target&lt;/em&gt; natural del libro (cuarentones nostálgicos) y añadir los cambios necesarios para asegurarse el interés del público joven. Veremos cómo resulta.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img alt=&quot;El chico y la chica&quot; src=&quot;https://images-na.ssl-images-amazon.com/images/M/MV5BMTY1NDA5MTY0M15BMl5BanBnXkFtZTgwMzA3MDExOTE@._V1_UY317_CR14,0,214,317_AL_.jpg&quot; /&gt;  
-        &lt;img alt=&quot;El chico y la chica&quot; src=&quot;https://s-media-cache-ak0.pinimg.com/236x/38/14/30/3814303a211c6f94afbd4d977e0ff803.jpg&quot; /&gt;  
-        &lt;figcaption&gt;El chico y la chica, más guapos en la película que en el libro, as usual&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Imagen de la cabecera de Florian de Gesincourt</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/florian-de-gesincourt-degesart-sk0010-playerone-j-deges1500.jpg" /></entry><entry><title type="html">Machine Learning con Python - Introducción</title><link href="https://www.javiercancela.com/2017/02/26/python-machine-learning-intro/" rel="alternate" type="text/html" title="Machine Learning con Python - Introducción" /><published>2017-02-26T01:00:00+00:00</published><updated>2017-02-26T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/02/26/python-machine-learning-intro</id><content type="html" xml:base="https://www.javiercancela.com/2017/02/26/python-machine-learning-intro/">&lt;p&gt;Tengo este blog fundamentalmente para aprender. La forma en la que aprendo alguna cosa es la siguiente: decido sobre qué quiero aprender, decido qué material voy a utilizar para ello (libros, cursos web, blogs,…) y preparo unos apuntes basados en ese material. Esos apuntes consisten en entradas en este blog donde explico aquello que creo haber entendido.&lt;/p&gt;
-
-&lt;p&gt;Por lo tanto, en este tipo de entradas hablo sobre cosas de las que sé entre poco y nada, y lo hago resumiendo, traduciendo, y reformulando las explicaciones de alguien que sí sabe de qué habla (o eso espero).&lt;/p&gt;
-
-&lt;h2 id=&quot;python-machine-learning&quot;&gt;&lt;em&gt;Python Machine learning&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;Esta entrada es la primera de una serie dedicada a la inteligencia artificial, específicamente a la rama conocida como &lt;em&gt;machine learning&lt;/em&gt;. La guía para ello va a ser el libro &lt;a href=&quot;https://www.amazon.es/Python-Machine-Learning-Sebastian-Raschka/dp/1783555130/&quot;&gt;Python Machine Learning&lt;/a&gt;, de &lt;a href=&quot;https://sebastianraschka.com/&quot;&gt;Sebastian Raschka&lt;/a&gt;.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;a href=&quot;https://www.packtpub.com/big-data-and-business-intelligence/python-machine-learning&quot;&gt;&lt;img style=&quot;width:400px&quot; alt=&quot;La portada del libro&quot; src=&quot;/images/pml/pymle_cover.jpg&quot; /&gt;&lt;/a&gt;
-        &lt;figcaption&gt;La portada del libro&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Es un libro muy práctico, tiene muchos ejemplos en Python, &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book&quot;&gt;todo el código fuente está disponible en GitHub&lt;/a&gt;, tiene buenas críticas en Amazon, y está bien escrito. Es un libro muy recomendable para quien quiera iniciarse en el tema.&lt;/p&gt;
-
-&lt;p&gt;En GitHub se incluye &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book/tree/master/faq&quot;&gt;una faq&lt;/a&gt; en la &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book/blob/master/faq/copyright.md&quot;&gt;se autoriza usar hasta el 10% del contenido del libro&lt;/a&gt; siempre que se cite y acredite correctamente, y no se venda o redistribuya la información. Esto me permite incluir imágenes y algún párrafo suelto para ir ilustrando las entradas.&lt;/p&gt;
-
-&lt;p&gt;En la próxima entrada de la serie comenzaremos con el tema 1 del libro, con la idea de ir repasando todo el libro por orden. Hasta entonces resumo algunas respuestas de la faq mencionada.&lt;/p&gt;
-
-&lt;h2 id=&quot;machine-learning&quot;&gt;&lt;em&gt;Machine Learning&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;Ver &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book/blob/master/faq/datascience-ml.md&quot;&gt;What are data science and machine learning?&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Casi todas las definiciones de &lt;em&gt;machine learning&lt;/em&gt; (prefiero el término inglés a la traducción española, que suele ser ‘aprendizaje automático’) hacen refencia a los algoritmos empleados, ya que en realidad el &lt;em&gt;machine learning&lt;/em&gt; es una forma concreta de programación.&lt;/p&gt;
-
-&lt;p&gt;El autor define un algoritmo de &lt;em&gt;machine learning&lt;/em&gt; como aquel que aprende, e incluso predice, modelos a partir de datos.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img alt=&quot;El aprendizaje automático es el campo de estudio que proporciona a los ordenadores la capacidad de aprender sin haber sido explícitamente programados para ello - Arthur Samuel (1959)&quot; src=&quot;https://github.com/rasbt/python-machine-learning-book/raw/master/faq/datascience-ml/ml-overview.jpg&quot; /&gt;
-        &lt;figcaption&gt;El aprendizaje automático es el campo de estudio que proporciona a los ordenadores la capacidad de aprender sin haber sido explícitamente programados para ello - Arthur Samuel (1959)&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Uno de los ejemplos más clásicos es el filtro de spam. Un programa convencional que tuviese que separar el spam del correo legítimo tendría que incorporar una serie de reglas if/then que comprobasen una serie de términos, especificados por expertos en la materia, y discriminasen los correos en base a esas reglas.&lt;/p&gt;
-
-&lt;p&gt;La forma ‘&lt;em&gt;machine learning&lt;/em&gt;’ de realizar esta tarea comenzaría con una muestra de correos, algunos spam y otros no, a los que unos clasificadores humanos hubiesen etiquetado correspondientemente. El algoritmo de &lt;em&gt;machine learning&lt;/em&gt; examinaría estos correos y extraería un conjunto de reglas para clasificar los correos que se le suministrasen en el futuro. A este tipo de aproximación se le llama aprendizaje supervisado.&lt;/p&gt;
-
-&lt;h2 id=&quot;machine-learnign-e-inteligencia-artificial&quot;&gt;&lt;em&gt;Machine learnign&lt;/em&gt; e Inteligencia Artificial&lt;/h2&gt;
-
-&lt;p&gt;Ver &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book/blob/master/faq/ai-and-ml.md&quot;&gt;How are Artificial Intelligence and Machine Learning related?&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;La inteligencia artificial es la disciplina que se centra en las tareas en las que los humanos son mucho mejor que las máquinas, como detectar spam o identificar objetos en una imagen.&lt;/p&gt;
-
-&lt;p&gt;El autor no considera el &lt;em&gt;machine learning&lt;/em&gt; como una subdisciplina de la inteligencia artificial. Ambas disciplinas se solapan, pero también tienen áreas de conocimiento independientes. En el caso del &lt;em&gt;machine learning&lt;/em&gt; se incluirían las técnicas de &lt;em&gt;data mining&lt;/em&gt; (término que se aplica en general a las técnicas de extracción de información a partir de datos en bruto), que no son parte de la inteligencia artificial.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img alt=&quot;El 'deep learning' sí es una subdisciplina del 'machine learning', pero lo trataremos más adelante &quot; src=&quot;https://raw.githubusercontent.com/rasbt/python-machine-learning-book/master/faq/ai-and-ml/ai-and-ml-1.png&quot; /&gt;
-        &lt;figcaption&gt;El 'deep learning' sí es una subdisciplina del 'machine learning', pero lo trataremos más adelante&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;python&quot;&gt;Python&lt;/h2&gt;
-
-&lt;p&gt;Ver &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book/blob/master/faq/why-python.md&quot;&gt;Why did you choose Python for Machine Learning?&lt;/a&gt;&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;a href=&quot;https://xkcd.com/353/&quot;&gt;&lt;img alt=&quot;Cualquier cosa interesante que quiera decir ya la ha dicho Randall Munroe mejor que yo&quot; src=&quot;https://imgs.xkcd.com/comics/python.png&quot; /&gt;&lt;/a&gt;
-        &lt;figcaption&gt;Cualquier cosa interesante que quiera decir ya la ha dicho Randall Munroe mejor que yo&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Tengo este blog fundamentalmente para aprender. La forma en la que aprendo alguna cosa es la siguiente: decido sobre qué quiero aprender, decido qué material voy a utilizar para ello (libros, cursos web, blogs,…) y preparo unos apuntes basados en ese material. Esos apuntes consisten en entradas en este blog donde explico aquello que creo haber entendido.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry><entry><title type="html">Un blog en GitHub (y V - Últimos ajustes)</title><link href="https://www.javiercancela.com/2017/02/19/un-blog-en-github-y-v/" rel="alternate" type="text/html" title="Un blog en GitHub (y V - Últimos ajustes)" /><published>2017-02-19T01:00:00+00:00</published><updated>2017-02-19T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/02/19/un-blog-en-github-y-v</id><content type="html" xml:base="https://www.javiercancela.com/2017/02/19/un-blog-en-github-y-v/">&lt;p&gt;Los blogs, y los sites en general, albergados en GitHub son totalmente estáticos. Es decir, al acceder a una url de nuestro blog no se ejecuta código en el servidor, tan solo se devuelven archivos html, js, css, multimedia, … tal como están guardados en el mismo.&lt;/p&gt;
-
-&lt;p&gt;Las partes dinámicas que pueda haber (comentarios en los posts, formularios de contacto, …) se consiguen mediante integraciones con otras páginas web. Como ejemplo, este blog tiene comentarios en las entradas, pero todo el código relativo a ellos se encuentra en el servidor de &lt;a href=&quot;https://disqus.com/&quot;&gt;Disqus&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;jekyll-y-github-pages&quot;&gt;Jekyll y GitHub Pages&lt;/h2&gt;
-&lt;p&gt;En los posts anteriores hemos visto cómo utilizar un lenguaje de marcado, &lt;a href=&quot;http://shopify.github.io/liquid/&quot;&gt;Liquid&lt;/a&gt;, para generar dinámicamente algunas partes del sitio web. Podría pensarse entonces que Jekyll funciona como un servidor de aplicaciones generando estas páginas según las vamos solicitando. Sin embargo, lo que hace Jekyll es compilar los archivos con Liquid, y los demás recursos del repositorio, para generar un sitio web estático convencional que almacena en la carpeta &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Hasta ahora hemos dejado que el Jekyll de GitHub se encargase de la generación del site. Al subir nuestro código al repositorio GitHub Pages se encarga de realizar la compilación, tal como ocurre cuando la hacemos en local con&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle exec jekyll serve
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;generación-fuera-de-github&quot;&gt;Generación fuera de GitHub&lt;/h2&gt;
-
-&lt;p&gt;Pero hay una diferencia: por motivos de seguridad GitHub Pages restringe qué plugins se pueden utilizar en el repositorio. La lista concreta de plugins, así como sus versiones y las versiones de los demás componentes utilizados, la podemos ver &lt;a href=&quot;https://pages.github.com/versions/&quot;&gt;aquí&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Uno de los plugins más útiles excluidos por GitHub Pages es &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll-archive&lt;/code&gt;, que se encarga de generar una estructura de carpetas y páginas para poder acceder a un archivo del blog por fechas o por tags. Este blog utiliza este plugin para poder mostrar todos los posts de una etiqueta específica. Así que vamos a ver cómo podemos librar a nuestras páginas de esta restricción.&lt;/p&gt;
-
-&lt;h3 id=&quot;generación-local&quot;&gt;Generación local&lt;/h3&gt;
-&lt;p&gt;La primera opción para usar este plugin, o cualquier otro, es utilizar la compilación del Jekyll local. Para servir nuestro site, GitHub Pages analiza el contenido de la carpeta &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; de nuestro repositorio &lt;code class=&quot;highlighter-rouge&quot;&gt;nombreusuario.github.io&lt;/code&gt; (al menos en páginas personales). Si en el directorio raíz del repositorio no hay un archivo &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;, GitHub Pages servirá los contenidos existentes como un servidor web normal. Así, si subimos a &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; el contenido de nuestra carpeta &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; local (sólo el contenido, sin la carpeta en sí) tendremos publicado en GitHub Pages el mismo sitio web que está publicando nuestro Jekyll local.&lt;/p&gt;
-
-&lt;h3 id=&quot;codeship&quot;&gt;Codeship&lt;/h3&gt;
-&lt;p&gt;Otra opción interesante la encontré en este post: &lt;a href=&quot;https://www.drinkingcaffeine.com/deploying-jekyll-to-github-pages-without-using-githubs-jekyll/&quot;&gt;Deploying a Jekyll Site to Github Pages Without Using Github’s Jekyll&lt;/a&gt; (en inglés). La idea aquí es utilizar una aplicación web de integración continua para generar la compilación en dicho sitio, y copiar los contenidos automáticamente en el repositorio. El post utiliza como ejemplo &lt;a href=&quot;https://codeship.com/&quot;&gt;Codeship&lt;/a&gt;, que permite lanzar, al detectar un cambio en nuestro repositorio, un script en una máquina virtualizada que ya tiene todo el software que necesitamos. Este es el sistema que yo utilizo: Codeship se dispara cuando hay cambios en la rama &lt;code class=&quot;highlighter-rouge&quot;&gt;release&lt;/code&gt; de mi repositorio, y lanza este script:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git  clone git@github.com:javiercancela/javiercancela.github.io.git _site
-cd _site
-git checkout master || git checkout --orphan master
-cd ..
-rm -rf _site/**/* || exit 0
-bundle install
-bundle exec jekyll build
-cd _site
-git config user.email &amp;lt;mi email&amp;gt;
-git config user.name &quot;javiercancela&quot;
-git add -A .
-git commit -m &quot;Deploy to Github Pages: ${CI_COMMIT_ID} --skip-ci&quot;
-git push origin master
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;De esta forma, cada vez que publico una nueva versión en la rama &lt;code class=&quot;highlighter-rouge&quot;&gt;release&lt;/code&gt;, se publica en GitHub Pages una versión compilada sin restricciones de plugins.&lt;/p&gt;
-
-&lt;p&gt;La variable &lt;code class=&quot;highlighter-rouge&quot;&gt;JEKYLL_ENV=production&lt;/code&gt; se define para que la compilación se haga incluyendo todo lo necesario para la publicación real. En mi caso, esto añade el javascript de Google Analytics.&lt;/p&gt;
-
-&lt;h2 id=&quot;imágenes&quot;&gt;Imágenes&lt;/h2&gt;
-&lt;p&gt;GitHub Pages tiene un límite de 1GB para el tamaño de los sites alojados. Aunque es un límite amplio, si no queremos superarlo tenemos que tener un poco de cuidado con el tamaño de los archivos que subamos. Una buena práctica es alojar los archivos multimedia en aplicaciones destinadas a ellos, como &lt;a href=&quot;https://www.youtube.com/&quot;&gt;YouTube&lt;/a&gt; para vídeos. Para los imágenes yo estoy usando &lt;a href=&quot;https://unsplash.com/&quot;&gt;Unsplash&lt;/a&gt;, un repositorio de imágenes muy fácil de usar, que descubrí gracias a la plantilla de Jekyll que estoy usando.&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusión&quot;&gt;Conclusión&lt;/h2&gt;
-&lt;p&gt;GitHub Pages no es el alojamiento más indicado para cualquier persona que quiera crear un blog personal, pero es una gran opción parar quien quiera crear, sin pagar nada, un blog completamente personalizado. A cambio, eso sí, de emplear un poco de esfuerzo adicional.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Los blogs, y los sites en general, albergados en GitHub son totalmente estáticos. Es decir, al acceder a una url de nuestro blog no se ejecuta código en el servidor, tan solo se devuelven archivos html, js, css, multimedia, … tal como están guardados en el mismo.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/blog.jpg" /></entry></feed>
+&lt;p&gt;El tema 1 nos familiariza con los conceptos más básicos del aprendizaje máquina. En el tema 2 empezaremos ya a ver código para avanzar en la materia.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">El foco de estas entradas se pondrá en el código Python publicado en GitHub, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry></feed>
