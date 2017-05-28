@@ -1,4 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-05-21T11:04:27+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">PML T3 - Regresión logística</title><link href="https://www.javiercancela.com/2017/05/21/python-machine-learning-vii/" rel="alternate" type="text/html" title="PML T3 - Regresión logística" /><published>2017-05-21T01:00:00+00:00</published><updated>2017-05-21T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/05/21/python-machine-learning-vii</id><content type="html" xml:base="https://www.javiercancela.com/2017/05/21/python-machine-learning-vii/">&lt;p&gt;Seguimos con algunos conceptos estadísticos útiles para estudiar el modelo de regresión logística.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://www.javiercancela.com/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://www.javiercancela.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.javiercancela.com/" rel="alternate" type="text/html" /><updated>2017-05-28T07:45:31+00:00</updated><id>https://www.javiercancela.com//</id><title type="html">Página de Javier Cancela</title><subtitle>Página personal de Javier Cancela</subtitle><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><entry><title type="html">PML T3 - Algoritmo con regresión logística</title><link href="https://www.javiercancela.com/2017/05/28/python-machine-learning-viii/" rel="alternate" type="text/html" title="PML T3 - Algoritmo con regresión logística" /><published>2017-05-28T01:00:00+00:00</published><updated>2017-05-28T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/05/28/python-machine-learning-viii</id><content type="html" xml:base="https://www.javiercancela.com/2017/05/28/python-machine-learning-viii/">&lt;p&gt;A partir del concepto de &lt;a href=&quot;/2017/05/21/python-machine-learning-vii/&quot;&gt;regresión logística&lt;/a&gt; 
+podemos ya definir el siguiente algoritmo.&lt;/p&gt;
+
+&lt;h2 id=&quot;el-modelo-para-la-regresión-logística&quot;&gt;El modelo para la regresión logística&lt;/h2&gt;
+
+&lt;p&gt;El libro traza un paralelo con el modelo &lt;a href=&quot;/2017/04/02/python-machine-learning-iii/&quot;&gt;ADALINE&lt;/a&gt;, donde la función indentidad (&lt;script type=&quot;math/tex&quot;&gt;\phi(z)=z&lt;/script&gt;) es sustituida por la función logística (sigmoidea) en nuestro modelo:&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+    &lt;figure&gt;
+        &lt;img alt=&quot;El algoritmo de ADALINE con la función identidad sustituida por la función logística o sigmoidea&quot; src=&quot;https://raw.githubusercontent.com/rasbt/python-machine-learning-book/master/code/ch03/images/03_03.png&quot; /&gt;
+        &lt;figcaption&gt;El algoritmo de ADALINE con la función identidad sustituida por la función logística o sigmoidea&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;cálculo-de-los-pesos&quot;&gt;Cálculo de los pesos&lt;/h3&gt;
+
+&lt;p&gt;Cuando hablamos de ADALINE definimos la &lt;a href=&quot;/2017/04/02/python-machine-learning-iii/#1&quot;&gt;función de costos de la suma de los errores cuadrados&lt;/a&gt; para minimizarla:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;J({\mathbf{w}}) = \frac{1}{2} \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big)^2.&lt;/script&gt;
+
+&lt;p&gt;Para obtener una función de costos que minimizar, el autor empieza definiendo la siguiente función:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;L(\mathbf{w}) = P(\mathbf{y} | \mathbf{x}; \mathbf{w}) = \prod_{i=1}^{n} P \big( y^{(i)} | x^{(i)}; \mathbf{w} \big) =  \prod_{i=1}^{n} \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}},&lt;/script&gt;
+
+&lt;p&gt;donde &lt;script type=&quot;math/tex&quot;&gt;y^{(i)}&lt;/script&gt; es la clase (&lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; o &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt;) de la muestra &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;, y &lt;script type=&quot;math/tex&quot;&gt;\phi \big(z^{(i)} \big)&lt;/script&gt; es la probabilidad de que la muestra &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; pertenezca a la clase &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt;. Como vimos en la entrada anterior, la clase predicha &lt;script type=&quot;math/tex&quot;&gt;\hat y&lt;/script&gt; será &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; si la probabilidad de es mayor o igual a &lt;script type=&quot;math/tex&quot;&gt;0.5&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Por tanto, la expresión&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}}&lt;/script&gt;
+
+&lt;p&gt;indica la probabilidad de que la muestra &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; pertenezca a la clase real (&lt;script type=&quot;math/tex&quot;&gt;y^{(i)}&lt;/script&gt;), ya que si &lt;script type=&quot;math/tex&quot;&gt;y^{(i)} = 1&lt;/script&gt;, la expresión se simplifica a &lt;script type=&quot;math/tex&quot;&gt;\phi \big(z^{(i)} \big)&lt;/script&gt;, y si &lt;script type=&quot;math/tex&quot;&gt;y^{(i)} = 0&lt;/script&gt; nos queda&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}},&lt;/script&gt;
+
+&lt;p&gt;que es la probabilidad de que la muestra sea de clase distinta de &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt;, es decir, la probabilidad de que se de clase &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Entonces, la función &lt;script type=&quot;math/tex&quot;&gt;L(\mathbf{w})&lt;/script&gt; es el producto de las probabilidades de que cada muestra sea de su clase real, en función de los pesos &lt;script type=&quot;math/tex&quot;&gt;\mathbf{w}&lt;/script&gt; establecidos. Si maximizamos esa función, estaremos maximizando la calidad de la predicción para el conjunto de muestras.&lt;/p&gt;
+
+&lt;h3 id=&quot;simplificando-los-cálculos&quot;&gt;Simplificando los cálculos&lt;/h3&gt;
+
+&lt;p&gt;El siguiente paso que da el libro es calcular el logaritmo de &lt;script type=&quot;math/tex&quot;&gt;L(\mathbf{w})&lt;/script&gt;. El propósito de esta función es doble. Por un lado, evita un problema potencial si las probabilidades son lo suficientemente pequeñas para que su producto provoque un desbordamiento. El logaritmo convierte los productos en sumas, con lo que el riesgo desaparece. Por otro lado, el cálculo de la derivada se simplifica mucho por el mismo motivo.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;l(\mathbf{w}) = \log L(\mathbf{w}) = \log \Bigg[ \prod_{i=1}^{n} \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}}  \Bigg]&lt;/script&gt;
+
+&lt;p&gt;Dado que &lt;script type=&quot;math/tex&quot;&gt;\log (xy) = \log x + \log y&lt;/script&gt;, el logaritmo del productorio se convierte en un sumatorio de logaritmos:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;l(\mathbf{w}) = \sum_{i=1}^{n} \Bigg[ \log \bigg( \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}} \bigg) \Bigg].&lt;/script&gt;
+
+&lt;p&gt;Ahora el sumatorio contiene también el logaritmo de un producto, por lo que podemos convertirlo en:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;l(\mathbf{w}) = \sum_{i=1}^{n} \Bigg[ \log \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} + \log \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}}  \Bigg].&lt;/script&gt;
+
+&lt;p&gt;Finalmente podemos simplificar usar la propiedad &lt;script type=&quot;math/tex&quot;&gt;\log (x^y) = y \log x&lt;/script&gt; para convertir la expresión en:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;l(\mathbf{w}) = \sum_{i=1}^{n} \Bigg[ y^{(i)} \log \bigg( \phi \big(z^{(i)} \big) \bigg) + \bigg(1-y^{(i)} \bigg) \log \bigg( 1 - \phi \big( z^{(i)} \big) \bigg) \Bigg].&lt;/script&gt;
+
+&lt;p&gt;En la siguiente entrada veremos cómo convertir esta expresión en una función de costos.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">A partir del concepto de regresión logística 
+podemos ya definir el siguiente algoritmo.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry><entry><title type="html">PML T3 - Regresión logística</title><link href="https://www.javiercancela.com/2017/05/21/python-machine-learning-vii/" rel="alternate" type="text/html" title="PML T3 - Regresión logística" /><published>2017-05-21T01:00:00+00:00</published><updated>2017-05-21T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/05/21/python-machine-learning-vii</id><content type="html" xml:base="https://www.javiercancela.com/2017/05/21/python-machine-learning-vii/">&lt;p&gt;Seguimos con algunos conceptos estadísticos útiles para estudiar el modelo de regresión logística.&lt;/p&gt;
 
 &lt;h3 id=&quot;predicción-de-categorías&quot;&gt;Predicción de categorías&lt;/h3&gt;
 
@@ -1024,122 +1081,4 @@ w_j := w_j + \Delta w_j&lt;/script&gt;
         &lt;img alt=&quot;Regiones predichas para cada clase&quot; src=&quot;https://raw.githubusercontent.com/rasbt/python-machine-learning-book/master/code/ch02/images/02_08.png&quot; /&gt;
         &lt;figcaption&gt;Regiones predichas para cada clase&lt;/figcaption&gt;
     &lt;/figure&gt;
-&lt;/div&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Empezamos con los algoritmos. Vamos a implementar un perceptrón en Python, y entrenarlo para que sepa clasificar las diferentes especies de flores en Iris. El libro comienza mostrando el modelo de neurona de McCulloch-Pitts:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry><entry><title type="html">PML T1 - Aprendizaje máquina</title><link href="https://www.javiercancela.com/2017/03/12/python-machine-learning-i/" rel="alternate" type="text/html" title="PML T1 - Aprendizaje máquina" /><published>2017-03-12T01:00:00+00:00</published><updated>2017-03-12T01:00:00+00:00</updated><id>https://www.javiercancela.com/2017/03/12/python-machine-learning-i</id><content type="html" xml:base="https://www.javiercancela.com/2017/03/12/python-machine-learning-i/">&lt;p&gt;El foco de estas entradas se pondrá en el &lt;a href=&quot;https://github.com/rasbt/python-machine-learning-book&quot;&gt;código Python publicado en GitHub&lt;/a&gt;, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.&lt;/p&gt;
-
-&lt;h2 id=&quot;tipos-de-machine-learning&quot;&gt;Tipos de &lt;em&gt;machine learning&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;Existen tres estrategias distintas de aprendizaje automático: supervisado, no supervisado y reforzado&lt;/p&gt;
-
-&lt;h3 id=&quot;supervisado&quot;&gt;Supervisado&lt;/h3&gt;
-
-&lt;p&gt;En el aprendizaje supervisado se entrena el modelo con datos para los que ya se conoce el resultado correcto. En función del tipo de resultado que esperemos obtener, podemos encontrarnos con que los datos de entrenamiento llevan asociada una etiqueta que indica a qué categoría pertenece, o un valor numérico. En el primer caso hablamos de &lt;strong&gt;clasificación&lt;/strong&gt;, y en el segundo de &lt;strong&gt;regresión&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Un ejemplo de problema de clasificación es el mencionado en la entrada anterior: la clasificación de spam. Al modelo se le presenta con una serie de correos que ya han sido identificados con una etiqueta ‘spam’ o ‘no spam’. El modelo utiliza esos correos para calibrar ciertos valores internos, de forma que pueda identificar correctamente futuros correos sin intervención humana.&lt;/p&gt;
-
-&lt;p&gt;En los problemas de regresión el valor esperado pertenece a un rango continuo. Un ejemplo, &lt;a href=&quot;http://setosa.io/ev/ordinary-least-squares-regression/&quot;&gt;sacado de este post (en inglés)&lt;/a&gt;, sería un modelo para predecir la altura de una persona a partir del tamaño de su mano. Para ello entrenaríamos el modelo con una muestra aleatoria de personas, para las cuales tendríamos tanto el tamaño de su mano como su altura real. El resultado sería una ecuación del tipo &lt;script type=&quot;math/tex&quot;&gt;y = A + Bx&lt;/script&gt;
-donde &lt;em&gt;x&lt;/em&gt; sería el tamaño de la mano, &lt;em&gt;A&lt;/em&gt; y &lt;em&gt;B&lt;/em&gt; valores definidos tras el proceso de aprendizaje, e &lt;em&gt;y&lt;/em&gt; la altura predicha para el valor x.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img alt=&quot;Ejemplo de regresión lineal&quot; src=&quot;/images/pml/1_regression.png&quot; /&gt;
-        &lt;figcaption&gt;Ejemplo de regresión lineal&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;reforzado&quot;&gt;Reforzado&lt;/h3&gt;
-
-&lt;p&gt;El aprendizaje reforzado entrena un modelo para que consiga un objetivo. Para ello se alimenta el modelo con el resultado de una función que evalúa cómo de cerca estamos del objetivo. Se establece un ciclo en el que el modelo genera una salida, la función evalúa cómo de satisfactoria ha sido esta salida, y la evaluación se utiliza para ajustar el modelo.&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img alt=&quot;El modelo ('Agent') cambia el estado a través de una acción. Este cambio nos acerca más o menos al objetivo. Realimentamos el modelo con una recompensa, así como con la acción que generó dicha recompensa&quot; src=&quot;/images/pml/1_refuerzo.png&quot; /&gt;
-        &lt;figcaption&gt;El modelo ('Agent') cambia el estado a través de una acción. Este cambio nos acerca más o menos al objetivo. Realimentamos el modelo con una recompensa, así como con la acción que generó dicha recompensa&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Los ejemplos habituales de aplicación de esta técnica son los juegos: ajedrez, tres en raya, juegos de cartas… En ellos el programa va aprendiendo según juega partidas y comprueba qué acciones llevan a la victoria.&lt;/p&gt;
-
-&lt;h3 id=&quot;no-supervisado&quot;&gt;No supervisado&lt;/h3&gt;
-
-&lt;p&gt;En algunas ocasiones nos encontramos con datos de los que no sabemos qué información extraer. Para estos casos se usan técnicas de aprendizaje no supervisado, en las que se analiza la estructura de los datos para intentar extraer información útil. El libro menciona dos aproximaciones a esta técnica: &lt;strong&gt;agrupación (&lt;em&gt;clustering&lt;/em&gt;)&lt;/strong&gt; y &lt;strong&gt;reducción de dimensionalidad&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;En la agrupación se buscan elementos que, según algún criterio, son algo similares entre sí y algo distintos a los demás. Por ejemplo, si tenemos un conjunto de animales con gatos, caballos, palomas y águilas, y proporcionamos al modelo sus tamaños y el número de patas de cada animal, el aprendizaje no supervisado le permitiría identificar correctamente cuatro tipos de animales: grande con dos patas (águila), grande con cuatro patas (caballo), pequeño con dos patas (paloma) y pequeño con cuatro patas (gato).&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img alt=&quot;Un ejemplo un poco más real de clustering&quot; src=&quot;https://docs.microsoft.com/en-us/azure/machine-learning/media/machine-learning-algorithm-choice/image9.png&quot; /&gt;
-        &lt;figcaption&gt;Un ejemplo un poco más real de clustering&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;En cuanto a la reducción de dimensionalidad, consiste en reducir los datos de forma que se retenga la información relevante. La idea es disminuir tanto el espacio ocupado por los datos como el tiempo necesario para ejecutar los algoritmos. Usando un ejemplo sacado de &lt;a href=&quot;http://stackoverflow.com/a/1994481&quot;&gt;esta respuesta de stackoverflow&lt;/a&gt;, supongamos un conjunto de datos en el que 1000 personas indican si les gusta o no cada una de 100 películas seleccionadas. Podríamos almacenar esta información en 1000 vectores de 100 elementos cada uno, donde cada elemento fuese un 1 o un 0 según la película hubiese gustado o no. Una forma de reducir la dimensionalidad del conjunto de datos sería asignar a cada película uno de cinco géneros (comedia, terror, … los que fuesen más representativos), y usar los datos originales para construir un nuevo vector de cinco elementos para cada persona, donde se indicase si el género es no de su agrado. Pasaríamos así de 100.000 a 5.000 elementos. Como contrapartida, perderíamos información (a una persona le pueden gustar un par de películas de un género que no le gusta).&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img alt=&quot;El ejemplo del libro reduce una muestra de datos en 3 dimensionaes a otra equivalente en 2 dimensiones&quot; src=&quot;/images/pml/1_compression.png&quot; /&gt;
-        &lt;figcaption&gt;El ejemplo del libro reduce una muestra de datos en 3 dimensiones a otra equivalente en 2 dimensiones&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;terminología-y-notación&quot;&gt;Terminología y notación&lt;/h2&gt;
-
-&lt;p&gt;Como es de esperar en cualquier disciplina técnica que se precie, el &lt;em&gt;machine learning&lt;/em&gt; incluye un montón de terminología propia que es preciso conocer. El siguiente punto del tema 1 presenta algunos de estos términos.&lt;/p&gt;
-
-&lt;p&gt;En aprendizaje automático existe un conjunto de datos muy conocido que se usa en todos los cursos para principiantes, algo así como el “Hola Mundo” de los conjuntos de datos. Se llama &lt;a href=&quot;https://es.wikipedia.org/wiki/Iris_flor_conjunto_de_datos&quot;&gt;conjunto de datos Iris&lt;/a&gt;, e incluye datos de 50 ejemplares de cada una de las 3 especies de la flor Iris. Para cada ejemplar se da el largo y ancho del pétalo y el sépalo, así como la especie a la que pertenece (&lt;em&gt;setosa&lt;/em&gt;, &lt;em&gt;versicolor&lt;/em&gt; o &lt;em&gt;virginica&lt;/em&gt;).&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img alt=&quot;Algunos datos de Iris y una ilustración de la flor&quot; src=&quot;/images/pml/1_iris.png&quot; /&gt;
-        &lt;figcaption&gt;Algunos datos de Iris y una ilustración de la flor&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Como se puede apreciar en la imagen superior, cada fila de datos es una &lt;em&gt;muestra&lt;/em&gt;, &lt;em&gt;instancia&lt;/em&gt; u &lt;em&gt;observación&lt;/em&gt;. Para cada una de estas muestras se proporciona una serie de datos, a los que nos solemos referir como &lt;em&gt;características&lt;/em&gt;, aunque también &lt;em&gt;atributos&lt;/em&gt;, &lt;em&gt;medidas&lt;/em&gt; o &lt;em&gt;dimensiones&lt;/em&gt;. Finalmente, la especie de la flor sería la &lt;em&gt;etiqueta&lt;/em&gt; u &lt;em&gt;objetivo&lt;/em&gt;. La consistencia en la terminología no es un fuerte del &lt;em&gt;machine learning&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;En este punto el libro también nos habla de notación algebraica. El trabajo con matrices es fundamental en el &lt;em&gt;machine learning&lt;/em&gt;, así que este el autor nos cuenta qué notación utiliza para representar matices, vectores y elementos dentro de los mismos.&lt;/p&gt;
-
-&lt;p&gt;Por ejemplo, el conjunto de datos Iris se puede representar como una matriz de 150 filas (una por muestra) y 4 columnas (una por característica):&lt;/p&gt;
-
-&lt;p&gt;\begin{bmatrix}
-x_1^{(1)} &amp;amp; x_2^{(1)} &amp;amp; x_3^{(1)} &amp;amp; x_4^{(1)} \cr
-x_1^{(2)} &amp;amp; x_2^{(2)} &amp;amp; x_3^{(2)} &amp;amp; x_4^{(2)} \cr
-\vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots \cr
-x_1^{(150)} &amp;amp; x_2^{(150)} &amp;amp; x_3^{(150)} &amp;amp; x_4^{(150)} \cr
-\end{bmatrix}&lt;/p&gt;
-
-&lt;p&gt;En general, un elemento &lt;script type=&quot;math/tex&quot;&gt;x_n^{(m)}&lt;/script&gt; se refiere al elemento de la fila m y la columna n de una matriz. Usaremos negritas en minúsculas para los vectores (&lt;script type=&quot;math/tex&quot;&gt;\bf x \in \mathbb R^{nx1}&lt;/script&gt;), y negritas en mayúsculas para las matrices (&lt;script type=&quot;math/tex&quot;&gt;\bf X \in \mathbb R^{nxm}&lt;/script&gt;).&lt;/p&gt;
-
-&lt;h2 id=&quot;otros-aspectos-importantes-del-aprendizaje-automático&quot;&gt;Otros aspectos importantes del aprendizaje automático&lt;/h2&gt;
-
-&lt;p&gt;Además del algoritmo de aprendizaje, el libro nos habla en este tema de otros aspectos importantes del &lt;em&gt;machine learning&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;preprocesado&quot;&gt;Preprocesado&lt;/h3&gt;
-
-&lt;p&gt;El preprocesado es la fase inicial del proceso de aprendizaje. Consiste en disponer los datos existentes en un formato adecuado para su procesamiento: se normalizan valores, se pasan textos a números, se separan datos de entrenamiento y datos de prueba,…&lt;/p&gt;
-
-&lt;div style=&quot;text-align:center&quot;&gt;
-    &lt;figure&gt;
-        &lt;img alt=&quot;Ejemplo de flujo de modelado predictivo&quot; src=&quot;/images/pml/1_flujo.png&quot; /&gt;
-        &lt;figcaption&gt;Ejemplo de flujo de modelado predictivo&lt;/figcaption&gt;
-    &lt;/figure&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;entrenamiento-y-selección-del-proceso-predictivo&quot;&gt;Entrenamiento y selección del proceso predictivo&lt;/h3&gt;
-
-&lt;p&gt;La otra tarea fundamental a realizar al empezar es la correcta selección del algoritmo a utilizar. Queremos obtener el modelo que presente un mejor rendimiento, pero para ello necesitamos definir una métrica que mida este rendimiento. La más común es la proporción de muestras correctamente clasificadas.&lt;/p&gt;
-
-&lt;h3 id=&quot;evaluación-de-modelos-y-predcción-de-instancias-de-datos-no-vistas&quot;&gt;Evaluación de modelos y predcción de instancias de datos no vistas&lt;/h3&gt;
-
-&lt;p&gt;El modelo se entrena con los datos de entrenamiento, y se evalúa con la parte del conjunto de datos reservada para ello. En función de la tasa de error encontrada en la evaluación decidiremos si el modelo es válido.&lt;/p&gt;
-
-&lt;h2 id=&quot;python&quot;&gt;Python&lt;/h2&gt;
-
-&lt;p&gt;El tema finaliza hablando de Python y de cómo instalarlo. Python es uno de los lenguajes más populares en el mundo del &lt;em&gt;machine learning&lt;/em&gt;, en parte por su versatilidad, en parte por la gran cantidad de librerías especialidadas de las que dispone. Especialmente relevantes para el aprendizaje máquina son &lt;a href=&quot;http://www.numpy.org/&quot;&gt;NumPy&lt;/a&gt; y &lt;a href=&quot;https://www.scipy.org/&quot;&gt;SciPy&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;La opción más cómoda para instalar Python con todo lo necesario para este libro es descargar &lt;a href=&quot;https://docs.continuum.io/anaconda/install#&quot;&gt;Anaconda&lt;/a&gt;, un gestor de instalaciones de Python.&lt;/p&gt;
-
-&lt;p&gt;El libro no habla del entorno de desarrollo, pero yo uso desde hace unos meses el &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;Visual Studio Code&lt;/a&gt;. Con la &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=donjayamanne.python&quot;&gt;extensión de Python&lt;/a&gt; proporcionando autocompletado, &lt;a href=&quot;https://es.wikipedia.org/wiki/Lint&quot;&gt;&lt;em&gt;linting&lt;/em&gt;&lt;/a&gt;, formateado de código y depuración, el Visual Studio Code supera al resto de entornos Python disponibles de forma gratuita.&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusión&quot;&gt;Conclusión&lt;/h2&gt;
-
-&lt;p&gt;El tema 1 nos familiariza con los conceptos más básicos del aprendizaje máquina. En el tema 2 empezaremos ya a ver código para avanzar en la materia.&lt;/p&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">El foco de estas entradas se pondrá en el código Python publicado en GitHub, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry></feed>
+&lt;/div&gt;</content><author><name>Javier Cancela</name><email>javier.cancela.vicente@gmail.com</email></author><summary type="html">Empezamos con los algoritmos. Vamos a implementar un perceptrón en Python, y entrenarlo para que sepa clasificar las diferentes especies de flores en Iris. El libro comienza mostrando el modelo de neurona de McCulloch-Pitts:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.javiercancela.com/images/pml/pml.jpg" /></entry></feed>
