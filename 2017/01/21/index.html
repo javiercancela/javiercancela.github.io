@@ -25,8 +25,8 @@
 <meta property="og:title" content="Página de Javier Cancela" />
 <meta name="description" content="Página personal de Javier Cancela" />
 <meta property="og:description" content="Página personal de Javier Cancela" />
-<link rel="canonical" href="https://www.javiercancela.com/2017/01/21/" />
-<meta property="og:url" content="https://www.javiercancela.com/2017/01/21/" />
+<link rel="canonical" href="http://localhost:4000/2017/01/21/" />
+<meta property="og:url" content="http://localhost:4000/2017/01/21/" />
 <meta property="og:site_name" content="Página de Javier Cancela" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-01-21T00:00:00+01:00" />
@@ -38,8 +38,8 @@
 "description": "Página personal de Javier Cancela",
 "publisher": {"@type": "Organization",
 "logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2017/01/21/"}</script>
+"url": "http://localhost:4000/siteicon.png"}},
+"url": "http://localhost:4000/2017/01/21/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -97,9 +97,14 @@
     <ul class="blog-posts">
       
 	
-		<li class="blog-post">
-			<h2><a href="/2017/01/21/un-blog-en-github-iii/">Un blog en GitHub (III - Crear un post)</a></h2>
-			<p class="post-details">
+		<div class="container flex">
+			<div class="image home">
+				<img class="cropped" src="/images/blog.jpg" alt="Un blog en GitHub (III - Crear un post)"/>
+			</div>
+			<div class="text">
+				<li class="blog-post">
+					<h2><a href="/2017/01/21/un-blog-en-github-iii/">Un blog en GitHub (III - Crear un post)</a></h2>
+					<p class="post-details">
 	
 		
 		<span class="blog-filter">
@@ -120,25 +125,13 @@
 	<span class="post-date">21 de enero de 2017</span>
 </p>
 
-			<div class="post-content">
-				<p>Los posts son archivos en formato <a href="https://daringfireball.net/projects/markdown/">markdown</a> (aunque también se puede usar html), que se guardan en la carpeta <code class="highlighter-rouge">_posts</code>. Como otros archivos, tienen un <em>front matter</em> que permite asignarles propiedades. Por ejemplo, este es el <em>front matter</em> de este post:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
-title: Un blog en GitHub (III - Crear un post)
-date: 2017-01-12 22:00:00 +0200
-description: La experiencia de montar un blog en GitHub
-categories:
-  - blog
-  - github
-image: /images/blog.jpg
-comments: true
----
-</code></pre></div></div>
-<p>Las propiedades ahí indicadas serán usadas por el archivo de <em>layout</em> del post (<code class="highlighter-rouge">_layouts/post.html</code>) y sus <em>includes</em> para mostrar la imagen en la cabecera, poner la fecha del post, mostrar o no los comentarios de <a href="https://disqus.com/">disqus</a>, y mostrar las categorías correspondientes.</p>
-
-
-				<div class="button"><a href="/2017/01/21/un-blog-en-github-iii/">Leer más</a></div>
+					<div class="post-content">
+						<p>Los posts son archivos en formato <a href="https://daringfireball.net/projects/markdown/">markdown</a> (aunque también se puede u...
+						<div class="button"><a href="/2017/01/21/un-blog-en-github-iii/">Leer más</a></div>
+					</div>
+				</li>
 			</div>
-		</li>
+		</div>
 	
 
 

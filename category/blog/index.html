@@ -25,8 +25,8 @@
 <meta property="og:title" content="blog" />
 <meta name="description" content="Página personal de Javier Cancela" />
 <meta property="og:description" content="Página personal de Javier Cancela" />
-<link rel="canonical" href="https://www.javiercancela.com/category/blog/" />
-<meta property="og:url" content="https://www.javiercancela.com/category/blog/" />
+<link rel="canonical" href="http://localhost:4000/category/blog/" />
+<meta property="og:url" content="http://localhost:4000/category/blog/" />
 <meta property="og:site_name" content="Página de Javier Cancela" />
 <script type="application/ld+json">
 {"@context": "http://schema.org",
@@ -35,8 +35,8 @@
 "description": "Página personal de Javier Cancela",
 "publisher": {"@type": "Organization",
 "logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/category/blog/"}</script>
+"url": "http://localhost:4000/siteicon.png"}},
+"url": "http://localhost:4000/category/blog/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -94,9 +94,14 @@
     <ul class="blog-posts">
       
 	
-		<li class="blog-post">
-			<h2><a href="/2017/02/19/un-blog-en-github-y-v/">Un blog en GitHub (y V - Últimos ajustes)</a></h2>
-			<p class="post-details">
+		<div class="container flex">
+			<div class="image home">
+				<img class="cropped" src="/images/blog.jpg" alt="Un blog en GitHub (y V - Últimos ajustes)"/>
+			</div>
+			<div class="text">
+				<li class="blog-post">
+					<h2><a href="/2017/02/19/un-blog-en-github-y-v/">Un blog en GitHub (y V - Últimos ajustes)</a></h2>
+					<p class="post-details">
 	
 		
 		<span class="blog-filter">
@@ -117,19 +122,24 @@
 	<span class="post-date">19 de febrero de 2017</span>
 </p>
 
-			<div class="post-content">
-				<p>Los blogs, y los sites en general, albergados en GitHub son totalmente estáticos. Es decir, al acceder a una url de nuestro blog no se ejecuta código en el servidor, tan solo se devuelven archivos html, js, css, multimedia, … tal como están guardados en el mismo.</p>
-
-
-				<div class="button"><a href="/2017/02/19/un-blog-en-github-y-v/">Leer más</a></div>
+					<div class="post-content">
+						<p>Los blogs, y los sites en general, albergados en GitHub son totalmente estáticos. Es decir, al acceder a una url de nuestro blog ...
+						<div class="button"><a href="/2017/02/19/un-blog-en-github-y-v/">Leer más</a></div>
+					</div>
+				</li>
 			</div>
-		</li>
+		</div>
 	
 
 	
-		<li class="blog-post">
-			<h2><a href="/2017/02/05/un-blog-en-github-iv/">Un blog en GitHub (IV - Asignar un dominio)</a></h2>
-			<p class="post-details">
+		<div class="container flex">
+			<div class="image home">
+				<img class="cropped" src="/images/blog.jpg" alt="Un blog en GitHub (IV - Asignar un dominio)"/>
+			</div>
+			<div class="text">
+				<li class="blog-post">
+					<h2><a href="/2017/02/05/un-blog-en-github-iv/">Un blog en GitHub (IV - Asignar un dominio)</a></h2>
+					<p class="post-details">
 	
 		
 		<span class="blog-filter">
@@ -150,19 +160,24 @@
 	<span class="post-date">05 de febrero de 2017</span>
 </p>
 
-			<div class="post-content">
-				<p>Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es <a href="http://www.javiercancela.com">http://www.javiercancela.com</a>, en vez de <a href="http://javiercancela.github.io">http://javiercancela.github.io</a>. Veamos cómo se realiza este cambio.</p>
-
-
-				<div class="button"><a href="/2017/02/05/un-blog-en-github-iv/">Leer más</a></div>
+					<div class="post-content">
+						<p>Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre de...
+						<div class="button"><a href="/2017/02/05/un-blog-en-github-iv/">Leer más</a></div>
+					</div>
+				</li>
 			</div>
-		</li>
+		</div>
 	
 
 	
-		<li class="blog-post">
-			<h2><a href="/2017/01/21/un-blog-en-github-iii/">Un blog en GitHub (III - Crear un post)</a></h2>
-			<p class="post-details">
+		<div class="container flex">
+			<div class="image home">
+				<img class="cropped" src="/images/blog.jpg" alt="Un blog en GitHub (III - Crear un post)"/>
+			</div>
+			<div class="text">
+				<li class="blog-post">
+					<h2><a href="/2017/01/21/un-blog-en-github-iii/">Un blog en GitHub (III - Crear un post)</a></h2>
+					<p class="post-details">
 	
 		
 		<span class="blog-filter">
@@ -183,31 +198,24 @@
 	<span class="post-date">21 de enero de 2017</span>
 </p>
 
-			<div class="post-content">
-				<p>Los posts son archivos en formato <a href="https://daringfireball.net/projects/markdown/">markdown</a> (aunque también se puede usar html), que se guardan en la carpeta <code class="highlighter-rouge">_posts</code>. Como otros archivos, tienen un <em>front matter</em> que permite asignarles propiedades. Por ejemplo, este es el <em>front matter</em> de este post:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
-title: Un blog en GitHub (III - Crear un post)
-date: 2017-01-12 22:00:00 +0200
-description: La experiencia de montar un blog en GitHub
-categories:
-  - blog
-  - github
-image: /images/blog.jpg
-comments: true
----
-</code></pre></div></div>
-<p>Las propiedades ahí indicadas serán usadas por el archivo de <em>layout</em> del post (<code class="highlighter-rouge">_layouts/post.html</code>) y sus <em>includes</em> para mostrar la imagen en la cabecera, poner la fecha del post, mostrar o no los comentarios de <a href="https://disqus.com/">disqus</a>, y mostrar las categorías correspondientes.</p>
-
-
-				<div class="button"><a href="/2017/01/21/un-blog-en-github-iii/">Leer más</a></div>
+					<div class="post-content">
+						<p>Los posts son archivos en formato <a href="https://daringfireball.net/projects/markdown/">markdown</a> (aunque también se puede u...
+						<div class="button"><a href="/2017/01/21/un-blog-en-github-iii/">Leer más</a></div>
+					</div>
+				</li>
 			</div>
-		</li>
+		</div>
 	
 
 	
-		<li class="blog-post">
-			<h2><a href="/2017/01/09/un-blog-en-github-ii/">Un blog en GitHub (II - Estructura del sitio)</a></h2>
-			<p class="post-details">
+		<div class="container flex">
+			<div class="image home">
+				<img class="cropped" src="/images/blog.jpg" alt="Un blog en GitHub (II - Estructura del sitio)"/>
+			</div>
+			<div class="text">
+				<li class="blog-post">
+					<h2><a href="/2017/01/09/un-blog-en-github-ii/">Un blog en GitHub (II - Estructura del sitio)</a></h2>
+					<p class="post-details">
 	
 		
 		<span class="blog-filter">
@@ -228,19 +236,24 @@ comments: true
 	<span class="post-date">09 de enero de 2017</span>
 </p>
 
-			<div class="post-content">
-				<p>La forma más eficiente de montar un blog con Jekyll consiste en descargarse una plantilla y modificarla según nuestras necesidades. La página <a href="http://jekyll.tips/templates/">Jekyll Tips</a> tiene varias plantillas para elegir. Yo me decanté por <a href="https://github.com/CloudCannon/frisco-jekyll-template">Frisco</a>.</p>
-
-
-				<div class="button"><a href="/2017/01/09/un-blog-en-github-ii/">Leer más</a></div>
+					<div class="post-content">
+						<p>La forma más eficiente de montar un blog con Jekyll consiste en descargarse una plantilla y modificarla según nuestras necesidade...
+						<div class="button"><a href="/2017/01/09/un-blog-en-github-ii/">Leer más</a></div>
+					</div>
+				</li>
 			</div>
-		</li>
+		</div>
 	
 
 	
-		<li class="blog-post">
-			<h2><a href="/2017/01/03/un-blog-en-github-i/">Un blog en GitHub (I - Jekyll)</a></h2>
-			<p class="post-details">
+		<div class="container flex">
+			<div class="image home">
+				<img class="cropped" src="/images/blog.jpg" alt="Un blog en GitHub (I - Jekyll)"/>
+			</div>
+			<div class="text">
+				<li class="blog-post">
+					<h2><a href="/2017/01/03/un-blog-en-github-i/">Un blog en GitHub (I - Jekyll)</a></h2>
+					<p class="post-details">
 	
 		
 		<span class="blog-filter">
@@ -261,19 +274,24 @@ comments: true
 	<span class="post-date">03 de enero de 2017</span>
 </p>
 
-			<div class="post-content">
-				<p>Para crear un blog en GitHub usaremos <a href="https://pages.github.com/">GitHub Pages</a>. Cada cuenta de GitHub dispone de un sitio gratuito en el que alojar recursos estáticos; para usarlo tan solo hay que crear un repositorio con el nombre <em>nombreusuario</em>.github.io. Los archivos que subamos a ese repositorio serán accesibles a través de http://nombreusuario.github.io.</p>
-
-
-				<div class="button"><a href="/2017/01/03/un-blog-en-github-i/">Leer más</a></div>
+					<div class="post-content">
+						<p>Para crear un blog en GitHub usaremos <a href="https://pages.github.com/">GitHub Pages</a>. Cada cuenta de GitHub dispone de un s...
+						<div class="button"><a href="/2017/01/03/un-blog-en-github-i/">Leer más</a></div>
+					</div>
+				</li>
 			</div>
-		</li>
+		</div>
 	
 
 	
-		<li class="blog-post">
-			<h2><a href="/2016/12/29/un-blog-en-github-intro/">Un blog en GitHub (Introducción)</a></h2>
-			<p class="post-details">
+		<div class="container flex">
+			<div class="image home">
+				<img class="cropped" src="/images/blog.jpg" alt="Un blog en GitHub (Introducción)"/>
+			</div>
+			<div class="text">
+				<li class="blog-post">
+					<h2><a href="/2016/12/29/un-blog-en-github-intro/">Un blog en GitHub (Introducción)</a></h2>
+					<p class="post-details">
 	
 		
 		<span class="blog-filter">
@@ -294,19 +312,24 @@ comments: true
 	<span class="post-date">29 de diciembre de 2016</span>
 </p>
 
-			<div class="post-content">
-				<p>Todo empieza porque hay algo que quiero aprender. No importa qué, aunque si todo va bien será el tema principal de este blog dentro de unas semanas. Importa que leer y practicar no me resulta suficiente. Si quiero aprender algo tengo que reformularlo y exponerlo, como si estuviese dando clase. Así que de eso va este blog.</p>
-
-
-				<div class="button"><a href="/2016/12/29/un-blog-en-github-intro/">Leer más</a></div>
+					<div class="post-content">
+						<p>Todo empieza porque hay algo que quiero aprender. No importa qué, aunque si todo va bien será el tema principal de este blog dent...
+						<div class="button"><a href="/2016/12/29/un-blog-en-github-intro/">Leer más</a></div>
+					</div>
+				</li>
 			</div>
-		</li>
+		</div>
 	
 
 	
-		<li class="blog-post">
-			<h2><a href="/2008/02/01/propositos-de-ano-nuevo/">Propósitos de año nuevo</a></h2>
-			<p class="post-details">
+		<div class="container flex">
+			<div class="image home">
+				<img class="cropped" src="/images/obsolete.jpg" alt="Propósitos de año nuevo"/>
+			</div>
+			<div class="text">
+				<li class="blog-post">
+					<h2><a href="/2008/02/01/propositos-de-ano-nuevo/">Propósitos de año nuevo</a></h2>
+					<p class="post-details">
 	
 		
 		<span class="blog-filter">
@@ -322,15 +345,17 @@ comments: true
 	<span class="post-date">01 de febrero de 2008</span>
 </p>
 
-			<div class="post-content">
-				<blockquote>
+					<div class="post-content">
+						<blockquote>
   <p><em>…- Disponer de un dominio propio. (Hecho)__…</em></p>
 </blockquote>
 
 
-				<div class="button"><a href="/2008/02/01/propositos-de-ano-nuevo/">Leer más</a></div>
+						<div class="button"><a href="/2008/02/01/propositos-de-ano-nuevo/">Leer más</a></div>
+					</div>
+				</li>
 			</div>
-		</li>
+		</div>
 	
 
 

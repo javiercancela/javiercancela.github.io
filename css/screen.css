@@ -90,6 +90,11 @@ p, address, ul {
 .image {
   text-align: center; }
 
+.cropped {
+  width: 350px;
+  height: 350px;
+  object-fit: cover; }
+
 .bottom-cta {
   text-align: center; }
   .bottom-cta h2 {
@@ -117,7 +122,7 @@ p, address, ul {
   padding: 0 20px; }
 
 .text-container {
-  max-width: 750px; }
+  max-width: 1024px; }
 
 .container {
   max-width: 1140px; }
