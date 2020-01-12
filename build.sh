@@ -1,2 +1,2 @@
 #!/bin/bash
-bundle exec jekyll build --future --incremental
+JEKYLL_ENV=production bundle exec jekyll build 
