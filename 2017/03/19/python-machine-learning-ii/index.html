@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.3.1">
+		<meta name="generator" content="Jekyll v3.8.6">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -25,26 +25,25 @@
 <meta property="og:title" content="PML T2 - El perceptrón" />
 <meta name="description" content="Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka" />
 <meta property="og:description" content="Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka" />
-<link rel="canonical" href="http://localhost:4000/2017/03/19/python-machine-learning-ii/" />
-<meta property="og:url" content="http://localhost:4000/2017/03/19/python-machine-learning-ii/" />
+<link rel="canonical" href="https://www.javiercancela.com/2017/03/19/python-machine-learning-ii/" />
+<meta property="og:url" content="https://www.javiercancela.com/2017/03/19/python-machine-learning-ii/" />
 <meta property="og:site_name" content="Página de Javier Cancela" />
-<meta property="og:image" content="http://localhost:4000/images/pml/pml.jpg" />
+<meta property="og:image" content="https://www.javiercancela.com/images/pml/pml.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-03-19T02:00:00+01:00" />
 <script type="application/ld+json">
 {"@context": "http://schema.org",
 "@type": "BlogPosting",
 "headline": "PML T2 - El perceptrón",
-"image": "http://localhost:4000/images/pml/pml.jpg",
+"image": "https://www.javiercancela.com/images/pml/pml.jpg",
 "datePublished": "2017-03-19T02:00:00+01:00",
 "description": "Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka",
 "publisher": {"@type": "Organization",
 "logo": {"@type": "ImageObject",
-"url": "http://localhost:4000/siteicon.png"}},
-"url": "http://localhost:4000/2017/03/19/python-machine-learning-ii/"}</script>
+"url": "https://www.javiercancela.com/siteicon.png"}},
+"url": "https://www.javiercancela.com/2017/03/19/python-machine-learning-ii/"}</script>
 <!-- End Jekyll SEO tag -->
 
-		<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Página de Javier Cancela" />
 
 		
 	</head>
@@ -279,17 +278,15 @@ x_m \cr
 <p>Una vez instanciado el perceptrón llamaremos al método <code class="highlighter-rouge">fit</code> para entrenar nuestro modelo. Se le pasan dos parámetros: una matriz <script type="math/tex">\bf X</script>, que contiene una fila por cada muestra y una columna por cada característica, y que constituye nuestro conjunto de datos de entrenamiento; y un array <script type="math/tex">\bf y</script>, que contiene el resultado objetivo para cada muestra.</p>
 
 <p>Lo primero que hace el método <code class="highlighter-rouge">fit</code> es inicializar los pesos y los errores:</p>
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>  <span class="bp">self</span><span class="o">.</span><span class="n">w_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="bp">self</span><span class="o">.</span><span class="n">w_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
   <span class="bp">self</span><span class="o">.</span><span class="n">errors_</span> <span class="o">=</span> <span class="p">[]</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Los pesos se inicializan a un array con el mismo número de elementos que muestras tiene la matriz <script type="math/tex">\bf X</script> más uno. Ese más uno es debido a que vamos a almacenar también el parámetro <script type="math/tex">w_0</script> corresondiente al umbral <script type="math/tex">\theta</script> que pasamos a la izquiera en la equación \eqref{2.4}. Como estamos inicializando todo a cero consideramos el umbral inicial de activación como cero.</p>
 
 <p>A continuación comienza un precose que se ejecutará <code class="highlighter-rouge">n_iter</code> veces. En el se itera sobre los datos proporcionados mediante esta instrucción:</p>
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>   <span class="k">for</span> <span class="n">xi</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</code></pre>
-</div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">for</span> <span class="n">xi</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>Lo que va a hacer la instrucción <code class="highlighter-rouge">zip</code> es devolver un elemento por cada lista que se le pase de parámetro. Así, si <script type="math/tex">\bf X</script> es una matriz de 100 filas (muestras) y 2 columnas (características), e <script type="math/tex">\bf y</script> es un array de 100 elementos (las clases reales de cada muestra), la instrucción anterior iterará para cada muestra almacenando en <code class="highlighter-rouge">xi</code> las características y en <code class="highlighter-rouge">target</code> su clase real.</p>
 
@@ -300,24 +297,22 @@ w_j := w_j + \Delta w_j</script>
 
 <p>En nuestro caso hacemos esto:</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>    <span class="n">update</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="p">(</span><span class="n">target</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xi</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">update</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="p">(</span><span class="n">target</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xi</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span> <span class="n">update</span> <span class="o">*</span> <span class="n">xi</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">update</span>
     <span class="n">errors</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">update</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Calculamos primero el factor <script type="math/tex">\eta(y^{(i)} - \hat y^{(i)})</script>, y después lo multiplicamos por <script type="math/tex">\bf{x^{(i)}}</script> para sumárselo al array de pesos, salvo el peso 0. Al ser tanto ‘self.w_[1:]’ como ‘xi’ arrays con un elemento por cada característica, estamos aplicando la corrección a todos los pesos. En el peso <script type="math/tex">w_0</script> no multiplicamos por <script type="math/tex">\bf{x_0^{(i)}}</script>, ya que este por definición vale uno. Finalmente acumulamos el error de cada muestra, y al final de cada época lo añadimos a un array. Esto nos permitirá ver la evolución del error por épocas.</p>
 
 <p>Veamos ahora cómo calcular el término <script type="math/tex">\hat y^{(i)}</script>, que en código se obtiene llamando a <code class="highlighter-rouge">self.predict(xi)</code></p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">net_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xi</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">net_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xi</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
   <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xi</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">net_input</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Lo primero que hace <code class="highlighter-rouge">predict</code> con <code class="highlighter-rouge">xi</code> es usarlo para invocar <code class="highlighter-rouge">net_input</code>. En esta función usamos <code class="highlighter-rouge">np.dot</code> para realizar un producto escalar entre <code class="highlighter-rouge">xi</code> y <code class="highlighter-rouge">self.w_[1:]</code>. Es decir, suponiendo una muestra con dos características, y por tanto dos entradas y dos pesos, <code class="highlighter-rouge">np.dot(xi, self.w_[1:])</code> equivale a <script type="math/tex">w_1x_1 + w_2x_2</script>. A esto le sumamos <script type="math/tex">w_0</script> (ya que <script type="math/tex">x_0</script> es igual a uno), y tenemnos que <code class="highlighter-rouge">net_input</code> devuelve el valor <script type="math/tex">z</script>, tal como se define en \eqref{2.4}. La última parte, <code class="highlighter-rouge">np.where(self.net_input(xi) &gt;= 0.0, 1, -1)</code> devuelve 1 si <script type="math/tex">z</script> es mayor o igual que 0, y -1 en otro caso. En resumen, el método <code class="highlighter-rouge">predict</code> es la función <script type="math/tex">\phi(z)</script> (\eqref{2.5}).</p>
 
@@ -325,12 +320,11 @@ w_j := w_j + \Delta w_j</script>
 
 <p>Toda la lógica del perceptrón está implementada en la clase anterior. Vamos a utilizarla con el conjunto de datos Iris ya mencionado anteriormente. El ejemplo del libro utilizan la librería <code class="highlighter-rouge">pandas</code>, especializada en análisis de datos y estructuras, para cargar los datos de Iris. Estos datos se almacenan en un tipo de datos de la librería llamado <a href="http://pandas.pydata.org/pandas-docs/stable/dsintro.html#dataframe">DataFrame</a>:</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'https://archive.ics.uci.edu/ml/'</span>
                  <span class="s">'machine-learning-databases/iris/iris.data'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>                
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>El archivo de datos lo estamos descargando de internet, pero también está disponible en el código de ejemplo para usar en local.</p>
 
@@ -393,30 +387,27 @@ w_j := w_j + \Delta w_j</script>
 
 <p>A continuación preprocesamos los datos, para dejarlos en el formato adecuado para trabajar con ellos. Usaremos las librerías <code class="highlighter-rouge">numpy</code>, para tratar los datos, y <code class="highlighter-rouge">matplotlib</code>, para dibujarlos en una gráfica</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>En primer lugar hemos seleccionado los 100 primeros registros del DataFrame, pero cogiendo sólo la quinta columna (la 4 por comenzar el índice en 0). Esto nos devuelve un array con 100 valores, cada uno de los cuales es el nombre de la especie. Es decir, cogemos las etiquetas de la clase de cada muestra.</p>
 
 <p>En el conjunto de datos Iris los datos están ordenados de tal forma que los 50 primeros son Iris-setosa, y los 50 siguientes Iris-versicolor. De esta forma limitarnos a los 100 primeros registros nos permite realizar una clasificación binaria.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="s">'Iris-setosa'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</code></pre>
-</div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="s">'Iris-setosa'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>El siguiente paso consiste en sustituir las etiquetas de texto por valores numéricos. El valor objetivo pasará a ser -1 para las Iris-setosa y 1 para las Iris-versicolor. Almacenamos los datos en un array <script type="math/tex">\bf y</script> de 100 elementos.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
-</code></pre>
-</div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+</code></pre></div></div>
 
 <p>De las cuatro características posibles nos vamos a quedar con dos: la longitud del sépalo y la longitud del pétalo. Esto nos permitirá dibujar los datos en una gráfica de dos dimensiones. Al igual que hicimos con el valor objetivo, cogemos los cien primeros valores del conjunto de datos, quedándonos con la primera y la tercera columna. Esto nos devuelve una matriz <script type="math/tex">\bf X \in \mathbb R^{100x2}</script>.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:</span><span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
             <span class="n">color</span><span class="o">=</span><span class="s">'red'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'setosa'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
             <span class="n">color</span><span class="o">=</span><span class="s">'blue'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'x'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'versicolor'</span><span class="p">)</span>
@@ -427,8 +418,7 @@ w_j := w_j + \Delta w_j</script>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Dibujamos los datos almacenados. Marcamos con una ‘o’ roja las Iris-setosa (las 50 primeras), y con una ‘x’ azul las Iris-versicolor. El resultado es este:</p>
 
@@ -441,22 +431,20 @@ w_j := w_j + \Delta w_j</script>
 
 <p>Con los datos listos podemos realizar el entrenamiento.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">ppn</span> <span class="o">=</span> <span class="n">Perceptron</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ppn</span> <span class="o">=</span> <span class="n">Perceptron</span><span class="p">(</span><span class="n">eta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">ppn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Instanciamos el perceptrón con un <script type="math/tex">\eta = 0.1</script> y 10 épocas. Para entrenar  basta con llamar al método <code class="highlighter-rouge">fit</code> pasando <script type="math/tex">\bf X</script>  e <script type="math/tex">\bf y</script> como parámetros.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ppn</span><span class="o">.</span><span class="n">errors_</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ppn</span><span class="o">.</span><span class="n">errors_</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ppn</span><span class="o">.</span><span class="n">errors_</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ppn</span><span class="o">.</span><span class="n">errors_</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Epochs'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Number of updates'</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="c"># plt.savefig('./perceptron_1.png', dpi=300)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre>
-</div>
+<span class="c1"># plt.savefig('./perceptron_1.png', dpi=300)
+</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
 
 <p>Una vez entrenado el modelo, pintamos en un gráfico los errores encontrados en cada generación. En  el eje X pintamos las épocas (la longitud del array de errores), y en el Y mostramos el número de errores.</p>
 
@@ -469,20 +457,19 @@ w_j := w_j + \Delta w_j</script>
 
 <p>A partir de la 6ª época el modelo ya no comete errores. Ahora vamos a dibujar los datos de entrenamiento, pero marcando las zonas que el modelo ya entrenado considera como de una clase u otra.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
 
 <span class="k">def</span> <span class="nf">plot_decision_regions</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">classifier</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.02</span><span class="p">):</span>
     <span class="n">markers</span> <span class="o">=</span> <span class="p">(</span><span class="s">'s'</span><span class="p">,</span> <span class="s">'x'</span><span class="p">,</span> <span class="s">'o'</span><span class="p">,</span> <span class="s">'^'</span><span class="p">,</span> <span class="s">'v'</span><span class="p">)</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="p">(</span><span class="s">'red'</span><span class="p">,</span> <span class="s">'blue'</span><span class="p">,</span> <span class="s">'lightgreen'</span><span class="p">,</span> <span class="s">'gray'</span><span class="p">,</span> <span class="s">'cyan'</span><span class="p">)</span>
     <span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">colors</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))])</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Definimos una nueva función que nos permita dibujar en distintos colores las zonas que serían de Iris-setosa e Iris-versicolor si una muestra tuviese unas características que estuviesen en ese punto.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_decision_regions</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">classifier</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.02</span><span class="p">):</span>
-    <span class="c"># ... Continuación</span>
-    <span class="n">x1_min</span><span class="p">,</span> <span class="n">x1_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_decision_regions</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">classifier</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.02</span><span class="p">):</span>
+    <span class="c1"># ... Continuación
+</span>    <span class="n">x1_min</span><span class="p">,</span> <span class="n">x1_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">x2_min</span><span class="p">,</span> <span class="n">x2_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">xx1</span><span class="p">,</span> <span class="n">xx2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x1_min</span><span class="p">,</span> <span class="n">x1_max</span><span class="p">,</span> <span class="n">resolution</span><span class="p">),</span>
                            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x2_min</span><span class="p">,</span> <span class="n">x2_max</span><span class="p">,</span> <span class="n">resolution</span><span class="p">))</span>
@@ -492,13 +479,12 @@ w_j := w_j + \Delta w_j</script>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xx1</span><span class="o">.</span><span class="nb">min</span><span class="p">(),</span> <span class="n">xx1</span><span class="o">.</span><span class="nb">max</span><span class="p">())</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">xx2</span><span class="o">.</span><span class="nb">min</span><span class="p">(),</span> <span class="n">xx2</span><span class="o">.</span><span class="nb">max</span><span class="p">())</span>
 
-    <span class="c"># plot class samples</span>
-    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">cl</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)):</span>
+    <span class="c1"># plot class samples
+</span>    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">cl</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)):</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">cl</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">cl</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
                     <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span>
                     <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cl</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Definimos los valores mínimo y máximo del sépalo (<code class="highlighter-rouge">x1_min</code> y <code class="highlighter-rouge">x1_max</code>) y del pétalo (<code class="highlighter-rouge">x2_min</code> y <code class="highlighter-rouge">x2_max</code>), restando uno al mínimo y sumándolo al máximo para tener un rango con margen. La función <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html"><code class="highlighter-rouge">np.arange</code></a> devuelve una lista de valores que van del primer parámetro al segundo en intervalos marcados por el tercer parámetro. Las dos llamadas a <code class="highlighter-rouge">np.arange</code> devolverán un array de valores separados por 0.02. En el primer caso van del 3.30 al 7.98, en el segundo del 0 al 6.08.  Con ambos arrays construimos una matriz que pasamos al predictor, el cual nos devolverá el valor predicho para todos los puntos del plano definido.</p>
 
 <div style="text-align:center">

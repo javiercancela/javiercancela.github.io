@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.3.1">
+		<meta name="generator" content="Jekyll v3.8.6">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -21,30 +21,27 @@
 		<meta name="theme-color" content="#ffffff">
 
 		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Un blog en GitHub (III - Crear un post) - Página de Javier Cancela</title>
-<meta property="og:title" content="Un blog en GitHub (III - Crear un post)" />
-<meta name="description" content="La experiencia de montar un blog en GitHub" />
-<meta property="og:description" content="La experiencia de montar un blog en GitHub" />
-<link rel="canonical" href="http://localhost:4000/2017/01/22/un-blog-en-github-iii/" />
-<meta property="og:url" content="http://localhost:4000/2017/01/22/un-blog-en-github-iii/" />
+<title>Página de Javier Cancela - Página personal de Javier Cancela</title>
+<meta property="og:title" content="Página de Javier Cancela" />
+<meta name="description" content="Página personal de Javier Cancela" />
+<meta property="og:description" content="Página personal de Javier Cancela" />
+<link rel="canonical" href="https://www.javiercancela.com/2017/01/21/" />
+<meta property="og:url" content="https://www.javiercancela.com/2017/01/21/" />
 <meta property="og:site_name" content="Página de Javier Cancela" />
-<meta property="og:image" content="http://localhost:4000/images/blog.jpg" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2017-01-21T23:00:00+01:00" />
+<meta property="article:published_time" content="2017-01-21T00:00:00+01:00" />
 <script type="application/ld+json">
 {"@context": "http://schema.org",
 "@type": "BlogPosting",
-"headline": "Un blog en GitHub (III - Crear un post)",
-"image": "http://localhost:4000/images/blog.jpg",
-"datePublished": "2017-01-21T23:00:00+01:00",
-"description": "La experiencia de montar un blog en GitHub",
+"headline": "Página de Javier Cancela",
+"datePublished": "2017-01-21T00:00:00+01:00",
+"description": "Página personal de Javier Cancela",
 "publisher": {"@type": "Organization",
 "logo": {"@type": "ImageObject",
-"url": "http://localhost:4000/siteicon.png"}},
-"url": "http://localhost:4000/2017/01/22/un-blog-en-github-iii/"}</script>
+"url": "https://www.javiercancela.com/siteicon.png"}},
+"url": "https://www.javiercancela.com/2017/01/21/"}</script>
 <!-- End Jekyll SEO tag -->
 
-		<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Página de Javier Cancela" />
 
 		
 	</head>
@@ -84,18 +81,25 @@
 			</div>
 		</header>
 
-		<section class="hero" style="background-image: url(/images/blog.jpg)">
-	<div class="inner-hero text-container">
-		<div class="hero-text-container">
-			<h1>Un blog en GitHub (III - Crear un post)</h1>
-			<p class="subtext">La experiencia de montar un blog en GitHub</p>
-		</div>
-	</div>
+		<section class="hero" style="background-image: url(/images/archivo.jpg)">
+  <div class="inner-hero text-container">
+    <div class="hero-text-container">
+      <h1>Archivo</h1>
+      <p class="subtext">Conocimiento obsoleto</p>
+    </div>
+  </div>
 </section>
 
 <section>
-	<div class="blog-post text-container">
-		<p class="post-details">
+  <div class="text-container">
+    <p class="change-category">Estás viendo posts de la categoría <strong></strong>. <a href="/">Ver todos los posts</a>.</p>
+
+    <ul class="blog-posts">
+      
+	
+		<li class="blog-post">
+			<h2><a href="/2017/01/21/un-blog-en-github-iii/">Un blog en GitHub (III - Crear un post)</a></h2>
+			<p class="post-details">
 	
 		
 		<span class="blog-filter">
@@ -113,13 +117,12 @@
 	
 	
 	
-	<span class="post-date">22 de enero de 2017</span>
+	<span class="post-date">21 de enero de 2017</span>
 </p>
 
-
-		<div class="post-content">
-			<p>Los posts son archivos en formato <a href="https://daringfireball.net/projects/markdown/">markdown</a> (aunque también se puede usar html), que se guardan en la carpeta <code class="highlighter-rouge">_posts</code>. Como otros archivos, tienen un <em>front matter</em> que permite asignarles propiedades. Por ejemplo, este es el <em>front matter</em> de este post:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>---
+			<div class="post-content">
+				<p>Los posts son archivos en formato <a href="https://daringfireball.net/projects/markdown/">markdown</a> (aunque también se puede usar html), que se guardan en la carpeta <code class="highlighter-rouge">_posts</code>. Como otros archivos, tienen un <em>front matter</em> que permite asignarles propiedades. Por ejemplo, este es el <em>front matter</em> de este post:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 title: Un blog en GitHub (III - Crear un post)
 date: 2017-01-12 22:00:00 +0200
 description: La experiencia de montar un blog en GitHub
@@ -129,71 +132,19 @@ categories:
 image: /images/blog.jpg
 comments: true
 ---
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>Las propiedades ahí indicadas serán usadas por el archivo de <em>layout</em> del post (<code class="highlighter-rouge">_layouts/post.html</code>) y sus <em>includes</em> para mostrar la imagen en la cabecera, poner la fecha del post, mostrar o no los comentarios de <a href="https://disqus.com/">disqus</a>, y mostrar las categorías correspondientes.</p>
 
-<p>Para publicar el post, y en general para actualizar cualquier aspecto de nuestro sitio web, bastará con hacer un push a la rama por defecto del repositorio (si no la hemos cambiado, será la rama <code class="highlighter-rouge">master</code>). Para los que no conozcan nada de Git, una buena guía básica en castellano es <a href="http://rogerdudler.github.io/git-guide/index.es.html">esta</a>.</p>
 
-<h2 id="markdown">Markdown</h2>
-<p>Markdown es un formato muy simple, y lo habitual es utilizar un editor de texto para crear los documentos. Yo uso <a href="https://www.sublimetext.com/3">Sublime Text 3</a> por varios motivos: es increíblemente rápido, tiene montones de extensiones para todo tipo de cosas, es multiplataforma y permite exportar toda su configuración de forma sencilla. De hecho lo utilizo para editar todo el blog: html, js, css,…</p>
-
-<p>También está el detalle de que es gratuito. Bueno, en realidad se puede usar sin licencia para evaluarlo, aunque incluye un recordatorio periódico para que compres una licencia si tienes pensado darle un uso continuado. La licencia vale 70$, y permite que una persona use la aplicación en todos los dispositivos que desee.</p>
-
-<p>Una buena referencia del formato es la guía de GitHub <a href="https://guides.github.com/features/mastering-markdown/">Mastering Markdwon</a>. Incluye ejemplos detallados y la referencia de los aspectos específicos del Markdown que acepta GitHub.</p>
-
-<h2 id="publicar-un-post">Publicar un post</h2>
-<p>Los posts en Markdown se convierten a html, con lo que su aspecto dependerá tanto de los formatos que hayamos especificado como de los estilos que tenga nuestro sitio web. Para ver cómo queda un post basta con que jekyll se esté ejecutando en el directorio local de nuestro repositorio. Esto se puede hacer con el comando</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>jekyll serve --future
-</code></pre>
-</div>
-<p>El parámetro <code class="highlighter-rouge">--future</code> le dice a Jekyll que muestre la información publicada en una fecha futura. Una práctica habitual consiste en indicar una fecha futura en el <em>front matter</em> del post. De este modo podemos publicarlo en cualquier momento, pero sólo será visible cuando llegue la fecha indicada. Sin embargo, para revisar localmente cómo queda un post nos interesa verlo con independencia de su fecha, lo que conseguimos con este parámetro.</p>
-
-<p>En el caso de mi blog, y debido a que la plantilla usada utiliza varios <em>plugins</em> Ruby, necesitamos ejecutar Jekyll en el contexto del bundle Ruby asociado. Esto lo hacemos así:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>bundle exec jekyll serve --future
-</code></pre>
-</div>
-
-
-
-			<div class="blog-navigation">
-				
-					<a class="prev" href="/2017/01/15/el-recuerdo-del-pasado-de-la-tierra/">&laquo; El recuerdo del pasado de la tierra</a>
-				
-				
-					<a class="next" href="/2017/01/29/raton-vertical-CSL/">Ratón vertical CSL &raquo;</a>
-				
+				<div class="button"><a href="/2017/01/21/un-blog-en-github-iii/">Leer más</a></div>
 			</div>
+		</li>
+	
 
 
-			
-				<div id="disqus_thread"></div>
-<script>
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-     */
-    
-    var disqus_config = function () {
-        this.page.url = "http://www.javiercancela.com/2017/01/22/un-blog-en-github-iii/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "/2017/01/22/un-blog-en-github-iii"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    
-    (function() {  // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        
-        s.src = '//javiercancela.disqus.com/embed.js';
-        
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-			
-		</div>
-	</div>
+    </ul>
+  </div>
 </section>
-
 
 
 		<footer>
