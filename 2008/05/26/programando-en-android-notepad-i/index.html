@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Programando en Android – NotePad (I) - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Programando en Android – NotePad (I) | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Programando en Android – NotePad (I)" />
+<meta name="author" content="javiercancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="La mayoría de los mortales olvidamos cualquier conocimiento abstracto en la décima parte del tiempo que nos costó adquirir dicho conocimiento (dato completamente inventado, pero en mi caso muy próximo a la realidad). Así que lo que vamos a hacer en concretar este conocimiento, y ponernos a programar." />
 <meta property="og:description" content="La mayoría de los mortales olvidamos cualquier conocimiento abstracto en la décima parte del tiempo que nos costó adquirir dicho conocimiento (dato completamente inventado, pero en mi caso muy próximo a la realidad). Así que lo que vamos a hacer en concretar este conocimiento, y ponernos a programar." />
 <link rel="canonical" href="https://www.javiercancela.com/2008/05/26/programando-en-android-notepad-i/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2008-05-26T10:00:41+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="twitter:title" content="Programando en Android – NotePad (I)" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "Programando en Android – NotePad (I)",
-"image": "https://www.javiercancela.com/images/obsolete.jpg",
-"datePublished": "2008-05-26T10:00:41+02:00",
-"description": "La mayoría de los mortales olvidamos cualquier conocimiento abstracto en la décima parte del tiempo que nos costó adquirir dicho conocimiento (dato completamente inventado, pero en mi caso muy próximo a la realidad). Así que lo que vamos a hacer en concretar este conocimiento, y ponernos a programar.",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2008/05/26/programando-en-android-notepad-i/"}</script>
+{"dateModified":"2008-05-26T10:00:41+02:00","datePublished":"2008-05-26T10:00:41+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2008/05/26/programando-en-android-notepad-i/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"javiercancela"},"url":"https://www.javiercancela.com/2008/05/26/programando-en-android-notepad-i/","author":{"@type":"Person","name":"javiercancela"},"image":"https://www.javiercancela.com/images/obsolete.jpg","description":"La mayoría de los mortales olvidamos cualquier conocimiento abstracto en la décima parte del tiempo que nos costó adquirir dicho conocimiento (dato completamente inventado, pero en mi caso muy próximo a la realidad). Así que lo que vamos a hacer en concretar este conocimiento, y ponernos a programar.","headline":"Programando en Android – NotePad (I)","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -134,20 +131,20 @@
 <p>Comencemos por el <a href="http://code.google.com/android/samples/NotePad/AndroidManifest.html" title="AndroidManifest.xml"><em>Manifest</em></a>, que es donde se definen los componentes de la aplicación. El manifest.xml es, como su extensión indica, un archivo xml, que desde hace unos años se convertido en un formato habitual para contener configuraciones. El elemento raíz se llama manifest y contiene el namespace de la aplicación. Dentro se define el elemento aplicación:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">&lt;application android:icon="@drawable/app_notes" android:label="@string/app_name"&gt;</code></p>
+  <p><code class="language-plaintext highlighter-rouge">&lt;application android:icon="@drawable/app_notes" android:label="@string/app_name"&gt;</code></p>
 </blockquote>
 
-<p>Aquí asociamos un nombre y un icono a la aplicación. La ‘@’ nos indica una referencia a un recurso. En general tiene este formato: <code class="highlighter-rouge">@[package:]type/name</code>, donde el paquete es opcional y sólo se indica cuando no pertenece a nuestra aplicación, el tipo corresponde a uno de los definidos en la carpeta <code class="highlighter-rouge">res</code>, y el nombre indica el identificador del recurso.  En nuestro caso, el icono se encuentra bajo la carpeta <code class="highlighter-rouge">drawable</code>, y la <code class="highlighter-rouge">app_name</code> se define en el archivo <code class="highlighter-rouge">strings.xml</code> de la carpeta <code class="highlighter-rouge">values</code>.</p>
+<p>Aquí asociamos un nombre y un icono a la aplicación. La ‘@’ nos indica una referencia a un recurso. En general tiene este formato: <code class="language-plaintext highlighter-rouge">@[package:]type/name</code>, donde el paquete es opcional y sólo se indica cuando no pertenece a nuestra aplicación, el tipo corresponde a uno de los definidos en la carpeta <code class="language-plaintext highlighter-rouge">res</code>, y el nombre indica el identificador del recurso.  En nuestro caso, el icono se encuentra bajo la carpeta <code class="language-plaintext highlighter-rouge">drawable</code>, y la <code class="language-plaintext highlighter-rouge">app_name</code> se define en el archivo <code class="language-plaintext highlighter-rouge">strings.xml</code> de la carpeta <code class="language-plaintext highlighter-rouge">values</code>.</p>
 
-<p>Dentro del elemento application lo primero que aparece es un provider, que nos dará acceso a la base de datos y que veremos más adelante. Tras él podemos ver definidas tres <em>Activities</em>: <code class="highlighter-rouge">NotesList</code>, <code class="highlighter-rouge">NoteEditor</code> y <code class="highlighter-rouge">TitleEditor</code>. Corresponderán a cada una de las ventanas: la que muestra las notas, la que las edita y la que modifica el título. Por ejemplo, este el elemento <code class="highlighter-rouge">TitleEditor</code>:</p>
+<p>Dentro del elemento application lo primero que aparece es un provider, que nos dará acceso a la base de datos y que veremos más adelante. Tras él podemos ver definidas tres <em>Activities</em>: <code class="language-plaintext highlighter-rouge">NotesList</code>, <code class="language-plaintext highlighter-rouge">NoteEditor</code> y <code class="language-plaintext highlighter-rouge">TitleEditor</code>. Corresponderán a cada una de las ventanas: la que muestra las notas, la que las edita y la que modifica el título. Por ejemplo, este el elemento <code class="language-plaintext highlighter-rouge">TitleEditor</code>:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">&lt;activity android:name="TitleEditor" android:label="@string/title_edit_title" android:theme="@android:style/Theme.Dialog"&gt;</code></p>
+  <p><code class="language-plaintext highlighter-rouge">&lt;activity android:name="TitleEditor" android:label="@string/title_edit_title" android:theme="@android:style/Theme.Dialog"&gt;</code></p>
 </blockquote>
 
-<p>Además de indicar el nombre de la actividad, y la etiqueta que aparecerá en la ventana asociada, también especificamos que vamos a utilizar un tema concreto para esta actividad. Los temas nos permiten cambiar el <em>look&amp;feel</em> de las aplicaciones con temas predefinidos o creados por nosotros. En este caso podemos ver como el recurso correspondiente al tema se referencia a través del paquete <code class="highlighter-rouge">android</code>, ya que está definido en el sistema, no en nuestra aplicación.</p>
+<p>Además de indicar el nombre de la actividad, y la etiqueta que aparecerá en la ventana asociada, también especificamos que vamos a utilizar un tema concreto para esta actividad. Los temas nos permiten cambiar el <em>look&amp;feel</em> de las aplicaciones con temas predefinidos o creados por nosotros. En este caso podemos ver como el recurso correspondiente al tema se referencia a través del paquete <code class="language-plaintext highlighter-rouge">android</code>, ya que está definido en el sistema, no en nuestra aplicación.</p>
 
-<p>Dentro de cada <code class="highlighter-rouge">activity</code> hay definidos <code class="highlighter-rouge">intent-filters</code>, que permiten concretar el ámbito en el que se van a ejecutar, como ya vimos <a href="/2008/05/19/programando-en-android-conceptos-iniciales-ii/">anteriormente</a>. Por ejemplo, en NotesList encontramos:</p>
+<p>Dentro de cada <code class="language-plaintext highlighter-rouge">activity</code> hay definidos <code class="language-plaintext highlighter-rouge">intent-filters</code>, que permiten concretar el ámbito en el que se van a ejecutar, como ya vimos <a href="/2008/05/19/programando-en-android-conceptos-iniciales-ii/">anteriormente</a>. Por ejemplo, en NotesList encontramos:</p>
 
 <blockquote>
   <p>`<intent-filter><br /></intent-filter></p>
@@ -175,7 +172,7 @@
 <p><br />
 &lt;/intent-filter&gt;`</p>
 
-<p>nos indica que la actividad está disponible para ver, editar o seleccionar elementos del tipo <code class="highlighter-rouge">vnd.android.cursor.dir/vnd.google.note</code>, que es el tipo que definiremos más adelante para las notas. Finalmente, el filtro</p>
+<p>nos indica que la actividad está disponible para ver, editar o seleccionar elementos del tipo <code class="language-plaintext highlighter-rouge">vnd.android.cursor.dir/vnd.google.note</code>, que es el tipo que definiremos más adelante para las notas. Finalmente, el filtro</p>
 
 <blockquote>
   <intent-filter>
@@ -198,7 +195,7 @@
   <p>&lt;/intent-filter&gt;</p>
 </blockquote>
 
-<p>permite al usuario seleccionar el tipo de dato <code class="highlighter-rouge">vnd.android.cursor.dir/vnd.google.note</code>. A diferencia de la acción <code class="highlighter-rouge">android.intent.action.PICK</code>, donde se selecciona un elemento de un conjunto de datos, aquí se selecciona un tipo de dato para que el usuario haga algo con él.</p>
+<p>permite al usuario seleccionar el tipo de dato <code class="language-plaintext highlighter-rouge">vnd.android.cursor.dir/vnd.google.note</code>. A diferencia de la acción <code class="language-plaintext highlighter-rouge">android.intent.action.PICK</code>, donde se selecciona un elemento de un conjunto de datos, aquí se selecciona un tipo de dato para que el usuario haga algo con él.</p>
 
 <p>Todo esto se verá más claro al examinar el código de las actividades.</p>
 

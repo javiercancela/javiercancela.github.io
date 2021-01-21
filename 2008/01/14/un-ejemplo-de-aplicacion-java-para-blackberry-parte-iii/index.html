@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Un ejemplo de aplicación Java para BlackBerry – Parte III - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Un ejemplo de aplicación Java para BlackBerry – Parte III | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Un ejemplo de aplicación Java para BlackBerry – Parte III" />
+<meta name="author" content="javiercancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="Vames a ver ahora una descripción de la aplicación GPSDemo, que viene de ejemplo con la versión 4.1 del JDE de BlackBerry. Esta aplicación nos permite leer el GPS de nuestro dispositivo para mostrar en pantalla información sobre nuestra posición y velocidad, además de grabar durante nuestro recorrido una serie de waypoints que contienen la distancia recorrida, el tiempo y la velocidad media. La aplicación GPSDemo consta de varias clases, agrupadas en dos archivos: GPSDemo.java y PointScreen.java. Comenzaremos por el archivo principal." />
 <meta property="og:description" content="Vames a ver ahora una descripción de la aplicación GPSDemo, que viene de ejemplo con la versión 4.1 del JDE de BlackBerry. Esta aplicación nos permite leer el GPS de nuestro dispositivo para mostrar en pantalla información sobre nuestra posición y velocidad, además de grabar durante nuestro recorrido una serie de waypoints que contienen la distancia recorrida, el tiempo y la velocidad media. La aplicación GPSDemo consta de varias clases, agrupadas en dos archivos: GPSDemo.java y PointScreen.java. Comenzaremos por el archivo principal." />
 <link rel="canonical" href="https://www.javiercancela.com/2008/01/14/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iii/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2008-01-14T09:00:06+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="twitter:title" content="Un ejemplo de aplicación Java para BlackBerry – Parte III" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "Un ejemplo de aplicación Java para BlackBerry – Parte III",
-"image": "https://www.javiercancela.com/images/obsolete.jpg",
-"datePublished": "2008-01-14T09:00:06+01:00",
-"description": "Vames a ver ahora una descripción de la aplicación GPSDemo, que viene de ejemplo con la versión 4.1 del JDE de BlackBerry. Esta aplicación nos permite leer el GPS de nuestro dispositivo para mostrar en pantalla información sobre nuestra posición y velocidad, además de grabar durante nuestro recorrido una serie de waypoints que contienen la distancia recorrida, el tiempo y la velocidad media. La aplicación GPSDemo consta de varias clases, agrupadas en dos archivos: GPSDemo.java y PointScreen.java. Comenzaremos por el archivo principal.",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2008/01/14/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iii/"}</script>
+{"dateModified":"2008-01-14T09:00:06+01:00","datePublished":"2008-01-14T09:00:06+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2008/01/14/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iii/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"javiercancela"},"url":"https://www.javiercancela.com/2008/01/14/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iii/","author":{"@type":"Person","name":"javiercancela"},"image":"https://www.javiercancela.com/images/obsolete.jpg","description":"Vames a ver ahora una descripción de la aplicación GPSDemo, que viene de ejemplo con la versión 4.1 del JDE de BlackBerry. Esta aplicación nos permite leer el GPS de nuestro dispositivo para mostrar en pantalla información sobre nuestra posición y velocidad, además de grabar durante nuestro recorrido una serie de waypoints que contienen la distancia recorrida, el tiempo y la velocidad media. La aplicación GPSDemo consta de varias clases, agrupadas en dos archivos: GPSDemo.java y PointScreen.java. Comenzaremos por el archivo principal.","headline":"Un ejemplo de aplicación Java para BlackBerry – Parte III","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -130,14 +127,14 @@
 		<div class="post-content">
 			<p>Vames a ver ahora una descripción de la aplicación GPSDemo, que viene de ejemplo con la versión 4.1 del JDE de BlackBerry. Esta aplicación nos permite leer el GPS de nuestro dispositivo para mostrar en pantalla información sobre nuestra posición y velocidad, además de grabar durante nuestro recorrido una serie de <em>waypoints</em> que contienen la distancia recorrida, el tiempo y la velocidad media.</p>
 
-<p>La aplicación GPSDemo consta de varias clases, agrupadas en dos archivos: GPSDemo.java y <code class="highlighter-rouge">PointScreen.java</code>. Comenzaremos por el archivo principal.</p>
+<p>La aplicación GPSDemo consta de varias clases, agrupadas en dos archivos: GPSDemo.java y <code class="language-plaintext highlighter-rouge">PointScreen.java</code>. Comenzaremos por el archivo principal.</p>
 
 <p><strong>GPSDemo.java</strong></p>
 
-<p>La clase hereda de nuestra clase base <code class="highlighter-rouge">BaseApp</code>, e implementa la interfaz de los recursos (de la que ya hablamos en la entrada anterior):</p>
+<p>La clase hereda de nuestra clase base <code class="language-plaintext highlighter-rouge">BaseApp</code>, e implementa la interfaz de los recursos (de la que ya hablamos en la entrada anterior):</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">public class GPSDemo extends BaseApp implements GPSDemoResResource&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public class GPSDemo extends BaseApp implements GPSDemoResResource&lt;br /&gt;
 {</code></p>
 </blockquote>
 
@@ -200,7 +197,7 @@
 <p>Obtenemos una referencia a los recursos e inicializamos varias variables que usaremos posteriormente. A continuación comprobamos si tenemos datos almacenados en el dispositivo:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">private static PersistentObject _store;&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">private static PersistentObject _store;&lt;br /&gt;
 // Initialize or reload the persistent store.&lt;br /&gt;
 static&lt;br /&gt;
 {&lt;br /&gt;
@@ -216,10 +213,10 @@ _previousPoints=(Vector)_store.getContents();&lt;br /&gt;
 
 <p>El objeto PersistentStore nos permite persistir información en la BlackBerry a través de pares clave-valor; en este caso utilizamos como clave un ID definido por nostros. Usar este objeto nos obliga a firmar la aplicación para poder instalarla en el dispositivo. De la firma de aplicaciones BlackBerry hablaremos en el futuro.</p>
 
-<p><strong>Método <code class="highlighter-rouge">main</code> y constructor</strong></p>
+<p><strong>Método <code class="language-plaintext highlighter-rouge">main</code> y constructor</strong></p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">private long _startTime;&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">private long _startTime;&lt;br /&gt;
 private float _wayHorizontalDistance;&lt;br /&gt;
 private float _horizontalDistance;&lt;br /&gt;
 private float _verticalDistance;&lt;br /&gt;
@@ -240,10 +237,10 @@ new GPSDemo().enterEventDispatcher();<br />
   </ul>
 </blockquote>
 
-<p>La aplicación se inicia en el método estático <code class="highlighter-rouge">main</code>, que sólo crea una instancia de GPSDemo y pone el thread a la espera de eventos mediante la llamada al método <code class="highlighter-rouge">enterEventDispatcher()</code>(que se hereda de <code class="highlighter-rouge">BaseApp</code>, quien lo hereda de <code class="highlighter-rouge">UiApplication</code> y este a su vez de <code class="highlighter-rouge">Application</code>, la clase base de las aplicaciones BlackBerry). Vayamos ahora con el constructor:</p>
+<p>La aplicación se inicia en el método estático <code class="language-plaintext highlighter-rouge">main</code>, que sólo crea una instancia de GPSDemo y pone el thread a la espera de eventos mediante la llamada al método <code class="language-plaintext highlighter-rouge">enterEventDispatcher()</code>(que se hereda de <code class="language-plaintext highlighter-rouge">BaseApp</code>, quien lo hereda de <code class="language-plaintext highlighter-rouge">UiApplication</code> y este a su vez de <code class="language-plaintext highlighter-rouge">Application</code>, la clase base de las aplicaciones BlackBerry). Vayamos ahora con el constructor:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">// Constructor&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">// Constructor&lt;br /&gt;
 public GPSDemo()&lt;br /&gt;
 {&lt;br /&gt;
 // Used by waypoints; represents the time since the last waypoint.&lt;br /&gt;
@@ -264,18 +261,18 @@ pushScreen(screen);&lt;br /&gt;
 }</code></p>
 </blockquote>
 
-<p>Se inicializan variables de instancia y se crea la pantalla principal, a la que añadimos un EditField, que es un campo de texto editable (si no decimos lo contrario en el constructor). Mediante las llamadas a <code class="highlighter-rouge">screen.addKeyListener(this)</code> y <code class="highlighter-rouge">screen.addTrackwheelListener(this)</code> le decimos a la pantalla que nosotros (<code class="highlighter-rouge">GPSDemo</code>) gestionaremos sus eventos de teclado y <em>trackwheel</em>, lo cual podemos hacer porque nuestra clase base <code class="highlighter-rouge">BaseApp</code> implementa las interfaces <code class="highlighter-rouge">KeyListener</code> y <code class="highlighter-rouge">TrackwheelListener</code>.</p>
+<p>Se inicializan variables de instancia y se crea la pantalla principal, a la que añadimos un EditField, que es un campo de texto editable (si no decimos lo contrario en el constructor). Mediante las llamadas a <code class="language-plaintext highlighter-rouge">screen.addKeyListener(this)</code> y <code class="language-plaintext highlighter-rouge">screen.addTrackwheelListener(this)</code> le decimos a la pantalla que nosotros (<code class="language-plaintext highlighter-rouge">GPSDemo</code>) gestionaremos sus eventos de teclado y <em>trackwheel</em>, lo cual podemos hacer porque nuestra clase base <code class="language-plaintext highlighter-rouge">BaseApp</code> implementa las interfaces <code class="language-plaintext highlighter-rouge">KeyListener</code> y <code class="language-plaintext highlighter-rouge">TrackwheelListener</code>.</p>
 
-<p>Finalmente, añadimos la pantalla a la pila de pantallas. La gestión de ventanas la realiza la clase <code class="highlighter-rouge">UIApplication</code> como una pila: cuando necesitamos una ventana la metemos en la pila (<code class="highlighter-rouge">pushScreen</code>) y cuando acabamos con ella la sacamos (<code class="highlighter-rouge">popScreen</code>). El método <code class="highlighter-rouge">pushScreen</code> provoca que se pinte la pantalla, así que es importante llamarlo al final, cuando la ventana ya está totalmente construida.</p>
+<p>Finalmente, añadimos la pantalla a la pila de pantallas. La gestión de ventanas la realiza la clase <code class="language-plaintext highlighter-rouge">UIApplication</code> como una pila: cuando necesitamos una ventana la metemos en la pila (<code class="language-plaintext highlighter-rouge">pushScreen</code>) y cuando acabamos con ella la sacamos (<code class="language-plaintext highlighter-rouge">popScreen</code>). El método <code class="language-plaintext highlighter-rouge">pushScreen</code> provoca que se pinte la pantalla, así que es importante llamarlo al final, cuando la ventana ya está totalmente construida.</p>
 
-<p>Podemos ver también en el constructor una llamada a <code class="highlighter-rouge">startLocationUpdate()</code>, pero dejaremos esa parte para más adelante.</p>
+<p>Podemos ver también en el constructor una llamada a <code class="language-plaintext highlighter-rouge">startLocationUpdate()</code>, pero dejaremos esa parte para más adelante.</p>
 
 <p><strong>El menú</strong></p>
 
-<p>Nuestra clase base implementaba una versión básica del método <code class="highlighter-rouge">makeMenu(Menu menu, int instance)</code>. Sin embargo, nosotros vamos a sustituir (<em>override</em>) esta versión con nuestra propia implementación:</p>
+<p>Nuestra clase base implementaba una versión básica del método <code class="language-plaintext highlighter-rouge">makeMenu(Menu menu, int instance)</code>. Sin embargo, nosotros vamos a sustituir (<em>override</em>) esta versión con nuestra propia implementación:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">// Menu items.&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">// Menu items.&lt;br /&gt;
 // Cache the markwaypoint menu item for reuse.&lt;br /&gt;
 private MenuItem _markWayPoint = new MenuItem(_resources, GPSDEMO_MENUITEM_MARKWAYPOINT, 110, 10)&lt;br /&gt;
 {&lt;br /&gt;
@@ -287,7 +284,7 @@ GPSDemo.this.markPoint();&lt;br /&gt;
 </blockquote>
 
 <blockquote>
-  <p><code class="highlighter-rouge">&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">&lt;br /&gt;
 // Cache the view waypoints menu item for reuse.&lt;br /&gt;
 private MenuItem _viewWayPoints = new MenuItem(_resources, GPSDEMO_MENUITEM_VIEWWAYPOINTS, 110, 10)&lt;br /&gt;
 {&lt;br /&gt;
@@ -297,7 +294,7 @@ GPSDemo.this.viewPreviousPoints();&lt;br /&gt;
 }&lt;br /&gt;
 };</code></p>
 
-  <p><code class="highlighter-rouge">// Cache the close menu item for reuse.&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">// Cache the close menu item for reuse.&lt;br /&gt;
 private MenuItem _close = new MenuItem(_resources, GPSDEMO_MENUITEM_CLOSE, 110, 10)&lt;br /&gt;
 {&lt;br /&gt;
 public void run()&lt;br /&gt;
@@ -306,7 +303,7 @@ System.exit(0);&lt;br /&gt;
 }&lt;br /&gt;
 };</code></p>
 
-  <p><code class="highlighter-rouge">protected void makeMenu(Menu menu, int instance)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">protected void makeMenu(Menu menu, int instance)&lt;br /&gt;
 {&lt;br /&gt;
 menu.add( _markWayPoint );&lt;br /&gt;
 menu.add( _viewWayPoints );&lt;br /&gt;
@@ -341,7 +338,7 @@ _verticalDistance = 0;<br />
   </ul>
 </blockquote>
 
-<p>Se crea un objeto <code class="highlighter-rouge">WayPoint</code> con la hora en la que se grabó el <em>waypoint</em> anterior, la hora actual, y las distancias horizontal y vertical recorridas. La información de la distancia la establece el código que lee el GPS, que veremos más adelante. La clase <code class="highlighter-rouge">WayPoint</code> se define dentro de la propia clase <code class="highlighter-rouge">GPSDemo</code>:</p>
+<p>Se crea un objeto <code class="language-plaintext highlighter-rouge">WayPoint</code> con la hora en la que se grabó el <em>waypoint</em> anterior, la hora actual, y las distancias horizontal y vertical recorridas. La información de la distancia la establece el código que lee el GPS, que veremos más adelante. La clase <code class="language-plaintext highlighter-rouge">WayPoint</code> se define dentro de la propia clase <code class="language-plaintext highlighter-rouge">GPSDemo</code>:</p>
 
 <blockquote>
   <p>`/* WayPoint describes a way point, a marker on a journey or point of interest.<br /></p>
@@ -359,7 +356,7 @@ public float _verticalDistance;`</li>
 </blockquote>
 
 <blockquote>
-  <p><code class="highlighter-rouge">&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">&lt;br /&gt;
 public WayPoint(long startTime,long endTime,float distance,float verticalDistance)&lt;br /&gt;
 {&lt;br /&gt;
 _startTime=startTime;&lt;br /&gt;
@@ -393,7 +390,7 @@ _store.commit();<br />
   </ul>
 </blockquote>
 
-<p>En la siguiente entrada hablaremos de la gestión de los <em>waypoints</em> y de la clase <code class="highlighter-rouge">PointScreen</code>.</p>
+<p>En la siguiente entrada hablaremos de la gestión de los <em>waypoints</em> y de la clase <code class="language-plaintext highlighter-rouge">PointScreen</code>.</p>
 
 <h3 id="entradas-relacionadas">Entradas relacionadas:</h3>
 

@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Un ejemplo de aplicación Java para BlackBerry – Parte IV y final - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Un ejemplo de aplicación Java para BlackBerry – Parte IV y final | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Un ejemplo de aplicación Java para BlackBerry – Parte IV y final" />
+<meta name="author" content="javiercancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="Para la gestión de los waypoints vamos a crear una nueva ventana. Para ello crearemos una nueva clase en el archivo PointScreen.java." />
 <meta property="og:description" content="Para la gestión de los waypoints vamos a crear una nueva ventana. Para ello crearemos una nueva clase en el archivo PointScreen.java." />
 <link rel="canonical" href="https://www.javiercancela.com/2008/01/16/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iv-y-final/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2008-01-16T09:00:05+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="twitter:title" content="Un ejemplo de aplicación Java para BlackBerry – Parte IV y final" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "Un ejemplo de aplicación Java para BlackBerry – Parte IV y final",
-"image": "https://www.javiercancela.com/images/obsolete.jpg",
-"datePublished": "2008-01-16T09:00:05+01:00",
-"description": "Para la gestión de los waypoints vamos a crear una nueva ventana. Para ello crearemos una nueva clase en el archivo PointScreen.java.",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2008/01/16/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iv-y-final/"}</script>
+{"dateModified":"2008-01-16T09:00:05+01:00","datePublished":"2008-01-16T09:00:05+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2008/01/16/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iv-y-final/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"javiercancela"},"url":"https://www.javiercancela.com/2008/01/16/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iv-y-final/","author":{"@type":"Person","name":"javiercancela"},"image":"https://www.javiercancela.com/images/obsolete.jpg","description":"Para la gestión de los waypoints vamos a crear una nueva ventana. Para ello crearemos una nueva clase en el archivo PointScreen.java.","headline":"Un ejemplo de aplicación Java para BlackBerry – Parte IV y final","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -130,20 +127,20 @@
 		<div class="post-content">
 			<p>Para la gestión de los waypoints vamos a crear una nueva ventana. Para ello crearemos una nueva clase en el archivo PointScreen.java.</p>
 
-<p><strong>La clase <code class="highlighter-rouge">PointScreen</code></strong></p>
+<p><strong>La clase <code class="language-plaintext highlighter-rouge">PointScreen</code></strong></p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">public class PointScreen extends MainScreen implements ListFieldCallback, GPSDemoResResource&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public class PointScreen extends MainScreen implements ListFieldCallback, GPSDemoResResource&lt;br /&gt;
 {&lt;br /&gt;
 private Vector _points;&lt;br /&gt;
 private ListField _listField;&lt;br /&gt;
 private ResourceBundle _resources;</code></p>
 </blockquote>
 
-<p><code class="highlighter-rouge">PointScreen</code> hereda de <code class="highlighter-rouge">MainScreen</code>, la clase que proporciona la funcionalidad estándar de las ventanas de las aplicaciones BlackBerry. La ventana contendrá una referencia al <code class="highlighter-rouge">ResourceBundle</code> para la internacionalización de los textos, un objeto <code class="highlighter-rouge">Vector</code> que almacenará los <em>waypoints</em> y un objeto <code class="highlighter-rouge">ListField</code>, que se encarga de mostrar en pantalla una lista vertical de <em>items</em> seleccionables. La clase <code class="highlighter-rouge">PointScreen</code> debe implementar <code class="highlighter-rouge">ListFieldCallback</code> para manejar los eventos del <code class="highlighter-rouge">ListField</code>.</p>
+<p><code class="language-plaintext highlighter-rouge">PointScreen</code> hereda de <code class="language-plaintext highlighter-rouge">MainScreen</code>, la clase que proporciona la funcionalidad estándar de las ventanas de las aplicaciones BlackBerry. La ventana contendrá una referencia al <code class="language-plaintext highlighter-rouge">ResourceBundle</code> para la internacionalización de los textos, un objeto <code class="language-plaintext highlighter-rouge">Vector</code> que almacenará los <em>waypoints</em> y un objeto <code class="language-plaintext highlighter-rouge">ListField</code>, que se encarga de mostrar en pantalla una lista vertical de <em>items</em> seleccionables. La clase <code class="language-plaintext highlighter-rouge">PointScreen</code> debe implementar <code class="language-plaintext highlighter-rouge">ListFieldCallback</code> para manejar los eventos del <code class="language-plaintext highlighter-rouge">ListField</code>.</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">public PointScreen(Vector points, ResourceBundle resources)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public PointScreen(Vector points, ResourceBundle resources)&lt;br /&gt;
 {&lt;br /&gt;
 _resources = resources;&lt;br /&gt;
 LabelField title = new LabelField(resources.getString(GPSDEMO_POINTSCREEN_TITLE),&lt;br /&gt;
@@ -156,21 +153,21 @@ add(_listField);&lt;br /&gt;
 reloadWayPointList();&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">private void reloadWayPointList()&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">private void reloadWayPointList()&lt;br /&gt;
 {&lt;br /&gt;
 // Refreshes wayPoint list on screen.&lt;br /&gt;
 _listField.setSize(_points.size());&lt;br /&gt;
 }</code></p>
 </blockquote>
 
-<p>El constructor recibe un objeto <code class="highlighter-rouge">Vector</code> con los <em>waypoints</em> a mostrar, así como la referencia al <code class="highlighter-rouge">ResourceBundle</code>. Establece el título de la ventana (los parámetros del constructor del <code class="highlighter-rouge">LabelField</code> indican que se usa todo el ancho de la pantalla, y que si no hay sitio para el texto se acorte con puntos suspensivos), crea el objeto <code class="highlighter-rouge">ListField</code> y establece al objeto ventana como manejador de los eventos, añade el <code class="highlighter-rouge">ListField</code> a la ventana y llama al método <code class="highlighter-rouge">reloadWayPointList()</code>.</p>
+<p>El constructor recibe un objeto <code class="language-plaintext highlighter-rouge">Vector</code> con los <em>waypoints</em> a mostrar, así como la referencia al <code class="language-plaintext highlighter-rouge">ResourceBundle</code>. Establece el título de la ventana (los parámetros del constructor del <code class="language-plaintext highlighter-rouge">LabelField</code> indican que se usa todo el ancho de la pantalla, y que si no hay sitio para el texto se acorte con puntos suspensivos), crea el objeto <code class="language-plaintext highlighter-rouge">ListField</code> y establece al objeto ventana como manejador de los eventos, añade el <code class="language-plaintext highlighter-rouge">ListField</code> a la ventana y llama al método <code class="language-plaintext highlighter-rouge">reloadWayPointList()</code>.</p>
 
-<p>Este método establece el número de objetos en el <code class="highlighter-rouge">ListField</code>, provocando que el mismo se redibuje.</p>
+<p>Este método establece el número de objetos en el <code class="language-plaintext highlighter-rouge">ListField</code>, provocando que el mismo se redibuje.</p>
 
-<p><strong>La interfaz <code class="highlighter-rouge">ListFieldCallback</code></strong></p>
+<p><strong>La interfaz <code class="language-plaintext highlighter-rouge">ListFieldCallback</code></strong></p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">public void drawListRow(ListField listField, Graphics graphics, int index, int y, int width)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public void drawListRow(ListField listField, Graphics graphics, int index, int y, int width)&lt;br /&gt;
 {&lt;br /&gt;
 if ( listField == _listField &amp;&amp; index &lt; _points.size())&lt;br /&gt;
 {&lt;br /&gt;
@@ -180,10 +177,10 @@ graphics.drawText(name, 0, y, 0, width);&lt;br /&gt;
 }</code></p>
 </blockquote>
 
-<p>El método <code class="highlighter-rouge">drawListRow</code> se invoca cada vez que es necesario redibujar el una fila del control <code class="highlighter-rouge">ListField</code>. Tras cerciorarnos de que el control está creado y de que la fila a dibujar existe, nos limitamos a sacar el texto de <code class="highlighter-rouge">ResourceBundle</code> (en este caso el texto es “<em>Waypoint</em>“) y añadirle el índice que tiene en el <code class="highlighter-rouge">Vector</code>. Luego dibujamos el texto en su posición correspondiente.</p>
+<p>El método <code class="language-plaintext highlighter-rouge">drawListRow</code> se invoca cada vez que es necesario redibujar el una fila del control <code class="language-plaintext highlighter-rouge">ListField</code>. Tras cerciorarnos de que el control está creado y de que la fila a dibujar existe, nos limitamos a sacar el texto de <code class="language-plaintext highlighter-rouge">ResourceBundle</code> (en este caso el texto es “<em>Waypoint</em>“) y añadirle el índice que tiene en el <code class="language-plaintext highlighter-rouge">Vector</code>. Luego dibujamos el texto en su posición correspondiente.</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">public Object get(ListField listField, int index)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public Object get(ListField listField, int index)&lt;br /&gt;
 {&lt;br /&gt;
 if ( listField == _listField )&lt;br /&gt;
 {&lt;br /&gt;
@@ -195,16 +192,16 @@ return null;&lt;br /&gt;
 }</code></p>
 </blockquote>
 
-<p>El método <code class="highlighter-rouge">get</code> permite recuperar un objeto del <code class="highlighter-rouge">ListField</code> a partir de su índice. Está implementado en el ejemplo pese a que no se usa.</p>
+<p>El método <code class="language-plaintext highlighter-rouge">get</code> permite recuperar un objeto del <code class="language-plaintext highlighter-rouge">ListField</code> a partir de su índice. Está implementado en el ejemplo pese a que no se usa.</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">public int getPreferredWidth(ListField listField)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public int getPreferredWidth(ListField listField)&lt;br /&gt;
 {&lt;br /&gt;
 // Use the width of the current LCD.&lt;br /&gt;
 return Graphics.getScreenWidth();&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">public int indexOfList(ListField listField, String prefix, int start)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public int indexOfList(ListField listField, String prefix, int start)&lt;br /&gt;
 {&lt;br /&gt;
 return -1; // Not implemented.&lt;br /&gt;
 }</code></p>
@@ -217,7 +214,7 @@ return -1; // Not implemented.&lt;br /&gt;
 <p>Para el menú, se crea una clase para cada una de los dos opciones que queremos añadir:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">private class ViewPointAction extends MenuItem&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">private class ViewPointAction extends MenuItem&lt;br /&gt;
 {&lt;br /&gt;
 private int _index;&lt;br /&gt;
 public ViewPointAction( int index )&lt;br /&gt;
@@ -232,7 +229,7 @@ UiApplication.getUiApplication().pushModalScreen( screen );&lt;br /&gt;
 }&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">private class DeletePointAction extends MenuItem&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">private class DeletePointAction extends MenuItem&lt;br /&gt;
 {&lt;br /&gt;
 private int _index;&lt;br /&gt;
 public DeletePointAction( int index )&lt;br /&gt;
@@ -241,13 +238,13 @@ super(PointScreen.this._resources.getString(GPSDEMO_POINTSCREEN_MENUITEM_DELETE)
 _index = index;&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">public void run()&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public void run()&lt;br /&gt;
 {&lt;br /&gt;
 GPSDemo.removeWayPoint((WayPoint)_points.elementAt(_index));&lt;br /&gt;
 }&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">protected void makeMenu(Menu menu, int instance)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">protected void makeMenu(Menu menu, int instance)&lt;br /&gt;
 {&lt;br /&gt;
 if( _points.size() &gt; 0 )&lt;br /&gt;
 {&lt;br /&gt;
@@ -261,18 +258,18 @@ super.makeMenu(menu, instance);&lt;br /&gt;
 }</code></p>
 </blockquote>
 
-<p>Las dos clases heredan de <code class="highlighter-rouge">MenuItem</code> e implementan el método run que se ejecutará al invocar la opción de menú correspondiente. El motivo para crear las clases es almacenar, en el momento de creación de las instancias, el índice del elemento del <code class="highlighter-rouge">ListField</code> seleccionado al invocar el menú. No es la forma más óptima pero sí la más explícita.</p>
+<p>Las dos clases heredan de <code class="language-plaintext highlighter-rouge">MenuItem</code> e implementan el método run que se ejecutará al invocar la opción de menú correspondiente. El motivo para crear las clases es almacenar, en el momento de creación de las instancias, el índice del elemento del <code class="language-plaintext highlighter-rouge">ListField</code> seleccionado al invocar el menú. No es la forma más óptima pero sí la más explícita.</p>
 
-<p>Cada vez que pulsamos el botón de menú para que este se despliegue, se invoca el método <code class="highlighter-rouge">makeMenu</code> que construye el mismo. En él creamos los objetos <code class="highlighter-rouge">ViewPointAction</code> y <code class="highlighter-rouge">DeletePointAction</code> que sirven de opciones de menú para ver y borrar los <em>waypoints</em>. Así, cada vez que invocamos el menú las opciones del mismo hacen referencia al <em>waypoint</em> seleccionado en el <code class="highlighter-rouge">ListField</code>.</p>
+<p>Cada vez que pulsamos el botón de menú para que este se despliegue, se invoca el método <code class="language-plaintext highlighter-rouge">makeMenu</code> que construye el mismo. En él creamos los objetos <code class="language-plaintext highlighter-rouge">ViewPointAction</code> y <code class="language-plaintext highlighter-rouge">DeletePointAction</code> que sirven de opciones de menú para ver y borrar los <em>waypoints</em>. Así, cada vez que invocamos el menú las opciones del mismo hacen referencia al <em>waypoint</em> seleccionado en el <code class="language-plaintext highlighter-rouge">ListField</code>.</p>
 
-<p>La ejecución de <code class="highlighter-rouge">DeletePointAction</code> se limitá a eleminar el <em>waypoint</em> de la colección (lo hace el método <code class="highlighter-rouge">removeWayPoint</code> de la clase <code class="highlighter-rouge">GPSDemo</code>). <code class="highlighter-rouge">ViewPointAction</code> muestra la información del <em>waypoint</em> seleccionado.</p>
+<p>La ejecución de <code class="language-plaintext highlighter-rouge">DeletePointAction</code> se limitá a eleminar el <em>waypoint</em> de la colección (lo hace el método <code class="language-plaintext highlighter-rouge">removeWayPoint</code> de la clase <code class="language-plaintext highlighter-rouge">GPSDemo</code>). <code class="language-plaintext highlighter-rouge">ViewPointAction</code> muestra la información del <em>waypoint</em> seleccionado.</p>
 
-<p><strong>La clase <code class="highlighter-rouge">ViewScreen</code></strong></p>
+<p><strong>La clase <code class="language-plaintext highlighter-rouge">ViewScreen</code></strong></p>
 
-<p>La información del waypoint se muestra en un nuevo tipo de ventana, la cual se invoca de forma modal a través de <code class="highlighter-rouge">pushModalScreen</code>.</p>
+<p>La información del waypoint se muestra en un nuevo tipo de ventana, la cual se invoca de forma modal a través de <code class="language-plaintext highlighter-rouge">pushModalScreen</code>.</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">private static class ViewScreen extends MainScreen&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">private static class ViewScreen extends MainScreen&lt;br /&gt;
 {&lt;br /&gt;
 private ResourceBundle _resources;&lt;br /&gt;
 private MenuItem _cancel;</code></p>
@@ -355,9 +352,9 @@ private MenuItem _cancel;</code></p>
   <p>}</p>
 </blockquote>
 
-<p>El constructor recibe el <em>waypoint</em> y el número que lo identifica (su índice en la colección), construye las fechas, calcula la velocidad y muestra los datos en controles <code class="highlighter-rouge">BasicEditField</code>.</p>
+<p>El constructor recibe el <em>waypoint</em> y el número que lo identifica (su índice en la colección), construye las fechas, calcula la velocidad y muestra los datos en controles <code class="language-plaintext highlighter-rouge">BasicEditField</code>.</p>
 
-<p>El menú de esta ventana sólo tiene un elemento Cancel. En él se llama a <code class="highlighter-rouge">popScreen</code> con la instancia de la ventana, ya que al ser una ventana modal no puede permanecer en el stack.</p>
+<p>El menú de esta ventana sólo tiene un elemento Cancel. En él se llama a <code class="language-plaintext highlighter-rouge">popScreen</code> con la instancia de la ventana, ya que al ser una ventana modal no puede permanecer en el stack.</p>
 
 <p><strong>El código fuente de PointScreen.java</strong></p>
 
@@ -393,7 +390,7 @@ private ListField _listField;<br />
 private ResourceBundle _resources;`</li>
   </ul>
 
-  <p><code class="highlighter-rouge">public PointScreen(Vector points, ResourceBundle resources)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public PointScreen(Vector points, ResourceBundle resources)&lt;br /&gt;
 {&lt;br /&gt;
 _resources = resources;&lt;br /&gt;
 LabelField title = new LabelField(resources.getString(GPSDEMO_POINTSCREEN_TITLE),&lt;br /&gt;
@@ -406,13 +403,13 @@ add(_listField);&lt;br /&gt;
 reloadWayPointList();&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">private void reloadWayPointList()&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">private void reloadWayPointList()&lt;br /&gt;
 {&lt;br /&gt;
 // Refreshes wayPoint list on screen.&lt;br /&gt;
 _listField.setSize(_points.size());&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">// ListFieldCallback methods ------------------------------------------------&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">// ListFieldCallback methods ------------------------------------------------&lt;br /&gt;
 public void drawListRow(ListField listField, Graphics graphics, int index, int y, int width)&lt;br /&gt;
 {&lt;br /&gt;
 if ( listField == _listField &amp;&amp; index &lt; _points.size())&lt;br /&gt;
@@ -422,7 +419,7 @@ graphics.drawText(name, 0, y, 0, width);&lt;br /&gt;
 }&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">public Object get(ListField listField, int index)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public Object get(ListField listField, int index)&lt;br /&gt;
 {&lt;br /&gt;
 if ( listField == _listField )&lt;br /&gt;
 {&lt;br /&gt;
@@ -433,18 +430,18 @@ return _points.elementAt(index);&lt;br /&gt;
 return null;&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">public int getPreferredWidth(ListField listField)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public int getPreferredWidth(ListField listField)&lt;br /&gt;
 {&lt;br /&gt;
 // Use the width of the current LCD.&lt;br /&gt;
 return Graphics.getScreenWidth();&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">public int indexOfList(ListField listField, String prefix, int start)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public int indexOfList(ListField listField, String prefix, int start)&lt;br /&gt;
 {&lt;br /&gt;
 return -1; // Not implemented.&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">// Menu items. ---------------------------------------------------------------&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">// Menu items. ---------------------------------------------------------------&lt;br /&gt;
 private class ViewPointAction extends MenuItem&lt;br /&gt;
 {&lt;br /&gt;
 private int _index;&lt;br /&gt;
@@ -460,7 +457,7 @@ UiApplication.getUiApplication().pushModalScreen( screen );&lt;br /&gt;
 }&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">private class DeletePointAction extends MenuItem&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">private class DeletePointAction extends MenuItem&lt;br /&gt;
 {&lt;br /&gt;
 private int _index;&lt;br /&gt;
 public DeletePointAction( int index )&lt;br /&gt;
@@ -487,7 +484,7 @@ _index = index;&lt;br /&gt;
 <blockquote>
   <p>}</p>
 
-  <p><code class="highlighter-rouge">protected void makeMenu(Menu menu, int instance)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">protected void makeMenu(Menu menu, int instance)&lt;br /&gt;
 {&lt;br /&gt;
 if( _points.size() &gt; 0 )&lt;br /&gt;
 {&lt;br /&gt;
@@ -513,7 +510,7 @@ private ResourceBundle _resources;<br />
 private MenuItem _cancel;`</li>
   </ul>
 
-  <p><code class="highlighter-rouge">public ViewScreen(WayPoint point, int count, ResourceBundle resources)&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public ViewScreen(WayPoint point, int count, ResourceBundle resources)&lt;br /&gt;
 {&lt;br /&gt;
 super();&lt;br /&gt;
 _resources = resources;&lt;br /&gt;
@@ -532,7 +529,7 @@ add(new BasicEditField(resources.getString(GPSDEMO_VIEWSCREEN_VERTICALDISTANCEFI
 add(new BasicEditField(resources.getString(GPSDEMO_VIEWSCREEN_AVESPEEDFIELD), Float.toString(avgSpeed), 30, Field.READONLY));&lt;br /&gt;
 }</code></p>
 
-  <p><code class="highlighter-rouge">private class CancelMenuItem extends MenuItem&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">private class CancelMenuItem extends MenuItem&lt;br /&gt;
 {&lt;br /&gt;
 public CancelMenuItem()&lt;br /&gt;
 {&lt;br /&gt;
@@ -546,7 +543,7 @@ uiapp.popScreen(ViewScreen.this);&lt;br /&gt;
 }&lt;br /&gt;
 };</code></p>
 
-  <p><code class="highlighter-rouge">protected void makeMenu( Menu menu, int instance )&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">protected void makeMenu( Menu menu, int instance )&lt;br /&gt;
 {&lt;br /&gt;
 if ( _cancel == null )&lt;br /&gt;
 _cancel = new CancelMenuItem(); // Create on demand.&lt;br /&gt;

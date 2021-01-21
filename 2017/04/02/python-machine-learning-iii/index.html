@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>PML T2 - ADALINE - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PML T2 - ADALINE | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="PML T2 - ADALINE" />
+<meta name="author" content="Javier Cancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka" />
 <meta property="og:description" content="Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka" />
 <link rel="canonical" href="https://www.javiercancela.com/2017/04/02/python-machine-learning-iii/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/pml/pml.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-04-02T03:00:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/pml/pml.jpg" />
+<meta property="twitter:title" content="PML T2 - ADALINE" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "PML T2 - ADALINE",
-"image": "https://www.javiercancela.com/images/pml/pml.jpg",
-"datePublished": "2017-04-02T03:00:00+02:00",
-"description": "Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2017/04/02/python-machine-learning-iii/"}</script>
+{"dateModified":"2017-04-02T03:00:00+02:00","datePublished":"2017-04-02T03:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2017/04/02/python-machine-learning-iii/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"Javier Cancela"},"url":"https://www.javiercancela.com/2017/04/02/python-machine-learning-iii/","author":{"@type":"Person","name":"Javier Cancela"},"image":"https://www.javiercancela.com/images/pml/pml.jpg","description":"Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka","headline":"PML T2 - ADALINE","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -152,27 +149,27 @@
     </figure>
 </div>
 
-<p>En concreto, la función lineal de activación de Adaline es la función identidad <script type="math/tex">\phi(z) = z</script>, con lo que <script type="math/tex">\phi(\mathbf{w}^T\bf x) = \mathbf{w}^T\bf x</script>. Como vemos en la gráfica superior, se sigue usando un cuantizador para clasificar la muestra, aunque no se use ya para corregir los pesos.</p>
+<p>En concreto, la función lineal de activación de Adaline es la función identidad \(\phi(z) = z\), con lo que \(\phi(\mathbf{w}^T\bf x) = \mathbf{w}^T\bf x\). Como vemos en la gráfica superior, se sigue usando un cuantizador para clasificar la muestra, aunque no se use ya para corregir los pesos.</p>
 
 <h2 id="minimización-de-funciones-de-costos">Minimización de funciones de costos</h2>
 
-<p>Igual que en el caso del perceptrón, la actualización de pesos se realiza calculando <script type="math/tex">w_j := w_j + \eta(y^{(i)} - \hat y^{(i)})x_j^{(i)}</script>. Para el perceptrón tanto <script type="math/tex">y^{(i)}</script> como <script type="math/tex">\hat y^{(i)}</script> son etiquetas de clases con solo dos posibles valores. En el caso de Adaline se usan valores continuos.</p>
+<p>Igual que en el caso del perceptrón, la actualización de pesos se realiza calculando \(w_j := w_j + \eta(y^{(i)} - \hat y^{(i)})x_j^{(i)}\). Para el perceptrón tanto \(y^{(i)}\) como \(\hat y^{(i)}\) son etiquetas de clases con solo dos posibles valores. En el caso de Adaline se usan valores continuos.</p>
 
 <p><a name="1"></a></p>
 
 <p>La idea de la función de costos es definir una función que se pueda optimizar durante el proceso de aprendizaje. Para ello utilizamos la suma de los errores al cuadrado (<em>Sum of Squared Errors</em>, o <em>SSE</em>, también llamado en inglés <a href="https://en.wikipedia.org/wiki/Residual_sum_of_squares"><em>Residual Sum of Squareds</em></a>):</p>
 
-<script type="math/tex; mode=display">J({\mathbf{w}}) = \frac{1}{2} \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big)^2,</script>
+\[J({\mathbf{w}}) = \frac{1}{2} \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big)^2,\]
 
-<p>donde <script type="math/tex">\frac{1}{2}</script> se incluye para simplificar cálculos posteriores. Como buscamos el <script type="math/tex">\mathbf{w}</script> que minimiza el valor de esa función, multiplicarla por una constante no afecta al resultado. Como siempre, <script type="math/tex">y^{(i)}</script> es el resultado esperado para la muestra <script type="math/tex">i</script>. <script type="math/tex">\phi(z)_{A}^{(i)}</script> es la salida de la función de activación (<script type="math/tex">A</script>) para la muestra <script type="math/tex">i</script>.</p>
+<p>donde \(\frac{1}{2}\) se incluye para simplificar cálculos posteriores. Como buscamos el \(\mathbf{w}\) que minimiza el valor de esa función, multiplicarla por una constante no afecta al resultado. Como siempre, \(y^{(i)}\) es el resultado esperado para la muestra \(i\). \(\phi(z)_{A}^{(i)}\) es la salida de la función de activación (\(A\)) para la muestra \(i\).</p>
 
-<p>Esta función es diferenciable y convexa, lo que nos permite calcular un mínimo. Como nuestra función de costos sólo depende de los pesos <script type="math/tex">\mathbf{w}</script>, minimizarla nos dará el peso que tenga una menor diferencia entre la salida esperada y la obtenida (<script type="math/tex">y^{(i)} - \phi(z)_{A}^{(i)}</script>). Para calcular el mínimo se usa un algoritmo llamado <a href="http://alejandrosanchezyali.blogspot.co.uk/2016/01/algoritmo-del-gradiente-descendente-y.html">gradiente descendente</a>.</p>
+<p>Esta función es diferenciable y convexa, lo que nos permite calcular un mínimo. Como nuestra función de costos sólo depende de los pesos \(\mathbf{w}\), minimizarla nos dará el peso que tenga una menor diferencia entre la salida esperada y la obtenida (\(y^{(i)} - \phi(z)_{A}^{(i)}\)). Para calcular el mínimo se usa un algoritmo llamado <a href="http://alejandrosanchezyali.blogspot.co.uk/2016/01/algoritmo-del-gradiente-descendente-y.html">gradiente descendente</a>.</p>
 
-<p>Nuestro objetivo, como siempre, es ajustar el peso <script type="math/tex">\mathbf{w}</script> en incrementos <script type="math/tex">\Delta \mathbf{w}</script>:</p>
+<p>Nuestro objetivo, como siempre, es ajustar el peso \(\mathbf{w}\) en incrementos \(\Delta \mathbf{w}\):</p>
 
-<script type="math/tex; mode=display">\mathbf{w} := \mathbf{w} + \Delta \mathbf{w}.</script>
+\[\mathbf{w} := \mathbf{w} + \Delta \mathbf{w}.\]
 
-<p>Para calcular <script type="math/tex">\Delta \mathbf{w}</script> vamos a necesitar conocer el gradiente de nuestra función de costos: <script type="math/tex">\nabla J(\mathbf{w})</script>. <a href="https://es.wikipedia.org/wiki/Gradiente">Gradiente</a> es un término matemático que hace referencia al vector que indica la dirección en la que un campo varía con más rapidez. Para una función de <script type="math/tex">k</script> variables el gradiente es el vector de <script type="math/tex">k</script> dimensiones que marca la dirección en la que la función se incrementa más rápidamente.</p>
+<p>Para calcular \(\Delta \mathbf{w}\) vamos a necesitar conocer el gradiente de nuestra función de costos: \(\nabla J(\mathbf{w})\). <a href="https://es.wikipedia.org/wiki/Gradiente">Gradiente</a> es un término matemático que hace referencia al vector que indica la dirección en la que un campo varía con más rapidez. Para una función de \(k\) variables el gradiente es el vector de \(k\) dimensiones que marca la dirección en la que la función se incrementa más rápidamente.</p>
 
 <div style="text-align:center">
     <figure>
@@ -181,17 +178,17 @@
     </figure>
 </div>
 
-<p>Nosotros vamos a usar el gradiente para buscar el mínimo de <script type="math/tex">J(\mathbf{w})</script>, así que en vez de sumarlo lo restaremos (de ahí lo de gradiente descendente). Además usaremos nuestra tasa de aprendizaje para modular esta iteración:</p>
+<p>Nosotros vamos a usar el gradiente para buscar el mínimo de \(J(\mathbf{w})\), así que en vez de sumarlo lo restaremos (de ahí lo de gradiente descendente). Además usaremos nuestra tasa de aprendizaje para modular esta iteración:</p>
 
-<script type="math/tex; mode=display">\Delta \mathbf{w} = - \eta \nabla J(\mathbf{w}).</script>
+\[\Delta \mathbf{w} = - \eta \nabla J(\mathbf{w}).\]
 
 <p>Dado que</p>
 
-<script type="math/tex; mode=display">J({\mathbf{w}}) = \frac{1}{2} \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big)^2,</script>
+\[J({\mathbf{w}}) = \frac{1}{2} \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big)^2,\]
 
 <p>tendremos que cada uno de los pesos se actualizará con este incremento:</p>
 
-<script type="math/tex; mode=display">\Delta w_{j} := \eta \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x_{j}^{(i)}.</script>
+\[\Delta w_{j} := \eta \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x_{j}^{(i)}.\]
 
 <p>Para una explicación del cálculo de este gradiente podemos leer <a href="http://rasbt.github.io/mlxtend/user_guide/general_concepts/linear-gradient-derivative/">este artículo del propio Sebastian Raschka</a>.</p>
 
@@ -199,7 +196,7 @@
 
 <p>Como en la entrada anterior, el código está <a href="https://github.com/rasbt/python-machine-learning-book/blob/master/code/ch02/ch02.ipynb">sacado de GitHub</a>.</p>
 
-<p>La implementación de Adaline es muy similar a la del Perceptrón. La única diferencia está en el método <code class="highlighter-rouge">fit</code>, donde los pesos se actualizan con el gradiente descendente</p>
+<p>La implementación de Adaline es muy similar a la del Perceptrón. La única diferencia está en el método <code class="language-plaintext highlighter-rouge">fit</code>, donde los pesos se actualizan con el gradiente descendente</p>
 
 <pre class="line-numbers">
   <code class="language-python">
@@ -232,41 +229,41 @@
   </code>
 </pre>
 
-<p>Recordemos cómo funciona el método <code class="highlighter-rouge">fit</code>. Se le pasan dos parámetros: una matriz <script type="math/tex">\bf X</script>, que contiene una fila por cada muestra y una columna por cada característica, y que constituye nuestro conjunto de datos de entrenamiento; y un array <script type="math/tex">\bf y</script>, que contiene el resultado objetivo para cada muestra.</p>
+<p>Recordemos cómo funciona el método <code class="language-plaintext highlighter-rouge">fit</code>. Se le pasan dos parámetros: una matriz \(\bf X\), que contiene una fila por cada muestra y una columna por cada característica, y que constituye nuestro conjunto de datos de entrenamiento; y un array \(\bf y\), que contiene el resultado objetivo para cada muestra.</p>
 
-<p>Lo primero que hace el método <code class="highlighter-rouge">fit</code> es inicializar los pesos y los costos:</p>
+<p>Lo primero que hace el método <code class="language-plaintext highlighter-rouge">fit</code> es inicializar los pesos y los costos:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="bp">self</span><span class="o">.</span><span class="n">w_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">cost_</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="bp">self</span><span class="p">.</span><span class="n">w_</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">cost_</span> <span class="o">=</span> <span class="p">[]</span>
 </code></pre></div></div>
-<p>Después iteramos el proceso tantas veces como épocas se hayan definido. La entrada neta (la función <code class="highlighter-rouge">net_input</code>) es el producto escalar de los atributos de las muestras y sus pesos. Para la salida utilizamos una función <code class="highlighter-rouge">activation</code> que es igual a la entrada neta. La existencia de este método se justifica para hacer el código más general, y poder reutilizarlo con otros algoritmos. En nuestro caso, esta función es la función identidad, por lo que podríamos haber usado directamente <code class="highlighter-rouge">net_input</code>. El error será la difencia entre la salida esperada, <code class="highlighter-rouge">y</code>, y la real, <code class="highlighter-rouge">output</code>.</p>
+<p>Después iteramos el proceso tantas veces como épocas se hayan definido. La entrada neta (la función <code class="language-plaintext highlighter-rouge">net_input</code>) es el producto escalar de los atributos de las muestras y sus pesos. Para la salida utilizamos una función <code class="language-plaintext highlighter-rouge">activation</code> que es igual a la entrada neta. La existencia de este método se justifica para hacer el código más general, y poder reutilizarlo con otros algoritmos. En nuestro caso, esta función es la función identidad, por lo que podríamos haber usado directamente <code class="language-plaintext highlighter-rouge">net_input</code>. El error será la difencia entre la salida esperada, <code class="language-plaintext highlighter-rouge">y</code>, y la real, <code class="language-plaintext highlighter-rouge">output</code>.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">activation</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">errors</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">output</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Si recordamos las entradas anteriores, la salida esperada <code class="highlighter-rouge">y</code> es un array con las clases reales de 100 muestras, las 50 primeras con valor -1 (Iris-setosa), y las 50 siguientes con valor 1 (Iris-versicolor). El valor de output es la salida de la función identidad, pero en este caso vamos a considerar todas las muestras a la vez, con lo que tendremos un array de 100 elementos en vez de un escalar. El método <code class="highlighter-rouge">net_input</code> calcula el producto escalar de la matriz de muestras <code class="highlighter-rouge">X</code> por el array de pesos <code class="highlighter-rouge">w_</code>.</p>
+<p>Si recordamos las entradas anteriores, la salida esperada <code class="language-plaintext highlighter-rouge">y</code> es un array con las clases reales de 100 muestras, las 50 primeras con valor -1 (Iris-setosa), y las 50 siguientes con valor 1 (Iris-versicolor). El valor de output es la salida de la función identidad, pero en este caso vamos a considerar todas las muestras a la vez, con lo que tendremos un array de 100 elementos en vez de un escalar. El método <code class="language-plaintext highlighter-rouge">net_input</code> calcula el producto escalar de la matriz de muestras <code class="language-plaintext highlighter-rouge">X</code> por el array de pesos <code class="language-plaintext highlighter-rouge">w_</code>.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">net_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 </code></pre></div></div>
 
 <h3 id="cálculo-de-errores">Cálculo de errores</h3>
 
-<p>El resultado es un array de errores (<code class="highlighter-rouge">errors</code>) de 100 elementos, uno para cada muestra. Con ellos se actualizan los pesos:</p>
+<p>El resultado es un array de errores (<code class="language-plaintext highlighter-rouge">errors</code>) de 100 elementos, uno para cada muestra. Con ellos se actualizan los pesos:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">errors</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="bp">self</span><span class="p">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">X</span><span class="p">.</span><span class="n">T</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">errors</span><span class="p">.</span><span class="nb">sum</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p>En la primera línea se aplica un incremento <code class="highlighter-rouge">self.eta * X.T.dot(errors)</code> al array de pesos <script type="math/tex">\mathbf{w}</script>, salvo al elemento <script type="math/tex">w_0</script> (peso asociado a una entrada ficticia <script type="math/tex">x_0 = 1</script> para simplificar los cálculos). Recordando la fórmula de incremento de pesos vista más arriba:</p>
+<p>En la primera línea se aplica un incremento <code class="language-plaintext highlighter-rouge">self.eta * X.T.dot(errors)</code> al array de pesos \(\mathbf{w}\), salvo al elemento \(w_0\) (peso asociado a una entrada ficticia \(x_0 = 1\) para simplificar los cálculos). Recordando la fórmula de incremento de pesos vista más arriba:</p>
 
-<script type="math/tex; mode=display">\Delta w_{j} := \eta \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x_{j}^{(i)},</script>
+\[\Delta w_{j} := \eta \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x_{j}^{(i)},\]
 
-<p>tenemos que los elementos <script type="math/tex">error^{(i)}</script> del array <code class="highlighter-rouge">errors</code> se corresponden con <script type="math/tex">error^{(i)} = y^{(i)} - \phi(z)_{A}^{(i)}</script>. Por lo tanto, el producto escalar entre la traspuesta de la matriz de atributos de cada muestra <code class="highlighter-rouge">X</code> y el array de errores <code class="highlighter-rouge">errors</code> (<code class="highlighter-rouge">X.T.dot(errors)</code>) se corresponden con el sumatorio <script type="math/tex">\sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x_{j}^{(i)}</script>.</p>
+<p>tenemos que los elementos \(error^{(i)}\) del array <code class="language-plaintext highlighter-rouge">errors</code> se corresponden con \(error^{(i)} = y^{(i)} - \phi(z)_{A}^{(i)}\). Por lo tanto, el producto escalar entre la traspuesta de la matriz de atributos de cada muestra <code class="language-plaintext highlighter-rouge">X</code> y el array de errores <code class="language-plaintext highlighter-rouge">errors</code> (<code class="language-plaintext highlighter-rouge">X.T.dot(errors)</code>) se corresponden con el sumatorio \(\sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x_{j}^{(i)}\).</p>
 
-<p>Para el caso del elemento <script type="math/tex">w_0</script>, al ser el valor de los atributos de esa muestra ficticia igual a uno, basta con sumar los errores para obtener el incremento de peso (también podríamos haber añadido una fila con valores unitarios a la matriz <code class="highlighter-rouge">X</code>).</p>
+<p>Para el caso del elemento \(w_0\), al ser el valor de los atributos de esa muestra ficticia igual a uno, basta con sumar los errores para obtener el incremento de peso (también podríamos haber añadido una fila con valores unitarios a la matriz <code class="language-plaintext highlighter-rouge">X</code>).</p>
 
 <p>Aunque el algoritmo no usa la función de costos directamente, ya que el ajuste de pesos se realiza mediante el gradiente descendente que acabamos de aplicar y que se explica más arriba, vamos a almacenar también el valor de la función para dibujar después su evolución.</p>
 
@@ -274,32 +271,32 @@
 
 <p>Recordemos la función de costos:</p>
 
-<script type="math/tex; mode=display">J({\mathbf{w}}) = \frac{1}{2} \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big)^2.</script>
+\[J({\mathbf{w}}) = \frac{1}{2} \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big)^2.\]
 
-<p>El programa almacena un arrary <code class="highlighter-rouge">errors = (y - output)</code> que se corresponde con <script type="math/tex">y^{(i)} - \phi(z)_{A}^{(i)}</script>, así que para calcular en valor de la función sólo tenemos que sumar el cuadrado de los valores del array y dividir entre dos. Esto nos dará el valor calculado por la función de costos para los pesos actuales. Como estamos iterando mediante el gradiente descendente vamos a almacenar los resultados de la función obtenidos para cada conjunto de pesos:</p>
+<p>El programa almacena un arrary <code class="language-plaintext highlighter-rouge">errors = (y - output)</code> que se corresponde con \(y^{(i)} - \phi(z)_{A}^{(i)}\), así que para calcular en valor de la función sólo tenemos que sumar el cuadrado de los valores del array y dividir entre dos. Esto nos dará el valor calculado por la función de costos para los pesos actuales. Como estamos iterando mediante el gradiente descendente vamos a almacenar los resultados de la función obtenidos para cada conjunto de pesos:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">errors</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">cost_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">errors</span><span class="o">**</span><span class="mi">2</span><span class="p">).</span><span class="nb">sum</span><span class="p">()</span> <span class="o">/</span> <span class="mf">2.0</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">cost_</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Una vez definida la clase, el libro pasa a utilizarla con dos tasas de aprendizaje distintas. Esta tasa va a determinar la convergencia del algoritmo, y encontrar el valor que nos de la mejor convergencia posible requiere muchas pruebas. Vamos a probar con <script type="math/tex">\eta = 0.1</script> y <script type="math/tex">\eta = 0.0001</script>:</p>
+<p>Una vez definida la clase, el libro pasa a utilizarla con dos tasas de aprendizaje distintas. Esta tasa va a determinar la convergencia del algoritmo, y encontrar el valor que nos de la mejor convergencia posible requiere muchas pruebas. Vamos a probar con \(\eta = 0.1\) y \(\eta = 0.0001\):</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 
-<span class="n">ada1</span> <span class="o">=</span> <span class="n">AdalineGD</span><span class="p">(</span><span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ada1</span><span class="o">.</span><span class="n">cost_</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">ada1</span><span class="o">.</span><span class="n">cost_</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Epochs'</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'log(Sum-squared-error)'</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Adaline - Learning rate 0.01'</span><span class="p">)</span>
+<span class="n">ada1</span> <span class="o">=</span> <span class="n">AdalineGD</span><span class="p">(</span><span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.01</span><span class="p">).</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ada1</span><span class="p">.</span><span class="n">cost_</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">log10</span><span class="p">(</span><span class="n">ada1</span><span class="p">.</span><span class="n">cost_</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Epochs'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'log(Sum-squared-error)'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Adaline - Learning rate 0.01'</span><span class="p">)</span>
 
-<span class="n">ada2</span> <span class="o">=</span> <span class="n">AdalineGD</span><span class="p">(</span><span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ada2</span><span class="o">.</span><span class="n">cost_</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ada2</span><span class="o">.</span><span class="n">cost_</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Epochs'</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Sum-squared-error'</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Adaline - Learning rate 0.0001'</span><span class="p">)</span>
+<span class="n">ada2</span> <span class="o">=</span> <span class="n">AdalineGD</span><span class="p">(</span><span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">).</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ada2</span><span class="p">.</span><span class="n">cost_</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ada2</span><span class="p">.</span><span class="n">cost_</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'Epochs'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'Sum-squared-error'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Adaline - Learning rate 0.0001'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>Pintamos una gráfica con cada tasa, representado la evolución del valor de la función de costos para cada iteración (época). Para la tasa de 0.1 representamos en realidad el logaritmo del valor, ya que el valor real diverge exponencialmente. En cambio, podemos ver como la tasa de 0.0001 converge, pero lentamente.</p>

@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Un blog en GitHub (y V - Últimos ajustes) - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Un blog en GitHub (y V - Últimos ajustes) | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Un blog en GitHub (y V - Últimos ajustes)" />
+<meta name="author" content="Javier Cancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="La experiencia de montar un blog en GitHub" />
 <meta property="og:description" content="La experiencia de montar un blog en GitHub" />
 <link rel="canonical" href="https://www.javiercancela.com/2017/02/19/un-blog-en-github-y-v/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/blog.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-02-19T02:00:00+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/blog.jpg" />
+<meta property="twitter:title" content="Un blog en GitHub (y V - Últimos ajustes)" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "Un blog en GitHub (y V - Últimos ajustes)",
-"image": "https://www.javiercancela.com/images/blog.jpg",
-"datePublished": "2017-02-19T02:00:00+01:00",
-"description": "La experiencia de montar un blog en GitHub",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2017/02/19/un-blog-en-github-y-v/"}</script>
+{"dateModified":"2017-02-19T02:00:00+01:00","datePublished":"2017-02-19T02:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2017/02/19/un-blog-en-github-y-v/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"Javier Cancela"},"url":"https://www.javiercancela.com/2017/02/19/un-blog-en-github-y-v/","author":{"@type":"Person","name":"Javier Cancela"},"image":"https://www.javiercancela.com/images/blog.jpg","description":"La experiencia de montar un blog en GitHub","headline":"Un blog en GitHub (y V - Últimos ajustes)","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -133,24 +130,24 @@
 <p>Las partes dinámicas que pueda haber (comentarios en los posts, formularios de contacto, …) se consiguen mediante integraciones con otras páginas web. Como ejemplo, este blog tiene comentarios en las entradas, pero todo el código relativo a ellos se encuentra en el servidor de <a href="https://disqus.com/">Disqus</a>.</p>
 
 <h2 id="jekyll-y-github-pages">Jekyll y GitHub Pages</h2>
-<p>En los posts anteriores hemos visto cómo utilizar un lenguaje de marcado, <a href="http://shopify.github.io/liquid/">Liquid</a>, para generar dinámicamente algunas partes del sitio web. Podría pensarse entonces que Jekyll funciona como un servidor de aplicaciones generando estas páginas según las vamos solicitando. Sin embargo, lo que hace Jekyll es compilar los archivos con Liquid, y los demás recursos del repositorio, para generar un sitio web estático convencional que almacena en la carpeta <code class="highlighter-rouge">_site</code>.</p>
+<p>En los posts anteriores hemos visto cómo utilizar un lenguaje de marcado, <a href="http://shopify.github.io/liquid/">Liquid</a>, para generar dinámicamente algunas partes del sitio web. Podría pensarse entonces que Jekyll funciona como un servidor de aplicaciones generando estas páginas según las vamos solicitando. Sin embargo, lo que hace Jekyll es compilar los archivos con Liquid, y los demás recursos del repositorio, para generar un sitio web estático convencional que almacena en la carpeta <code class="language-plaintext highlighter-rouge">_site</code>.</p>
 
 <p>Hasta ahora hemos dejado que el Jekyll de GitHub se encargase de la generación del site. Al subir nuestro código al repositorio GitHub Pages se encarga de realizar la compilación, tal como ocurre cuando la hacemos en local con</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec jekyll serve
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec jekyll serve
 </code></pre></div></div>
 
 <h2 id="generación-fuera-de-github">Generación fuera de GitHub</h2>
 
 <p>Pero hay una diferencia: por motivos de seguridad GitHub Pages restringe qué plugins se pueden utilizar en el repositorio. La lista concreta de plugins, así como sus versiones y las versiones de los demás componentes utilizados, la podemos ver <a href="https://pages.github.com/versions/">aquí</a>.</p>
 
-<p>Uno de los plugins más útiles excluidos por GitHub Pages es <code class="highlighter-rouge">jekyll-archive</code>, que se encarga de generar una estructura de carpetas y páginas para poder acceder a un archivo del blog por fechas o por tags. Este blog utiliza este plugin para poder mostrar todos los posts de una etiqueta específica. Así que vamos a ver cómo podemos librar a nuestras páginas de esta restricción.</p>
+<p>Uno de los plugins más útiles excluidos por GitHub Pages es <code class="language-plaintext highlighter-rouge">jekyll-archive</code>, que se encarga de generar una estructura de carpetas y páginas para poder acceder a un archivo del blog por fechas o por tags. Este blog utiliza este plugin para poder mostrar todos los posts de una etiqueta específica. Así que vamos a ver cómo podemos librar a nuestras páginas de esta restricción.</p>
 
 <h3 id="generación-local">Generación local</h3>
-<p>La primera opción para usar este plugin, o cualquier otro, es utilizar la compilación del Jekyll local. Para servir nuestro site, GitHub Pages analiza el contenido de la carpeta <code class="highlighter-rouge">master</code> de nuestro repositorio <code class="highlighter-rouge">nombreusuario.github.io</code> (al menos en páginas personales). Si en el directorio raíz del repositorio no hay un archivo <code class="highlighter-rouge">_config.yml</code>, GitHub Pages servirá los contenidos existentes como un servidor web normal. Así, si subimos a <code class="highlighter-rouge">master</code> el contenido de nuestra carpeta <code class="highlighter-rouge">_site</code> local (sólo el contenido, sin la carpeta en sí) tendremos publicado en GitHub Pages el mismo sitio web que está publicando nuestro Jekyll local.</p>
+<p>La primera opción para usar este plugin, o cualquier otro, es utilizar la compilación del Jekyll local. Para servir nuestro site, GitHub Pages analiza el contenido de la carpeta <code class="language-plaintext highlighter-rouge">master</code> de nuestro repositorio <code class="language-plaintext highlighter-rouge">nombreusuario.github.io</code> (al menos en páginas personales). Si en el directorio raíz del repositorio no hay un archivo <code class="language-plaintext highlighter-rouge">_config.yml</code>, GitHub Pages servirá los contenidos existentes como un servidor web normal. Así, si subimos a <code class="language-plaintext highlighter-rouge">master</code> el contenido de nuestra carpeta <code class="language-plaintext highlighter-rouge">_site</code> local (sólo el contenido, sin la carpeta en sí) tendremos publicado en GitHub Pages el mismo sitio web que está publicando nuestro Jekyll local.</p>
 
 <h3 id="codeship">Codeship</h3>
-<p>Otra opción interesante la encontré en este post: <a href="https://www.drinkingcaffeine.com/deploying-jekyll-to-github-pages-without-using-githubs-jekyll/">Deploying a Jekyll Site to Github Pages Without Using Github’s Jekyll</a> (en inglés). La idea aquí es utilizar una aplicación web de integración continua para generar la compilación en dicho sitio, y copiar los contenidos automáticamente en el repositorio. El post utiliza como ejemplo <a href="https://codeship.com/">Codeship</a>, que permite lanzar, al detectar un cambio en nuestro repositorio, un script en una máquina virtualizada que ya tiene todo el software que necesitamos. Este es el sistema que yo utilizo: Codeship se dispara cuando hay cambios en la rama <code class="highlighter-rouge">release</code> de mi repositorio, y lanza este script:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git  clone git@github.com:javiercancela/javiercancela.github.io.git _site
+<p>Otra opción interesante la encontré en este post: <a href="https://www.drinkingcaffeine.com/deploying-jekyll-to-github-pages-without-using-githubs-jekyll/">Deploying a Jekyll Site to Github Pages Without Using Github’s Jekyll</a> (en inglés). La idea aquí es utilizar una aplicación web de integración continua para generar la compilación en dicho sitio, y copiar los contenidos automáticamente en el repositorio. El post utiliza como ejemplo <a href="https://codeship.com/">Codeship</a>, que permite lanzar, al detectar un cambio en nuestro repositorio, un script en una máquina virtualizada que ya tiene todo el software que necesitamos. Este es el sistema que yo utilizo: Codeship se dispara cuando hay cambios en la rama <code class="language-plaintext highlighter-rouge">release</code> de mi repositorio, y lanza este script:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git  clone git@github.com:javiercancela/javiercancela.github.io.git _site
 cd _site
 git checkout master || git checkout --orphan master
 cd ..
@@ -164,9 +161,9 @@ git add -A .
 git commit -m "Deploy to Github Pages: ${CI_COMMIT_ID} --skip-ci"
 git push origin master
 </code></pre></div></div>
-<p>De esta forma, cada vez que publico una nueva versión en la rama <code class="highlighter-rouge">release</code>, se publica en GitHub Pages una versión compilada sin restricciones de plugins.</p>
+<p>De esta forma, cada vez que publico una nueva versión en la rama <code class="language-plaintext highlighter-rouge">release</code>, se publica en GitHub Pages una versión compilada sin restricciones de plugins.</p>
 
-<p>La variable <code class="highlighter-rouge">JEKYLL_ENV=production</code> se define para que la compilación se haga incluyendo todo lo necesario para la publicación real. En mi caso, esto añade el javascript de Google Analytics.</p>
+<p>La variable <code class="language-plaintext highlighter-rouge">JEKYLL_ENV=production</code> se define para que la compilación se haga incluyendo todo lo necesario para la publicación real. En mi caso, esto añade el javascript de Google Analytics.</p>
 
 <h2 id="imágenes">Imágenes</h2>
 <p>GitHub Pages tiene un límite de 1GB para el tamaño de los sites alojados. Aunque es un límite amplio, si no queremos superarlo tenemos que tener un poco de cuidado con el tamaño de los archivos que subamos. Una buena práctica es alojar los archivos multimedia en aplicaciones destinadas a ellos, como <a href="https://www.youtube.com/">YouTube</a> para vídeos. Para los imágenes yo estoy usando <a href="https://unsplash.com/">Unsplash</a>, un repositorio de imágenes muy fácil de usar, que descubrí gracias a la plantilla de Jekyll que estoy usando.</p>

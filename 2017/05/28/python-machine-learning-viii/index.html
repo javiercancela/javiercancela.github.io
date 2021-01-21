@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>PML T3 - Algoritmo con regresión logística - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PML T3 - Algoritmo con regresión logística | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="PML T3 - Algoritmo con regresión logística" />
+<meta name="author" content="Javier Cancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="Python Machine Learning - Tema 3 - Notas sobre el libro de Sebastian Raschka" />
 <meta property="og:description" content="Python Machine Learning - Tema 3 - Notas sobre el libro de Sebastian Raschka" />
 <link rel="canonical" href="https://www.javiercancela.com/2017/05/28/python-machine-learning-viii/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/pml/pml.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-05-28T03:00:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/pml/pml.jpg" />
+<meta property="twitter:title" content="PML T3 - Algoritmo con regresión logística" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "PML T3 - Algoritmo con regresión logística",
-"image": "https://www.javiercancela.com/images/pml/pml.jpg",
-"datePublished": "2017-05-28T03:00:00+02:00",
-"description": "Python Machine Learning - Tema 3 - Notas sobre el libro de Sebastian Raschka",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2017/05/28/python-machine-learning-viii/"}</script>
+{"dateModified":"2017-05-28T03:00:00+02:00","datePublished":"2017-05-28T03:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2017/05/28/python-machine-learning-viii/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"Javier Cancela"},"url":"https://www.javiercancela.com/2017/05/28/python-machine-learning-viii/","author":{"@type":"Person","name":"Javier Cancela"},"image":"https://www.javiercancela.com/images/pml/pml.jpg","description":"Python Machine Learning - Tema 3 - Notas sobre el libro de Sebastian Raschka","headline":"PML T3 - Algoritmo con regresión logística","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -143,7 +140,7 @@ podemos ya definir el siguiente algoritmo.</p>
 
 <h2 id="el-modelo-para-la-regresión-logística">El modelo para la regresión logística</h2>
 
-<p>El libro traza un paralelo con el modelo <a href="/2017/04/02/python-machine-learning-iii/">ADALINE</a>, donde la función indentidad (<script type="math/tex">\phi(z)=z</script>) es sustituida por la función logística (sigmoidea) en nuestro modelo:</p>
+<p>El libro traza un paralelo con el modelo <a href="/2017/04/02/python-machine-learning-iii/">ADALINE</a>, donde la función indentidad (\(\phi(z)=z\)) es sustituida por la función logística (sigmoidea) en nuestro modelo:</p>
 
 <div style="text-align:center">
     <figure>
@@ -156,43 +153,43 @@ podemos ya definir el siguiente algoritmo.</p>
 
 <p>Cuando hablamos de ADALINE definimos la <a href="/2017/04/02/python-machine-learning-iii/#1">función de costos de la suma de los errores cuadrados</a> para minimizarla:</p>
 
-<script type="math/tex; mode=display">J({\mathbf{w}}) = \frac{1}{2} \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big)^2.</script>
+\[J({\mathbf{w}}) = \frac{1}{2} \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big)^2.\]
 
 <p>Para obtener una función de costos que minimizar, el autor empieza definiendo la siguiente función:</p>
 
-<script type="math/tex; mode=display">L(\mathbf{w}) = P(\mathbf{y} | \mathbf{x}; \mathbf{w}) = \prod_{i=1}^{n} P \big( y^{(i)} | x^{(i)}; \mathbf{w} \big) =  \prod_{i=1}^{n} \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}},</script>
+\[L(\mathbf{w}) = P(\mathbf{y} | \mathbf{x}; \mathbf{w}) = \prod_{i=1}^{n} P \big( y^{(i)} | x^{(i)}; \mathbf{w} \big) =  \prod_{i=1}^{n} \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}},\]
 
-<p>donde <script type="math/tex">y^{(i)}</script> es la clase (<script type="math/tex">1</script> o <script type="math/tex">0</script>) de la muestra <script type="math/tex">i</script>, y <script type="math/tex">\phi \big(z^{(i)} \big)</script> es la probabilidad de que la muestra <script type="math/tex">i</script> pertenezca a la clase <script type="math/tex">1</script>. Como vimos en la entrada anterior, la clase predicha <script type="math/tex">\hat y</script> será <script type="math/tex">1</script> si la probabilidad de es mayor o igual a <script type="math/tex">0.5</script>.</p>
+<p>donde \(y^{(i)}\) es la clase (\(1\) o \(0\)) de la muestra \(i\), y \(\phi \big(z^{(i)} \big)\) es la probabilidad de que la muestra \(i\) pertenezca a la clase \(1\). Como vimos en la entrada anterior, la clase predicha \(\hat y\) será \(1\) si la probabilidad de es mayor o igual a \(0.5\).</p>
 
 <p>Por tanto, la expresión</p>
 
-<script type="math/tex; mode=display">\bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}}</script>
+\[\bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}}\]
 
-<p>indica la probabilidad de que la muestra <script type="math/tex">i</script> pertenezca a la clase real (<script type="math/tex">y^{(i)}</script>), ya que si <script type="math/tex">y^{(i)} = 1</script>, la expresión se simplifica a <script type="math/tex">\phi \big(z^{(i)} \big)</script>, y si <script type="math/tex">y^{(i)} = 0</script> nos queda</p>
+<p>indica la probabilidad de que la muestra \(i\) pertenezca a la clase real (\(y^{(i)}\)), ya que si \(y^{(i)} = 1\), la expresión se simplifica a \(\phi \big(z^{(i)} \big)\), y si \(y^{(i)} = 0\) nos queda</p>
 
-<script type="math/tex; mode=display">\bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}},</script>
+\[\bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}},\]
 
-<p>que es la probabilidad de que la muestra sea de clase distinta de <script type="math/tex">1</script>, es decir, la probabilidad de que se de clase <script type="math/tex">0</script>.</p>
+<p>que es la probabilidad de que la muestra sea de clase distinta de \(1\), es decir, la probabilidad de que se de clase \(0\).</p>
 
-<p>Entonces, la función <script type="math/tex">L(\mathbf{w})</script> es el producto de las probabilidades de que cada muestra sea de su clase real, en función de los pesos <script type="math/tex">\mathbf{w}</script> establecidos. Si maximizamos esa función, estaremos maximizando la calidad de la predicción para el conjunto de muestras.</p>
+<p>Entonces, la función \(L(\mathbf{w})\) es el producto de las probabilidades de que cada muestra sea de su clase real, en función de los pesos \(\mathbf{w}\) establecidos. Si maximizamos esa función, estaremos maximizando la calidad de la predicción para el conjunto de muestras.</p>
 
 <h3 id="simplificando-los-cálculos">Simplificando los cálculos</h3>
 
-<p>El siguiente paso que da el libro es calcular el logaritmo de <script type="math/tex">L(\mathbf{w})</script>. El propósito de esta función es doble. Por un lado, evita un problema potencial si las probabilidades son lo suficientemente pequeñas para que su producto provoque un desbordamiento. El logaritmo convierte los productos en sumas, con lo que el riesgo desaparece. Por otro lado, el cálculo de la derivada se simplifica mucho por el mismo motivo.</p>
+<p>El siguiente paso que da el libro es calcular el logaritmo de \(L(\mathbf{w})\). El propósito de esta función es doble. Por un lado, evita un problema potencial si las probabilidades son lo suficientemente pequeñas para que su producto provoque un desbordamiento. El logaritmo convierte los productos en sumas, con lo que el riesgo desaparece. Por otro lado, el cálculo de la derivada se simplifica mucho por el mismo motivo.</p>
 
-<script type="math/tex; mode=display">l(\mathbf{w}) = \log L(\mathbf{w}) = \log \Bigg[ \prod_{i=1}^{n} \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}}  \Bigg]</script>
+\[l(\mathbf{w}) = \log L(\mathbf{w}) = \log \Bigg[ \prod_{i=1}^{n} \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}}  \Bigg]\]
 
-<p>Dado que <script type="math/tex">\log (xy) = \log x + \log y</script>, el logaritmo del productorio se convierte en un sumatorio de logaritmos:</p>
+<p>Dado que \(\log (xy) = \log x + \log y\), el logaritmo del productorio se convierte en un sumatorio de logaritmos:</p>
 
-<script type="math/tex; mode=display">l(\mathbf{w}) = \sum_{i=1}^{n} \Bigg[ \log \bigg( \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}} \bigg) \Bigg].</script>
+\[l(\mathbf{w}) = \sum_{i=1}^{n} \Bigg[ \log \bigg( \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}} \bigg) \Bigg].\]
 
 <p>Ahora el sumatorio contiene también el logaritmo de un producto, por lo que podemos convertirlo en:</p>
 
-<script type="math/tex; mode=display">l(\mathbf{w}) = \sum_{i=1}^{n} \Bigg[ \log \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} + \log \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}}  \Bigg].</script>
+\[l(\mathbf{w}) = \sum_{i=1}^{n} \Bigg[ \log \bigg( \phi \big(z^{(i)} \big) \bigg) ^ {y^{(i)}} + \log \bigg( 1 - \phi \big( z^{(i)} \big) \bigg)^{1-y^{(i)}}  \Bigg].\]
 
-<p>Finalmente podemos simplificar usar la propiedad <script type="math/tex">\log (x^y) = y \log x</script> para convertir la expresión en:</p>
+<p>Finalmente podemos simplificar usar la propiedad \(\log (x^y) = y \log x\) para convertir la expresión en:</p>
 
-<script type="math/tex; mode=display">l(\mathbf{w}) = \sum_{i=1}^{n} \Bigg[ y^{(i)} \log \bigg( \phi \big(z^{(i)} \big) \bigg) + \bigg(1-y^{(i)} \bigg) \log \bigg( 1 - \phi \big( z^{(i)} \big) \bigg) \Bigg].</script>
+\[l(\mathbf{w}) = \sum_{i=1}^{n} \Bigg[ y^{(i)} \log \bigg( \phi \big(z^{(i)} \big) \bigg) + \bigg(1-y^{(i)} \bigg) \log \bigg( 1 - \phi \big( z^{(i)} \big) \bigg) \Bigg].\]
 
 <p>En la siguiente entrada veremos cómo convertir esta expresión en una función de costos.</p>
 

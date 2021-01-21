@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Consejos para programadores J2ME (y BlackBerry) – 3 - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Consejos para programadores J2ME (y BlackBerry) – 3 | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Consejos para programadores J2ME (y BlackBerry) – 3" />
+<meta name="author" content="javiercancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="ClassCastException o instanceof" />
 <meta property="og:description" content="ClassCastException o instanceof" />
 <link rel="canonical" href="https://www.javiercancela.com/2007/12/18/consejos-para-programadores-j2me-y-blackberry-3/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2007-12-18T18:47:39+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="twitter:title" content="Consejos para programadores J2ME (y BlackBerry) – 3" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "Consejos para programadores J2ME (y BlackBerry) – 3",
-"image": "https://www.javiercancela.com/images/obsolete.jpg",
-"datePublished": "2007-12-18T18:47:39+01:00",
-"description": "ClassCastException o instanceof",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2007/12/18/consejos-para-programadores-j2me-y-blackberry-3/"}</script>
+{"dateModified":"2007-12-18T18:47:39+01:00","datePublished":"2007-12-18T18:47:39+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2007/12/18/consejos-para-programadores-j2me-y-blackberry-3/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"javiercancela"},"url":"https://www.javiercancela.com/2007/12/18/consejos-para-programadores-j2me-y-blackberry-3/","author":{"@type":"Person","name":"javiercancela"},"image":"https://www.javiercancela.com/images/obsolete.jpg","description":"ClassCastException o instanceof","headline":"Consejos para programadores J2ME (y BlackBerry) – 3","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -130,10 +127,10 @@
 		<div class="post-content">
 			<p><strong><em>ClassCastException</em> o <em>instanceof</em></strong></p>
 
-<p>Habitualmente se considera la instrucción <code class="highlighter-rouge">instanceof</code> como una forma muy poco óptima de comprobar si una clase pertenece un objeto. Sin embargo, en <a href="http://www.blackberry.net/developers/javaknowledge/general/kpa0203185136.shtml" title="General Coding Tips">el portal de BlackBerry</a> aconsejan utilizar <code class="highlighter-rouge">instanceof</code> en vez de esperar a capturar una <code class="highlighter-rouge">ClassCastException</code> (lo cual es lógico, ya que la excepción debería ser siempre más costosa), debido a ciertas optimizaciones que se realizan cuando se hace el cast justo después de la comprobación:</p>
+<p>Habitualmente se considera la instrucción <code class="language-plaintext highlighter-rouge">instanceof</code> como una forma muy poco óptima de comprobar si una clase pertenece un objeto. Sin embargo, en <a href="http://www.blackberry.net/developers/javaknowledge/general/kpa0203185136.shtml" title="General Coding Tips">el portal de BlackBerry</a> aconsejan utilizar <code class="language-plaintext highlighter-rouge">instanceof</code> en vez de esperar a capturar una <code class="language-plaintext highlighter-rouge">ClassCastException</code> (lo cual es lógico, ya que la excepción debería ser siempre más costosa), debido a ciertas optimizaciones que se realizan cuando se hace el cast justo después de la comprobación:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">if(x instanceof String) {&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">if(x instanceof String) {&lt;br /&gt;
 (String)x.whatever();&lt;br /&gt;
 } else {&lt;br /&gt;
 // something else&lt;br /&gt;
@@ -150,7 +147,7 @@
 
 <p>– Como norma general, nada de <em>getters</em> y <em>setters</em>. La encapsulación está bien para los PCs, no para los disposivitos móviles. Unas variables miembro con ámbito <em>protected</em> o <em>public</em> funcionarán mejor. El principal motivo para usar <em>getters</em> y <em>setter</em> es proporcionar una interfaz pública estable que nos permita cambiar la implementación interna en el futuro. Salvo que queramos diseñar una librería pública o trabajemos en un proyecto realmente muy grande, no los necesitamos.</p>
 
-<p>– Nada de crear interfaces. Están muy bien para llevar a cabo una librería extensible, pero como en el punto anterior, es muy probable que no las necesitemos. Y en cuanto a su uso, cuantos menos interfaces implemente nuestra aplicación, mejor. El ejemplo típico es la interfaz <code class="highlighter-rouge">CommandListener</code>: en vez de implementarla en cada pantalla, es más efectivo implementarla en una sola clase controladora.</p>
+<p>– Nada de crear interfaces. Están muy bien para llevar a cabo una librería extensible, pero como en el punto anterior, es muy probable que no las necesitemos. Y en cuanto a su uso, cuantos menos interfaces implemente nuestra aplicación, mejor. El ejemplo típico es la interfaz <code class="language-plaintext highlighter-rouge">CommandListener</code>: en vez de implementarla en cada pantalla, es más efectivo implementarla en una sola clase controladora.</p>
 
 <p>– Nada de clases abstractas. Ver punto anterior.</p>
 

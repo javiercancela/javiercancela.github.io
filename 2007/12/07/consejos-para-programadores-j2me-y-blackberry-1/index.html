@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Consejos para programadores J2ME (y BlackBerry) – 1 - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Consejos para programadores J2ME (y BlackBerry) – 1 | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Consejos para programadores J2ME (y BlackBerry) – 1" />
+<meta name="author" content="javiercancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="Basándome en un documento de la Knowledge Base de BlackBerry, que es aplicable a dispositivos J2ME en general, voy a exponer una serie de consejos básicos para programadores Java que quieran comenzar a desarrollar en dispositivos móviles." />
 <meta property="og:description" content="Basándome en un documento de la Knowledge Base de BlackBerry, que es aplicable a dispositivos J2ME en general, voy a exponer una serie de consejos básicos para programadores Java que quieran comenzar a desarrollar en dispositivos móviles." />
 <link rel="canonical" href="https://www.javiercancela.com/2007/12/07/consejos-para-programadores-j2me-y-blackberry-1/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2007-12-07T15:42:14+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="twitter:title" content="Consejos para programadores J2ME (y BlackBerry) – 1" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "Consejos para programadores J2ME (y BlackBerry) – 1",
-"image": "https://www.javiercancela.com/images/obsolete.jpg",
-"datePublished": "2007-12-07T15:42:14+01:00",
-"description": "Basándome en un documento de la Knowledge Base de BlackBerry, que es aplicable a dispositivos J2ME en general, voy a exponer una serie de consejos básicos para programadores Java que quieran comenzar a desarrollar en dispositivos móviles.",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2007/12/07/consejos-para-programadores-j2me-y-blackberry-1/"}</script>
+{"dateModified":"2007-12-07T15:42:14+01:00","datePublished":"2007-12-07T15:42:14+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2007/12/07/consejos-para-programadores-j2me-y-blackberry-1/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"javiercancela"},"url":"https://www.javiercancela.com/2007/12/07/consejos-para-programadores-j2me-y-blackberry-1/","author":{"@type":"Person","name":"javiercancela"},"image":"https://www.javiercancela.com/images/obsolete.jpg","description":"Basándome en un documento de la Knowledge Base de BlackBerry, que es aplicable a dispositivos J2ME en general, voy a exponer una serie de consejos básicos para programadores Java que quieran comenzar a desarrollar en dispositivos móviles.","headline":"Consejos para programadores J2ME (y BlackBerry) – 1","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -135,7 +132,7 @@
 <p>El desarrollo para dispositivos móviles viene marcado por la preocupación extrema (extrema para un programador acostumbrado a PCs y Macs) por el ahorro de recursos. Pese a que ahorrar recursos nunca es malo, en otras plataformas existen factores que suelen tener más peso, como la claridad o economía del código; en los dispositivos móviles estos factores siempre van detrás del consumo de recursos. Un ejemplo:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">for(int i = 0; i &lt; vector.size(); i++) {&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">for(int i = 0; i &lt; vector.size(); i++) {&lt;br /&gt;
 ...&lt;br /&gt;
 }</code></p>
 </blockquote>
@@ -143,7 +140,7 @@
 <p>Este código nos permite ver en una sola línea que vamos a iterar sobre todos los elementos del objeto vector. Sin embargo no es óptimo en términos de rendimiento:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">int vectorSize = vector.size();&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">int vectorSize = vector.size();&lt;br /&gt;
 for(int i = 0; i &lt; vectorSize; i++) {&lt;br /&gt;
 ...&lt;br /&gt;
 }</code></p>
@@ -154,7 +151,7 @@ for(int i = 0; i &lt; vectorSize; i++) {&lt;br /&gt;
 <p>En el caso de no importar el orden de iteración, una optimización adicional se consigue con:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">for(int i = vector.size() - 1; i == 0; i--) {&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">for(int i = vector.size() - 1; i == 0; i--) {&lt;br /&gt;
 ...&lt;br /&gt;
 }</code></p>
 </blockquote>

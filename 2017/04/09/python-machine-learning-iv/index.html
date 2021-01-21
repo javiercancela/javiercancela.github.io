@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>PML T2 - Gradiente descendente estocástico - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PML T2 - Gradiente descendente estocástico | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="PML T2 - Gradiente descendente estocástico" />
+<meta name="author" content="Javier Cancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka" />
 <meta property="og:description" content="Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka" />
 <link rel="canonical" href="https://www.javiercancela.com/2017/04/09/python-machine-learning-iv/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/pml/pml.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-04-09T03:00:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/pml/pml.jpg" />
+<meta property="twitter:title" content="PML T2 - Gradiente descendente estocástico" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "PML T2 - Gradiente descendente estocástico",
-"image": "https://www.javiercancela.com/images/pml/pml.jpg",
-"datePublished": "2017-04-09T03:00:00+02:00",
-"description": "Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2017/04/09/python-machine-learning-iv/"}</script>
+{"dateModified":"2017-04-09T03:00:00+02:00","datePublished":"2017-04-09T03:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2017/04/09/python-machine-learning-iv/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"Javier Cancela"},"url":"https://www.javiercancela.com/2017/04/09/python-machine-learning-iv/","author":{"@type":"Person","name":"Javier Cancela"},"image":"https://www.javiercancela.com/images/pml/pml.jpg","description":"Python Machine Learning - Tema 2 - Notas sobre el libro de Sebastian Raschka","headline":"PML T2 - Gradiente descendente estocástico","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -139,7 +136,7 @@
 
 		<div class="post-content">
 			<p>El siguiente punto del libro nos habla de cómo modificar este algoritmo para adaptarlo a conjuntos con millones de datos. El punto clave está en que la forma del algoritmo que hemos analizado reevalúa todo el conjunto de datos cada vez que se realiza una iteración o época. Si tenemos 1 millón de muestras, por cada época vamos a tener que calcular:
-<script type="math/tex">\Delta \mathbf{w} = \eta \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x^{(i)}</script></p>
+\(\Delta \mathbf{w} = \eta \sum_i \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x^{(i)}\)</p>
 
 <p>Es decir, para cada época tenemos que realizar un millón de veces:</p>
 
@@ -154,13 +151,13 @@
 <h3 id="optimizando-el-proceso">Optimizando el proceso</h3>
 
 <p>El gradiente descendente estocástico utiliza otra aproximación. En vez de recalcular los pesos usando todas las muestras, utilizamos sólo la muestra de la entrada para el cálculo:
-<script type="math/tex">\Delta \mathbf{w} = \eta \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x^{(i)}</script></p>
+\(\Delta \mathbf{w} = \eta \big(y^{(i)} - \phi(z)_{A}^{(i)}\big) x^{(i)}\)</p>
 
 <p>Este cambio tiene dos consecuencias fundamentales Por un lado, los pesos se actualizan con más frecuencia, así que la convergencia suele ser más rápida. Por otro lado, usar una sola muestra da menos precisión a la actualización, así que se introduce más ruido en los pesos. Esto no es necesariamente malo, ya que facilita salir de mínimos locales que no se corresponden con la minimización de nuestra función de costos. Otra ventaja de este algoritmo es que resulta adecuado para el aprendizaje <em>on line</em>, es decir, aquel en el que el modelo tiene que adaptarse rápidamente a cambios en los datos.</p>
 
-<p>Una variante mencionada en el libro pero no implementada en el código consiste en sustituir una tasa de aprendizaje fija <script type="math/tex">\eta</script> por una que disminuya con el tiempo:</p>
+<p>Una variante mencionada en el libro pero no implementada en el código consiste en sustituir una tasa de aprendizaje fija \(\eta\) por una que disminuya con el tiempo:</p>
 
-<script type="math/tex; mode=display">\frac{c_1}{[\textit {número de iteraciones}] + c_2}</script>
+\[\frac{c_1}{[\textit {número de iteraciones}] + c_2}\]
 
 <h3 id="código-python">Código Python</h3>
 
@@ -229,75 +226,75 @@
   </code>
 </pre>
 
-<p>En primer lugar, hemos añadido un método <code class="highlighter-rouge">_shuffle</code> para mezclar los datos de la entrada antes de cada iteración. El propósito de este paso es evitar ciclos al minimizar la función de costos, ya que este algoritmo es sensible a este problema.</p>
+<p>En primer lugar, hemos añadido un método <code class="language-plaintext highlighter-rouge">_shuffle</code> para mezclar los datos de la entrada antes de cada iteración. El propósito de este paso es evitar ciclos al minimizar la función de costos, ya que este algoritmo es sensible a este problema.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">_shuffle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">permutation</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">X</span><span class="p">[</span><span class="n">r</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">r</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p>El constructor incluye parámetros para indicar si queremos mezclar al azar los datos de entrada y para inicializar una semilla para esta mezcla.</p>
 
-<p>El método <code class="highlighter-rouge">fit</code> es el que se encarga del entrenamiento. Invocamos primero al método que inicializa los pesos a cero. Este método existe para marcar los pesos como inicializados, información que necesitamos para el método de entrenamiento parcial <code class="highlighter-rouge">parcial_fit</code>.</p>
+<p>El método <code class="language-plaintext highlighter-rouge">fit</code> es el que se encarga del entrenamiento. Invocamos primero al método que inicializa los pesos a cero. Este método existe para marcar los pesos como inicializados, información que necesitamos para el método de entrenamiento parcial <code class="language-plaintext highlighter-rouge">parcial_fit</code>.</p>
 
-<p>Dentro del método <code class="highlighter-rouge">fit</code> el código que se itera en cada época comienza comprobando si hay que barajar los datos de entrada, e inicializa el costo que evaluará la función de costos:</p>
+<p>Dentro del método <code class="language-plaintext highlighter-rouge">fit</code> el código que se itera en cada época comienza comprobando si hay que barajar los datos de entrada, e inicializa el costo que evaluará la función de costos:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span><span class="p">:</span>
-    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shuffle</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">shuffle</span><span class="p">:</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_shuffle</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">cost</span> <span class="o">=</span> <span class="p">[]</span>
 </code></pre></div></div>
 
-<p>A continuación iteramos los datos. La variable <code class="highlighter-rouge">X</code> es una matriz que contiene una fila por cada muestra, y una columna por cada característica. La variable <code class="highlighter-rouge">y</code> es un array que contiene un elemento, la clase real, para cada muestra de <code class="highlighter-rouge">X</code>. El método <code class="highlighter-rouge">zip</code> nos devolverá un elemento de cada variable (<em>zip</em> en inglés significa, entre otras cosas, cremallera), por lo que en cada iteración del <code class="highlighter-rouge">for</code> en <code class="highlighter-rouge">xi</code> y en <code class="highlighter-rouge">target</code> se almacenarán las características y la clase real de cada muestra.</p>
+<p>A continuación iteramos los datos. La variable <code class="language-plaintext highlighter-rouge">X</code> es una matriz que contiene una fila por cada muestra, y una columna por cada característica. La variable <code class="language-plaintext highlighter-rouge">y</code> es un array que contiene un elemento, la clase real, para cada muestra de <code class="language-plaintext highlighter-rouge">X</code>. El método <code class="language-plaintext highlighter-rouge">zip</code> nos devolverá un elemento de cada variable (<em>zip</em> en inglés significa, entre otras cosas, cremallera), por lo que en cada iteración del <code class="language-plaintext highlighter-rouge">for</code> en <code class="language-plaintext highlighter-rouge">xi</code> y en <code class="language-plaintext highlighter-rouge">target</code> se almacenarán las características y la clase real de cada muestra.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">xi</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="n">cost</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_weights</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
+    <span class="n">cost</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_update_weights</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span>
 
 </code></pre></div></div>
 
-<p>Para cada muestra, actualizamos los pesos en el método <code class="highlighter-rouge">_update_weights</code>:</p>
+<p>Para cada muestra, actualizamos los pesos en el método <code class="language-plaintext highlighter-rouge">_update_weights</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">_update_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net_input</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">net_input</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
     <span class="n">error</span> <span class="o">=</span> <span class="p">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">output</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">xi</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">error</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">xi</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">w_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">error</span>
     <span class="n">cost</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">error</span><span class="o">**</span><span class="mi">2</span>
     <span class="k">return</span> <span class="n">cost</span>
 
 </code></pre></div></div>
 
-<p>Para la salida real seguimos utilizando la función identidad, con lo que la <code class="highlighter-rouge">output</code> es igual a la entrada. La diferencia en este nuevo algoritmo está en cómo ajustamos los pesos. El array de pesos se ajusta con el producto del error con la muestra procesada, no con toda la matriz de entradas. Lógicamente, el costo calculado se obtendrá del error de esta muestra al cuadrado. El costo lo añadimos al array de costos para representarlo posteriormente.</p>
+<p>Para la salida real seguimos utilizando la función identidad, con lo que la <code class="language-plaintext highlighter-rouge">output</code> es igual a la entrada. La diferencia en este nuevo algoritmo está en cómo ajustamos los pesos. El array de pesos se ajusta con el producto del error con la muestra procesada, no con toda la matriz de entradas. Lógicamente, el costo calculado se obtendrá del error de esta muestra al cuadrado. El costo lo añadimos al array de costos para representarlo posteriormente.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">avg_cost</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">cost_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">avg_cost</span><span class="p">)</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">cost_</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">avg_cost</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>Para finalizar el método <code class="highlighter-rouge">fit</code> calculamos la media de los costos de cada muestra, y la añadimos al array de costos.</p>
+<p>Para finalizar el método <code class="language-plaintext highlighter-rouge">fit</code> calculamos la media de los costos de cada muestra, y la añadimos al array de costos.</p>
 
 <h3 id="resultados">Resultados</h3>
 
 <p>Ahora toca usar esta clase. La instanciamos y entrenamos el modelo (el libro usa, en este ejemplo y en el de la entrada anterior, un conjunto de datos escalado para mejorar el rendimiento, y que nosotros revisaremos en el tema 3):</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ada</span> <span class="o">=</span> <span class="n">AdalineSGD</span><span class="p">(</span><span class="n">n_iter</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ada</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ada</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Pintamos los resultados, primero mostrando la clasificación de las muestras y después el costo por época.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot_decision_regions</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">classifier</span><span class="o">=</span><span class="n">ada</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Adaline - Gradiente descendiente estocástico'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'longitud sépalo'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'longitud pétalo'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper left'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Adaline - Gradiente descendiente estocástico'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'longitud sépalo'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'longitud pétalo'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper left'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ada</span><span class="o">.</span><span class="n">cost_</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ada</span><span class="o">.</span><span class="n">cost_</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Épocas'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Costo medio'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ada</span><span class="p">.</span><span class="n">cost_</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ada</span><span class="p">.</span><span class="n">cost_</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'o'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Épocas'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Costo medio'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 <p>Los datos obtenidos son estos (los resultados son distintos a los obtenidos en el libro, ya que nosotros no hemos estandarizado los valores de las muestras):</p>
 

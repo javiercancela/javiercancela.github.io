@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte I - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte I | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte I" />
+<meta name="author" content="javiercancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="Introducción" />
 <meta property="og:description" content="Introducción" />
 <link rel="canonical" href="https://www.javiercancela.com/2008/01/07/leyendo-nuestro-gps-desde-java-con-la-javame-location-api-jsr-179-parte-i/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2008-01-07T11:09:33+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="twitter:title" content="Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte I" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte I",
-"image": "https://www.javiercancela.com/images/obsolete.jpg",
-"datePublished": "2008-01-07T11:09:33+01:00",
-"description": "Introducción",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2008/01/07/leyendo-nuestro-gps-desde-java-con-la-javame-location-api-jsr-179-parte-i/"}</script>
+{"dateModified":"2008-01-07T11:09:33+01:00","datePublished":"2008-01-07T11:09:33+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2008/01/07/leyendo-nuestro-gps-desde-java-con-la-javame-location-api-jsr-179-parte-i/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"javiercancela"},"url":"https://www.javiercancela.com/2008/01/07/leyendo-nuestro-gps-desde-java-con-la-javame-location-api-jsr-179-parte-i/","author":{"@type":"Person","name":"javiercancela"},"image":"https://www.javiercancela.com/images/obsolete.jpg","description":"Introducción","headline":"Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte I","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -152,43 +149,43 @@
 
 <p><strong>Estableciendo criterios</strong></p>
 
-<p>La clase <code class="highlighter-rouge">javax.microedition.location.Criteria</code> proporciona funciones que nos van a permitir filtrar los proveedores de localización disponibles. Veamos qué podemos definir en esta clase:</p>
+<p>La clase <code class="language-plaintext highlighter-rouge">javax.microedition.location.Criteria</code> proporciona funciones que nos van a permitir filtrar los proveedores de localización disponibles. Veamos qué podemos definir en esta clase:</p>
 
 <ul>
   <li>
     <p>La precisión horizontal y vertical.</p>
 
-    <p>Se establece mediante los métodos <code class="highlighter-rouge">setHorizontalAccuracy</code> y <code class="highlighter-rouge">setVerticalAccuracy</code>. La precisión de los datos depende de su origen. Así, si indicamos una precisión de 50 metros excluiremos los datos provenientes de localización por celda telefónica, que suelen tener precisiones de cientos de metros, pero aceptaremos los datos del GPS, con precisiones típicas de pocos metros.</p>
+    <p>Se establece mediante los métodos <code class="language-plaintext highlighter-rouge">setHorizontalAccuracy</code> y <code class="language-plaintext highlighter-rouge">setVerticalAccuracy</code>. La precisión de los datos depende de su origen. Así, si indicamos una precisión de 50 metros excluiremos los datos provenientes de localización por celda telefónica, que suelen tener precisiones de cientos de metros, pero aceptaremos los datos del GPS, con precisiones típicas de pocos metros.</p>
   </li>
   <li>
     <p>El permiso para obtener datos a cambio de un precio.</p>
 
-    <p>Mediante el método <code class="highlighter-rouge">setCostAllowed(false)</code> (el valor por defecto es true) impedimos que nos cobren por obtener datos de localización. Esto excluye habitualmente el A-GPS y la localización por celda telefónica, que necesitan comunicación con la red telefónica para obtener la información, además de un posible sobrecoste por el servicio.</p>
+    <p>Mediante el método <code class="language-plaintext highlighter-rouge">setCostAllowed(false)</code> (el valor por defecto es true) impedimos que nos cobren por obtener datos de localización. Esto excluye habitualmente el A-GPS y la localización por celda telefónica, que necesitan comunicación con la red telefónica para obtener la información, además de un posible sobrecoste por el servicio.</p>
   </li>
   <li>
     <p>El nivel de consumo de batería.</p>
 
-    <p>A través del método <code class="highlighter-rouge">setPreferredPowerConsumption</code> podemos indicar si permitiremos un nivel de consumo bajo, medio o alto. Hay que tener en cuenta que es el fabricante del dispositivo quien decide qué es alto, medio o bajo, pero probablemente el uso de un dispositivo GPS interno o bluetooth tendrá un consumo medio o alto.</p>
+    <p>A través del método <code class="language-plaintext highlighter-rouge">setPreferredPowerConsumption</code> podemos indicar si permitiremos un nivel de consumo bajo, medio o alto. Hay que tener en cuenta que es el fabricante del dispositivo quien decide qué es alto, medio o bajo, pero probablemente el uso de un dispositivo GPS interno o bluetooth tendrá un consumo medio o alto.</p>
   </li>
   <li>
     <p>Otros criterios.</p>
 
-    <p>El tiempo de respuesta, la velocidad o información relativa a la dirección postal. Para una descripción más extensa, véase la <a href="http://www-users.cs.umn.edu/~czhou/docs/jsr179/lapi/javax/microedition/location/Criteria.html" title="Class Criteria">referencia de la clase <code class="highlighter-rouge">Criteria</code></a>.</p>
+    <p>El tiempo de respuesta, la velocidad o información relativa a la dirección postal. Para una descripción más extensa, véase la <a href="http://www-users.cs.umn.edu/~czhou/docs/jsr179/lapi/javax/microedition/location/Criteria.html" title="Class Criteria">referencia de la clase <code class="language-plaintext highlighter-rouge">Criteria</code></a>.</p>
   </li>
 </ul>
 
 <p><strong>Accediendo al GPS</strong></p>
 
-<p>Una vez definidos los criterios, obtendremos una referencia al proveedor de contenidos. La clase <code class="highlighter-rouge">LocationProvider</code> implementa un método estático <a href="http://www-users.cs.umn.edu/~czhou/docs/jsr179/lapi/javax/microedition/location/LocationProvider.html#getInstance(javax.microedition.location.Criteria)" title="getInstance"><code class="highlighter-rouge">getInstance(Criteria criteria)</code></a> que devuelve un proveedor que se adapte a los criterios que hemos indicado. Si ninguno de los proveedores disponibles encaja en los criterios indicados, el método devolverá <code class="highlighter-rouge">null</code>. En caso de que no exista ningún proveedor de localización disponible se lanzará una <code class="highlighter-rouge">LocationException</code>. Es posible llamar a <code class="highlighter-rouge">getInstance</code> pasando <code class="highlighter-rouge">null</code> como parámetro: de esta forma se especifican los parámetros menos restrictivos para la selección.</p>
+<p>Una vez definidos los criterios, obtendremos una referencia al proveedor de contenidos. La clase <code class="language-plaintext highlighter-rouge">LocationProvider</code> implementa un método estático <a href="http://www-users.cs.umn.edu/~czhou/docs/jsr179/lapi/javax/microedition/location/LocationProvider.html#getInstance(javax.microedition.location.Criteria)" title="getInstance"><code class="language-plaintext highlighter-rouge">getInstance(Criteria criteria)</code></a> que devuelve un proveedor que se adapte a los criterios que hemos indicado. Si ninguno de los proveedores disponibles encaja en los criterios indicados, el método devolverá <code class="language-plaintext highlighter-rouge">null</code>. En caso de que no exista ningún proveedor de localización disponible se lanzará una <code class="language-plaintext highlighter-rouge">LocationException</code>. Es posible llamar a <code class="language-plaintext highlighter-rouge">getInstance</code> pasando <code class="language-plaintext highlighter-rouge">null</code> como parámetro: de esta forma se especifican los parámetros menos restrictivos para la selección.</p>
 
-<p>Utilizaremos la instancia obtenida de <code class="highlighter-rouge">LocationProvider</code> para obtener la posición mediante el método <a href="http://www-users.cs.umn.edu/~czhou/docs/jsr179/lapi/javax/microedition/location/LocationProvider.html#getLocation(int)" title="getLocation"><code class="highlighter-rouge">getLocation</code></a>. En el podemos especificar un <em>timeout</em>, o tiempo que queremos que espere el sistema para obtener una posición. Una vez obtenida dispondremos de un objeto <code class="highlighter-rouge">Location</code> que contendrá, entre otras cosas, las coordenadas de nuestra ubicación.</p>
+<p>Utilizaremos la instancia obtenida de <code class="language-plaintext highlighter-rouge">LocationProvider</code> para obtener la posición mediante el método <a href="http://www-users.cs.umn.edu/~czhou/docs/jsr179/lapi/javax/microedition/location/LocationProvider.html#getLocation(int)" title="getLocation"><code class="language-plaintext highlighter-rouge">getLocation</code></a>. En el podemos especificar un <em>timeout</em>, o tiempo que queremos que espere el sistema para obtener una posición. Una vez obtenida dispondremos de un objeto <code class="language-plaintext highlighter-rouge">Location</code> que contendrá, entre otras cosas, las coordenadas de nuestra ubicación.</p>
 
 <p><strong>Un ejemplo sencillo</strong></p>
 
 <p>Juntemos todo en un ejemplo muy sencillo, sólo útil para hacerse una idea del código descrito:</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">// Establecemos los criterios. Queremos sólo un GPS interno o Bluetooth&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">// Establecemos los criterios. Queremos sólo un GPS interno o Bluetooth&lt;br /&gt;
 Criteria criteria = new Criteria();&lt;br /&gt;
 criteria.setCostAllowed(false);&lt;br /&gt;
 // Como el valor por defecto de los siguientes parámetros&lt;br /&gt;
@@ -199,14 +196,14 @@ criteria.setPreferredPowerConsumption(NO_REQUIREMENT);</code></p>
 </blockquote>
 
 <blockquote>
-  <p><code class="highlighter-rouge">&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">&lt;br /&gt;
 // Aquí falta capturar la posible excepción y verificar que el&lt;br /&gt;
 // valor devuelto no es null&lt;br /&gt;
 LocationProvider lp = LocationProvider.getInstance(criteria);&lt;br /&gt;
 // Con -1 indicamos el timeout por defecto&lt;br /&gt;
 Location location = lp.getLocation(-1);</code></p>
 
-  <p><code class="highlighter-rouge">Coordinates coordinates = location.getQualifiedCoordinates();&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">Coordinates coordinates = location.getQualifiedCoordinates();&lt;br /&gt;
 System.out.println("Latitud: " + coordinates.getLatitude());&lt;br /&gt;
 System.out.println("Longitud: " + coordinates.getLongitude());</code></p>
 </blockquote>

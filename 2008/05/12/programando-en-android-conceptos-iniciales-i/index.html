@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Programando en Android – Conceptos iniciales (I) - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Programando en Android – Conceptos iniciales (I) | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Programando en Android – Conceptos iniciales (I)" />
+<meta name="author" content="javiercancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="El primer paso para relacionar conceptos es conocer los conceptos. Y en Android existen una serie de conceptos que suponen la piedra y el mortero de cualquier aplicación." />
 <meta property="og:description" content="El primer paso para relacionar conceptos es conocer los conceptos. Y en Android existen una serie de conceptos que suponen la piedra y el mortero de cualquier aplicación." />
 <link rel="canonical" href="https://www.javiercancela.com/2008/05/12/programando-en-android-conceptos-iniciales-i/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2008-05-12T10:00:19+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="twitter:title" content="Programando en Android – Conceptos iniciales (I)" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "Programando en Android – Conceptos iniciales (I)",
-"image": "https://www.javiercancela.com/images/obsolete.jpg",
-"datePublished": "2008-05-12T10:00:19+02:00",
-"description": "El primer paso para relacionar conceptos es conocer los conceptos. Y en Android existen una serie de conceptos que suponen la piedra y el mortero de cualquier aplicación.",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2008/05/12/programando-en-android-conceptos-iniciales-i/"}</script>
+{"dateModified":"2008-05-12T10:00:19+02:00","datePublished":"2008-05-12T10:00:19+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2008/05/12/programando-en-android-conceptos-iniciales-i/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"javiercancela"},"url":"https://www.javiercancela.com/2008/05/12/programando-en-android-conceptos-iniciales-i/","author":{"@type":"Person","name":"javiercancela"},"image":"https://www.javiercancela.com/images/obsolete.jpg","description":"El primer paso para relacionar conceptos es conocer los conceptos. Y en Android existen una serie de conceptos que suponen la piedra y el mortero de cualquier aplicación.","headline":"Programando en Android – Conceptos iniciales (I)","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -125,17 +122,17 @@
 		<div class="post-content">
 			<p>El primer paso para <a href="/2008/05/06/programando-en-android-prologo/">relacionar conceptos</a> es conocer los conceptos. Y en Android existen una serie de conceptos que suponen la piedra y el mortero de cualquier aplicación.</p>
 
-<p><strong>El archivo <code class="highlighter-rouge">AndroidManifest.xml</code></strong></p>
+<p><strong>El archivo <code class="language-plaintext highlighter-rouge">AndroidManifest.xml</code></strong></p>
 
 <p>Este archivo está presente en todas las aplicaciones Android. Su contenido especifica los componentes de la aplicación, así como la configuración global de la misma. Su descripción se muestra en <a href="http://code.google.com/android/devel/bblocks-manifest.html" title="The AndroidManifest.xml File">esta página de la documentación</a>.</p>
 
-<p>En una aplicación habitual, dentro de este archivo habrá un elemento <a href="http://code.google.com/android/reference/android/R.styleable.html#AndroidManifestApplication" title="&lt;application&gt;"><code class="highlighter-rouge">&lt;application&gt;</code></a>, dentro del cuál habrá uno o varios elementos <code class="highlighter-rouge">&lt;a title="&lt;activity&gt;" href="http://code.google.com/android/reference/android/R.styleable.html#AndroidManifestActivity"&gt;&lt;activity&gt;&lt;/a&gt;</code>. Cada uno de estos elementos supone una interacción con el usuario (generalmente una ventana), y se corresponde con una clase que hereda de la clase <a href="http://code.google.com/android/reference/android/app/Activity.html" title="Activity"><code class="highlighter-rouge">Activity</code></a>.</p>
+<p>En una aplicación habitual, dentro de este archivo habrá un elemento <a href="http://code.google.com/android/reference/android/R.styleable.html#AndroidManifestApplication" title="&lt;application&gt;"><code class="language-plaintext highlighter-rouge">&lt;application&gt;</code></a>, dentro del cuál habrá uno o varios elementos <code class="language-plaintext highlighter-rouge">&lt;a title="&lt;activity&gt;" href="http://code.google.com/android/reference/android/R.styleable.html#AndroidManifestActivity"&gt;&lt;activity&gt;&lt;/a&gt;</code>. Cada uno de estos elementos supone una interacción con el usuario (generalmente una ventana), y se corresponde con una clase que hereda de la clase <a href="http://code.google.com/android/reference/android/app/Activity.html" title="Activity"><code class="language-plaintext highlighter-rouge">Activity</code></a>.</p>
 
 <p><strong>La clase</strong> <em><strong>Activity</strong></em></p>
 
-<p>Según la documentación de Google, una <em>Activity</em> es una cosa única con un objetivo determinado que el usuario puede hacer. Esta es una definición abstracta. Podemos concretar más la definición diciendo que una <em>Activity</em> (es decir, una clase de nuestra aplicación que hereda de la clase <code class="highlighter-rouge">Activity</code>) se presenta al usuario como una ventana. Esta clase crea una ventana que muestra una interfaz de usuario, la cual está definida a su vez en una instancia de otra clase, la clase <a href="http://code.google.com/android/reference/android/view/View.html" title="View"><code class="highlighter-rouge">View</code></a>.</p>
+<p>Según la documentación de Google, una <em>Activity</em> es una cosa única con un objetivo determinado que el usuario puede hacer. Esta es una definición abstracta. Podemos concretar más la definición diciendo que una <em>Activity</em> (es decir, una clase de nuestra aplicación que hereda de la clase <code class="language-plaintext highlighter-rouge">Activity</code>) se presenta al usuario como una ventana. Esta clase crea una ventana que muestra una interfaz de usuario, la cual está definida a su vez en una instancia de otra clase, la clase <a href="http://code.google.com/android/reference/android/view/View.html" title="View"><code class="language-plaintext highlighter-rouge">View</code></a>.</p>
 
-<p>Cuando se ejecuta una aplicación Android lo primero que se muestra al usuario es la ventana definida por la actividad que esté marcada en el <code class="highlighter-rouge">AndroidManifest.xml</code> como principal. Las actividades se gestionan como una pila, así que desde una actividad se puede llamar a otra, y cuando esta finaliza se retorna a la actividad inicial.</p>
+<p>Cuando se ejecuta una aplicación Android lo primero que se muestra al usuario es la ventana definida por la actividad que esté marcada en el <code class="language-plaintext highlighter-rouge">AndroidManifest.xml</code> como principal. Las actividades se gestionan como una pila, así que desde una actividad se puede llamar a otra, y cuando esta finaliza se retorna a la actividad inicial.</p>
 
 <p>Una actividad puede estar ejecutándose, en pausa o detenida. Simplificando, está en ejecución cuando es visible e interacciona con el usuario, está en pausa cuando es visible pero otra ventana, transparente o que no ocupe toda la pantalla, tiene el foco, y está detenida cuando no es visible. En todos estos casos la clase mantiene su información.</p>
 
@@ -146,12 +143,12 @@
 <p>Aunque no es necesario entender de momento todos los detalles de este gráfico, en él se ven los estados por los que puede pasar una actividad (los óvalos coloreados) y los eventos que se disparan en dichos estados (los rectángulos grises):</p>
 
 <ul>
-  <li>Cuando se crea una actividad, se invoca el evento <code class="highlighter-rouge">onCreate()</code>. Este evento sólo se invoca la primera vez que se llama a una actividad, o bien cuando se llama después de que el sistema haya tenido que eliminarla por falta de recursos (más sobre esto en próximos artículos).</li>
-  <li><code class="highlighter-rouge">onStart()</code> es el evento invocado cuando cada vez que la actividad se muestra al usuario. Es decir, la primera vez que se muestra, y las veces que en las que vuelve a aparecer tras haber estado oculta. En este último caso, se invoca <code class="highlighter-rouge">onStop()</code> al desaparecer y <code class="highlighter-rouge">onRestart()</code> inmediatamente antes de reaparecer.</li>
-  <li><code class="highlighter-rouge">onFreeze()</code> y <code class="highlighter-rouge">onPause()</code> son llamadas secuencialmente cuando otra actividad va a pasar en encargarse de la interacción con el usuario. Tras <code class="highlighter-rouge">onPause()</code> la actividad permanece en un estado de espera en el que puede ocurrir que la aplicación sea destruida, por lo que estos eventos se usan para consolidar la información que no queremos que se pierda. Si la actividad no se destruye volverá al primer plano con el evento <code class="highlighter-rouge">onResume()</code>.</li>
+  <li>Cuando se crea una actividad, se invoca el evento <code class="language-plaintext highlighter-rouge">onCreate()</code>. Este evento sólo se invoca la primera vez que se llama a una actividad, o bien cuando se llama después de que el sistema haya tenido que eliminarla por falta de recursos (más sobre esto en próximos artículos).</li>
+  <li><code class="language-plaintext highlighter-rouge">onStart()</code> es el evento invocado cuando cada vez que la actividad se muestra al usuario. Es decir, la primera vez que se muestra, y las veces que en las que vuelve a aparecer tras haber estado oculta. En este último caso, se invoca <code class="language-plaintext highlighter-rouge">onStop()</code> al desaparecer y <code class="language-plaintext highlighter-rouge">onRestart()</code> inmediatamente antes de reaparecer.</li>
+  <li><code class="language-plaintext highlighter-rouge">onFreeze()</code> y <code class="language-plaintext highlighter-rouge">onPause()</code> son llamadas secuencialmente cuando otra actividad va a pasar en encargarse de la interacción con el usuario. Tras <code class="language-plaintext highlighter-rouge">onPause()</code> la actividad permanece en un estado de espera en el que puede ocurrir que la aplicación sea destruida, por lo que estos eventos se usan para consolidar la información que no queremos que se pierda. Si la actividad no se destruye volverá al primer plano con el evento <code class="language-plaintext highlighter-rouge">onResume()</code>.</li>
 </ul>
 
-<p>La idea importante con la que quedarse es que una actividad que esté pausada o detenida (tras <code class="highlighter-rouge">onPause()</code> u <code class="highlighter-rouge">onStop()</code>) puede ser destruida por el sistema si previo aviso, por lo que deberemos encargarnos de guardar antes la información necesaria (durante <code class="highlighter-rouge">onFreeze()</code> y <code class="highlighter-rouge">onPause()</code>). Los detalles lo veremos en una próxima entrada.</p>
+<p>La idea importante con la que quedarse es que una actividad que esté pausada o detenida (tras <code class="language-plaintext highlighter-rouge">onPause()</code> u <code class="language-plaintext highlighter-rouge">onStop()</code>) puede ser destruida por el sistema si previo aviso, por lo que deberemos encargarnos de guardar antes la información necesaria (durante <code class="language-plaintext highlighter-rouge">onFreeze()</code> y <code class="language-plaintext highlighter-rouge">onPause()</code>). Los detalles lo veremos en una próxima entrada.</p>
 
 <h3 id="entradas-relacionadas">Entradas relacionadas:</h3>
 

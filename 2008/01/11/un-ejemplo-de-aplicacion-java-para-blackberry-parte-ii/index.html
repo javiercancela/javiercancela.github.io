@@ -9,7 +9,7 @@
 		</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="generator" content="Jekyll v3.8.6">
+		<meta name="generator" content="Jekyll v4.2.0">
 
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
 		<link rel="stylesheet" href="/css/screen.css">
@@ -20,9 +20,12 @@
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="theme-color" content="#ffffff">
 
-		<!-- Begin Jekyll SEO tag v2.1.0 -->
-<title>Un ejemplo de aplicación Java para BlackBerry – Parte II - Página de Javier Cancela</title>
+		<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Un ejemplo de aplicación Java para BlackBerry – Parte II | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Un ejemplo de aplicación Java para BlackBerry – Parte II" />
+<meta name="author" content="javiercancela" />
+<meta property="og:locale" content="en_US" />
 <meta name="description" content="Seguimos examinando la clase abstracta BaseApp." />
 <meta property="og:description" content="Seguimos examinando la clase abstracta BaseApp." />
 <link rel="canonical" href="https://www.javiercancela.com/2008/01/11/un-ejemplo-de-aplicacion-java-para-blackberry-parte-ii/" />
@@ -31,17 +34,11 @@
 <meta property="og:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2008-01-11T09:00:25+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="twitter:title" content="Un ejemplo de aplicación Java para BlackBerry – Parte II" />
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "Un ejemplo de aplicación Java para BlackBerry – Parte II",
-"image": "https://www.javiercancela.com/images/obsolete.jpg",
-"datePublished": "2008-01-11T09:00:25+01:00",
-"description": "Seguimos examinando la clase abstracta BaseApp.",
-"publisher": {"@type": "Organization",
-"logo": {"@type": "ImageObject",
-"url": "https://www.javiercancela.com/siteicon.png"}},
-"url": "https://www.javiercancela.com/2008/01/11/un-ejemplo-de-aplicacion-java-para-blackberry-parte-ii/"}</script>
+{"dateModified":"2008-01-11T09:00:25+01:00","datePublished":"2008-01-11T09:00:25+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2008/01/11/un-ejemplo-de-aplicacion-java-para-blackberry-parte-ii/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"javiercancela"},"url":"https://www.javiercancela.com/2008/01/11/un-ejemplo-de-aplicacion-java-para-blackberry-parte-ii/","author":{"@type":"Person","name":"javiercancela"},"image":"https://www.javiercancela.com/images/obsolete.jpg","description":"Seguimos examinando la clase abstracta BaseApp.","headline":"Un ejemplo de aplicación Java para BlackBerry – Parte II","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -133,7 +130,7 @@
 <p><strong>Crear un menú</strong></p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">protected void makeMenu( Menu menu, int instance) {&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">protected void makeMenu( Menu menu, int instance) {&lt;br /&gt;
 Field focus = UiApplication.getUiApplication().getActiveScreen().getLeafFieldWithFocus();&lt;br /&gt;
 if(focus != null) {&lt;br /&gt;
 ContextMenu contextMenu = focus.getContextMenu();&lt;br /&gt;
@@ -146,18 +143,18 @@ menu.add(_closeItem);&lt;br /&gt;
 }</code></p>
 </blockquote>
 
-<p>La clase <a href="http://www.blackberry.com/developers/docs/4.1api/net/rim/device/api/ui/component/Menu.html" title="Class Menu"><code class="highlighter-rouge">net.rim.device.api.ui.component.Menu</code></a> representa un menú que se despliega desde la parte superior derecha de la pantalla. Está compuesto por objetos MenuItem, de los que ya hablamos en la entrada anterior.</p>
+<p>La clase <a href="http://www.blackberry.com/developers/docs/4.1api/net/rim/device/api/ui/component/Menu.html" title="Class Menu"><code class="language-plaintext highlighter-rouge">net.rim.device.api.ui.component.Menu</code></a> representa un menú que se despliega desde la parte superior derecha de la pantalla. Está compuesto por objetos MenuItem, de los que ya hablamos en la entrada anterior.</p>
 
-<p>El método <code class="highlighter-rouge">makeMenu</code> es invocado cuando se produce un evento que tenga que mostrar el menú, como pulsar el <em>trackwheel</em>. En la implementación de las interfaces veremos un ejemplo. Este método, a través del objeto aplicación (<code class="highlighter-rouge">UiApplication.getUiApplication()</code>), obtiene la pantalla activa (<code class="highlighter-rouge">getActiveScreen()</code>) y de ella el campo hoja que tiene el foco (<code class="highlighter-rouge">getLeafFieldWithFocus()</code>). Un campo hoja (<em>Leaf Field</em>) es aquel que no actúa de contenedor para otro campo.</p>
+<p>El método <code class="language-plaintext highlighter-rouge">makeMenu</code> es invocado cuando se produce un evento que tenga que mostrar el menú, como pulsar el <em>trackwheel</em>. En la implementación de las interfaces veremos un ejemplo. Este método, a través del objeto aplicación (<code class="language-plaintext highlighter-rouge">UiApplication.getUiApplication()</code>), obtiene la pantalla activa (<code class="language-plaintext highlighter-rouge">getActiveScreen()</code>) y de ella el campo hoja que tiene el foco (<code class="language-plaintext highlighter-rouge">getLeafFieldWithFocus()</code>). Un campo hoja (<em>Leaf Field</em>) es aquel que no actúa de contenedor para otro campo.</p>
 
-<p>Si este campo tiene un menú contextual se añade al menú de la pantalla (el objeto <code class="highlighter-rouge">Menu</code>, que puede tener ya otros elementos), y tras él un separador y el elemento <code class="highlighter-rouge">_closeItem</code> que vimos en la entrada anterior.</p>
+<p>Si este campo tiene un menú contextual se añade al menú de la pantalla (el objeto <code class="language-plaintext highlighter-rouge">Menu</code>, que puede tener ya otros elementos), y tras él un separador y el elemento <code class="language-plaintext highlighter-rouge">_closeItem</code> que vimos en la entrada anterior.</p>
 
 <p><strong>Implementación de interfaces</strong></p>
 
-<p>Ahora vamos a ver los métodos de las otras dos interfaces que implementa nuestra clase, <code class="highlighter-rouge">KeyListener</code> y <code class="highlighter-rouge">TrackwheelListener</code>.</p>
+<p>Ahora vamos a ver los métodos de las otras dos interfaces que implementa nuestra clase, <code class="language-plaintext highlighter-rouge">KeyListener</code> y <code class="language-plaintext highlighter-rouge">TrackwheelListener</code>.</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">/* Invoked when the trackwheel is clicked. */&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">/* Invoked when the trackwheel is clicked. */&lt;br /&gt;
 public boolean trackwheelClick( int status, int time ) {&lt;br /&gt;
 Menu menu = new Menu();&lt;br /&gt;
 makeMenu( menu, 0);&lt;br /&gt;
@@ -177,7 +174,7 @@ return false;&lt;br /&gt;
 <p>No hacemos nada cuando se suelta el <em>trackwheel</em> o cuando se gira, pero cuando se pulsa creamos un menú, lo construimos y lo mostramos. Hacerlo en este evento es el comportamiento estándar en una BlackBerry.</p>
 
 <blockquote>
-  <p><code class="highlighter-rouge">public boolean keyChar(char key, int status, int time) {&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public boolean keyChar(char key, int status, int time) {&lt;br /&gt;
 /* Intercept the ESC key and exit the application. */&lt;br /&gt;
 boolean retval = false;&lt;br /&gt;
 switch (key) {&lt;br /&gt;
@@ -207,11 +204,11 @@ return false;&lt;br /&gt;
 }</code></p>
 </blockquote>
 
-<p>De los eventos de teclado (<code class="highlighter-rouge">keyStatus</code> se dispara cuando se pulsan Shift o Alt) sólo actuamos en <code class="highlighter-rouge">keyChar</code>, que se dispara cuando se genera un carácter. En concreto nos interesa comprobar si el carácter es un <em>Escape</em>. Si es así, terminamos la aplicación.</p>
+<p>De los eventos de teclado (<code class="language-plaintext highlighter-rouge">keyStatus</code> se dispara cuando se pulsan Shift o Alt) sólo actuamos en <code class="language-plaintext highlighter-rouge">keyChar</code>, que se dispara cuando se genera un carácter. En concreto nos interesa comprobar si el carácter es un <em>Escape</em>. Si es así, terminamos la aplicación.</p>
 
-<p><strong>Listado completo de <code class="highlighter-rouge">BaseApp</code></strong></p>
+<p><strong>Listado completo de <code class="language-plaintext highlighter-rouge">BaseApp</code></strong></p>
 
-<p>A continuación el listado completo de la clase <code class="highlighter-rouge">BaseApp</code>, que se utilizará en una próxima entrada para la clase <code class="highlighter-rouge">GPSDemo</code>.</p>
+<p>A continuación el listado completo de la clase <code class="language-plaintext highlighter-rouge">BaseApp</code>, que se utilizará en una próxima entrada para la clase <code class="language-plaintext highlighter-rouge">GPSDemo</code>.</p>
 
 <blockquote>
   <p>`/*<br /></p>
@@ -221,15 +218,15 @@ return false;&lt;br /&gt;
 */`</li>
   </ul>
 
-  <p><code class="highlighter-rouge"><span class="k">package</span> <span class="n">com</span><span class="p">.</span><span class="n">rim</span><span class="p">.</span><span class="n">samples</span><span class="p">.</span><span class="n">docs</span><span class="p">.</span><span class="n">baseapp</span><span class="p">;</span></code></p>
+  <p><code class="language-plaintext highlighter-rouge">package com.rim.samples.docs.baseapp;</code></p>
 
-  <p><code class="highlighter-rouge">import net.rim.device.api.i18n.*;&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">import net.rim.device.api.i18n.*;&lt;br /&gt;
 import net.rim.device.api.system.*;&lt;br /&gt;
 import net.rim.device.api.ui.container.*;&lt;br /&gt;
 import net.rim.device.api.ui.*;&lt;br /&gt;
 import net.rim.device.api.ui.component.*;</code></p>
 
-  <p><code class="highlighter-rouge">public abstract class BaseApp extends UiApplication implements BaseAppResource, KeyListener, TrackwheelListener {&lt;br /&gt;
+  <p><code class="language-plaintext highlighter-rouge">public abstract class BaseApp extends UiApplication implements BaseAppResource, KeyListener, TrackwheelListener {&lt;br /&gt;
 private MenuItem _closeItem;&lt;br /&gt;
 private static ResourceBundle _resources =&lt;br /&gt;
 ResourceBundle.getBundle(BUNDLE_ID, BUNDLE_NAME);&lt;br /&gt;
