@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .staff { display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flexbox; display: flex; }
 
-html { background: #2b2b40; }
+html { background: #fff; }
 
 html, body { margin: 0; padding: 0; }
 
@@ -255,9 +255,9 @@ nav a.nav-toggle:hover { border: 0; }
 
 nav a.active { border-bottom: 5px solid #ffa74d; }
 
-footer { font-size: .6em; position: relative; background: #2b2b40; color: #fff; }
+footer { font-size: .6em; position: relative; background: #ffa74d; color: #000; }
 
-footer, footer a { color: #999; }
+footer, footer a { color: #000; }
 
 footer a { text-decoration: none; padding: 0 10px; }
 
@@ -275,7 +275,7 @@ footer ul li { list-style: none; margin: 15px auto; display: inline-block; }
 
 footer ul li a:hover { text-decoration: none; }
 
-footer ul li a svg { fill: #999; transition: fill 0.2s ease; vertical-align: middle; width: 18px; height: 18px; }
+footer ul li a svg { fill: #000; transition: fill 0.2s ease; vertical-align: middle; width: 18px; height: 18px; }
 
 footer ul li a:hover svg { fill: #fff; }
 
@@ -295,7 +295,7 @@ footer ul li a.rss-icon:hover svg { fill: #f26522; }
 
 .copyright { margin: 15px auto; float: left; }
 
-.copyright a { color: #999; }
+.copyright a { color: #000; }
 
 @media (min-width: 768px) { .copyright { text-align: center; float: none; padding: 16px 0; margin: 0; } }
 
