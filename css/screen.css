@@ -55,11 +55,11 @@ p, address, ul { font-size: 1.38em; margin-bottom: 20px; font-weight: 300; line-
 
 .text-container { max-width: 1024px; }
 
-.container { max-width: 1140px; }
+.container { max-width: 1140px; margin-top: 40px; }
 
 .dark-logo { display: none; }
 
-section { background: #fff; }
+section { background: #fff; padding-top: 20px; }
 
 .pad { padding: 60px 0; }
 
@@ -158,14 +158,6 @@ blockquote:before { color: #ccc; content: open-quote; font-size: 4em; line-heigh
 .contact-box .contact-details { font-size: .9em; margin-top: 60px; }
 
 .blog-posts { list-style: none; padding: 0; margin: 0; font-size: 1em; }
-
-.blog-posts li { padding: 50px 0; }
-
-.blog-posts .blog-post { padding: 18px 0; }
-
-.blog-posts .blog-post:first-child { padding-top: 50px; }
-
-.blog-posts .blog-post .post-details { padding-top: 15px; }
 
 .blog-post .author { padding: 30px 0 0 0; border: 1px solid #eee; margin: 30px 0; font-size: .8em; }
 
