@@ -1,4 +1,4 @@
-JEKYLL_ENV=production 
+env JEKYLL_ENV=production 
 bundle exec jekyll build 
 git add -A .
 git commit -m "Changes"
