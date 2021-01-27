@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://www.javiercancela.com/sitemap.xml

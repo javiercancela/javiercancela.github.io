@@ -1,0 +1,132 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/python/">Python</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/libros/">Libros</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/machine-learning/">Machine Learning</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/inteligencia-artificial/">Inteligencia Artificial</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">23 de abril de 2017</span>
+</p>
+
+
+        <div class="post-content">
+            <p>El propósito del tema 3 es revisar algoritmos comunes de aprendizaje máquina. Las diferencias existentes entre estos algoritmos hacen que cada uno sea más adecuado para unas tareas que para otras. En unos casos el criterio de elección será la naturaleza de nuestros datos (número de características, ruido, separabilidad lineal,…), mientras que en otros nos basaremos en la direfencia de rendimientos.</p>
+
+<p>Como paso previo el libro realiza una presentación de <a href="http://scikit-learn.org/stable/index.html"><em>scikit-learn</em></a>, una librería para Python que incluye varios de los algoritmos más usados en <em>machine learning</em>. El código de esta librería es abierto y <a href="https://github.com/scikit-learn/scikit-learn">está disponible en GitHub</a>.</p>
+
+<h2 id="perceptrón-con-scikit-learn">Perceptrón con <em>scikit-learn</em></h2>
+
+<p>Para empezar con la librería, el libro vuelve al Perceptrón con el conjunto de datos Iris. La librería <em>scikit-learn</em> incluye varios conjuntos de datos, así que usaremos el conjunto Iris incluido en la librería. Dividiremos el conjunto en un grupo de datos para el entrenamiento y otro para la validación.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="p">.</span><span class="n">data</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="p">.</span><span class="n">target</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Cargamos los datos de la librería y hacemos un <em>slice</em> de dos de las columnas (dos caracterísiticas) para cargar los datos en la matriz <code class="language-plaintext highlighter-rouge">X</code>. La librería nos permite acceder directamente a las clases reales de cada muestra a través de <code class="language-plaintext highlighter-rouge">iris.target</code>, donde los valores para <em>Iris-Setosa</em>, <em>Iris-Versicolor</em> e <em>Iris-Virginica</em> están almacenados como 0, 1 y 2.</p>
+
+<p>El método <code class="language-plaintext highlighter-rouge">train_test_split</code> reparte el 30% de los datos (<code class="language-plaintext highlighter-rouge">test_size=0.3</code>) para las pruebas, de forma aleatoria (al fijar un <em>seed</em> a través de <code class="language-plaintext highlighter-rouge">random_state=0</code> garantizamos que el reparto pseudoaleatorio sea el mismo en cada ejecución). El resultado será una matriz <code class="language-plaintext highlighter-rouge">X_test</code> con 45 elementos, y un array <code class="language-plaintext highlighter-rouge">y_test</code> con las 45 clases correspondientes. <code class="language-plaintext highlighter-rouge">X_train</code> e <code class="language-plaintext highlighter-rouge">y_train</code> contendrán el resto de los datos para el entrenamiento.</p>
+
+<h3 id="escalado-de-características">Escalado de características</h3>
+
+<p>Como mencionamos en la entrada anterior, el escalado de características es una técnica básica para la optimización del proceso de entrenamiento. El libro utiliza la clase <code class="language-plaintext highlighter-rouge">StandardScaler</code> para ilustrar esta técnica:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_train_std</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test_std</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>La clase <code class="language-plaintext highlighter-rouge">StandardScaler</code> contiene un método <code class="language-plaintext highlighter-rouge">fit</code> que permite estimar los parámetros necesarios para la estandarización. A partir de los datos de entrenamiento proporcionados, el método estimará la media (\(\mu\)) y la <a href="https://es.wikipedia.org/wiki/Desviaci%C3%B3n_t%C3%ADpica">desviación estándar</a> (\(\sigma\)). Con ellas el método <code class="language-plaintext highlighter-rouge">transform</code> generará nuestros nuevos conjuntos de datos de entrenamiento y de pruebas estandarizados. Tras la estandarización, las características pasan a tener valores positivos y negativos, siguiendo una distribución casi normal centrada en el cero:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">max</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="mf">1.7101884052506424</span>
+
+<span class="nb">max</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="mf">1.6373128028016599</span>
+
+<span class="nb">min</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="o">-</span><span class="mf">1.5192836530366176</span>
+
+<span class="nb">min</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="o">-</span><span class="mf">1.4487217993375945</span>
+</code></pre></div></div>
+
+<h3 id="la-clase-perceptron-con-one-vs-rest">La clase <code class="language-plaintext highlighter-rouge">Perceptron</code> con <em>one-vs.-rest</em></h3>
+
+<p>Una diferencia de la clase <code class="language-plaintext highlighter-rouge">Perceptron</code> de <code class="language-plaintext highlighter-rouge">scikit-learn</code> con la implementada en el capítulo 2 del libro es que la que vamos a ver ahora soporta clasificaciones multiclase. En el capítulo 2 restringimos nuestro conjunto de datos a muestras de solo dos clases, ya que el algoritmo sólo era capaz de distinguir si una muestra pertenecía a una clase o no. Si la función de activación superaba un umbral se asignaba una clase, si no, se asignaba la otra.</p>
+
+<p>Esta función de activación es inherente al Perceptrón. Sin embargo, aun con ella es posible realizar clasificaciones multiclase. Para ello se utiliza una estrategia llamada ‘Uno contra los demás’ (<em>one-vs.-rest</em>, <em>OvR</em>). En esta estrategia se entrena un clasificador para cada clase. Es decir, en nuestro conjunto de datos con tres variantes de Iris, en vez de usar el Perceptrón para entrenar un clasificador que nos diga si una muestra es <em>Iris-setosa</em> o <em>Iris-versicolor</em>, entrenaremos un clasificador que nos diga si una muestra es <em>Iris-setosa</em> o no, otro que nos diga si una muestra es <em>Iris-versicolor</em> o no, y otro que haga lo mismo con <em>Iris-virginica</em>.</p>
+
+<p>La clasificación se realiza evaluando cada muestra con cada clasificador. Estos nos dirán si la muestra pertenece a su clase o no. Para poder resolver ambigüedades (una muestra que esté en más de una clase, o que no esté en ninguna), los clasificadores no devuelven una etiqueta, sino una puntuación de confianza que indica cómo de seguro está el clasificador de que una muestra pertenece a la clase evaluada. Así, cuando queremos predecir la clase de una muestra nueva nos quedamos con la clase a la que corresponde la puntuación de confianza más alta.</p>
+
+<p>El código Python para hacer esto es muy simple:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Perceptron</span>
+
+<span class="n">ppn</span> <span class="o">=</span> <span class="n">Perceptron</span><span class="p">(</span><span class="n">n_iter</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">eta0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ppn</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_std</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>La clase <code class="language-plaintext highlighter-rouge">Perceptron</code> admite muchos parámetros en el constructor. Los parámetros <code class="language-plaintext highlighter-rouge">n_iter</code> y <code class="language-plaintext highlighter-rouge">eta0</code> establecen el número de épocas y la tasa de aprendizaje, como ya vimos en entradas anteriores. Por defecto, la clase <code class="language-plaintext highlighter-rouge">Perceptron</code> baraja los datos de entrenamiento después de cada época. Para ello usa un generador de números pseudoaleatorios, cuya semilla se puede definir con el parámetro <code class="language-plaintext highlighter-rouge">random_state</code>. Al fijar este parámetro provocamos que los números aleatorios generados sean siempre los mismos en cada ejecución del código, de forma que siempre que los clasificadores obtenidos sean siempre los mismos.</p>
+
+<p>El <a href="https://github.com/rasbt/python-machine-learning-book/blob/master/code/ch03/ch03.ipynb">código del libro</a> prosigue mostrando los resultados del entrenamiento: de los datos de prueba se clasifican incorrectamente 4 muestras de 45, es decir, un porcentaje de acierto del 91%:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y_pred</span> <span class="o">=</span> <span class="n">ppn</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_std</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Misclassified samples: %d'</span> <span class="o">%</span> <span class="p">(</span><span class="n">y_test</span> <span class="o">!=</span> <span class="n">y_pred</span><span class="p">).</span><span class="nb">sum</span><span class="p">())</span>
+<span class="c1"># Imprime: Misclassified samples: 4
+</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Accuracy: %.2f'</span> <span class="o">%</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="c1"># Imprime: Accuracy: 0.91
+</span></code></pre></div></div>
+
+<p>Para finalizar este apartado, el autor modifica el método <code class="language-plaintext highlighter-rouge">plot_decision_regions</code>, visto en entradas anteriores, para que resalte los datos de prueba con círculos. El código se puede ver <a href="https://github.com/rasbt/python-machine-learning-book/blob/master/code/ch03/ch03.ipynb">aquí</a>.</p>
+
+<div style="text-align:center">
+    <figure>
+        <a href="https://github.com/rasbt/python-machine-learning-book/blob/master/code/ch03/images/03_01.png">
+        <img alt="No es posible realizar una separación perfecta de los tres conjuntos de datos" src="https://raw.githubusercontent.com/rasbt/python-machine-learning-book/master/code/ch03/images/03_01.png" /></a>
+        <figcaption>Como se ven en la gráfica, no es posible realizar una separación perfecta de los tres conjuntos de datos (no se puede dibujar una recta que separe todos los círculos verdes de todas las cruces azules)</figcaption>
+    </figure>
+</div>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2017/04/16/pausa-por-vacaciones/">&laquo; Pausa por vacaciones</a>  
+                <a class="next" href="/2017/05/13/autenticacion-en-dos-pasos-y-otras-cosas/">Notas rápidas de la semana &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

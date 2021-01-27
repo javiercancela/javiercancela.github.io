@@ -1,0 +1,166 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/python/">Python</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/libros/">Libros</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/machine-learning/">Machine Learning</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/inteligencia-artificial/">Inteligencia Artificial</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">12 de marzo de 2017</span>
+</p>
+
+
+        <div class="post-content">
+            <p>El foco de estas entradas se pondrá en el <a href="https://github.com/rasbt/python-machine-learning-book">código Python publicado en GitHub</a>, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.</p>
+
+<h2 id="tipos-de-machine-learning">Tipos de <em>machine learning</em></h2>
+
+<p>Existen tres estrategias distintas de aprendizaje automático: supervisado, no supervisado y reforzado</p>
+
+<h3 id="supervisado">Supervisado</h3>
+
+<p>En el aprendizaje supervisado se entrena el modelo con datos para los que ya se conoce el resultado correcto. En función del tipo de resultado que esperemos obtener, podemos encontrarnos con que los datos de entrenamiento llevan asociada una etiqueta que indica a qué categoría pertenece, o un valor numérico. En el primer caso hablamos de <strong>clasificación</strong>, y en el segundo de <strong>regresión</strong>.</p>
+
+<p>Un ejemplo de problema de clasificación es el mencionado en la entrada anterior: la clasificación de spam. Al modelo se le presenta con una serie de correos que ya han sido identificados con una etiqueta ‘spam’ o ‘no spam’. El modelo utiliza esos correos para calibrar ciertos valores internos, de forma que pueda identificar correctamente futuros correos sin intervención humana.</p>
+
+<p>En los problemas de regresión el valor esperado pertenece a un rango continuo. Un ejemplo, <a href="http://setosa.io/ev/ordinary-least-squares-regression/">sacado de este post (en inglés)</a>, sería un modelo para predecir la altura de una persona a partir del tamaño de su mano. Para ello entrenaríamos el modelo con una muestra aleatoria de personas, para las cuales tendríamos tanto el tamaño de su mano como su altura real. El resultado sería una ecuación del tipo \(y = A + Bx\)
+donde <em>x</em> sería el tamaño de la mano, <em>A</em> y <em>B</em> valores definidos tras el proceso de aprendizaje, e <em>y</em> la altura predicha para el valor x.</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="Ejemplo de regresión lineal" src="/images/pml/1_regression.png" />
+        <figcaption>Ejemplo de regresión lineal</figcaption>
+    </figure>
+</div>
+
+<h3 id="reforzado">Reforzado</h3>
+
+<p>El aprendizaje reforzado entrena un modelo para que consiga un objetivo. Para ello se alimenta el modelo con el resultado de una función que evalúa cómo de cerca estamos del objetivo. Se establece un ciclo en el que el modelo genera una salida, la función evalúa cómo de satisfactoria ha sido esta salida, y la evaluación se utiliza para ajustar el modelo.</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="El modelo ('Agent') cambia el estado a través de una acción. Este cambio nos acerca más o menos al objetivo. Realimentamos el modelo con una recompensa, así como con la acción que generó dicha recompensa" src="/images/pml/1_refuerzo.png" />
+        <figcaption>El modelo ('Agent') cambia el estado a través de una acción. Este cambio nos acerca más o menos al objetivo. Realimentamos el modelo con una recompensa, así como con la acción que generó dicha recompensa</figcaption>
+    </figure>
+</div>
+
+<p>Los ejemplos habituales de aplicación de esta técnica son los juegos: ajedrez, tres en raya, juegos de cartas… En ellos el programa va aprendiendo según juega partidas y comprueba qué acciones llevan a la victoria.</p>
+
+<h3 id="no-supervisado">No supervisado</h3>
+
+<p>En algunas ocasiones nos encontramos con datos de los que no sabemos qué información extraer. Para estos casos se usan técnicas de aprendizaje no supervisado, en las que se analiza la estructura de los datos para intentar extraer información útil. El libro menciona dos aproximaciones a esta técnica: <strong>agrupación (<em>clustering</em>)</strong> y <strong>reducción de dimensionalidad</strong>.</p>
+
+<p>En la agrupación se buscan elementos que, según algún criterio, son algo similares entre sí y algo distintos a los demás. Por ejemplo, si tenemos un conjunto de animales con gatos, caballos, palomas y águilas, y proporcionamos al modelo sus tamaños y el número de patas de cada animal, el aprendizaje no supervisado le permitiría identificar correctamente cuatro tipos de animales: grande con dos patas (águila), grande con cuatro patas (caballo), pequeño con dos patas (paloma) y pequeño con cuatro patas (gato).</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="Un ejemplo un poco más real de clustering" src="https://docs.microsoft.com/en-us/azure/machine-learning/media/machine-learning-algorithm-choice/image9.png" />
+        <figcaption>Un ejemplo un poco más real de clustering</figcaption>
+    </figure>
+</div>
+
+<p>En cuanto a la reducción de dimensionalidad, consiste en reducir los datos de forma que se retenga la información relevante. La idea es disminuir tanto el espacio ocupado por los datos como el tiempo necesario para ejecutar los algoritmos. Usando un ejemplo sacado de <a href="http://stackoverflow.com/a/1994481">esta respuesta de stackoverflow</a>, supongamos un conjunto de datos en el que 1000 personas indican si les gusta o no cada una de 100 películas seleccionadas. Podríamos almacenar esta información en 1000 vectores de 100 elementos cada uno, donde cada elemento fuese un 1 o un 0 según la película hubiese gustado o no. Una forma de reducir la dimensionalidad del conjunto de datos sería asignar a cada película uno de cinco géneros (comedia, terror, … los que fuesen más representativos), y usar los datos originales para construir un nuevo vector de cinco elementos para cada persona, donde se indicase si el género es no de su agrado. Pasaríamos así de 100.000 a 5.000 elementos. Como contrapartida, perderíamos información (a una persona le pueden gustar un par de películas de un género que no le gusta).</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="El ejemplo del libro reduce una muestra de datos en 3 dimensionaes a otra equivalente en 2 dimensiones" src="/images/pml/1_compression.png" />
+        <figcaption>El ejemplo del libro reduce una muestra de datos en 3 dimensiones a otra equivalente en 2 dimensiones</figcaption>
+    </figure>
+</div>
+
+<h2 id="terminología-y-notación">Terminología y notación</h2>
+
+<p>Como es de esperar en cualquier disciplina técnica que se precie, el <em>machine learning</em> incluye un montón de terminología propia que es preciso conocer. El siguiente punto del tema 1 presenta algunos de estos términos.</p>
+
+<p>En aprendizaje automático existe un conjunto de datos muy conocido que se usa en todos los cursos para principiantes, algo así como el “Hola Mundo” de los conjuntos de datos. Se llama <a href="https://es.wikipedia.org/wiki/Iris_flor_conjunto_de_datos">conjunto de datos Iris</a>, e incluye datos de 50 ejemplares de cada una de las 3 especies de la flor Iris. Para cada ejemplar se da el largo y ancho del pétalo y el sépalo, así como la especie a la que pertenece (<em>setosa</em>, <em>versicolor</em> o <em>virginica</em>).</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="Algunos datos de Iris y una ilustración de la flor" src="/images/pml/1_iris.png" />
+        <figcaption>Algunos datos de Iris y una ilustración de la flor</figcaption>
+    </figure>
+</div>
+
+<p>Como se puede apreciar en la imagen superior, cada fila de datos es una <em>muestra</em>, <em>instancia</em> u <em>observación</em>. Para cada una de estas muestras se proporciona una serie de datos, a los que nos solemos referir como <em>características</em>, aunque también <em>atributos</em>, <em>medidas</em> o <em>dimensiones</em>. Finalmente, la especie de la flor sería la <em>etiqueta</em> u <em>objetivo</em>. La consistencia en la terminología no es un fuerte del <em>machine learning</em>.</p>
+
+<p>En este punto el libro también nos habla de notación algebraica. El trabajo con matrices es fundamental en el <em>machine learning</em>, así que este el autor nos cuenta qué notación utiliza para representar matices, vectores y elementos dentro de los mismos.</p>
+
+<p>Por ejemplo, el conjunto de datos Iris se puede representar como una matriz de 150 filas (una por muestra) y 4 columnas (una por característica):</p>
+
+<p>\begin{bmatrix}
+x_1^{(1)} &amp; x_2^{(1)} &amp; x_3^{(1)} &amp; x_4^{(1)} \cr
+x_1^{(2)} &amp; x_2^{(2)} &amp; x_3^{(2)} &amp; x_4^{(2)} \cr
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots \cr
+x_1^{(150)} &amp; x_2^{(150)} &amp; x_3^{(150)} &amp; x_4^{(150)} \cr
+\end{bmatrix}</p>
+
+<p>En general, un elemento \(x_n^{(m)}\) se refiere al elemento de la fila m y la columna n de una matriz. Usaremos negritas en minúsculas para los vectores (\(\bf x \in \mathbb R^{nx1}\)), y negritas en mayúsculas para las matrices (\(\bf X \in \mathbb R^{nxm}\)).</p>
+
+<h2 id="otros-aspectos-importantes-del-aprendizaje-automático">Otros aspectos importantes del aprendizaje automático</h2>
+
+<p>Además del algoritmo de aprendizaje, el libro nos habla en este tema de otros aspectos importantes del <em>machine learning</em></p>
+
+<h3 id="preprocesado">Preprocesado</h3>
+
+<p>El preprocesado es la fase inicial del proceso de aprendizaje. Consiste en disponer los datos existentes en un formato adecuado para su procesamiento: se normalizan valores, se pasan textos a números, se separan datos de entrenamiento y datos de prueba,…</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="Ejemplo de flujo de modelado predictivo" src="/images/pml/1_flujo.png" />
+        <figcaption>Ejemplo de flujo de modelado predictivo</figcaption>
+    </figure>
+</div>
+
+<h3 id="entrenamiento-y-selección-del-proceso-predictivo">Entrenamiento y selección del proceso predictivo</h3>
+
+<p>La otra tarea fundamental a realizar al empezar es la correcta selección del algoritmo a utilizar. Queremos obtener el modelo que presente un mejor rendimiento, pero para ello necesitamos definir una métrica que mida este rendimiento. La más común es la proporción de muestras correctamente clasificadas.</p>
+
+<h3 id="evaluación-de-modelos-y-predcción-de-instancias-de-datos-no-vistas">Evaluación de modelos y predcción de instancias de datos no vistas</h3>
+
+<p>El modelo se entrena con los datos de entrenamiento, y se evalúa con la parte del conjunto de datos reservada para ello. En función de la tasa de error encontrada en la evaluación decidiremos si el modelo es válido.</p>
+
+<h2 id="python">Python</h2>
+
+<p>El tema finaliza hablando de Python y de cómo instalarlo. Python es uno de los lenguajes más populares en el mundo del <em>machine learning</em>, en parte por su versatilidad, en parte por la gran cantidad de librerías especialidadas de las que dispone. Especialmente relevantes para el aprendizaje máquina son <a href="http://www.numpy.org/">NumPy</a> y <a href="https://www.scipy.org/">SciPy</a>.</p>
+
+<p>La opción más cómoda para instalar Python con todo lo necesario para este libro es descargar <a href="https://docs.continuum.io/anaconda/install#">Anaconda</a>, un gestor de instalaciones de Python.</p>
+
+<p>El libro no habla del entorno de desarrollo, pero yo uso desde hace unos meses el <a href="https://code.visualstudio.com/">Visual Studio Code</a>. Con la <a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.python">extensión de Python</a> proporcionando autocompletado, <a href="https://es.wikipedia.org/wiki/Lint"><em>linting</em></a>, formateado de código y depuración, el Visual Studio Code supera al resto de entornos Python disponibles de forma gratuita.</p>
+
+<h2 id="conclusión">Conclusión</h2>
+
+<p>El tema 1 nos familiariza con los conceptos más básicos del aprendizaje máquina. En el tema 2 empezaremos ya a ver código para avanzar en la materia.</p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2017/03/05/ready-player-one/">&laquo; Ready Player One</a>  
+                <a class="next" href="/2017/03/19/python-machine-learning-ii/">PML T2 - El perceptrón &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

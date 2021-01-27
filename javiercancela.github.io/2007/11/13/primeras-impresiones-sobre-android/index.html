@@ -1,0 +1,63 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/android/">Android</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">13 de noviembre de 2007</span>
+</p>
+
+
+        <div class="post-content">
+            <p><strong>El sistema</strong></p>
+
+<p>En la anterior entrada decía que Android es un sistema operativo. En realidad esto no es cierto, como aclara <a href="http://code.google.com/android/what-is-android.html" title="What is Android?">la propia documentación</a>. Así que a la documentación me remito:</p>
+
+<blockquote>
+  <p><em>Android is a software stack for mobile devices that includes an operating system, middleware and key applications.</em></p>
+
+  <p>Android es una pila de software para dispositivos móviles que incluye un sistema operativo, <em>middleware</em> y aplicaciones clave.</p>
+</blockquote>
+
+<p>Traducción propia, por supuesto. Ese concepto de “pila de software” hace referencia a que el sistema está compuesto por capas de software que se colocan una sobre otra, de manera que cada una puede usar directamente a la que tiene inmediatamente debajo. En concreto la disposición se indica en el siguiete dibujo, proveniente del sitio web de Android:</p>
+
+<p><img src="http://farm3.static.flickr.com/2350/1997144613_f99edd1d96.jpg" alt="Arquitectura de Android" height="359" width="500" /></p>
+
+<p>Podemos distinguir aquí la parte pública, en azul, compuesta por las aplicaciones del dispositivo y las librerías que podemos utilizar con la SDK (<em>el Application Framework</em>). En verde tenemos las librerías del sistema, a las que, al menos inicialmente, no tendremos acceso directo y que serán utilizadas por el <em>Application Framework</em>.</p>
+
+<p>La clave del sistema es la parte en amarillo, el <em>Runtime</em>. Cada aplicación que nosotros programemos tendrá su propio proceso con su propia instancia de la máquina virtual. Las librerías Core que aparecen en el Runtime incluyen la funcionalidad que solemos encontrar en las librerías básicas de Java: java.io, java.lang, java.util, … Esto no quiere decir que la máquina virtual sea una máquina virtual de Java, sólo que Java es el lenguaje usado para su programación. Veremos más sobre la máquina virtual en un momento.</p>
+
+<p>La parte en rojo la constituye el núcleo (<em>kernel</em>) del sistema operativo. Está basado en el núcleo 2.6 de Linux y es la base de todo el sistema. Hay que tener claro que una aplicación Android no se ejecuta directamente sobre este núcleo y no es por tanto una aplicación Linux. Podemos ver a Android como la versión de Google de JavaME o del .NET Compact Framework.</p>
+
+<p><strong>La máquina virtual</strong></p>
+
+<p>Un punto clave y muy interesante de todo este sistema es <a href="http://en.wikipedia.org/wiki/Dalvik_virtual_machine" title="Dalvik virtual machine">Dalvik</a>, la máquina virtual. Dalvik es una máquina virtual muy ligera, optimizada para usar muy poca memoria, lo cual consigue delegando en el <em>kernel</em> de Linux el <em>multithreading</em> y la gestión de memoria y de procesos. Para programar en Dalvik se utiliza un compilador de Java, pero lo que genera no son Java bytecodes, sino un tipo distinto de bytecodes, por lo que Dalvik no se puede denominar una máquina virtual de Java. Además, ofrece librerías estándar de Java pero sin declarar ninguna compatibilidad con Java SE.</p>
+
+<p>Lo que todo esto parece querer decir es que Google pretende sacarle a Sun parte del pastel de Java, al menos en entornos móviles, con una plataforma que no es una máquina virtual de Java pero lo parece. De esta forma Sun no puede reclarmar ningún derecho sobre ella y Google no necesita permiso de nadie para introducir modificaciones, pero a la vez los programadores acostumbrados a Java apenas notarán diferencias. Parecido a lo que intentó Microsoft con su máquina virtual de Java, pero aprendiendo de los errores de Microsoft.</p>
+
+<p><strong>La SDK</strong></p>
+
+<p>En cuanto a la SDK en sí, poco puedo decir de momento, salvo que tiene un buen aspecto. La ventaja de llegar tarde a un entorno tecnológico es que puedes aprender de los demás y careces de lastres en forma de compatibilidad hacia atrás. Las aplicaciones de Android se construyen en torno a cuatro conceptos: las <em>Activities</em> (actividades), que representan pantallas de la aplicación; los <em>Intent Receivers</em> (receptores objetivo), que gestionan eventos; los Services (servicios), que ejecutan código no asociado a una interfaz de usuario; y los Content Provider (proveedores de contenido), que se encargan de almacenar o compartir datos. También es destacable el formato XML para la definición de la interfaz de usuario, que Google promete que acabará con los problemas de <em>layout</em> tan habituales en los dispositivos móviles.</p>
+
+<p>La SDK incluye un plugin para Eclipse, que permite utilizar varias de las herramientas de la SDK desde este IDE, además de añadir los típicos Wizards y asistentes de compilación y despliegue. De todos modos es perfectamente posible utilizar la SDK desde cualquier IDE o editor de texto.</p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2007/11/12/la-sdk-de-android-liberada/">&laquo; La SDK de Android, liberada</a>  
+                <a class="next" href="/2007/11/15/redes-de-telefonia-movil-3g/">Redes de telefonía móvil: 3G &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

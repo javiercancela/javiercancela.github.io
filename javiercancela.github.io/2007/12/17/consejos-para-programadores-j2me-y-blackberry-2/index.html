@@ -1,0 +1,77 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/blackberry/">BlackBerry</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/java-me/">Java ME</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">17 de diciembre de 2007</span>
+</p>
+
+
+        <div class="post-content">
+            <p><strong>Preprocesado</strong></p>
+
+<p>Tanto Netbeans como EclipseME soportan directivas de preprocesado, que resultan extremadamente útiles para proyectos dirigidos a más de una plataforma, de forma que no nos volvamos locos con esos pequeños cambios que hacen que nuestro código funcione en una plataforma concreta. Instrucciones del estilo</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">//#ifdef PLATAFORMA1&lt;br /&gt;
+// Código específico de la Plataforma1&lt;br /&gt;
+//#endif</code></p>
+</blockquote>
+
+<p>nos ayudan a organizar nuestro código. <a href="http://www.devx.com/wireless/Article/32622" title="Automate Your J2ME Application Porting with Preprocessing">Este artículo</a> incide sobre este asunto.</p>
+
+<p><strong>Optimización de divisiones</strong></p>
+
+<p>La idea es: cada vez que quieras dividir por un múltiplo de dos, haz un desplazamiento a la derecha.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">int i = j / 4;    // lento&lt;br /&gt;
+int i = j &gt;&gt; 2; // rápido</code></p>
+</blockquote>
+
+<p>Para enteros positivos, lo único que hay que tener en cuenta es que esta división nos redondea hacia abajo (ya que perdemos los bits de la derecha). Entiendo que detrás de esta optimización existen dos circunstancias: algunos procesadores no incluyen hardware específico para divisiones, y en cualquier caso a la máquina virtual de java le resulta más simple desplazar que dividir.</p>
+
+<p><strong>Gestión de memoria (<em>Garbage collection</em>)</strong></p>
+
+<p>Este es un asunto espinoso. Veamos algunos hechos sobre J2ME y el recolector de basura:</p>
+
+<p>– No existe ninguna obligación por parte de la JVM de liberar recursos tras una llamada a System.gc(). La máquina virtual puede ignorarnos o esperar a una liberación que tuviese planeada. Incluso es posible que la máquina virtual no tenga <em>Garbage Collector</em>.</p>
+
+<p>– Habitualmente el <em>Garbage Collector</em> se ejecuta en su propio <em>thread</em>, lo que ralentizará la ejecución de nuestra aplicación en el momento más inesperado.</p>
+
+<p>– La única condición que existe para que un objeto sea elegible por el <em>Garbage Collector</em>, y por tanto el único control que tenemos sobre el mismo, es que no exista ningún <em>thread</em> vivo que pueda tener acceso al objeto; es decir, o bien todos los <em>threads</em> que tienen referencias al objeto han finalizado, o bien han establecido sus referencias a <em>null</em>.</p>
+
+<p>Conclusión: lo importante en la gestión de memoria no es llamar a System.gc() continuamente, sino reducir al mínimo las referencias que tenemos de cada objeto y asegurarnos de ponerlas a <em>null</em> o finalizar el <em>thread</em> tan pronto como sea posible.</p>
+
+<p>Más información: <a href="http://www.j2meforums.com/wiki/index.php/FAQ#Memory_Management">J2ME Wiki – Memory Management</a></p>
+
+<p>###Entradas relacionadas:</p>
+
+<p><a href="/2007/12/07/consejos-para-programadores-j2me-y-blackberry-1/">Consejos para programadores J2ME (y BlackBerry) – 1</a></p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2007/12/14/una-de-breves/">&laquo; Una de breves</a>  
+                <a class="next" href="/2007/12/18/consejos-para-programadores-j2me-y-blackberry-3/">Consejos para programadores J2ME (y BlackBerry) &#8211; 3 &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

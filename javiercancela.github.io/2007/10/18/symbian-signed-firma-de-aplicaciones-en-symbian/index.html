@@ -1,0 +1,89 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/symbian/">Symbian</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">18 de octubre de 2007</span>
+</p>
+
+
+        <div class="post-content">
+            <p>La <a href="http://www.apple.com/hotnews/">nota de prensa</a> de Steve Jobs sobre la SDK del iPhone decía textualmente:</p>
+
+<blockquote>
+  <p>“Nokia, for example, is not allowing any applications to be loaded onto some of their newest phones unless they have a digital signature that can be traced back to a known developer. While this makes such a phone less than “totally open,” we believe it is a step in the right direction.”</p>
+</blockquote>
+
+<p>Que traducido viene a decir:</p>
+
+<blockquote>
+  <p align="left">
+  “Nokia, por ejemplo, no permite que se cargue ninguna aplicación en algunos de sus teléfonos más recientes salvo que tengan una firma digital que se pueda rastrear hasta un desarrollador conocido. Aunque esto convierte a un teléfono así en algo menos que ‘totalmente abierto’, creemos que es un paso en la dirección correcta”.
+</p>
+</blockquote>
+
+<p align="left">
+  ¿Cómo funciona exactamente esta restricción de Nokia?
+</p>
+
+<p align="left">
+  Todo parte de una iniciativa de Symbian (por lo tanto no sólo de Nokia) llamada <a href="https://www.symbiansigned.com/app/page" title="Symbian Signed">Symbian Signed</a>. A partir de la versión 9 de Symbian OS se introduce este mecanismo que permite obligar a que una aplicación esté digitalmente firmada antes de instalarla. Para firmar una aplicación necesitamos:
+</p>
+
+<p align="left">
+  &#8211; Un Publisher ID proporcionado (por un precio) por algún distribuidor autorizado (Verisign, Trust Center…) y que utilizaremos para firmar las aplicaciones.
+</p>
+
+<p align="left">
+  &#8211; Enviar la aplicación a una Test House que, también por un precio, verificará que la aplicación cumple con los criterios de Symbian Signed.
+</p>
+
+<p align="left">
+  &#8211; Para aplicaciones gratuitas Symbian <a href="https://www.symbiansigned.com/app/page/overview/freeware" title="Freeware">proporciona la opción</a> de firmar la aplicación con un Publisher independiente, que también se encargaría de comprobar que pasa todos los criterios de Symbian Signed.
+</p>
+
+<p>¿Es necesario firmar cualquier aplicación?</p>
+
+<p>Symbian Signed no es obligatorio en versiones de Symbian anteriores a v9.x (aunque puede utilizarse en ellas), ni se utiliza en aplicaciones J2ME (Sun tiene su propio mecanismo de firma).</p>
+
+<p>Para aplicaciones C++ (o AppForge MobileVB) destinadas a S60 3rd Edtion o UIQ 3.x es necesario examinar qué APIs vamos a usar para ver cómo necesitamos firmar el ejecutable.</p>
+
+<p>Symbian Signed divide parte de las APIs de Symbian en grupos llamados Capacidades (<em>Capabilities</em>) en base a su funcionalidad y al riesgo que conlleva su uso. Aproximadamente el 60% de Symbian queda fuera de estos grupos y es de libre acceso. Symbian Signed no obliga a firmar una aplicación que sólo haga uso de la parte no restringida de las APIs. Sin embargo, la implementación final de cada móvil puede hacerlo. En la práctica, los móviles UIQ 3.x aceptan instalaciones sin firma, pero los S60 3rd Ed. obligan a que el ejecutable tenga al menos un tipo de firma llamada autofirmado (<em>selfsigned</em>), aunque para esta firma sólo es necesario usar una aplicación disponible en la SDK, no necesitamos Publisher ID ni realizar ningún pago.</p>
+
+<p>Las <em>Capabilities</em> de las que hablábamos son 20. Podemos ver <a href="http://www.symbian.com/developer/techlib/v9.1docs/doc_source/guide/N10022/GT_9.1/FunctionsByCapablity.html" title="Functions By Capability">aquí</a> que funciones incluyen cada una, y en la última página de este <a href="http://sw.nokia.com/id/285569bb-6918-478a-83aa-83c8550642f7/Symbian_Platform_Security_Granting_Sensitive_Capabilities_v1_0_en.pdf" title="Granting Sensitive Capabilities">pdf</a> vemos cómo se distribuyen. Siete de ellas sólo las podremos usar si pedimos una licencia específica al fabricante o a Symbian; de las otras trece, algunas las podremos utilizar con el <em>selfsigned</em>, mientras que otras requerirán que la aplicación esté <em>Symbian Signed</em> (utiliando por tanto el Publisher ID). Para saber a qué atenerse lo mejor es consultar la documentación de la SDK que estemos usando.</p>
+
+<p>Existe un certificado especial para desarrolladores que se puede solicitar para el proceso de desarrllo; es gratuito si sólo queremos hacer pruebas con las 13 capabilities menos restringidas y en un solo móvil (la firma se asocia al IMEI), y tiene un coste si necesitamos usar más IMEIs o las siete Capabilities más restringidas. Este <a href="http://developer.symbian.com/main/downloads/papers/Developer_Certificate_Request_Process_v2.0" title="Developer Certificate Request Process">pdf</a> muestra cómo funciona este tipo de firma.</p>
+
+<p>Precisamente ayer mismo Symbian <a href="http://www.allaboutsymbian.com/news/item/6092_Symbian_Signed_Announce_New_20.php" title="Symbian Signed Announce New $20 'Express Signed' Component">anunciaba</a> <a href="http://developer.symbian.com/main/signed/">algunos cambios</a> sobre los tipos de certificados de Symbian Signed, que afectan fundamentalmente al número de IMEIs utilizables y al precio.</p>
+
+<p>Más información:</p>
+
+<p><a href="https://www.symbiansigned.com/app/page/overview/faq">Faq de Symbian Signed</a></p>
+
+<p><a href="http://www3.symbian.com/faq.nsf/webform2?openform&amp;view=vlWebAllSubCatFAQInBrief&amp;viewnamedisplay=By%20Category&amp;categorylabel=By%20Category&amp;count=15&amp;start=1&amp;defaultsortname=FAQTitle&amp;returncol=1&amp;key1=Symbian%20Signed">Faq en Symbian</a></p>
+
+<p><a href="http://developer.symbian.com/forum/forum.jspa?forumID=2&amp;start=0">Foro de desarrolladores sobre Symbian Signed</a></p>
+
+<p><a href="http://developer.symbian.com/forum/forum.jspa?forumID=2&amp;start=0"></a>[Update 19/10/2007: añadida la referencia a la firma de aplicaciones gratuitas]</p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2007/10/18/sdk-para-el-iphone/">&laquo; SDK para el iPhone</a>  
+                <a class="next" href="/2007/10/19/introduccion-al-desarrollo-de-aplicaciones-para-telefonos-moviles-windows-mobile/">Introducción al desarrollo de aplicaciones para teléfonos móviles: Windows Mobile &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,70 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/blackberry/">BlackBerry</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/java-me/">Java ME</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">18 de diciembre de 2007</span>
+</p>
+
+
+        <div class="post-content">
+            <p><strong><em>ClassCastException</em> o <em>instanceof</em></strong></p>
+
+<p>Habitualmente se considera la instrucción <code class="language-plaintext highlighter-rouge">instanceof</code> como una forma muy poco óptima de comprobar si una clase pertenece un objeto. Sin embargo, en <a href="http://www.blackberry.net/developers/javaknowledge/general/kpa0203185136.shtml" title="General Coding Tips">el portal de BlackBerry</a> aconsejan utilizar <code class="language-plaintext highlighter-rouge">instanceof</code> en vez de esperar a capturar una <code class="language-plaintext highlighter-rouge">ClassCastException</code> (lo cual es lógico, ya que la excepción debería ser siempre más costosa), debido a ciertas optimizaciones que se realizan cuando se hace el cast justo después de la comprobación:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">if(x instanceof String) {&lt;br /&gt;
+(String)x.whatever();&lt;br /&gt;
+} else {&lt;br /&gt;
+// something else&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>Estas optimizaciones deberían evitarnos tener que buscar métodos alternativos, como llamadas a métodos virtuales. Son optimizaciones comunes en las JVM de J2SE, pero que no sé si se da en otras implementaciones de J2ME.</p>
+
+<p><strong>Programación orientada a objetos</strong></p>
+
+<p>Sin entrar en debates académicos sobre las ventajas e inconvenientes de la programación orientada a objetos, hay que ser consciente de que algunas de las técnicas de este paradigma son especialmente costosas para la máquina. Aunque programemos en Java, que es un lenguaje de clases y objetos, es conveniente ponerse a pensar de una forma más estructurada, buscando ahorrar recursos a costa de incurrir en algunas cosas que nos enseñaron a evitar cuando aprendimos POO. En concreto:</p>
+
+<p>– Conviene minimizar el número de clases. Ya no se trata de tener una clase para cada entidad que hayamos detectado en el análisis. Sólo queremos las clases indispensables para dar un poco de sentido al código, aunque los métodos que contengan no guarden mucha relación entre sí. Este es el punto más controvertido, ya que podemos limitarnos a meter todo el código en una clase. Sin embargo no se trata de renunciar por completo al mecanismo de clases, tan solo de ser consciente de que estas tienen un coste importante.</p>
+
+<p>– Como norma general, nada de <em>getters</em> y <em>setters</em>. La encapsulación está bien para los PCs, no para los disposivitos móviles. Unas variables miembro con ámbito <em>protected</em> o <em>public</em> funcionarán mejor. El principal motivo para usar <em>getters</em> y <em>setter</em> es proporcionar una interfaz pública estable que nos permita cambiar la implementación interna en el futuro. Salvo que queramos diseñar una librería pública o trabajemos en un proyecto realmente muy grande, no los necesitamos.</p>
+
+<p>– Nada de crear interfaces. Están muy bien para llevar a cabo una librería extensible, pero como en el punto anterior, es muy probable que no las necesitemos. Y en cuanto a su uso, cuantos menos interfaces implemente nuestra aplicación, mejor. El ejemplo típico es la interfaz <code class="language-plaintext highlighter-rouge">CommandListener</code>: en vez de implementarla en cada pantalla, es más efectivo implementarla en una sola clase controladora.</p>
+
+<p>– Nada de clases abstractas. Ver punto anterior.</p>
+
+<p>Lógicamente ninguna de estas recomendaciones se puede tomar como dogma, pero son útiles para recordar que nuestra mentalidad de programador debe cambiar cuando nos enfrentemos a dispositivos móviles.</p>
+
+<h3 id="entradas-relacionadas">Entradas relacionadas:</h3>
+
+<p><a href="/2007/12/07/consejos-para-programadores-j2me-y-blackberry-1/">Consejos para programadores J2ME (y BlackBerry) – 1</a></p>
+
+<p><a href="/2007/12/17/consejos-para-programadores-j2me-y-blackberry-2/">Consejos para programadores J2ME (y BlackBerry) – 2</a></p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2007/12/17/consejos-para-programadores-j2me-y-blackberry-2/">&laquo; Consejos para programadores J2ME (y BlackBerry) &#8211; 2</a>  
+                <a class="next" href="/2007/12/20/nueva-web-de-hipoqih-ipokicom/">Nueva web de hipoqih: ipoki.com &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

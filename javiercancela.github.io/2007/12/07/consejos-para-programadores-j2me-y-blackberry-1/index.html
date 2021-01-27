@@ -1,0 +1,79 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/blackberry/">BlackBerry</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/java-me/">Java ME</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">07 de diciembre de 2007</span>
+</p>
+
+
+        <div class="post-content">
+            <p>Basándome en <a href="http://www.blackberry.com/knowledgecenterpublic/livelink.exe/fetch/2000/348583/800451/800783/What_is_-_Programming_Tips-_General_Coding_Tips.html?nodeid=800465&amp;vernum=0" title="General Coding Tips">un documento</a> de la <em>Knowledge Base</em> de BlackBerry, que es aplicable a dispositivos J2ME en general, voy a exponer una serie de consejos básicos para programadores Java que quieran comenzar a desarrollar en dispositivos móviles.</p>
+
+<p><strong>Bucles eficientes</strong></p>
+
+<p>El desarrollo para dispositivos móviles viene marcado por la preocupación extrema (extrema para un programador acostumbrado a PCs y Macs) por el ahorro de recursos. Pese a que ahorrar recursos nunca es malo, en otras plataformas existen factores que suelen tener más peso, como la claridad o economía del código; en los dispositivos móviles estos factores siempre van detrás del consumo de recursos. Un ejemplo:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">for(int i = 0; i &lt; vector.size(); i++) {&lt;br /&gt;
+...&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>Este código nos permite ver en una sola línea que vamos a iterar sobre todos los elementos del objeto vector. Sin embargo no es óptimo en términos de rendimiento:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">int vectorSize = vector.size();&lt;br /&gt;
+for(int i = 0; i &lt; vectorSize; i++) {&lt;br /&gt;
+...&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>Invocar un método de un objeto en cada iteración del bucle para obtener siempre el mismo resultado es ineficiente, pero con una simple línea más de código nos ahorramos un montón de instrucciones de procesador. De hecho, dado el poco esfuerzo que requiere yo diría que es también una buena práctica para otras plataformas menos limitadas.</p>
+
+<p>En el caso de no importar el orden de iteración, una optimización adicional se consigue con:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">for(int i = vector.size() - 1; i == 0; i--) {&lt;br /&gt;
+...&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>Como la asignación inicial sólo se realiza una vez nos ahorramos una variable local en la pila; y además la comparación se realiza con el valor 0, que es la comparación que más rápidamente se realiza.</p>
+
+<p>En el artículo de la web de BlackBerry que mencioné al principio se sugiere como optimización el cambio del post-incremento de i (i++) por un pre-incremento (++i) por ser este último más rápido. Yo dudo de que esto sea cierto en este caso. El asunto es un tanto complejo, pero no he encontrado ningún razonamiento que sustente esa afirmación, y he encontrado este artículo: <a href="http://www.ibm.com/developerworks/library/j-perf12053.html"><em>Eye on performance: Micro performance benchmarking</em></a> que parece respaldar lo contrario. Quizás el origen de esta creencia está en C++, donde debido a la forma en la que se sobrecarga el operador ++, el pre-incremento y el post-incremento aplicados a objetos sí presenta diferentes rendimientos.</p>
+
+<p><strong>Entradas relacionadas:</strong></p>
+
+<p><a href="/2007/10/25/introduccion-al-desarrollo-de-aplicaciones-para-telefonos-moviles-j2me-i/">Introducción al desarrollo de aplicaciones para teléfonos móviles: J2ME (I)</a></p>
+
+<p><a href="/2007/10/30/introduccion-al-desarrollo-de-aplicaciones-para-telefonos-moviles-j2me-y-ii/">Introducción al desarrollo de aplicaciones para teléfonos móviles: J2ME (y II)</a></p>
+
+<p><a href="/2007/11/05/introduccion-al-desarrollo-de-aplicaciones-para-telefonos-moviles-blackberry/">Introducción al desarrollo de aplicaciones para teléfonos móviles: BlackBerry</a></p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2007/12/05/estadisticas-de-venta-de-dispositivos-moviles-por-sistema-operativo-segun-symbian/">&laquo; Estadísticas de venta de dispositivos móviles por sistema operativo (según Symbian)</a>  
+                <a class="next" href="/2007/12/14/una-de-breves/">Una de breves &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

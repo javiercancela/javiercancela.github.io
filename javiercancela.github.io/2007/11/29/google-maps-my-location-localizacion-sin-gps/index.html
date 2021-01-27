@@ -1,0 +1,41 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/lbs/">LBS</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">29 de noviembre de 2007</span>
+</p>
+
+
+        <div class="post-content">
+            <p>La última versión de <a href="http://www.google.com/gmm/index.html" title="Google Maps Mobile">Google Maps para móviles</a> incorpora una nueva característica (en beta, por supuesto) llamada <em><a href="http://www.google.com/gmm/mylocation.html?hl=en" title="Google Maps with My Location (beta) ">My Location</a></em> que proporciona información sobre la localización del dispositivo móvil aunque este no tenga un GPS incorporado.</p>
+
+<p>Este sistema funciona en los móviles Symbian S60 3rd Edition, en muchos BlackBerry y Windows Mobile, y en los modelos más recientes de Motorola y Sony-Ericsson. Esto es así porque las APIs que el servicio My Location utiliza sólo están disponibles en algunos sistemas y sólo con algunos fabricantes.</p>
+
+<p>Para averiguar la localización del dispositivo, Google utiliza la información que obtiene del móvil y que le dice en qué celda de la red telefónica a la que pertenece se encuentra. Por ejemplo, en Symbian podríamos utilizar la clase <a href="http://www.symbian.com/Developer/techlib/v9.1docs/doc_source/guide/Telephony-subsystem-guide/N1013A/info_network.html" title="Network information">CTelephony</a> para obtener la información que nos interesase (en Java Me se suele hacer <a href="http://www.paxmodept.com/telesto/blogitem.htm?id=381" title="Finding the Cellid from Java ME on Sony Ericsson Devices  ">mediante propiedades</a>), como el LAC (Location Area Code) y el Cell Id, que nos identifican la celda a la que estamos conectados, así como la intensidad de la señal. Esa información (y sólo esa, para mantener el anonimato) se envía a los servidores de Google, que devuelven una localización con un radio de error, que es lo que se muestra en Google Maps.</p>
+
+<p>¿Cómo sabe Google la localización de esa celda? Con una base de datos que le diga en qué longitud y latitud está cada celda. Sabiendo dónde está la antena y qué radio aproximado cubre, e incluso aplicando correciones en función de la intesidad de la señal, podemos proporcionar una estimación razonable de la localización del dispositivo. Lo que no sé es de donde ha sacado la información Google, hasta qué punto es completa, qué redes y territorios cubre… Pero es interesante reseñar que Google puede aprovechar la información de los dispositivos que sí tienen GPS y usan Google Maps para obtener información correcta: si un N95 se conecta a Google Maps con el GPS, Google puede aprovechar la información de ese GPS para mejorar la precisión de la información sobre esa celda.</p>
+
+<p>Habrá que esperar para ver qué tal funciona el sistema por distintos países y con distintos dispositivos, pero sospecho que <a href="http://developer.yahoo.com/yrb/zonetag/locatecell.html" title="http://developer.yahoo.com/yrb/zonetag/locatecell.html">este tipo de localización</a> se extenderá durante los próximos meses para proporcionar LBS (<em>Location Based Services</em>, servicios basados en la localización) mientras los GPS no sean ubicuos.</p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2007/11/28/monitoriza-el-consumo-de-energia-de-tu-nokia-nokia-energy-profiler/">&laquo; Monitoriza el consumo de energía de tu Nokia: Nokia Energy Profiler</a>  
+                <a class="next" href="/2007/11/29/hipoqih-en-mobile-monday-barcelona/">hipoqih en Mobile Monday Barcelona &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

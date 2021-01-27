@@ -1,0 +1,61 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/varios/">Varios</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">04 de noviembre de 2007</span>
+</p>
+
+
+        <div class="post-content">
+            <p>Una de las preguntas recurrentes de los usuarios de <a href="http://hipoqih.com/" title="hipoqih">hipoqih</a> es: ¿cuánto cuesta utilizar este sistema? La respuesta es que el sistema es gratuito, pero para utilizarlo plenamente es necesario conectarse a Internet desde un dispositivo con GPS, como un móvil. Y si la conexión se realiza con un teléfono móvil puede tener un coste económico.</p>
+
+<p>Como es lógico los operadores ofrecen distintas tarifas, con diferentes planes que se adaptan a las necesidades de sus usuarios. O eso dicen. En el caso de España, <a href="http://yoigo.es/" title="Yoigo">Yoigo</a> ofrece una tarifa de conexión única de 1,39€ al día (no indica ningún límite, no sé si no lo tiene o si no lo han puesto en la web). <a href="http://www.vodafone.es/particulares/internet/conexion/" title="Conexión con tu teléfono">Vodafone</a> cobra 0.50€ + IVA por sesión de 10 minutos o 256KB (lo que se agote antes), pero ofrece varios planes 3G con distintas cuotas de precios y datos transferidos. Algo parecido ocurre con <a href="http://movil.orange.es/contrato/tarifas_internet_movil/" title="tarifas Internet móvil">Orange</a>, aunque no me queda claro cuánto cobran por cada conexión si no tienes ninguna Tarifa Plana contratada. En cuanto a <a href="http://www.movistar.es/fwk/cda/controller/controller/0,2189,8887_107734411_9721_0_0,00.html" title="NAVEGACIÓN Y CORREO PDA">Movistar</a>, sin sus Tarifas Planas 3’5G nos cobrarán 1’16€ cada 10MB, aunque una vez que llegas a los 100MB el mismo día ya no te cobran hasta el día siguiente.</p>
+
+<p>Así que más o menos ya sabemos cuánto nos van a cobrar y cuánto tráfico nos van a permitir. Nos falta otro dato: el ancho de banda. Paseando por las páginas web de los operadores nos encontramos una serie de términos relacionados con las conexiones a Internet desde el móvil: <a href="http://es.wikipedia.org/wiki/General_Packet_Radio_Service" title="General Packet Radio Service">GPRS</a>, <a href="http://es.wikipedia.org/wiki/Universal_Mobile_Telecommunications_System" title="Universal Mobile Telecommunications System">UMTS</a>, 3G, 3.5G… Y no es raro encontrarse en Internet o en medios convencionales otros términos que también parecen tener alguna relación: EDGE, HSPA, 4G… Para intentar sacarle un poco de sentido a tanto término vamos a realizar un recorrido por la historia más reciente de la telefonía móvil, centrándonos en los tipos de redes usadas para dar este servicio.</p>
+
+<p>Para los que tengan curiosidad por la historia de la telefonía móvil desde sus orígenes, la Wikipedia en español tiene <a href="http://es.wikipedia.org/wiki/Historia_del_tel%C3%A9fono_m%C3%B3vil" title="Historia del teléfono móvil">una breve reseña</a>, y la inglesa tiene <a href="http://en.wikipedia.org/wiki/History_of_mobile_phones" title="History of mobile phones">abundante información</a>. Yo quiero empezar con la segunda generación, o 2G, que supuso el paso de la telefonía analógica a la digital. En Europa, la historia comienza a principios de los 80, cuando un grupo de 26 países se reune en la <em>Conference of European Postal and Telecommunications Administrations</em> y proyectan un sistema de telefonía celular para toda Europa en la banda de los 900 MHz. En 1990 se publica la especificación DCS1800 (posteriormente GSM1800) para el rango de los 1800 MHz. Las redes comerciales <a href="http://es.wikipedia.org/wiki/Sistema_Global_para_las_Comunicaciones_M%C3%B3viles" title="Sistema Global para las Comunicaciones Móviles">GSM</a> comenzaron a operar a mediados de 1991 y siguen activas en la actualidad. El motivo de este acuerdo está el las nueve estándares distintos que existían en la telefonía analógica europea, que imposibilitaba el <em>roaming</em> entre distintos países.</p>
+
+<p>En Estados Unidos, donde no existían estándares tan variados, se eligió un sistema ya existente y más atrasado tecnológicamente que el GSM: <a href="http://en.wikipedia.org/wiki/D-AMPS" title="Digital AMPS">Digital AMPS</a> (D-AMPS o IS-54). Esta tecnología sigue siendo la más extendida en Norteamérica, aunque está siendo sustituida en muchos sitios por GSM o <a href="http://en.wikipedia.org/wiki/CDMA2000" title="CDMA2000">CDMA2000</a>. En Japón y en buena parte de Asia la tecnología <a href="http://en.wikipedia.org/wiki/Personal_Handyphone_System" title="Personal Handy-phone System">PHS</a> de NTT, en el rango de los 1900 MHz, fue la más habitual durante cierto tiempo, aunque actualmente las migraciones a GSM o a redes 3G han vuelto obsoleta esta tecnología en los países más desarrollados; su bajo coste la hace popular en los países más pobres.</p>
+
+<p>La creciente popularización de Internet durante los años 90 hizo que las operadoras telefónicas comenzaran a pensar cada vez más en servicios orientados a datos en lugar de a voz. Enviar datos a través de redes 2G presenta un problema principal: las comunicaciones entre dos terminales se realizan a través de <a href="http://en.wikipedia.org/wiki/Circuit_switching" title="Circuit switching">conmutación de circuitos</a>. Con este sistema se establece durante toda la duración de la llamada un circuito entre los dos terminales, circuito que nadie más puede utilizar. Este sistema es muy efectivo para llamadas de voz, donde el flujo de información es muy constante durante toda la llamada. Pero para otros usos, como navegar por Internet, los datos sólo circulan por la red durante una pequeña fracción de tiempo, quedando el circuito demasiado desocupado. Con un sistema de <a href="http://es.wikipedia.org/wiki/Conmutaci%C3%B3n_de_paquetes" title="Conmutación de paquetes">conmutación de paquetes</a> no hay un circuito fijo para comunicar dos nodos, y cada paquete se envía por alguna ruta disponible. Así, la primera etapa de la evolución de los sistemas 2G consistió en la introducción de un servicio de conmutación de paquetes: el GPRS. Lo veremos más a fondo en el próximo artículo.</p>
+
+<p>Más información:</p>
+
+<p>http://www.gsmworld.com/technology/what.shtml</p>
+
+<p>http://www.privateline.com/PCS/history10.htm</p>
+
+<p><a href="http://www.amazon.com/S60-Programming-Tutorial-Guide-Symbian/dp/0470027657/ref=sr_1_1/105-2237837-3087649?ie=UTF8&amp;s=books&amp;qid=1194198047&amp;sr=8-1" title="A Tutorial Guide">S60 Programming: A Tutorial Guide</a></p>
+
+<p><strong>Entradas relacionadas:</strong></p>
+
+<h3 id="entradas-relacionadas">Entradas relacionadas:</h3>
+
+<p><a href="/2007/11/10/redes-de-telefonia-movil-25g/">Redes de telefonía móvil: 2.5G</a></p>
+
+<p><a href="/2007/11/15/redes-de-telefonia-movil-3g/">Redes de telefonía móvil: 3G</a></p>
+
+<p><a href="/2007/11/21/redes-de-telefonia-movil-wimax/">Redes de telefonía móvil: WiMAX</a></p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2007/11/02/el-acelerometro-del-n95/">&laquo; El acelerómetro del N95</a>  
+                <a class="next" href="/2007/11/05/introduccion-al-desarrollo-de-aplicaciones-para-telefonos-moviles-blackberry/">Introducción al desarrollo de aplicaciones para teléfonos móviles: BlackBerry &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

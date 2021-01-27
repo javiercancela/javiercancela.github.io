@@ -1,0 +1,66 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/otros/">Otros</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">25 de febrero de 2008</span>
+</p>
+
+
+        <div class="post-content">
+            <p>En realidad esta entrada no se centra en cómo mostrar las imágenes, sino en cómo obtenerlas. Imaginemos que queremos programar una aplicación para móviles que se encargue de mostrar información geolocalizada. Existen abundantes APIs web que nos permiten mostrar todo tipo de información sobre un mapa, como las de <a href="http://code.google.com/apis/maps/" title="http://code.google.com/apis/maps/">Google</a>, <a href="http://developer.yahoo.com/maps/" title="Yahoo! Maps Web Services">Yahoo</a> o <a href="http://dev.live.com/virtualearth" title="Microsoft Virtual Earth™">Microsoft</a>, por citar sólo las tres más conocidas. El problema es que a estos servicios se accede usando JavaScript o Flash, ya que están pensados para visualizar la información en un navegador. Si no podemos renderizar esta información en nuestra aplicación, por ejemplo por falta de soporte javascript en el dispositivo, necesitamos buscar una alternativa que nos permita mostrar una imagen estática con la misma información.</p>
+
+<p><strong>Ingeniería inversa</strong></p>
+
+<p>Una práctica que se utiliza desde hace ya tiempo consiste en acudir a las mismas fuentes que el código Ajax o Flash, ya que al fin y al cabo los mapas que nos muestran los <em>mash-ups</em> habituales están compuestos por imágenes estáticas que se encuentran en algún sitio. Si por ejemplo abrimos la dirección <a href="http://code.google.com/apis/maps/documentation/examples/map-simple.html" title="http://code.google.com/apis/maps/documentation/examples/map-simple.html">http://code.google.com/apis/maps/documentation/examples/map-simple.html</a>, que es el mapa de ejemplo de la documentación de Google, con Firefox y el plugin Firebug instalado o una herramienta similar, comprobamos que el mapa está compuesto de imágenes adyacentes, como si fuese un enlosado, cuyas direcciones tiene esta forma: <a href="http://mt2.google.com/mt?n=404&amp;v=ap.69&amp;hl=es&amp;x=1315&amp;y=3175&amp;zoom=4&amp;s=" title="http://mt2.google.com/mt?n=404&amp;v=ap.69&amp;hl=es&amp;x=1315&amp;y=3175&amp;zoom=4&amp;s=">http://mt2.google.com/mt?n=404&amp;v=ap.69&amp;hl=es&amp;x=1315&amp;y=3175&amp;zoom=4&amp;s=</a>.</p>
+
+<p><img src="http://mt2.google.com/mt?n=404&amp;v=ap.69&amp;hl=es&amp;x=1315&amp;y=3175&amp;zoom=4&amp;s=" height="256" width="256" /></p>
+
+<p>Los parámetros <em>x</em> e <em>y</em> nos muestran la posición de cada imagen en el enlosado, el <em>zoom</em> es autodescriptivo,… Con un poco de ingenio y paciencia es posible establecer una relación entre latitud y longitud y esos parámetros, o bien buscar en Internet a quien ya lo haya hecho.</p>
+
+<p>Existen dos pegas a este procedimiento: la primera, que probablemente va contra los términos de uso de la API, así que si lo usamos en nuestras aplicaciones es posible que recibamos un aviso de Google, Yahoo! o Microsoft invitándonos a abandonar esta práctica. La segunda pega es la habitual al utilizar un procedimiento no documentado: en cualquier momento la especificación puede cambiar sin mantener ningún tipo de compatibilidad, inutilizando nuestro código.</p>
+
+<p><strong>Google Static Maps API</strong></p>
+
+<p>Una alternativa más segura es la nueva API de Google: la <a href="http://code.google.com/apis/maps/documentation/staticmaps/index.html" title="Static Maps API">Static Maps API</a>. Esta API es básicamente una URL que acepta varios parámetros, de la forma <a href="http://maps.google.com/staticmap?center=40.714728,-73.998672&amp;zoom=14&amp;size=512x512&amp;maptype=mobile%5C%20&amp;markers=40.702147,-74.015794,blues%7C40.711614,-74.012318,greeng%7C40.718217,-73.998284,redc%5C%20&amp;key=MAPS_API_KEY" title="http://maps.google.com/staticmap?center=40.714728,-73.998672&amp;zoom=14&amp;size=512x512&amp;maptype=mobile\ &amp;markers=40.702147,-74.015794,blues%7C40.711614,-74.012318,greeng%7C40.718217,-73.998284,redc\ &amp;key=MAPS_API_KEY">http://maps.google.com/staticmap?center=40.714728,-73.998672&amp;zoom=14&amp;size=512×512&amp;maptype=mobile\ &amp;markers=40.702147,-74.015794,blues%7C40.711614,-74.012318,greeng%7C40.718217,-73.998284,redc\ &amp;key=MAPS_API_KEY</a>.</p>
+
+<p><img src="http://maps.google.com/staticmap?center=51.477222,0&amp;zoom=14&amp;size=400x400&amp;key=ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xSosDVG8KKPE1-m51RBrvYughuyMxQ-i1QfUnH94QxWIa6N4U6MouMmBA" height="400" width="400" /></p>
+
+<p>Estos parámetros están bien documentados y permiten mostrar mapas indicando la posición, el zoom, la presencia de marcadores,…con la seguridad de que nadie nos va a cambiar los parámetros el mes que viene. La pega: las limitaciones en el número de peticiones a realizar. Cada usuario, y por lo que entiendo en la documentación el usuario es el dueño de la API key, puede hacer 1000 peticiones al día. Como nuestra API key irá en nuestra aplicación, todos nuestros usuarios contarán como el mismo para Google, con lo que esta API no es una solución práctica.</p>
+
+<p><strong>Yahoo! Map Image API</strong></p>
+
+<p>Yahoo! también tiene desde hace algún tiempo una API similar a la de Google: la <a href="http://developer.yahoo.com/maps/rest/V1/mapImage.html" title="Map Image API">Map Image API</a>. Al igual que la anterior funciona componiendo una URL con parámetros: <a href="http://local.yahooapis.com/MapsService/V1/mapImage?appid=YahooDemo&amp;street=701+First+Avenue&amp;city=Sunnyvale&amp;state=CA">http://local.yahooapis.com/MapsService/V1/mapImage?appid=YahooDemo&amp;street=701+First+Avenue&amp;city=Sunnyvale&amp;state=CA</a> (en este caso lleva parámetros de búsqueda, pero también acepta latitud y longitud). Esta llamada no devuelve directamente una imagen, sino un xml que contiene, esta vez sí, la URL de la imagen solicitada:</p>
+
+<p>`&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br /></p>
+<Result xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><br />
+http://img.maps.yahoo.com/mapimage?MAPDATA=eJz6K.d6wXVM6myr2yRPfx6.kl.uMGgD3Tu4JtDQzr_33pFEsTT<br />
+SaosZ9OCtsiDrsLv9t65fzjz0CJm6JO2v_ZIHLflY9gto.xWMK9ovlRJVmrBLO4FoSsh3Ipsr<br />
+</Result>
+<p>`</p>
+
+<p><img src="http://img.maps.yahoo.com/mapimage?MAPDATA=eJz6K.d6wXVM6myr2yRPfx6.kl.uMGgD3Tu4JtDQzr_33pFEsTTSaosZ9OCtsiDrsLv9t65fzjz0CJm6JO2v_ZIHLflY9gto.xWMK9ovlRJVmrBLO4FoSsh3Ipsr" height="250" width="310" /></p>
+
+<p>La ventaja de la API de Yahoo! es que permite realizar 50000 peticiones por día y por IP, lo que la convierte en la alternativa más interesante de todas.</p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2008/02/22/habemus-claves-de-blackberry/">&laquo; Habemus claves de BlackBerry</a>  
+                <a class="next" href="/2008/02/26/debate-en-la-red-sobre-el-futuro-de-las-aplicaciones-moviles/">Debate en la red sobre el futuro de las aplicaciones móviles &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

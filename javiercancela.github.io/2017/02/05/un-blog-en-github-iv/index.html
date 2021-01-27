@@ -1,0 +1,78 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/blog/"></a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/github/">GitHub</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">05 de febrero de 2017</span>
+</p>
+
+
+        <div class="post-content">
+            <p>Como hemos visto antes, la url de nuestro blog será http://nombreusuario.github.io, de forma que la url coincida con el nombre del repositorio. Si nos interesa, podemos cambiar el dominio de la página por un dominio de nuestra propiedad. Por ejemplo, la url de este blog es <a href="http://www.javiercancela.com">http://www.javiercancela.com</a>, en vez de <a href="http://javiercancela.github.io">http://javiercancela.github.io</a>. Veamos cómo se realiza este cambio.</p>
+
+<p>En primer lugar, nos vamos a nuestro repositorio en GitHub y entramos en el apartado Settings. En mi caso, la url es https://github.com/javiercancela/javiercancela.github.io/settings. Aquí, en la parte inferior, en la sección “GitHub Pages”, encontramos el campo “Custom domain”. Escribo aquí <code class="language-plaintext highlighter-rouge">www.javiercancela.com</code> y pulso “Save”. La parte de <code class="language-plaintext highlighter-rouge">www.</code> es opcional. Sin embargo, GitHub recomienda que use por cuestiones de rendimiento y estabilidad. Ver <a href="https://help.github.com/articles/about-supported-custom-domains/#www-subdomains">www subdomains</a> (en inglés).</p>
+
+<p>Una vez asignado el dominio en GitHub, configuraremos un par de cosas en nuestro proveedor de dominios. Vamos a añadir registros para el dominio javiercancela.com y su subdominio www.javiercancela.com. La forma de hacerlo varía según el proveedor, pero debería ser algo así:</p>
+<ul>
+  <li>Añadimos un registro ALIAS o ANAME para javiercancela.com. Si no se soportan ALIAS ni ANAME, usaremos un registro A. Este tipo de registros asignan un dominio a una ip. Las ips que proporciona GitHub son 192.30.252.153 y 192.30.252.154. En mi caso mi proveedor no permite asignar registros ALIAS ni ANAME, por lo que los registros quedan así:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A   @   192.30.252.153
+A   @   192.30.252.154
+</code></pre></div>    </div>
+  </li>
+  <li>Añadimos un registro CNAME para www.javiercancela.com. Este tipo de registros asocia un subdominio a otro dominio, que será el que sirva el contenido. el registro quedará así:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CNAME   www   javiercancela.github.io
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>El cambio tardará un rato en propagarse, pero al cabo de unas horas el blog estará disponible en http://www.javiercancela.com. Al poner el subdominio <code class="language-plaintext highlighter-rouge">www.javiercancela.com</code> como dominio personalizado tanto http://javiercancela.com como http://javiercancela.github.io redirigirán a este.</p>
+
+<h2 id="configurar-acceso-ssl">Configurar acceso SSL</h2>
+<p>Una limitación de lo que hemos hecho hasta ahora es que nuestro dominio no va a funcionar (correctamente, al menos) a través de https. Los navegadores comprueban que el certificado del servidor, con el que se cifra la conexión SSL, sea válido para el dominio al que se está accediendo. Como nuestra página está en los servidores de GitHub, el certificado sólo cubre dominios *.github.io, por lo que los navegadores mostrarán un mensaje de error alertando de la posibilidad de que la página tenga un propósito fraudulento.</p>
+
+<p>Hoy en día cualquier página debería estar disponible a través de https, así que tenemos que corregir este problema. Para ello vamos a usar <a href="https://www.cloudflare.com">Cloudeflare</a>, un <a href="https://es.wikipedia.org/wiki/Red_de_entrega_de_contenidos">CDN</a> con servicios SSL gratuitos. La información que se indica a continuación está sacada de estos dos posts:</p>
+<ul>
+  <li><a href="https://blog.keanulee.com/2014/10/11/setting-up-ssl-on-github-pages.html">Setting up SSL on GitHub Pages</a></li>
+  <li><a href="https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/">Set Up SSL on Github Pages With Custom Domains for Free</a></li>
+</ul>
+
+<p>Lo primero que haremos será crear una cuenta con nuestro dominio (<code class="language-plaintext highlighter-rouge">javiercancela.com</code>, en este caso usamos el dominio principal, ya que el certificado cubrirá todos los subdominios). Después tendremos que ir a nuestro proveedor de dominios y cambiar los nameservers que estemos usando por los que proporciona Cloudeflare: <code class="language-plaintext highlighter-rouge">curt.ns.cloudflare.com</code> y <code class="language-plaintext highlighter-rouge">jessica.ns.cloudflare.com</code>. Finalmente accederemos a la opción Crypto-&gt;SSL de nuestro dominio y cambiaremos el valor “Full” por “Flexible”.</p>
+
+<p>El cambio debería ser casi inmediato, si probamos en unos minutos a acceder a nuestro blog vía https comprobaremos que la conexión ya es segura.</p>
+
+<p>Como último paso vamos a modificar la plantilla por defecto para asegurarnos de que los usuarios acceden siempre por https. En el archivo <code class="language-plaintext highlighter-rouge">_layouts\default.html</code>, añadimos justo tras el <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+    <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">www.javiercancela.com</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">host</span> <span class="o">==</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">host</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">!=</span> <span class="dl">"</span><span class="s2">https:</span><span class="dl">"</span><span class="p">))</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https</span><span class="dl">"</span><span class="p">;</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+<p>Este código javascript le indica al navegador que cambie el protocolo a https, si no es el que ya está usando.</p>
+
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2017/01/29/raton-vertical-CSL/">&laquo; Ratón vertical CSL</a>  
+                <a class="next" href="/2017/02/12/teclado-mecanico-logitech/">Teclado mecánico Logitech G610 &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

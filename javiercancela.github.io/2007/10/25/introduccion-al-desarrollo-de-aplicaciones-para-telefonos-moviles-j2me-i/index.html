@@ -1,0 +1,57 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/java-me/">Java ME</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">25 de octubre de 2007</span>
+</p>
+
+
+        <div class="post-content">
+            <p>El nombre real de J2ME es ‘<em>Java Platform, Micro Edition’</em>, aunque J2ME sigue siendo el término más habitual.</p>
+
+<p><a href="http://java.sun.com/javame/index.jsp" title="The Java ME Platform">J2ME</a> es un subconjunto de Java orientado a dispositivos con recursos limitados, es decir, a un hardware en el que características como la memoria o la velocidad del procesador son muy inferiores a las de un ordenador convencional. Por ejemplo, un teléfono móvil. Desde el año pasado J2ME es Open Source, y el proyecto que se encarga de mantenerlo y desarrollarlo se llama <a href="https://phoneme.dev.java.net/" title="phoneME Project">phoneME</a>.</p>
+
+<p>Al igual que ocurre con el J2SE, la principal virtud de J2ME es su habilidad para ejecutarse en distintas plataformas: casi cualquier móvil de hoy en día incorpora soporte Java (las excepciones más significativas son el iPhone y los móviles con Windows Mobile). Sin embargo, no todos los dispositivos tienen el mismo soporte de J2ME. Veamos por qué.</p>
+
+<p>J2ME se divide en configuraciones (<em>configurations</em>), perfiles (<em>profiles</em>) y APIs opcionales. Una configuración define un tipo de dispositivo en función de las características de su hardware: sus limitaciones, sus capacidades… y le asigna una máquina virtual y un conjunto de APIs adecuados a ese hardware. En la actualidad existen dos configuraciones: <a href="http://java.sun.com/products/cdc/" title="Connected Device Configuration (CDC); JSR 36, JSR 218">CDC</a> (<em>Connected Device Configuration</em>), utilizada sobre todo en sistemas de telemetría, automoción o domótica, y <a href="http://java.sun.com/products/cldc/" title="Connected Limited Device Configuration (CLDC); JSR 30, JSR 139">CLDC</a> (<em>Connected Limited Device Configuration</em>) que es una versión más limitada y que es la que nos interesa por estar presente en la mayoría de los móviles.</p>
+
+<p>Dentro de una configuración, un perfil nos define ciertas características concretas, como la interfaz de usuario. Existen tres perfiles para la configuración CLDC: <a href="http://java.sun.com/products/midp/" title="Mobile Information Device Profile (MIDP); JSR 37, JSR 118">MIDP</a> (<em>Mobile Information Device Profile</em>), que es la usada en los teléfonos móviles y por tanto la que nos interesa, <a href="http://java.sun.com/products/imp/" title="Information Module Profile (IMP) JSR-195">IMP</a> (<em>Information Module Profile</em>) que es una versión de la anterior sin interfaz de usuario, y <a href="http://www.doja-developer.net/" title="DoJa Developer Network">DoJa</a>, destinado a un tipo de móviles japoneses.</p>
+
+<p>Finalmente, cada dispositivo móvil puede incluir soporte para distintas APIs opcionales. Por ejemplo, un dispositivo con Bluetooth puede disponer de la <em>Bluetooth API</em> <a href="http://www.jsr82.com/" title="Java Bluetooth">(JSR 82</a>), o un móvil de gama media/alta quizás venga preparado para leer y procesar información geolocalizada con la <em>Location API</em> <a href="http://jcp.org/en/jsr/detail?id=179" title="Location API for J2METM">(JSR 179</a>). Como estas capacidades varían de dispositivo en dispositivo, hay que acudir a las especificaciones de cada uno para ver qué APIs soportan. Por ejemplo, <a href="http://www.forum.nokia.com/devices/matrix_all_1.html" title="Device specifications">aquí</a> podéis comprobar los modelos Nokia, <a href="http://developer.motorola.com/products/handsets/" title="Handsets">aquí</a> los Motorola o <a href="http://developer.sonyericsson.com/site/global/products/phonegallery/p_phonegallery.jsp?cc=gb&amp;lc=en&amp;ver=4000&amp;template=pp1&amp;zone=pp&amp;lm=pp" title="Phone Gallery">aquí</a> los Sony Ericsson. Sun también proporciona una <a href="http://developers.sun.com/mobility/device/device;jsessionid=133D390A2F5E3292FD865279A7DB2F1F" title="Java ME Device Table">lista de dispositivos de distintos fabricantes</a>.</p>
+
+<p>Ocurre que cada fabricante realiza las implementaciones de las APIs J2ME de sus móviles. Aunque para ello se basan en una implementación de referencia de Sun, en la práctica se pueden encontrar diferencias significativas en el comportamiento de distintos dispositivos para una misma función, fallando en unos móviles lo que funciona en otros. En ocasiones, esto supone la necesidad de desarrollar más de una versión de la misma aplicación.</p>
+
+<p>Recapitulando, para programar móviles usaremos la configuración CLDC con el perfil MIDP. La última versión de CLDC es la 1.1, y la última de MIDP es la 2.0; estos son las versiones que incorporan los móviles recientes, para modelos más antiguos podemos encontrarnos con CLDC 1.0, que por ejemplo no soporta operaciones en punto flotante, y MIDP 1.0, que no da acceso a funciones de sonido o pantalla completa.</p>
+
+<h3 id="entradas-relacionadas">Entradas relacionadas:</h3>
+
+<p><a href="/2007/10/17/introduccion-al-desarrollo-de-aplicaciones-para-telefonos-moviles-symbian/">Introducción al desarrollo de aplicaciones para teléfonos móviles: Symbian</a></p>
+
+<p><a href="/2007/10/19/introduccion-al-desarrollo-de-aplicaciones-para-telefonos-moviles-windows-mobile/">Introducción al desarrollo de aplicaciones para teléfonos móviles: Windows Mobile</a></p>
+
+<p><a href="/2007/10/30/introduccion-al-desarrollo-de-aplicaciones-para-telefonos-moviles-j2me-y-ii/">Introducción al desarrollo de aplicaciones para teléfonos móviles: J2ME (y II)</a></p>
+
+<p><a href="/2007/11/05/introduccion-al-desarrollo-de-aplicaciones-para-telefonos-moviles-blackberry/">Introducción al desarrollo de aplicaciones para teléfonos móviles: BlackBerry</a></p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2007/10/24/informe-de-admob-tendencias-en-el-mercado-de-la-publicidad-movil/">&laquo; Informe de AdMob: tendencias en el mercado de la publicidad móvil</a>  
+                <a class="next" href="/2007/10/26/j2me-contra-javafx-mobile/">J2ME contra JavaFX Mobile &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

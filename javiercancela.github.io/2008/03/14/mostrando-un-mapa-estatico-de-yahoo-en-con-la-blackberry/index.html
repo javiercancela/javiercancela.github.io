@@ -1,0 +1,106 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/blackberry/">BlackBerry</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">14 de marzo de 2008</span>
+</p>
+
+
+        <div class="post-content">
+            <p>Veíamos en un artículo anterior (<a href="/2008/02/25/como-mostrar-imagenes-de-mapas-en-el-movil/">Cómo mostrar imágenes de mapas en el móvil</a> distintas opciones para mostrar mapas estáticos (simples imágenes de mapas, nada de JavaScript). Vamos a ver con un poco de código cómo utilizar la Yahoo! Map Image API en BlackBerry (que con algunos cambios se podrá adaptar a cualquier aplicación Java ME).</p>
+
+<p>La API acepta varios parámetros para elegir la ubicación del mapa a mostrar, y nosotros vamos a utilizar como parámetros la longitud y latitud del punto central, así como el nivel de zoom y el tamaño de la imagen:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">String url = "http://local.yahooapis.com/MapsService/V1/mapImage?appid=mi_yahoo_appid"</code></p>
+</blockquote>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">+ "&amp;latitude=" + latitude + "&amp;longitude=" + longitude +&lt;br /&gt;
+"&amp;image_height=" + height + "&amp;image_width=" + width + "&amp;zoom=" + zoom;</code></p>
+</blockquote>
+
+<p>El parámetro <code class="language-plaintext highlighter-rouge">mi_yahoo_appid</code> es nuestro id de aplicación de Yahoo!, que se puede obtener gratuitamente aquí: <a href="http://developer.yahoo.com/wsregapp/index.php" title="Yahoo! Application ID"><em>Yahoo! Application ID</em></a>. Con la url formada podemos realizar la llamada a la API.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">StreamConnection s = (StreamConnection)Connector.open(url);&lt;br /&gt;
+HttpConnection httpConn = (HttpConnection)s;&lt;br /&gt;
+int status = httpConn.getResponseCode();&lt;br /&gt;
+if (status == HttpConnection.HTTP_OK)&lt;br /&gt;
+{&lt;br /&gt;
+try&lt;br /&gt;
+{&lt;br /&gt;
+DocumentBuilder doc = DocumentBuilderFactory.newInstance().newDocumentBuilder();&lt;br /&gt;
+DataInputStream dis = s.openDataInputStream();&lt;br /&gt;
+Document d = doc.parse(dis);&lt;br /&gt;
+Element el = d.getDocumentElement();&lt;br /&gt;
+url = el.getFirstChild().getNodeValue() ;&lt;br /&gt;
+dis.close();&lt;br /&gt;
+}&lt;br /&gt;
+catch(SAXException e)&lt;br /&gt;
+{&lt;br /&gt;
+System.err.println(e.toString());&lt;br /&gt;
+}&lt;br /&gt;
+catch(ParserConfigurationException e)&lt;br /&gt;
+{&lt;br /&gt;
+System.err.println(e.toString());&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>Realizamos la conexión de forma normal, y si todo ha ido bien Yahoo! nos devolverá un documento XML:</p>
+
+<blockquote>
+  <p>`&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;<br /></p>
+</blockquote>
+<Result xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><br />
+http://img.maps.yahoo.com/mapimage?MAPDATA=eJz6K.d6wXVM6myr2yRPfx6.kl.uMGgD3Tu4JtDQzr_33pFEsTT<br />
+SaosZ9OCtsiDrsLv9t65fzjz0CJm6JO2v_ZIHLflY9gto.xWMK9ovlRJVmrBLO4FoSsh3Ipsr<br />
+</Result>
+<p>`</p>
+
+<p>Este documento contiene un único elemento, cuyo texto es otra url que contiene la imagen solicitada en formato PNG. Para acceder a esta url, en el <em>package</em> <code class="language-plaintext highlighter-rouge">net.rim.device.api.xml.parsers</code> encontramos la clase <code class="language-plaintext highlighter-rouge">DocumentBuilder</code>, que nos permite convertir un <code class="language-plaintext highlighter-rouge">InputStream</code> en un objeto <code class="language-plaintext highlighter-rouge">Document</code> de <code class="language-plaintext highlighter-rouge">org.w3c.dom</code>, a partir del cual accedemos fácilmente al valor del elemento. Con esta segunda url volvemos a abrir una conexión:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">s = (StreamConnection)Connector.open(url);&lt;br /&gt;
+httpConn = (HttpConnection)s;&lt;br /&gt;
+status = httpConn.getResponseCode();&lt;br /&gt;
+if (status == HttpConnection.HTTP_OK)&lt;br /&gt;
+{&lt;br /&gt;
+java.io.InputStream input = s.openInputStream();&lt;br /&gt;
+byte[] data = new byte[1];&lt;br /&gt;
+ByteVector bv = new ByteVector();&lt;br /&gt;
+while ( -1 != input.read(data) )&lt;br /&gt;
+{&lt;br /&gt;
+bv.addElement(data[0]);&lt;br /&gt;
+}&lt;br /&gt;
+Bitmap bitmap = Bitmap.createBitmapFromPNG(bv.getArray(), 0, -1);&lt;br /&gt;
+// Mostramos la imagen almacenada en el bitmap&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>Esta vez utilizamos el flujo de bytes devuelto para crear un <code class="language-plaintext highlighter-rouge">Bitmap</code>. No podemos utilizar el método <code class="language-plaintext highlighter-rouge">getLength()</code> de la conexión para averiguar el número de bytes total porque las cabeceras de la página no incluyen el campo Content-Length. Así que recorremos byte byte el stream para obtener un array de bytes con el que generar el <code class="language-plaintext highlighter-rouge">Bitmap</code>.</p>
+
+<p>Ya tenemos nuestro <code class="language-plaintext highlighter-rouge">Bitmap</code> para mostrar. Bastará añadir, por ejemplo, un <code class="language-plaintext highlighter-rouge">BitmapField</code> y asignarle el <code class="language-plaintext highlighter-rouge">Bitmap</code> recién creado.</p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2008/03/13/acceder-a-internet-con-java-en-una-blackberry/">&laquo; Acceder a Internet con Java en una BlackBerry</a>  
+                <a class="next" href="/2008/03/19/nueva-sdk-de-symbian-s60-3rd-edition-feature-pack-2/">Nueva SDK de Symbian: S60 3rd Edition Feature Pack 2 &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>

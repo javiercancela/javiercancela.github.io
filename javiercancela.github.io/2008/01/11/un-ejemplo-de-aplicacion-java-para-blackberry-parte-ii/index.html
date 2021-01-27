@@ -1,0 +1,217 @@
+--- layout: page ---
+
+<section>
+    <div class="blog-post text-container">
+        <p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/blackberry/">BlackBerry</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/java-me/">Java ME</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">11 de enero de 2008</span>
+</p>
+
+
+        <div class="post-content">
+            <p>Seguimos examinando la clase abstracta BaseApp.</p>
+
+<p><strong>Crear un menú</strong></p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">protected void makeMenu( Menu menu, int instance) {&lt;br /&gt;
+Field focus = UiApplication.getUiApplication().getActiveScreen().getLeafFieldWithFocus();&lt;br /&gt;
+if(focus != null) {&lt;br /&gt;
+ContextMenu contextMenu = focus.getContextMenu();&lt;br /&gt;
+if( !contextMenu.isEmpty()) {&lt;br /&gt;
+menu.add(contextMenu);&lt;br /&gt;
+menu.addSeparator();&lt;br /&gt;
+}&lt;br /&gt;
+}&lt;br /&gt;
+menu.add(_closeItem);&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>La clase <a href="http://www.blackberry.com/developers/docs/4.1api/net/rim/device/api/ui/component/Menu.html" title="Class Menu"><code class="language-plaintext highlighter-rouge">net.rim.device.api.ui.component.Menu</code></a> representa un menú que se despliega desde la parte superior derecha de la pantalla. Está compuesto por objetos MenuItem, de los que ya hablamos en la entrada anterior.</p>
+
+<p>El método <code class="language-plaintext highlighter-rouge">makeMenu</code> es invocado cuando se produce un evento que tenga que mostrar el menú, como pulsar el <em>trackwheel</em>. En la implementación de las interfaces veremos un ejemplo. Este método, a través del objeto aplicación (<code class="language-plaintext highlighter-rouge">UiApplication.getUiApplication()</code>), obtiene la pantalla activa (<code class="language-plaintext highlighter-rouge">getActiveScreen()</code>) y de ella el campo hoja que tiene el foco (<code class="language-plaintext highlighter-rouge">getLeafFieldWithFocus()</code>). Un campo hoja (<em>Leaf Field</em>) es aquel que no actúa de contenedor para otro campo.</p>
+
+<p>Si este campo tiene un menú contextual se añade al menú de la pantalla (el objeto <code class="language-plaintext highlighter-rouge">Menu</code>, que puede tener ya otros elementos), y tras él un separador y el elemento <code class="language-plaintext highlighter-rouge">_closeItem</code> que vimos en la entrada anterior.</p>
+
+<p><strong>Implementación de interfaces</strong></p>
+
+<p>Ahora vamos a ver los métodos de las otras dos interfaces que implementa nuestra clase, <code class="language-plaintext highlighter-rouge">KeyListener</code> y <code class="language-plaintext highlighter-rouge">TrackwheelListener</code>.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">/* Invoked when the trackwheel is clicked. */&lt;br /&gt;
+public boolean trackwheelClick( int status, int time ) {&lt;br /&gt;
+Menu menu = new Menu();&lt;br /&gt;
+makeMenu( menu, 0);&lt;br /&gt;
+menu.show();&lt;br /&gt;
+return true;&lt;br /&gt;
+}&lt;br /&gt;
+/* Invoked when the trackwheel is released. */&lt;br /&gt;
+public boolean trackwheelUnclick( int status, int time ) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}&lt;br /&gt;
+/* Invoked when the trackwheel is rolled. */&lt;br /&gt;
+public boolean trackwheelRoll(int amount, int status, int time) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>No hacemos nada cuando se suelta el <em>trackwheel</em> o cuando se gira, pero cuando se pulsa creamos un menú, lo construimos y lo mostramos. Hacerlo en este evento es el comportamiento estándar en una BlackBerry.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">public boolean keyChar(char key, int status, int time) {&lt;br /&gt;
+/* Intercept the ESC key and exit the application. */&lt;br /&gt;
+boolean retval = false;&lt;br /&gt;
+switch (key) {&lt;br /&gt;
+case Characters.ESCAPE:&lt;br /&gt;
+onExit();&lt;br /&gt;
+System.exit(0);&lt;br /&gt;
+retval = true;&lt;br /&gt;
+break;&lt;br /&gt;
+}&lt;br /&gt;
+return retval;&lt;br /&gt;
+}&lt;br /&gt;
+/* Implementation of KeyListener.keyDown(). */&lt;br /&gt;
+public boolean keyDown(int keycode, int time) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}&lt;br /&gt;
+/* Implementation of KeyListener.keyRepeat(). */&lt;br /&gt;
+public boolean keyRepeat(int keycode, int time) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}&lt;br /&gt;
+/* Implementation of KeyListener.keyStatus(). */&lt;br /&gt;
+public boolean keyStatus(int keycode, int time) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}&lt;br /&gt;
+/* Implementation of KeyListener.keyUp(). */&lt;br /&gt;
+public boolean keyUp(int keycode, int time) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>De los eventos de teclado (<code class="language-plaintext highlighter-rouge">keyStatus</code> se dispara cuando se pulsan Shift o Alt) sólo actuamos en <code class="language-plaintext highlighter-rouge">keyChar</code>, que se dispara cuando se genera un carácter. En concreto nos interesa comprobar si el carácter es un <em>Escape</em>. Si es así, terminamos la aplicación.</p>
+
+<p><strong>Listado completo de <code class="language-plaintext highlighter-rouge">BaseApp</code></strong></p>
+
+<p>A continuación el listado completo de la clase <code class="language-plaintext highlighter-rouge">BaseApp</code>, que se utilizará en una próxima entrada para la clase <code class="language-plaintext highlighter-rouge">GPSDemo</code>.</p>
+
+<blockquote>
+  <p>`/*<br /></p>
+  <ul>
+    <li>BaseApp.java<br /></li>
+    <li>Copyright (C) 2001-2004 Research In Motion Limited. All rights reserved.<br />
+*/`</li>
+  </ul>
+
+  <p><code class="language-plaintext highlighter-rouge">package com.rim.samples.docs.baseapp;</code></p>
+
+  <p><code class="language-plaintext highlighter-rouge">import net.rim.device.api.i18n.*;&lt;br /&gt;
+import net.rim.device.api.system.*;&lt;br /&gt;
+import net.rim.device.api.ui.container.*;&lt;br /&gt;
+import net.rim.device.api.ui.*;&lt;br /&gt;
+import net.rim.device.api.ui.component.*;</code></p>
+
+  <p><code class="language-plaintext highlighter-rouge">public abstract class BaseApp extends UiApplication implements BaseAppResource, KeyListener, TrackwheelListener {&lt;br /&gt;
+private MenuItem _closeItem;&lt;br /&gt;
+private static ResourceBundle _resources =&lt;br /&gt;
+ResourceBundle.getBundle(BUNDLE_ID, BUNDLE_NAME);&lt;br /&gt;
+/* Constructor for the abstract base class. */&lt;br /&gt;
+public BaseApp() {&lt;br /&gt;
+_closeItem = new MenuItem(_resources, MENUITEM_CLOSE, 200000, 10) {&lt;br /&gt;
+public void run() {&lt;br /&gt;
+onExit();&lt;br /&gt;
+System.exit(0);&lt;br /&gt;
+}&lt;br /&gt;
+};&lt;br /&gt;
+}&lt;br /&gt;
+/* Override this method to add custom menu items. */&lt;br /&gt;
+protected void makeMenu( Menu menu, int instance) {&lt;br /&gt;
+Field focus = UiApplication.getUiApplication().getActiveScreen().getLeafFieldWithFocus();&lt;br /&gt;
+if(focus != null) {&lt;br /&gt;
+ContextMenu contextMenu = focus.getContextMenu();&lt;br /&gt;
+if( !contextMenu.isEmpty()) {&lt;br /&gt;
+menu.add(contextMenu);&lt;br /&gt;
+menu.addSeparator();&lt;br /&gt;
+}&lt;br /&gt;
+}&lt;br /&gt;
+menu.add(_closeItem);&lt;br /&gt;
+}&lt;br /&gt;
+/* Invoked when the trackwheel is clicked. */&lt;br /&gt;
+public boolean trackwheelClick( int status, int time ) {&lt;br /&gt;
+Menu menu = new Menu();&lt;br /&gt;
+makeMenu( menu, 0);&lt;br /&gt;
+menu.show();&lt;br /&gt;
+return true;&lt;br /&gt;
+}&lt;br /&gt;
+/* Invoked when the trackwheel is released. */&lt;br /&gt;
+public boolean trackwheelUnclick( int status, int time ) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}&lt;br /&gt;
+/* Invoked when the trackwheel is rolled. */&lt;br /&gt;
+public boolean trackwheelRoll(int amount, int status, int time) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}&lt;br /&gt;
+public boolean keyChar(char key, int status, int time) {&lt;br /&gt;
+/* Intercept the ESC key and exit the application. */&lt;br /&gt;
+boolean retval = false;&lt;br /&gt;
+switch (key) {&lt;br /&gt;
+case Characters.ESCAPE:&lt;br /&gt;
+onExit();&lt;br /&gt;
+System.exit(0);&lt;br /&gt;
+retval = true;&lt;br /&gt;
+break;&lt;br /&gt;
+}&lt;br /&gt;
+return retval;&lt;br /&gt;
+}&lt;br /&gt;
+/* Implementation of KeyListener.keyDown(). */&lt;br /&gt;
+public boolean keyDown(int keycode, int time) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}&lt;br /&gt;
+/* Implementation of KeyListener.keyRepeat(). */&lt;br /&gt;
+public boolean keyRepeat(int keycode, int time) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}&lt;br /&gt;
+/* Implementation of KeyListener.keyStatus(). */&lt;br /&gt;
+public boolean keyStatus(int keycode, int time) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}&lt;br /&gt;
+/* Implementation of KeyListener.keyUp(). */&lt;br /&gt;
+public boolean keyUp(int keycode, int time) {&lt;br /&gt;
+return false;&lt;br /&gt;
+}&lt;br /&gt;
+protected abstract void onExit();&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<h3 id="entradas-relacionadas">Entradas relacionadas:</h3>
+
+<p><a href="/2008/01/09/un-ejemplo-de-aplicacion-java-para-blackberry-parte-i/">Un ejemplo de aplicación Java para BlackBerry – Parte I</a></p>
+
+<p><a href="/2008/01/14/mas-sobre-la-firma-de-aplicaciones-symbian/">Un ejemplo de aplicación Java para BlackBerry – Parte III</a></p>
+
+<p><a href="/2008/01/16/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iv-y-final/">Un ejemplo de aplicación Java para BlackBerry – Parte IV y final</a></p>
+
+
+            <div class="blog-navigation">
+                
+                <a class="prev" href="/2008/01/10/nueva-version-de-la-web-movil-de-yahoo/">&laquo; Nueva versión de la web móvil de Yahoo!</a>  
+                <a class="next" href="/2008/01/14/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iii/">Un ejemplo de aplicación Java para BlackBerry &#8211; Parte III &raquo;</a> 
+            </div>
+        </div>
+    </div>
+</section>
