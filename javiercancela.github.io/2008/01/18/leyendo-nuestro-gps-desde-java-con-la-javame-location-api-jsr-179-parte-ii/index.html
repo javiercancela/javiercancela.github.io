@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <script type="text/javascript">
+        var host = "www.javiercancela.com";
+        if ((host == window.location.host) && (window.location.protocol != "https:"))
+            window.location.protocol = "https";
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jekyll v4.2.0">
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
+    <link rel="stylesheet" href="/css/screen.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff"> <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte II | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte II" />
+<meta name="author" content="javiercancela" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Esta entrada completa la explicación del ejemplo tratado en la serie de entradas Un ejemplo de aplicación Java para BlackBerry. Ver enlaces al final." />
+<meta property="og:description" content="Esta entrada completa la explicación del ejemplo tratado en la serie de entradas Un ejemplo de aplicación Java para BlackBerry. Ver enlaces al final." />
+<link rel="canonical" href="https://www.javiercancela.com/2008/01/18/leyendo-nuestro-gps-desde-java-con-la-javame-location-api-jsr-179-parte-ii/" />
+<meta property="og:url" content="https://www.javiercancela.com/2008/01/18/leyendo-nuestro-gps-desde-java-con-la-javame-location-api-jsr-179-parte-ii/" />
+<meta property="og:site_name" content="Página de Javier Cancela" />
+<meta property="og:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2008-01-18T09:00:32+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="twitter:title" content="Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte II" />
+<script type="application/ld+json">
+{"dateModified":"2008-01-18T09:00:32+01:00","datePublished":"2008-01-18T09:00:32+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2008/01/18/leyendo-nuestro-gps-desde-java-con-la-javame-location-api-jsr-179-parte-ii/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"javiercancela"},"url":"https://www.javiercancela.com/2008/01/18/leyendo-nuestro-gps-desde-java-con-la-javame-location-api-jsr-179-parte-ii/","author":{"@type":"Person","name":"javiercancela"},"image":"https://www.javiercancela.com/images/obsolete.jpg","description":"Esta entrada completa la explicación del ejemplo tratado en la serie de entradas Un ejemplo de aplicación Java para BlackBerry. Ver enlaces al final.","headline":"Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte II","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+ 
+</head>
+
+<body>
+    <header id="mainHeader">
+        <div class="container">
+            <div class="company-name">
+                <a href="/">
+                    <span class="dark-logo"><img width="104" height="38" src="/images/logo/dark.png" alt="dark frisco logo"></span>
+                    <span class="light-logo"><img width="104" height="38" src="/images/logo/light.png" alt="light frisco logo"></span>
+                </a>
+            </div>
+            <nav>
+	<a class="nav-toggle" id="open-nav" href="#">&#9776;</a>
+	
+		
+		
+
+		
+		<a href="/" class="" >Blog</a>
+	
+		
+		
+
+		
+		<a href="/archivo/" class="" >Archivo</a>
+	
+		
+		
+
+		
+		<a href="/sobre-mi/" class="" >Sobre mí</a>
+	
+</nav>
+
+        </div>
+    </header>
+
+    <section class="hero" style="background-image: url(/images/obsolete.jpg)">
+	<div class="inner-hero text-container">
+		<div class="hero-text-container">
+			<h1>Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) &#8211; Parte II</h1>
+			<p class="subtext"></p>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="blog-post text-container">
+		<p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/blackberry/">BlackBerry</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/java-me/">Java ME</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">18 de enero de 2008</span>
+</p>
+
+
+		<div class="post-content">
+			<p>Esta entrada completa la explicación del ejemplo tratado en la serie de entradas <strong>Un ejemplo de aplicación Java para BlackBerry</strong>. Ver enlaces al final.</p>
+
+<p><strong>Recapitulando</strong></p>
+
+<p>GPSDemo es una aplicación para BlackBerry que hace uso de la API JSR-179 para mostrar información de la posición y velocidad obtenidas de un dispositivo GPS o similar (ver la entrada <a href="/2008/01/07/leyendo-nuestro-gps-desde-java-con-la-javame-location-api-jsr-179-parte-i/">Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte I</a> para una explicación de las posibles fuentes de información).</p>
+
+<p>Habíamos dejado pendiente de describir el método <code class="language-plaintext highlighter-rouge">startLocationUpdate()</code> que se llama desde el constructor de la clase <code class="language-plaintext highlighter-rouge">GPSDemo</code>:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">private void startLocationUpdate()&lt;br /&gt;
+{&lt;br /&gt;
+try&lt;br /&gt;
+{&lt;br /&gt;
+_locationProvider = LocationProvider.getInstance(null);&lt;br /&gt;
+if ( _locationProvider == null )&lt;br /&gt;
+{&lt;br /&gt;
+Dialog.alert("GPS is not supported on this platform, exiting...");&lt;br /&gt;
+System.exit(0);&lt;br /&gt;
+}&lt;br /&gt;
+_locationProvider.setLocationListener(new LocationListenerImpl(), _interval, 1, 1);&lt;br /&gt;
+}&lt;br /&gt;
+catch (LocationException le)&lt;br /&gt;
+{&lt;br /&gt;
+System.err.println("Failed to add a location listener. Exiting...");&lt;br /&gt;
+System.err.println(le);&lt;br /&gt;
+System.exit(0);&lt;br /&gt;
+}&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>Lo primero que hacemos es obtener un proveedor de contenidos, con los criterios por defecto. En caso de no poder obtener uno, salimos de la aplicación.</p>
+
+<p>La otra cosa que hace este método es establecer el objeto responsable de escuchar la información que llega del GPS. La variable <em>internal se estableció previamente al valor 1, con lo que la información se actualizará aproxamadamente una vez por segundo. Los dos últimos parámetros establecen el _timeout</em> y la caducidad de los datos.</p>
+
+<p>Para actuar como <em>listener</em> del GPS una clase debe implementar la interfaz <code class="language-plaintext highlighter-rouge">LocationListener</code>.</p>
+
+<p><strong>La clase <code class="language-plaintext highlighter-rouge">LocationListenerImpl</code></strong></p>
+
+<p>De forma más bien descriptiva, la clase <em>listener</em> de nuestro ejemplo se llama <code class="language-plaintext highlighter-rouge">LocationListenerImpl</code>:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">private class LocationListenerImpl implements LocationListener&lt;br /&gt;
+{&lt;br /&gt;
+// Members. --------------------------------------------------------------&lt;br /&gt;
+private int captureCount;</code></p>
+
+  <p><code class="language-plaintext highlighter-rouge">public void providerStateChanged(LocationProvider provider, int newState)&lt;br /&gt;
+{&lt;br /&gt;
+// No operation defined.&lt;br /&gt;
+}&lt;br /&gt;
+...</code></p>
+</blockquote>
+
+<p>La interfaz tiene dos métodos. providerStateChanged nos avisa de los cambios de estado de nuestro proveedor de localización, básicamente cuando deja de estar disponible por algún tipo de problema; como estamos pensando sólo en el GPS, que no va a quedar fuera de servicio, no implementamos este método.</p>
+
+<p>El otro método es el que nos avisa de que el GPS ha suministrado una nueva localización:</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">public void locationUpdated(LocationProvider provider, Location location)&lt;br /&gt;
+{&lt;br /&gt;
+if(location.isValid())&lt;br /&gt;
+{&lt;br /&gt;
+float heading = location.getCourse();&lt;br /&gt;
+double longitude = location.getQualifiedCoordinates().getLongitude();&lt;br /&gt;
+double latitude = location.getQualifiedCoordinates().getLatitude();&lt;br /&gt;
+float altitude = location.getQualifiedCoordinates().getAltitude();&lt;br /&gt;
+float speed = location.getSpeed();&lt;br /&gt;
+// Horizontal distance.&lt;br /&gt;
+float horizontalDistance = speed * _interval;&lt;br /&gt;
+_horizontalDistance += horizontalDistance;&lt;br /&gt;
+// Horizontal distance for this waypoint.&lt;br /&gt;
+_wayHorizontalDistance += horizontalDistance;&lt;br /&gt;
+// Distance over the current interval.&lt;br /&gt;
+float totalDist = 0;&lt;br /&gt;
+// Moving average grade.&lt;br /&gt;
+for(int i = 0; i  0) _verticalDistance = _verticalDistance + altGain;&lt;br /&gt;
+captureCount += _interval;&lt;br /&gt;
+// If we’re mod zero then it’s time to record this data.&lt;br /&gt;
+captureCount %= CAPTURE_INTERVAL;&lt;br /&gt;
+// Information to display on the device.&lt;br /&gt;
+StringBuffer sb = new StringBuffer();&lt;br /&gt;
+sb.append("Longitude: " + longitude+ "\n");&lt;br /&gt;
+sb.append("Latitude: " + latitude+ "\n");&lt;br /&gt;
+sb.append("Altitude: " + altitude + " m\n");&lt;br /&gt;
+sb.append("Heading relative to true north: " + heading + "\n");&lt;br /&gt;
+sb.append("Speed : " + speed + +" m/s\n");&lt;br /&gt;
+sb.append("Grade : ");&lt;br /&gt;
+if(Float.isNaN(grade))&lt;br /&gt;
+sb.append(" Not available");&lt;br /&gt;
+else&lt;br /&gt;
+sb.append(grade+" %");&lt;br /&gt;
+GPSDemo.this.updateLocationScreen(sb.toString());&lt;br /&gt;
+}&lt;br /&gt;
+}</code></p>
+</blockquote>
+
+<p>Mucho código, pero muy simple. Se nos pasa como parámetros el <code class="language-plaintext highlighter-rouge">LocationProvider</code>, que no necesitamos, y un objeto <code class="language-plaintext highlighter-rouge">Location</code> que contiene, además de las coordenadas, la velocidad, la dirección y un método (<code class="language-plaintext highlighter-rouge">isValid()</code>) que nos dice si el objeto Location tiene coordenadas o no. En caso de utilizar como proveedor de contenidos un servicio de pago del operador, podríamos tener información adicional en el mismo objeto, como una dirección postal.</p>
+
+<p><strong>Código de GPSDemo.java</strong></p>
+
+<blockquote>
+  <p>`/**<br /></p>
+  <ul>
+    <li>A GPS sample application using the JSR 179 APIs.<br />
+*<br /></li>
+    <li>Copyright (C) 2005 Research In Motion Limited.<br />
+<em>/<br />
+package com.rim.samples.docs.gpsdemo;<br />
+import net.rim.device.api.ui.</em>;<br />
+import net.rim.device.api.ui.component.<em>;<br />
+import net.rim.device.api.ui.container.</em>;<br />
+import com.rim.samples.docs.baseapp.<em>;<br />
+import net.rim.device.api.io.</em>;<br />
+import net.rim.device.api.system.<em>;<br />
+import net.rim.device.api.i18n.</em>;<br />
+import javax.microedition.io.<em>;<br />
+import java.util.</em>;<br />
+import java.io.<em>;<br />
+import javax.microedition.location.</em>;<br />
+import net.rim.device.api.util.<em>;<br />
+import com.rim.samples.docs.resource.</em>;<br />
+/* This application acts as a simple travel computer, recording route coordinates,<br /></li>
+    <li>speed, and altitude.<br /></li>
+    <li>Recording begins as soon as the application is invoked.<br />
+<em>/<br />
+public class GPSDemo extends BaseApp implements GPSDemoResResource<br />
+{<br />
+// Constants. —————————————————————-<br />
+// The number of updates in seconds over which the altitude is calculated.<br />
+private static final int GRADE_INTERVAL=5;<br />
+// com.rim.samples.docs.gpsdemo.GPSDemo.ID<br />
+private static final long ID = 0x4e94d9bc9c54fed3L;<br />
+private static final int CAPTURE_INTERVAL=10;<br />
+// Statics. ——————————————————————<br />
+private static ResourceBundle _resources =<br />
+ResourceBundle.getBundle(GPSDemoResResource.BUNDLE_ID, GPSDemoResResource.BUNDLE_NAME);<br />
+// The period of the position query in seconds.<br />
+private static int _interval = 1;<br />
+private static Vector _previousPoints;<br />
+private static float[] _altitudes;<br />
+private static float[] _horizontalDistances;<br />
+private static PersistentObject _store;<br />
+// Initialize or reload the persistent store.<br />
+static<br />
+{<br />
+_store = PersistentStore.getPersistentObject(ID);<br />
+if(_store.getContents()==null)<br />
+{<br />
+_previousPoints= new Vector();<br />
+_store.setContents(_previousPoints);<br />
+}<br />
+_previousPoints=(Vector)_store.getContents();<br />
+}<br />
+private long _startTime;<br />
+private float _wayHorizontalDistance;<br />
+private float _horizontalDistance;<br />
+private float _verticalDistance;<br />
+private ListField _listField;<br />
+private EditField _status;<br />
+private StringBuffer _messageString;<br />
+private String _oldmessageString;<br />
+private LocationProvider _locationProvider;<br />
+/</em> Instantiate the new application object and enter the event loop.<br /></li>
+    <li>@param args unsupported. no args are supported for this application<br />
+<em>/<br />
+public static void main(String[] args)<br />
+{<br />
+new GPSDemo().enterEventDispatcher();<br />
+}<br />
+// Constructors. ————————————————————-<br />
+public GPSDemo()<br />
+{<br />
+// Used by waypoints; represents the time since the last waypoint.<br />
+_startTime = System.currentTimeMillis();<br />
+_altitudes=new float[GRADE_INTERVAL];<br />
+_horizontalDistances=new float[GRADE_INTERVAL];<br />
+_messageString= new StringBuffer();<br />
+MainScreen screen = new MainScreen();<br />
+screen.setTitle(new LabelField(_resources.getString(GPSDEMO_TITLE), LabelField.USE_ALL_WIDTH));<br />
+_status = new EditField();<br />
+screen.add(_status);<br />
+screen.addKeyListener(this);<br />
+screen.addTrackwheelListener(this);<br />
+// Start the GPS thread that listens for updates.<br />
+startLocationUpdate();<br />
+// Render our screen.<br />
+pushScreen(screen);<br />
+}<br />
+/</em> Update the GUI with the data just received.<br />
+<em>/<br />
+private void updateLocationScreen(final String msg)<br />
+{<br />
+invokeLater(new Runnable()<br />
+{<br />
+public void run()<br />
+{<br />
+_status.setText(msg);<br />
+}<br />
+});<br />
+}<br />
+// Menu items. —————————————————————<br />
+// Cache the markwaypoint menu item for reuse.<br />
+private MenuItem _markWayPoint = new MenuItem(_resources, GPSDEMO_MENUITEM_MARKWAYPOINT, 110, 10)<br />
+{<br />
+public void run()<br />
+{<br />
+GPSDemo.this.markPoint();<br />
+}<br />
+};<br />
+// Cache the view waypoints menu item for reuse.<br />
+private MenuItem _viewWayPoints = new MenuItem(_resources, GPSDEMO_MENUITEM_VIEWWAYPOINTS, 110, 10)<br />
+{<br />
+public void run()<br />
+{<br />
+GPSDemo.this.viewPreviousPoints();<br />
+}<br />
+};<br />
+// Cache the close menu item for reuse.<br />
+private MenuItem _close = new MenuItem(_resources, GPSDEMO_MENUITEM_CLOSE, 110, 10)<br />
+{<br />
+public void run()<br />
+{<br />
+System.exit(0);<br />
+}<br />
+};<br />
+protected void makeMenu(Menu menu, int instance)<br />
+{<br />
+menu.add( _markWayPoint );<br />
+menu.add( _viewWayPoints );<br />
+menu.add( _close );<br />
+menu.addSeparator();<br />
+super.makeMenu(menu, instance);<br />
+}<br />
+/</em> Invokes the Location API with the default criteria.<br />
+<em>/<br />
+private void startLocationUpdate()<br />
+{<br />
+try<br />
+{<br />
+_locationProvider = LocationProvider.getInstance(null);<br />
+if ( _locationProvider == null )<br />
+{<br />
+Dialog.alert(“GPS is not supported on this platform, exiting…”);<br />
+System.exit(0);<br />
+}<br />
+// A single listener can be associated with a provider,<br />
+// and unsetting it involves the same call but with null,<br />
+// so there is no need to cache the listener instance.<br />
+// Request an update every second.<br />
+_locationProvider.setLocationListener(new LocationListenerImpl(), _interval, 1, 1);<br />
+}<br />
+catch (LocationException le)<br />
+{<br />
+System.err.println(“Failed to add a location listener. Exiting…”);<br />
+System.err.println(le);<br />
+System.exit(0);<br />
+}<br />
+}<br />
+/</em> Marks a point in the persistent store. Calculations are based on<br /></li>
+    <li>all data collected since the previous way point, or from the start<br /></li>
+    <li>of the application if no previous waypoints exist.<br />
+<em>/<br />
+private void markPoint()<br />
+{<br />
+long current = System.currentTimeMillis();<br />
+WayPoint p= new WayPoint(_startTime, current, _wayHorizontalDistance, _verticalDistance);<br />
+addWayPoint(p);<br />
+// Reset the waypoint variables.<br />
+_startTime = current;<br />
+_wayHorizontalDistance = 0;<br />
+_verticalDistance = 0;<br />
+}<br />
+// View the saved waypoints.<br />
+private void viewPreviousPoints()<br />
+{<br />
+PointScreen pointScreen = new PointScreen(_previousPoints, _resources);<br />
+pushScreen(pointScreen);<br />
+}<br />
+// Called by the framework when this application is losing focus.<br />
+protected void onExit()<br />
+{<br />
+if ( _locationProvider != null )<br />
+{<br />
+_locationProvider.reset();<br />
+_locationProvider.setLocationListener(null, -1, -1, -1);<br />
+}<br />
+}<br />
+/</em> Adds a new WayPoint and commits the set of saved waypoints<br /></li>
+    <li>to flash memory.<br /></li>
+    <li>@param p The point to add.<br />
+<em>/<br />
+/</em>package<em>/<br />
+synchronized static void addWayPoint(WayPoint p)<br />
+{<br />
+_previousPoints.addElement(p);<br />
+commit();<br />
+}<br />
+/</em> Removes a waypoint from the set of saved points and<br /></li>
+    <li>commits the modifed set to flash memory.<br /></li>
+    <li>@param p the point to remove<br />
+<em>/<br />
+/</em>package<em>/<br />
+synchronized static void removeWayPoint(WayPoint p)<br />
+{<br />
+_previousPoints.removeElement(p);<br />
+commit();<br />
+}<br />
+// Commit the waypoint set to flash memory.<br />
+private static void commit()<br />
+{<br />
+_store.setContents(_previousPoints);<br />
+_store.commit();<br />
+}<br />
+/</em> Implementation of the LocationListener interface.<br />
+<em>/<br />
+private class LocationListenerImpl implements LocationListener<br />
+{<br />
+// Members. ————————————————————–<br />
+private int captureCount;<br />
+// Methods. ————————————————————–<br />
+public void locationUpdated(LocationProvider provider, Location location)<br />
+{<br />
+if(location.isValid())<br />
+{<br />
+float heading = location.getCourse();<br />
+double longitude = location.getQualifiedCoordinates().getLongitude();<br />
+double latitude = location.getQualifiedCoordinates().getLatitude();<br />
+float altitude = location.getQualifiedCoordinates().getAltitude();<br />
+float speed = location.getSpeed();<br />
+// Horizontal distance.<br />
+float horizontalDistance = speed * _interval;<br />
+_horizontalDistance += horizontalDistance;<br />
+// Horizontal distance for this waypoint.<br />
+_wayHorizontalDistance += horizontalDistance;<br />
+// Distance over the current interval.<br />
+float totalDist = 0;<br />
+// Moving average grade.<br />
+for(int i = 0; i  0) _verticalDistance = _verticalDistance + altGain;<br />
+captureCount += _interval;<br />
+// If we’re mod zero then it’s time to record this data.<br />
+captureCount %= CAPTURE_INTERVAL;<br />
+// Information to display on the device.<br />
+StringBuffer sb = new StringBuffer();<br />
+sb.append(“Longitude: “ + longitude+ “\n”);<br />
+sb.append(“Latitude: “ + latitude+ “\n”);<br />
+sb.append(“Altitude: “ + altitude + “ m\n”);<br />
+sb.append(“Heading relative to true north: “ + heading + “\n”);<br />
+sb.append(“Speed : “ + speed + +” m/s\n”);<br />
+sb.append(“Grade : “);<br />
+if(Float.isNaN(grade))<br />
+sb.append(“ Not available”);<br />
+else<br />
+sb.append(grade+” %”);<br />
+GPSDemo.this.updateLocationScreen(sb.toString());<br />
+}<br />
+}<br />
+public void providerStateChanged(LocationProvider provider, int newState)<br />
+{<br />
+// No operation defined.<br />
+}<br />
+}<br />
+/</em> WayPoint describes a way point, a marker on a journey or point of interest.<br /></li>
+    <li>WayPoints are persistable.<br /></li>
+    <li>package<br />
+*/<br />
+static class WayPoint implements Persistable<br />
+{<br />
+public long _startTime;<br />
+public long _endTime;<br />
+public float _distance;<br />
+public float _verticalDistance;<br />
+public WayPoint(long startTime,long endTime,float distance,float verticalDistance)<br />
+{<br />
+_startTime=startTime;<br />
+_endTime=endTime;<br />
+_distance=distance;<br />
+_verticalDistance=verticalDistance;<br />
+}<br />
+}<br />
+}`</li>
+  </ul>
+</blockquote>
+
+<h3 id="entradas-relacionadas">Entradas relacionadas:</h3>
+
+<p><a href="/2008/01/09/un-ejemplo-de-aplicacion-java-para-blackberry-parte-i/">Un ejemplo de aplicación Java para BlackBerry – Parte I</a></p>
+
+<p><a href="/2008/01/11/un-ejemplo-de-aplicacion-java-para-blackberry-parte-ii/">Un ejemplo de aplicación Java para BlackBerry – Parte II</a></p>
+
+<p><a href="/2008/01/14/mas-sobre-la-firma-de-aplicaciones-symbian/">Un ejemplo de aplicación Java para BlackBerry – Parte III</a></p>
+
+<p><a href="/2008/01/16/un-ejemplo-de-aplicacion-java-para-blackberry-parte-iv-y-final/">Un ejemplo de aplicación Java para BlackBerry – Parte IV y final</a></p>
+
+<p><a href="/2008/01/07/leyendo-nuestro-gps-desde-java-con-la-javame-location-api-jsr-179-parte-i/">Leyendo nuestro GPS desde Java con la JavaME Location API (JSR-179) – Parte I</a></p>
+
+
+			<div class="blog-navigation">
+				
+					<a class="prev" href="/2008/01/17/problema-del-mes-concurso-para-programadores-de-s60/">&laquo; Problema del mes: concurso para programadores de S60</a>
+				
+				
+					<a class="next" href="/2008/01/21/s60-en-el-mobile-world-congress/">S60 en el Mobile World Congress &raquo;</a>
+				
+			</div>
+
+
+			
+		</div>
+	</div>
+</section>
+
+
+
+    <footer>
+        <div class="container">
+            <p class="editor-link"><a href="cloudcannon:collections/_data/footer.yml" class="btn"><strong>&#9998;</strong> Edit footer</a></p>
+            <ul class="footer-right-links">
+                
+                <li>
+                    <a target="_blank"  href="https://twitter.com/javier_cancela_" class="twitter-icon" >
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg>
+	
+								
+							</a>
+                </li>
+                
+                <li>
+                    <a target="_blank"  href="https://www.linkedin.com/in/javiercancela" class="linkedin-icon" >
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19,19H16V13.7A1.5,1.5 0 0,0 14.5,12.2A1.5,1.5 0 0,0 13,13.7V19H10V10H13V11.2C13.5,10.36 14.59,9.8 15.5,9.8A3.5,3.5 0 0,1 19,13.3M6.5,8.31C5.5,8.31 4.69,7.5 4.69,6.5A1.81,1.81 0 0,1 6.5,4.69C7.5,4.69 8.31,5.5 8.31,6.5A1.81,1.81 0 0,1 6.5,8.31M8,19H5V10H8M20,2H4C2.89,2 2,2.89 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" /></svg>
+	
+								
+							</a>
+                </li>
+                
+                <li>
+                    <a  href="/feed.xml" class="rss-icon" >
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+	
+								
+							</a>
+                </li>
+                
+            </ul>
+            <p class="copyright">
+                <a href="https://cloudcannon.com/">
+						Template by CloudCannon
+					</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/prism.js"></script>
+    <script id="dsq-count-scr" src="//javiercancela.disqus.com/count.js" async></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX"],
+            displayAlign: "center",
+            tex2jax: {
+                inlineMath: [
+                    ['$', '$'],
+                    ["\\(", "\\)"]
+                ],
+                displayMath: [
+                    ['$$', '$$'],
+                    ["\\[", "\\]"]
+                ],
+                processEscapes: false
+            },
+            TeX: {
+                extensions: ["AMSmath.js", "AMSsymbols.js"],
+                TagSide: "right",
+                TagIndent: ".8em",
+                MultLineWidth: "85%",
+                equationNumbers: {
+                    autoNumber: "AMS",
+                },
+                unicode: {
+                    fonts: "STIXGeneral,'Arial Unicode MS'"
+                }
+            },
+            showProcessingMessages: false
+        });
+    </script>
+</body>
+
+</html>

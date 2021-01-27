@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <script type="text/javascript">
+        var host = "www.javiercancela.com";
+        if ((host == window.location.host) && (window.location.protocol != "https:"))
+            window.location.protocol = "https";
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jekyll v4.2.0">
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
+    <link rel="stylesheet" href="/css/screen.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff"> <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Realidad aumentada en Android: AR Compass – I | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Realidad aumentada en Android: AR Compass – I" />
+<meta name="author" content="javiercancela" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Decíamos en el anterior artículo que la realidad aumentada combina datos generados por ordenador con imágenes del entorno obtenidas en tiempo real. La parte complicada es la superposición de los datos sobre la imagen en la posición correcta. Así que vamos a comenzar con una aplicación de realidad levemente aumentada: una brújula virtual." />
+<meta property="og:description" content="Decíamos en el anterior artículo que la realidad aumentada combina datos generados por ordenador con imágenes del entorno obtenidas en tiempo real. La parte complicada es la superposición de los datos sobre la imagen en la posición correcta. Así que vamos a comenzar con una aplicación de realidad levemente aumentada: una brújula virtual." />
+<link rel="canonical" href="https://www.javiercancela.com/2009/08/04/realidad-aumentada-en-android-ar-compass-i/" />
+<meta property="og:url" content="https://www.javiercancela.com/2009/08/04/realidad-aumentada-en-android-ar-compass-i/" />
+<meta property="og:site_name" content="Página de Javier Cancela" />
+<meta property="og:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2009-08-04T09:00:54+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/obsolete.jpg" />
+<meta property="twitter:title" content="Realidad aumentada en Android: AR Compass – I" />
+<script type="application/ld+json">
+{"dateModified":"2009-08-04T09:00:54+02:00","datePublished":"2009-08-04T09:00:54+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2009/08/04/realidad-aumentada-en-android-ar-compass-i/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"javiercancela"},"url":"https://www.javiercancela.com/2009/08/04/realidad-aumentada-en-android-ar-compass-i/","author":{"@type":"Person","name":"javiercancela"},"image":"https://www.javiercancela.com/images/obsolete.jpg","description":"Decíamos en el anterior artículo que la realidad aumentada combina datos generados por ordenador con imágenes del entorno obtenidas en tiempo real. La parte complicada es la superposición de los datos sobre la imagen en la posición correcta. Así que vamos a comenzar con una aplicación de realidad levemente aumentada: una brújula virtual.","headline":"Realidad aumentada en Android: AR Compass – I","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+ 
+</head>
+
+<body>
+    <header id="mainHeader">
+        <div class="container">
+            <div class="company-name">
+                <a href="/">
+                    <span class="dark-logo"><img width="104" height="38" src="/images/logo/dark.png" alt="dark frisco logo"></span>
+                    <span class="light-logo"><img width="104" height="38" src="/images/logo/light.png" alt="light frisco logo"></span>
+                </a>
+            </div>
+            <nav>
+	<a class="nav-toggle" id="open-nav" href="#">&#9776;</a>
+	
+		
+		
+
+		
+		<a href="/" class="" >Blog</a>
+	
+		
+		
+
+		
+		<a href="/archivo/" class="" >Archivo</a>
+	
+		
+		
+
+		
+		<a href="/sobre-mi/" class="" >Sobre mí</a>
+	
+</nav>
+
+        </div>
+    </header>
+
+    <section class="hero" style="background-image: url(/images/obsolete.jpg)">
+	<div class="inner-hero text-container">
+		<div class="hero-text-container">
+			<h1>Realidad aumentada en Android: AR Compass – I</h1>
+			<p class="subtext"></p>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="blog-post text-container">
+		<p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/android/">Android</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">04 de agosto de 2009</span>
+</p>
+
+
+		<div class="post-content">
+			<p>Decíamos en el <a href="/2009/08/03/realidad-aumentada-en-android-introduccion/">anterior artículo</a> que la realidad aumentada combina datos generados por ordenador con imágenes del entorno obtenidas en tiempo real. La parte complicada es la superposición de los datos sobre la imagen en la posición correcta. Así que vamos a comenzar con una aplicación de realidad <em>levemente</em> aumentada: una brújula virtual.</p>
+
+<p><strong>AR Compass<img style="display:inline;margin-left:0;margin-right:0;border-width:0;" title="Mi pantalla apunta al noroeste" src="/images/uploads/2009/08/compass2.png" border="0" alt="Mi pantalla apunta al noroeste" width="252" height="172" align="right" /></strong></p>
+
+<p>AR Compass (brújula de realidad aumentada, en inglés queda más <em>cool</em>) es una aplicación para Android que muestra una brújula superpuesta a la imagen capturada por la cámara. La brújula consiste en una serie de líneas verticales con el norte, el sur, el este y el oeste marcados.</p>
+
+<p>La aplicación usa OpenGL para mostrar los puntos cardinales sobre la imagen de la cámara. A partir de los datos del acelerómetro y del magnetómetro obtenemos la matriz de rotación que nos permite mostrar la dirección correcta en la pantalla.</p>
+
+<p><strong>La imagen de la cámara</strong></p>
+
+<p>Es código para mostrar la imagen de la cámara es bastante simple, y se puede sacar del ejemplo <a href="http://developer.android.com/guide/samples/ApiDemos/src/com/example/android/apis/graphics/CameraPreview.html">CameraPreview</a>:</p>
+
+<div id="codeSnippetWrapper">
+  <div id="codeSnippet" style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;">
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   1:</span> <span style="color:#0000ff;">public</span> <span style="color:#0000ff;">class</span> CameraPreview <span style="color:#0000ff;">extends</span> Activity {</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   2:</span>     <span style="color:#0000ff;">private</span> Preview mPreview;</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   3:</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   4:</span>     @Override</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   5:</span>     <span style="color:#0000ff;">protected</span> <span style="color:#0000ff;">void</span> onCreate(Bundle savedInstanceState) {</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   6:</span>         <span style="color:#0000ff;">super</span>.onCreate(savedInstanceState);</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   7:</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   8:</span>         <span style="color:#008000;">// Hide the window title.</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   9:</span>         requestWindowFeature(Window.FEATURE_NO_TITLE);</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  10:</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  11:</span>         <span style="color:#008000;">// Create our Preview view and set it as the content of our activity.</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  12:</span>         mPreview = <span style="color:#0000ff;">new</span> Preview(<span style="color:#0000ff;">this</span>);</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  13:</span>         setContentView(mPreview);</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  14:</span>     }</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  15:</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  16:</span> }</pre>
+  </div>
+</div>
+
+<p>En la línea 9 indicamos que no queremos que la ventana tenga titulo. Después simplemente instanciamos la vista y se la asignamos a la actividad. La vista es la clase Preview, que hereda de <a href="http://developer.android.com/guide/samples/ApiDemos/src/com/example/android/apis/graphics/CameraPreview.html">SurfaceView</a>. SurfaceView es un tipo de vista que se caracteriza por contener una superficie (un objeto <a href="http://developer.android.com/reference/android/view/Surface.html">Surface</a>) sobre la que dibujar.</p>
+
+<div id="codeSnippetWrapper">
+  <div id="codeSnippet" style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;">
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   1:</span> <span style="color:#0000ff;">class</span> Preview <span style="color:#0000ff;">extends</span> SurfaceView <span style="color:#0000ff;">implements</span> SurfaceHolder.Callback {</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   2:</span>     SurfaceHolder mHolder;</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   3:</span>     Camera mCamera;</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   4:</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   5:</span>     Preview(Context context) {</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   6:</span>         <span style="color:#0000ff;">super</span>(context);</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   7:</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   8:</span>         <span style="color:#008000;">// Install a SurfaceHolder.Callback so we get notified when the</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   9:</span>         <span style="color:#008000;">// underlying surface is created and destroyed.</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  10:</span>         mHolder = getHolder();</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  11:</span>         mHolder.addCallback(<span style="color:#0000ff;">this</span>);</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  12:</span>         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  13:</span>     }</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  14:</span> ...</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  15:</span> }</pre>
+  </div>
+</div>
+
+<p>Además de heredar de SurfaceView, la clase Preview implementa la interfaz <a href="http://developer.android.com/reference/android/view/SurfaceHolder.Callback.html">SurfaceHolder.Callback</a>. La clase <a href="http://developer.android.com/reference/android/view/SurfaceHolder.html">SurfaceHolder</a> es el contendor que nos da acceso a la superficie, la cual no se suele usar directamente. A través de los métodos de esta interfaz nos enteraremos de cuando se crea, destruye o cambia de tamaño la superficie.</p>
+
+<p>Las líneas 10 y 11 sirven para indicarle al SurfaceHolder que notifique los cambios de la superficie a nuestra instancia. La línea 12 especifica el tipo de superficie a usar, en este caso una que no posee sus propios buffers. No tengo muy claro qué significa esto, pero imagino que el resto de los tipos de superficie tendrán uno o dos buffers para renderizar la imagen, mientras que este tipo necesita que le propercionen los buffers con la imagen a buscar. En cualquier caso es el único tipo con el que funciona la cámara.</p>
+
+<div id="codeSnippetWrapper">
+  <div id="codeSnippet" style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;">
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   1:</span> <span style="color:#0000ff;">public</span> <span style="color:#0000ff;">void</span> surfaceCreated(SurfaceHolder holder) {</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   2:</span>     <span style="color:#008000;">// The Surface has been created, acquire the camera and tell it where</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   3:</span>     <span style="color:#008000;">// to draw.</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   4:</span>     mCamera = Camera.open();</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   5:</span>     <span style="color:#0000ff;">try</span> {</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   6:</span>        mCamera.setPreviewDisplay(holder);</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   7:</span>     } <span style="color:#0000ff;">catch</span> (IOException exception) {</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">   8:</span>         mCamera.release();</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">   9:</span>         mCamera = null;</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  10:</span>         <span style="color:#008000;">// TODO: add more exception handling logic here</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  11:</span>     }</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  12:</span> }</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  13:</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  14:</span> <span style="color:#0000ff;">public</span> <span style="color:#0000ff;">void</span> surfaceDestroyed(SurfaceHolder holder) {</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  15:</span>     <span style="color:#008000;">// Surface will be destroyed when we return, so stop the preview.</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  16:</span>     <span style="color:#008000;">// Because the CameraDevice object is not a shared resource, it's very</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  17:</span>     <span style="color:#008000;">// important to release it when the activity is paused.</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  18:</span>     mCamera.stopPreview();</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  19:</span>     mCamera.release();</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  20:</span>     mCamera = null;</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  21:</span> }</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  22:</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  23:</span> <span style="color:#0000ff;">public</span> <span style="color:#0000ff;">void</span> surfaceChanged(SurfaceHolder holder, <span style="color:#0000ff;">int</span> format, <span style="color:#0000ff;">int</span> w, <span style="color:#0000ff;">int</span> h) {</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  24:</span>     <span style="color:#008000;">// Now that the size is known, set up the camera parameters and begin</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  25:</span>     <span style="color:#008000;">// the preview.</span></pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  26:</span>     Camera.Parameters parameters = mCamera.getParameters();</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  27:</span>     parameters.setPreviewSize(w, h);</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  28:</span>     mCamera.setParameters(parameters);</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:#f4f4f4;width:100%;"><span style="color:#606060;">  29:</span>     mCamera.startPreview();</pre>
+    
+    <pre style="text-align:left;line-height:12pt;background-color:white;width:100%;"><span style="color:#606060;">  30:</span> }</pre>
+  </div>
+</div>
+
+<p>En estos tres métodos se notifican los eventos relacionados con la superficie donde mostramos la imagen de la cámara. El primero de ellos es surfaceCreated. El bucle de nuestra aplicación recibe un mensaje indicándole que la superficie ha sido creada, e invoca este método pasándole el SurfaceHolder de la misma. En la línea 4 “abrimos” la cámara  y en la 6 le decimos que muestre la imagen de previsualización usando la superficie asociada al <em>holder</em>. Si hay algún problema liberamos la cámara.</p>
+
+<p>Cuando la superficie se destruye (por ejemplo, porque se va a iniciar otra actividad) detenemos la previsualización y liberamos la cámara. El ejemplo de la SDK no incluye la llamada a release(), lo que provoca excepciones <em>Out of memory</em> cuando la ventana se destruye y posteriormente se quiere volver a usar la cámara.</p>
+
+<p>El método surfaceChanged se invoca si la superficie cambia de tamaño (si la pantalla gira, por ejemplo). En nuestro ejemplo no se usará, porque vamos a fijar la ventana de la actividad a formato <em>landscape</em>.</p>
+
+<p>Para usar la cámara necesitaremos los permisos adecuados, en este caso <em>&lt;uses-permission android:name=”android.permission.CAMERA” /&gt;</em>. Precisamente <a href="http://developer.android.com/sdk/RELEASENOTES.html#1.5_r3" title="Android 1.5 SDK, Release 3">la última revisión de la SDK</a> corrige un error por el cual no se forzaba correctamente este permiso.</p>
+
+<p>En la próxima entrada comenzaremos a usar OpenGL para añadir la brújula sobre la cámara.</p>
+
+
+			<div class="blog-navigation">
+				
+					<a class="prev" href="/2009/08/03/realidad-aumentada-en-android-introduccion/">&laquo; Realidad aumentada en Android &#8211; Introducción</a>
+				
+				
+					<a class="next" href="/2009/08/10/realidad-aumentada-en-android-ar-compass-ii/">Realidad aumentada en Android: AR Compass – II &raquo;</a>
+				
+			</div>
+
+
+			
+		</div>
+	</div>
+</section>
+
+
+
+    <footer>
+        <div class="container">
+            <p class="editor-link"><a href="cloudcannon:collections/_data/footer.yml" class="btn"><strong>&#9998;</strong> Edit footer</a></p>
+            <ul class="footer-right-links">
+                
+                <li>
+                    <a target="_blank"  href="https://twitter.com/javier_cancela_" class="twitter-icon" >
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg>
+	
+								
+							</a>
+                </li>
+                
+                <li>
+                    <a target="_blank"  href="https://www.linkedin.com/in/javiercancela" class="linkedin-icon" >
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19,19H16V13.7A1.5,1.5 0 0,0 14.5,12.2A1.5,1.5 0 0,0 13,13.7V19H10V10H13V11.2C13.5,10.36 14.59,9.8 15.5,9.8A3.5,3.5 0 0,1 19,13.3M6.5,8.31C5.5,8.31 4.69,7.5 4.69,6.5A1.81,1.81 0 0,1 6.5,4.69C7.5,4.69 8.31,5.5 8.31,6.5A1.81,1.81 0 0,1 6.5,8.31M8,19H5V10H8M20,2H4C2.89,2 2,2.89 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" /></svg>
+	
+								
+							</a>
+                </li>
+                
+                <li>
+                    <a  href="/feed.xml" class="rss-icon" >
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+	
+								
+							</a>
+                </li>
+                
+            </ul>
+            <p class="copyright">
+                <a href="https://cloudcannon.com/">
+						Template by CloudCannon
+					</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/prism.js"></script>
+    <script id="dsq-count-scr" src="//javiercancela.disqus.com/count.js" async></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX"],
+            displayAlign: "center",
+            tex2jax: {
+                inlineMath: [
+                    ['$', '$'],
+                    ["\\(", "\\)"]
+                ],
+                displayMath: [
+                    ['$$', '$$'],
+                    ["\\[", "\\]"]
+                ],
+                processEscapes: false
+            },
+            TeX: {
+                extensions: ["AMSmath.js", "AMSsymbols.js"],
+                TagSide: "right",
+                TagIndent: ".8em",
+                MultLineWidth: "85%",
+                equationNumbers: {
+                    autoNumber: "AMS",
+                },
+                unicode: {
+                    fonts: "STIXGeneral,'Arial Unicode MS'"
+                }
+            },
+            showProcessingMessages: false
+        });
+    </script>
+</body>
+
+</html>
