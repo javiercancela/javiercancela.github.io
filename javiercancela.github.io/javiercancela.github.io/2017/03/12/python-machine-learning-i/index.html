@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <script type="text/javascript">
+        var host = "www.javiercancela.com";
+        if ((host == window.location.host) && (window.location.protocol != "https:"))
+            window.location.protocol = "https";
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Jekyll v4.2.0">
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300|Rubik:300">
+    <link rel="stylesheet" href="/css/screen.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff"> <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>PML T1 - Aprendizaje máquina | Página de Javier Cancela</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="PML T1 - Aprendizaje máquina" />
+<meta name="author" content="Javier Cancela" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Python Machine Learning - Tema 1 - Notas sobre el libro de Sebastian Raschka" />
+<meta property="og:description" content="Python Machine Learning - Tema 1 - Notas sobre el libro de Sebastian Raschka" />
+<link rel="canonical" href="https://www.javiercancela.com/2017/03/12/python-machine-learning-i/" />
+<meta property="og:url" content="https://www.javiercancela.com/2017/03/12/python-machine-learning-i/" />
+<meta property="og:site_name" content="Página de Javier Cancela" />
+<meta property="og:image" content="https://www.javiercancela.com/images/pml/pml.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-03-12T02:00:00+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.javiercancela.com/images/pml/pml.jpg" />
+<meta property="twitter:title" content="PML T1 - Aprendizaje máquina" />
+<script type="application/ld+json">
+{"dateModified":"2017-03-12T02:00:00+01:00","datePublished":"2017-03-12T02:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.javiercancela.com/2017/03/12/python-machine-learning-i/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.javiercancela.com/siteicon.png"},"name":"Javier Cancela"},"url":"https://www.javiercancela.com/2017/03/12/python-machine-learning-i/","author":{"@type":"Person","name":"Javier Cancela"},"image":"https://www.javiercancela.com/images/pml/pml.jpg","description":"Python Machine Learning - Tema 1 - Notas sobre el libro de Sebastian Raschka","headline":"PML T1 - Aprendizaje máquina","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+ 
+</head>
+
+<body>
+    <header id="mainHeader">
+        <div class="container">
+            <div class="company-name">
+                <a href="/">
+                    <span class="dark-logo"><img width="104" height="38" src="/images/logo/dark.png" alt="dark frisco logo"></span>
+                    <span class="light-logo"><img width="104" height="38" src="/images/logo/light.png" alt="light frisco logo"></span>
+                </a>
+            </div>
+            <nav>
+	<a class="nav-toggle" id="open-nav" href="#">&#9776;</a>
+	
+		
+		
+
+		
+		<a href="/" class="" >Blog</a>
+	
+		
+		
+
+		
+		<a href="/archivo/" class="" >Archivo</a>
+	
+		
+		
+
+		
+		<a href="/sobre-mi/" class="" >Sobre mí</a>
+	
+</nav>
+
+        </div>
+    </header>
+
+    <section class="hero" style="background-image: url(/images/pml/pml.jpg)">
+	<div class="inner-hero text-container">
+		<div class="hero-text-container">
+			<h1>PML T1 - Aprendizaje máquina</h1>
+			<p class="subtext">Python Machine Learning - Tema 1 - Notas sobre el libro de Sebastian Raschka</p>
+		</div>
+	</div>
+</section>
+
+<section>
+	<div class="blog-post text-container">
+		<p class="post-details">
+	
+		
+		<span class="blog-filter">
+			<a href="/category/python/">Python</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/libros/">Libros</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/machine-learning/">Machine Learning</a>
+		</span>
+	
+		
+		<span class="blog-filter">
+			<a href="/category/inteligencia-artificial/">Inteligencia Artificial</a>
+		</span>
+	
+	
+	
+	
+	
+	
+	
+	<span class="post-date">12 de marzo de 2017</span>
+</p>
+
+
+		<div class="post-content">
+			<p>El foco de estas entradas se pondrá en el <a href="https://github.com/rasbt/python-machine-learning-book">código Python publicado en GitHub</a>, pero el primer tema no incluye código, tan sólo presenta una serie de conceptos que resumo en esta entrada.</p>
+
+<h2 id="tipos-de-machine-learning">Tipos de <em>machine learning</em></h2>
+
+<p>Existen tres estrategias distintas de aprendizaje automático: supervisado, no supervisado y reforzado</p>
+
+<h3 id="supervisado">Supervisado</h3>
+
+<p>En el aprendizaje supervisado se entrena el modelo con datos para los que ya se conoce el resultado correcto. En función del tipo de resultado que esperemos obtener, podemos encontrarnos con que los datos de entrenamiento llevan asociada una etiqueta que indica a qué categoría pertenece, o un valor numérico. En el primer caso hablamos de <strong>clasificación</strong>, y en el segundo de <strong>regresión</strong>.</p>
+
+<p>Un ejemplo de problema de clasificación es el mencionado en la entrada anterior: la clasificación de spam. Al modelo se le presenta con una serie de correos que ya han sido identificados con una etiqueta ‘spam’ o ‘no spam’. El modelo utiliza esos correos para calibrar ciertos valores internos, de forma que pueda identificar correctamente futuros correos sin intervención humana.</p>
+
+<p>En los problemas de regresión el valor esperado pertenece a un rango continuo. Un ejemplo, <a href="http://setosa.io/ev/ordinary-least-squares-regression/">sacado de este post (en inglés)</a>, sería un modelo para predecir la altura de una persona a partir del tamaño de su mano. Para ello entrenaríamos el modelo con una muestra aleatoria de personas, para las cuales tendríamos tanto el tamaño de su mano como su altura real. El resultado sería una ecuación del tipo \(y = A + Bx\)
+donde <em>x</em> sería el tamaño de la mano, <em>A</em> y <em>B</em> valores definidos tras el proceso de aprendizaje, e <em>y</em> la altura predicha para el valor x.</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="Ejemplo de regresión lineal" src="/images/pml/1_regression.png" />
+        <figcaption>Ejemplo de regresión lineal</figcaption>
+    </figure>
+</div>
+
+<h3 id="reforzado">Reforzado</h3>
+
+<p>El aprendizaje reforzado entrena un modelo para que consiga un objetivo. Para ello se alimenta el modelo con el resultado de una función que evalúa cómo de cerca estamos del objetivo. Se establece un ciclo en el que el modelo genera una salida, la función evalúa cómo de satisfactoria ha sido esta salida, y la evaluación se utiliza para ajustar el modelo.</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="El modelo ('Agent') cambia el estado a través de una acción. Este cambio nos acerca más o menos al objetivo. Realimentamos el modelo con una recompensa, así como con la acción que generó dicha recompensa" src="/images/pml/1_refuerzo.png" />
+        <figcaption>El modelo ('Agent') cambia el estado a través de una acción. Este cambio nos acerca más o menos al objetivo. Realimentamos el modelo con una recompensa, así como con la acción que generó dicha recompensa</figcaption>
+    </figure>
+</div>
+
+<p>Los ejemplos habituales de aplicación de esta técnica son los juegos: ajedrez, tres en raya, juegos de cartas… En ellos el programa va aprendiendo según juega partidas y comprueba qué acciones llevan a la victoria.</p>
+
+<h3 id="no-supervisado">No supervisado</h3>
+
+<p>En algunas ocasiones nos encontramos con datos de los que no sabemos qué información extraer. Para estos casos se usan técnicas de aprendizaje no supervisado, en las que se analiza la estructura de los datos para intentar extraer información útil. El libro menciona dos aproximaciones a esta técnica: <strong>agrupación (<em>clustering</em>)</strong> y <strong>reducción de dimensionalidad</strong>.</p>
+
+<p>En la agrupación se buscan elementos que, según algún criterio, son algo similares entre sí y algo distintos a los demás. Por ejemplo, si tenemos un conjunto de animales con gatos, caballos, palomas y águilas, y proporcionamos al modelo sus tamaños y el número de patas de cada animal, el aprendizaje no supervisado le permitiría identificar correctamente cuatro tipos de animales: grande con dos patas (águila), grande con cuatro patas (caballo), pequeño con dos patas (paloma) y pequeño con cuatro patas (gato).</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="Un ejemplo un poco más real de clustering" src="https://docs.microsoft.com/en-us/azure/machine-learning/media/machine-learning-algorithm-choice/image9.png" />
+        <figcaption>Un ejemplo un poco más real de clustering</figcaption>
+    </figure>
+</div>
+
+<p>En cuanto a la reducción de dimensionalidad, consiste en reducir los datos de forma que se retenga la información relevante. La idea es disminuir tanto el espacio ocupado por los datos como el tiempo necesario para ejecutar los algoritmos. Usando un ejemplo sacado de <a href="http://stackoverflow.com/a/1994481">esta respuesta de stackoverflow</a>, supongamos un conjunto de datos en el que 1000 personas indican si les gusta o no cada una de 100 películas seleccionadas. Podríamos almacenar esta información en 1000 vectores de 100 elementos cada uno, donde cada elemento fuese un 1 o un 0 según la película hubiese gustado o no. Una forma de reducir la dimensionalidad del conjunto de datos sería asignar a cada película uno de cinco géneros (comedia, terror, … los que fuesen más representativos), y usar los datos originales para construir un nuevo vector de cinco elementos para cada persona, donde se indicase si el género es no de su agrado. Pasaríamos así de 100.000 a 5.000 elementos. Como contrapartida, perderíamos información (a una persona le pueden gustar un par de películas de un género que no le gusta).</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="El ejemplo del libro reduce una muestra de datos en 3 dimensionaes a otra equivalente en 2 dimensiones" src="/images/pml/1_compression.png" />
+        <figcaption>El ejemplo del libro reduce una muestra de datos en 3 dimensiones a otra equivalente en 2 dimensiones</figcaption>
+    </figure>
+</div>
+
+<h2 id="terminología-y-notación">Terminología y notación</h2>
+
+<p>Como es de esperar en cualquier disciplina técnica que se precie, el <em>machine learning</em> incluye un montón de terminología propia que es preciso conocer. El siguiente punto del tema 1 presenta algunos de estos términos.</p>
+
+<p>En aprendizaje automático existe un conjunto de datos muy conocido que se usa en todos los cursos para principiantes, algo así como el “Hola Mundo” de los conjuntos de datos. Se llama <a href="https://es.wikipedia.org/wiki/Iris_flor_conjunto_de_datos">conjunto de datos Iris</a>, e incluye datos de 50 ejemplares de cada una de las 3 especies de la flor Iris. Para cada ejemplar se da el largo y ancho del pétalo y el sépalo, así como la especie a la que pertenece (<em>setosa</em>, <em>versicolor</em> o <em>virginica</em>).</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="Algunos datos de Iris y una ilustración de la flor" src="/images/pml/1_iris.png" />
+        <figcaption>Algunos datos de Iris y una ilustración de la flor</figcaption>
+    </figure>
+</div>
+
+<p>Como se puede apreciar en la imagen superior, cada fila de datos es una <em>muestra</em>, <em>instancia</em> u <em>observación</em>. Para cada una de estas muestras se proporciona una serie de datos, a los que nos solemos referir como <em>características</em>, aunque también <em>atributos</em>, <em>medidas</em> o <em>dimensiones</em>. Finalmente, la especie de la flor sería la <em>etiqueta</em> u <em>objetivo</em>. La consistencia en la terminología no es un fuerte del <em>machine learning</em>.</p>
+
+<p>En este punto el libro también nos habla de notación algebraica. El trabajo con matrices es fundamental en el <em>machine learning</em>, así que este el autor nos cuenta qué notación utiliza para representar matices, vectores y elementos dentro de los mismos.</p>
+
+<p>Por ejemplo, el conjunto de datos Iris se puede representar como una matriz de 150 filas (una por muestra) y 4 columnas (una por característica):</p>
+
+<p>\begin{bmatrix}
+x_1^{(1)} &amp; x_2^{(1)} &amp; x_3^{(1)} &amp; x_4^{(1)} \cr
+x_1^{(2)} &amp; x_2^{(2)} &amp; x_3^{(2)} &amp; x_4^{(2)} \cr
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots \cr
+x_1^{(150)} &amp; x_2^{(150)} &amp; x_3^{(150)} &amp; x_4^{(150)} \cr
+\end{bmatrix}</p>
+
+<p>En general, un elemento \(x_n^{(m)}\) se refiere al elemento de la fila m y la columna n de una matriz. Usaremos negritas en minúsculas para los vectores (\(\bf x \in \mathbb R^{nx1}\)), y negritas en mayúsculas para las matrices (\(\bf X \in \mathbb R^{nxm}\)).</p>
+
+<h2 id="otros-aspectos-importantes-del-aprendizaje-automático">Otros aspectos importantes del aprendizaje automático</h2>
+
+<p>Además del algoritmo de aprendizaje, el libro nos habla en este tema de otros aspectos importantes del <em>machine learning</em></p>
+
+<h3 id="preprocesado">Preprocesado</h3>
+
+<p>El preprocesado es la fase inicial del proceso de aprendizaje. Consiste en disponer los datos existentes en un formato adecuado para su procesamiento: se normalizan valores, se pasan textos a números, se separan datos de entrenamiento y datos de prueba,…</p>
+
+<div style="text-align:center">
+    <figure>
+        <img alt="Ejemplo de flujo de modelado predictivo" src="/images/pml/1_flujo.png" />
+        <figcaption>Ejemplo de flujo de modelado predictivo</figcaption>
+    </figure>
+</div>
+
+<h3 id="entrenamiento-y-selección-del-proceso-predictivo">Entrenamiento y selección del proceso predictivo</h3>
+
+<p>La otra tarea fundamental a realizar al empezar es la correcta selección del algoritmo a utilizar. Queremos obtener el modelo que presente un mejor rendimiento, pero para ello necesitamos definir una métrica que mida este rendimiento. La más común es la proporción de muestras correctamente clasificadas.</p>
+
+<h3 id="evaluación-de-modelos-y-predcción-de-instancias-de-datos-no-vistas">Evaluación de modelos y predcción de instancias de datos no vistas</h3>
+
+<p>El modelo se entrena con los datos de entrenamiento, y se evalúa con la parte del conjunto de datos reservada para ello. En función de la tasa de error encontrada en la evaluación decidiremos si el modelo es válido.</p>
+
+<h2 id="python">Python</h2>
+
+<p>El tema finaliza hablando de Python y de cómo instalarlo. Python es uno de los lenguajes más populares en el mundo del <em>machine learning</em>, en parte por su versatilidad, en parte por la gran cantidad de librerías especialidadas de las que dispone. Especialmente relevantes para el aprendizaje máquina son <a href="http://www.numpy.org/">NumPy</a> y <a href="https://www.scipy.org/">SciPy</a>.</p>
+
+<p>La opción más cómoda para instalar Python con todo lo necesario para este libro es descargar <a href="https://docs.continuum.io/anaconda/install#">Anaconda</a>, un gestor de instalaciones de Python.</p>
+
+<p>El libro no habla del entorno de desarrollo, pero yo uso desde hace unos meses el <a href="https://code.visualstudio.com/">Visual Studio Code</a>. Con la <a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.python">extensión de Python</a> proporcionando autocompletado, <a href="https://es.wikipedia.org/wiki/Lint"><em>linting</em></a>, formateado de código y depuración, el Visual Studio Code supera al resto de entornos Python disponibles de forma gratuita.</p>
+
+<h2 id="conclusión">Conclusión</h2>
+
+<p>El tema 1 nos familiariza con los conceptos más básicos del aprendizaje máquina. En el tema 2 empezaremos ya a ver código para avanzar en la materia.</p>
+
+
+			<div class="blog-navigation">
+				
+					<a class="prev" href="/2017/03/05/ready-player-one/">&laquo; Ready Player One</a>
+				
+				
+					<a class="next" href="/2017/03/19/python-machine-learning-ii/">PML T2 - El perceptrón &raquo;</a>
+				
+			</div>
+
+
+			
+				<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    
+    var disqus_config = function () {
+        this.page.url = "http://www.javiercancela.com/2017/03/12/python-machine-learning-i/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "/2017/03/12/python-machine-learning-i"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//javiercancela.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+			
+		</div>
+	</div>
+</section>
+
+
+
+    <footer>
+        <div class="container">
+            <p class="editor-link"><a href="cloudcannon:collections/_data/footer.yml" class="btn"><strong>&#9998;</strong> Edit footer</a></p>
+            <ul class="footer-right-links">
+                
+                <li>
+                    <a target="_blank"  href="https://twitter.com/javier_cancela_" class="twitter-icon" >
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z" /></svg>
+	
+								
+							</a>
+                </li>
+                
+                <li>
+                    <a target="_blank"  href="https://www.linkedin.com/in/javiercancela" class="linkedin-icon" >
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19,19H16V13.7A1.5,1.5 0 0,0 14.5,12.2A1.5,1.5 0 0,0 13,13.7V19H10V10H13V11.2C13.5,10.36 14.59,9.8 15.5,9.8A3.5,3.5 0 0,1 19,13.3M6.5,8.31C5.5,8.31 4.69,7.5 4.69,6.5A1.81,1.81 0 0,1 6.5,4.69C7.5,4.69 8.31,5.5 8.31,6.5A1.81,1.81 0 0,1 6.5,8.31M8,19H5V10H8M20,2H4C2.89,2 2,2.89 2,4V20A2,2 0 0,0 4,22H20A2,2 0 0,0 22,20V4C22,2.89 21.1,2 20,2Z" /></svg>
+	
+								
+							</a>
+                </li>
+                
+                <li>
+                    <a  href="/feed.xml" class="rss-icon" >
+								
+		<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/></svg>
+	
+								
+							</a>
+                </li>
+                
+            </ul>
+            <p class="copyright">
+                <a href="https://cloudcannon.com/">
+						Template by CloudCannon
+					</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/prism.js"></script>
+    <script id="dsq-count-scr" src="//javiercancela.disqus.com/count.js" async></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+        MathJax.Hub.Config({
+            config: ["MMLorHTML.js"],
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX"],
+            displayAlign: "center",
+            tex2jax: {
+                inlineMath: [
+                    ['$', '$'],
+                    ["\\(", "\\)"]
+                ],
+                displayMath: [
+                    ['$$', '$$'],
+                    ["\\[", "\\]"]
+                ],
+                processEscapes: false
+            },
+            TeX: {
+                extensions: ["AMSmath.js", "AMSsymbols.js"],
+                TagSide: "right",
+                TagIndent: ".8em",
+                MultLineWidth: "85%",
+                equationNumbers: {
+                    autoNumber: "AMS",
+                },
+                unicode: {
+                    fonts: "STIXGeneral,'Arial Unicode MS'"
+                }
+            },
+            showProcessingMessages: false
+        });
+    </script>
+</body>
+
+</html>
