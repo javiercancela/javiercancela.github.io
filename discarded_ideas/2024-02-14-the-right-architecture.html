@@ -2,26 +2,10 @@
 <html lang="en">
   <head>
   
-  <!-- Google tag (gtag.js) -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-GFY4FQZG3B"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "G-GFY4FQZG3B");
-    ga('set', 'analytics_storage', 'denied');
-  </script>
-  
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rough Notes | 404 Page not found</title>
+  <title>Rough Notes | The right architecture</title>
   
   <link rel="stylesheet" href="/assets/css/post.css" />
   <link rel="stylesheet" href="/assets/css/syntax.css" />
@@ -66,13 +50,33 @@
 
       <section class="article">
         <div class="article-header">
-          <h2 class="article-title">404 Page not found</h2>
-          <small class="date"></small>
+          <h2 class="article-title">The right architecture</h2>
+          <small class="date">14 Feb 2024</small>
           <div class="categories">
+            
+            <a href="#!" class="category">software development</a>
             
           </div>
         </div>
-        <div class="content"><p>Oops! this page dosen’t exists, head back to <a href="">Homepage</a></p>
+        <div class="content"><p>How many times have you had the opportunity to choose a software architecture? Not many in my case. Most times, the architecture chooses me: you get to a project, the code has some good or bad architecture (probably bad), and you go along with it as well as you can.</p>
+
+<p>Now, I have, of course, had the opportunity to start things from scratch, the proverbial greenfield, the chance to do things The Right Way. I remember one time that I started a project using a reference architecture from Microsoft back in the mid-00s. Microsoft published an archetype to showcase a layered architecture for a .NET application, with lots of boilerplate code, interface, indirection, and all the overengineering needed to make a young developer feel good. But in my experience, these cases are the exception rather than the rule.</p>
+
+<p>“But Javi,” I hear you say, “projects change, and the architecture with them. Today’s monolith is tomorrow’s set of microservices!” Well, most likely, today’s monolith is tomorrow’s <a href="https://youtu.be/p2GlRToY5HI?si=Hp2HiLkr8ciL4j4t">distributed monolith</a>, but I see your point.</p>
+
+<h1 id="why-do-we-care-about-software-architectures">Why do we care about software architectures?</h1>
+
+<p>The first thing to remember when thinking about software architecture is this: there is no such thing as the right architecture for a given project.</p>
+
+<p><img src="/assets/images/idealsoftarch.webp" alt="Junior software architect's wet dream" />
+<em>Junior software architect’s wet dream</em></p>
+
+<p>Unlike with buildings, software architectures don’t usually show from the outside. Even for professionals, it can be hard to tell what is behind a given web application. And that is a clue to understanding that the site’s architecture is a means to an end, not an end itself.</p>
+
+<p>And what is the end? Well, imagine somebody giving you a piece of software: a set of docker images, a docker-compose, something like <a href="https://once.com/campfire">37signal’s Campfire</a>. You run it, configure it, and start using it. Let’s say that the application works and performs well. How much do you care about its architecture? Not much. You could argue that it is the architecture that makes it work and perform well enough. But ask yourself the following: is it impossible that the application is internally a total mess, with spaghetti code, everything coupled with everything, no unit tests, no comments? No, it is not impossible. And if that were the case, would you care? The answer is only if you’re planning on making changes in the code.</p>
+
+<h1 id="its-all-about-the-journey">It’s all about the journey</h1>
+<p>The truth is that software architecture is only important during the building process. Architecture is a misleading word.</p>
 </div>
       </section>
       <footer>

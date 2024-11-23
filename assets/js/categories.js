@@ -1,4 +1,4 @@
-const categories = { misc: [{ url: `/posts/new-year-new-blog/`, date: `11 Feb 2024`, title: `New year, new blog`},], }
+const categories = { misc: [{ url: `/posts/new-year-new-blog/`, date: `11 Feb 2024`, title: `New year, new blog`},],AI: [{ url: `/posts/llm-concepts-i-tokenizers/`, date: `01 Jul 2024`, title: `LLM concepts I - Tokenizers`},], }
 
 console.log(categories)
 

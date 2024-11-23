@@ -2,26 +2,10 @@
 <html lang="en">
   <head>
   
-  <!-- Google tag (gtag.js) -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-GFY4FQZG3B"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "G-GFY4FQZG3B");
-    ga('set', 'analytics_storage', 'denied');
-  </script>
-  
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rough Notes | 404 Page not found</title>
+  <title>Rough Notes | LLM concepts I - Tokenizers</title>
   
   <link rel="stylesheet" href="/assets/css/post.css" />
   <link rel="stylesheet" href="/assets/css/syntax.css" />
@@ -66,13 +50,19 @@
 
       <section class="article">
         <div class="article-header">
-          <h2 class="article-title">404 Page not found</h2>
-          <small class="date"></small>
+          <h2 class="article-title">LLM concepts I - Tokenizers</h2>
+          <small class="date">01 Jul 2024</small>
           <div class="categories">
+            
+            <a href="#!" class="category">AI</a>
             
           </div>
         </div>
-        <div class="content"><p>Oops! this page dosen’t exists, head back to <a href="">Homepage</a></p>
+        <div class="content"><p>To understand how LLMs work, you have to understand embeddings. And to understand embeddings, you have to understand tokenizers.</p>
+
+<p>LLMs receive text as input and generate text as output, but as neural networks, they work with numbers, so they first need to convert the text to numbers and then convert the resulting numbers from their calculations into words again.</p>
+
+<p>Converting from text (or other types of data like audio or images) to numbers is called embedding, and we’ll discuss it in a future post. For now, it is enough to know that an embedding is a vector representing a part of the text: a sentence, a word, or a part of a word, depending on the specific type of embedding used. This “part of a text” is called a token, and the process of splitting a text into tokens is called tokenization.</p>
 </div>
       </section>
       <footer>
