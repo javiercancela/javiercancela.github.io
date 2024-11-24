@@ -4,3 +4,4 @@ _site/
 .jekyll-cache/
 .obsidian/
 **/.DS_Store
+Gemfile.lock

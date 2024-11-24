@@ -10,11 +10,14 @@ plugins:
   - jemoji
   - jekyll-seo-tag
   - jekyll-feed
+  - jekyll-paginate
 
 collections_dir: all_collections
 collections:
   posts:
     output: true
+
+paginate: 5
 
 defaults:
   - scope:
