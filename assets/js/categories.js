@@ -1,4 +1,7 @@
-const categories = { misc: [{ url: `/posts/new-year-new-blog/`, date: `11 Feb 2024`, title: `New year, new blog`},],AI: [{ url: `/posts/llm-concepts-i-tokenizers/`, date: `01 Jul 2024`, title: `LLM concepts I - Tokenizers`},], }
+---
+---
+
+const categories = { {% for category in site.categories %}{% capture category_name %}{{ category | first }}{% endcapture %}{{ category_name | replace: " ", "_" }}: [{% for post in site.categories[category_name] %}{ url: `{{ site.baseurl }}{{ post.url }}`, date: `{{post.date | date_to_string}}`, title: `{{post.title}}`},{% endfor %}],{% endfor %} }
 
 console.log(categories)
 
