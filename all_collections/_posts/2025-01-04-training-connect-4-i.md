@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Training a model to play Connect-4 - I
-subtitle: In which I explain wth is this about
+subtitle: In which I explain what is this about
 date: 2025-01-04
 categories:
   - games
@@ -17,7 +17,7 @@ Back in college, while I was skipping classes and exams, I spent a lot of time p
 
 <figure>
   <img src="https://img.lavdg.com/sc/B42xvwgBqywzTuRRMKSeEYRBjJA=/768x/2024/02/29/00121709211271699981205/Foto/IMG_20240229_135143.jpg" alt="My typical college studying setup"/>
-  <figcaption>My typical college studying setup.</figcaption>
+  <figcaption>My typical college studying setup (<a href="https://www.lavozdegalicia.es/noticia/santiago/vivir-santiago/2024/02/29/universitarios-santiago-rescatan-baraja-cartas-baul-abuela-torneos-tute-premio-botella-licor-cafe/00031709208794089273362.htm">source</a>)</figcaption>
 </figure><br/>
 
 
