@@ -46,6 +46,7 @@
   --gray-6: #a9abb3;
   --white-1: #242526;
   --white-2: #242526;
+  --highlight: #1ebaba;
 }
 
 [data-theme="dark"] {
@@ -57,6 +58,7 @@
   --gray-6: #111111;
   --white-1: #eeeeee;
   --white-2: #a9abb3;
+  --highlight: #1ebaba;
 }
 
 #category-modal-bg {

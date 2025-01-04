@@ -58,7 +58,7 @@ header {
 }
 main {
   margin: 0 auto;
-  max-width: 650px;
+  max-width: 1024px;
   padding: 3rem 0 4rem 0;
 }
 .article {
@@ -66,14 +66,21 @@ main {
 }
 
 .article-header {
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 }
 .article-title {
   font-size: 2.4rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1.6rem;
   line-height: 140%;
 }
 
+.article-subtitle {
+  font-size: 2rem;
+  margin-bottom: 1.6rem;
+  line-height: 120%;
+  font-style: italic;
+  color: var(--highlight);
+}
 .article .date {
   display: block;
   font-size: 0.8rem;
@@ -169,6 +176,10 @@ main {
   border: 1px solid var(--gray-3);
   padding: 0.2rem;
 }
+.content figure {
+  text-align: center;
+}
+
 .content img {
   max-width: 100%;
   margin: 1rem 0;
@@ -253,7 +264,7 @@ main {
   border: 2px solid white;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 1200px) {
   body {
     padding: 1.5rem;
   }
