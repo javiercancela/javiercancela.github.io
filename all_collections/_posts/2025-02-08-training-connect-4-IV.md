@@ -2,7 +2,7 @@
 layout: post
 title: Training a model to play Connect-4 - IV
 subtitle: In which I get random and think with models
-date: 2025-02-09
+date: 2025-02-08
 categories:
   - games
   - reinforcement learning
