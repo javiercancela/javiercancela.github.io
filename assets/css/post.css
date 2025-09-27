@@ -148,6 +148,9 @@ main {
 .content strong {
   font-weight: bold;
 }
+.content del {
+  text-decoration: line-through;
+}
 .content ul {
   margin-left: 1rem;
   margin-bottom: 1.75rem;
@@ -181,7 +184,10 @@ main {
 }
 
 .content img {
-  max-width: 100%;
+  width: auto;
+  max-width: min(100%, 640px);
+  max-height: 480px;
+  height: auto;
   margin: 1rem 0;
 }
 .content img.emoji {
