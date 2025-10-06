@@ -11,7 +11,7 @@ categories:
 
 So I bought a new computer (in [PcComponentes](https://www.pccomponentes.com/), as usual) to ~~play games~~ code LLM apps. (Ok, to [play games](https://store.steampowered.com/agecheck/app/1086940/) too.)
 
-With the goal of running local models and having an ok experience with games without going crazy with the budget, I went with a RTX 5060 Ti 16GB, with a Ryzen 9 7900 and 64GB CL30. No complains so far.
+To run local models and have an ok experience with games without going crazy with the budget, I went with an RTX 5060 Ti 16GB, with a Ryzen 9 7900 and 64GB CL30. No complaints so far.
 
 <figure>
   <img src="../../assets/images/2025-11-01-local-llm-setup/2025-09-27-20-16-43.png" alt="Not bad" />
@@ -23,7 +23,7 @@ I set up a dual boot with Windows 11 (for gaming) and Ubuntu 25.04 (for coding).
 
 # Configuring the system
 
-The computer is very loud by default, but mainly because the fans aren't configured to work based on the temperature. The BIOS has an option to configure all fans so their speed depends on the CPU temperature.
+The computer is very loud by default, mainly because the fans aren't configured to operate based on temperature. The BIOS has an option to configure all fans so their speed depends on the CPU temperature.
 <figure>
   <img src="../../assets/images/2025-11-01-local-llm-setup/2025-09-27-20-34-58.png" alt="Fan curves are fun!" />
   <figcaption>Fan curves are fun!</figcaption>
@@ -31,20 +31,20 @@ The computer is very loud by default, but mainly because the fans aren't configu
 
 ## Configuring the operating systems
 
-Configuring Windows is pretty simple, just install the drivers from the Nvidia page. Well, that is, if you get to complete the Windows 11 installation. You see, apparently there is a known bug where it sometimes refuses to recognize your internet connection.
+Configuring Windows is rather simple: install the drivers from the Nvidia page. That is, of course, if you manage to complete the Windows 11 installation. You see, apparently, there is a known bug where it sometimes refuses to recognize your internet connection.
 
 <figure>
   <img src="../../assets/images/2025-11-01-local-llm-setup/2025-09-27-21-33-38.png" alt="You think you have an Internet connection? I don't think so." />
   <figcaption>You think you have an Internet connection? I don't think so.</figcaption>
 </figure><br/>
 
-There is a hack for this: `Shift+F10` to open a console, and the type this:
+There is a hack for this: `Shift+F10` to open a console, and type this:
 
 ```
 OOBE\BYPASSNRO
 ```
 
-Also, with the dual boot there is an incomptability between Windows and Linux. For Linux, the hardware clock is in UTC, while Windows assumes local time (UTC+2 in my case). Fun fact: having the wrong time messes with https, so the browser will refuse to load most webs. Fortunately the fix is easy: go to the Windows registry, look for the `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation` key, crate a `RealTimeIsUniversal` value, and set it to `1`.
+Also, with the dual boot, there is an incompatibility between Windows and Linux. For Linux, the hardware clock is set to UTC, whereas Windows defaults to local time (UTC+2 in my case). Fun fact: having the wrong time messes with HTTPS, so the browser will refuse to load most websites. Fortunately, the fix is easy: go to the Windows registry, look for the `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation` key, create a `RealTimeIsUniversal` value, and set it to `1`.
 
 ## Linux NVIDIA drivers
 
@@ -68,4 +68,4 @@ driver   : xserver-xorg-video-nouveau - distro free builtin
 
 I tried both `nvidia-driver-580-open` and `nvidia-driver-580`, but only the open version worked. It is the one more suited for new GPUs, so I went with it. It works with no issues (so far).
 
-Now we are ready to think about running LLMs locally. I will right about that in the next post.
+Now we are ready to think about running LLMs locally. I will write about that in the next post.

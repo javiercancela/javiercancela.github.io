@@ -1,11 +1,35 @@
 ---
 layout: post
-title: Choosing a
+title: Installing and running llama.cpp
 subtitle: In which I try to run LLM models in my Linux box
 date: 2025-11-08
 categories:
   - llm
+  - llama.cpp
 ---
+
+I want to run local models in my PC, and I want to do it while learning as much as possible in the process. What do I need do so?
+
+# 1. The model
+
+To run a model we need the model itself. This will be a file, or a set of files, detailing the structure of the model (layers, sizes, types) as well as the values of the model. Also, some metadata with information about the model.
+
+There are different formats to pack a model and distribute it: GGUF is the most common, but there are several different options, some of which are described in [this Hugging Face article](https://huggingface.co/blog/ngxson/common-ai-model-formats).
+
+### 1.1. Quantization
+
+The size of a model is determined by its number of [trainable parameters](https://www.ibm.com/think/topics/llm-parameters). A typical open-weights model suitable to run on a personal PC has a few billion parameters. For example, [`Qwen/Qwen2.5-7B-Instruct`](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct) has 7 billion (that's the 7B part, altough technically it has 7.61B). This model [uses 16-bit floating point numbers](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/blob/main/model.safetensors.index.json), so 2 bytes per parameter mean the model size is 15.2GB. All this data has be load in memory, ideally into the GPU VRAM.
+
+To make it easier to fit tihs models in consumer-level GPUs, there parameters can be [quantized](https://huggingface.co/docs/optimum/en/concept_guides/quantization): we reduce the precision of the parameters to make the model smaller at the expense of some accuracy.
+
+The GGUF format usually include several different quantized versions inside the same model file. For example, [this GGUF version](https://huggingface.co/models?other=base_model:quantized:Qwen/Qwen2.5-7B-Instruct) of `Qwen/Qwen2.5-7B-Instruct` contains quantizations ranging from 8 bits (8.1 GB) to 2 bits (3.02 GB).
+
+# 2. The inference library
+
+
+
+
+ There are several options to run local models in a PC: [LM Studio](https://lmstudio.ai/) is a non-Open Source tool with a full-fledged UI to maximize convenience. [Open WebUI](https://openwebui.com/) is and open-source alternative to LM Studio, as it is [Text Generation Web UI](https://openwebui.com/). One of the most popular options is [Ollama](https://ollama.com/), a command-line tool that
 
 # Install llama.cpp
 Install homebrew
