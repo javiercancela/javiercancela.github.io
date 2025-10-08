@@ -26,9 +26,9 @@ The GGUF format usually include several different quantized versions inside the 
 
 ## 1.2. Tensors
 
-Parameters in a neural network are represented as tensors. We can think of tensors as the general term scalars, vectors, matrices, and groups of numbers of more than 2 dimensions. So running inference with a model is just adding and multiplying tensors. Adding and multiplying tensors is [conceptually very simple](https://betterexplained.com/articles/matrix-multiplication/), but computationally very expensive. GPUs are way more capable of doing this than CPUs because they can parallelize the floating point operations needed.
+Parameters in a neural network are represented as tensors. We can think of tensors as the general term scalars, vectors, matrices, and groups of numbers of more than 2 dimensions. So running inference with a model is just adding and multiplying tensors. Adding and multiplying tensors is [conceptually very simple](https://betterexplained.com/articles/matrix-multiplication/), but computationally very expensive. GPUs are way more capable of doing this than CPUs because they can parallelize the floating point operations needed. Optimizing this operations is the key aspect of all this set-up. Generating a few tokens per second requires billions of operations per second, so any minimal improvement may be significant.
 
-Optimizing this operations is the key aspect of all this set-up.
+The GPU itself doesn't know about tensors, tough. It just know how to operate with floating point numbers with a lot of parallelism. So GPU manufacturers create software with different levels of abstraction to make it easier to run this pieces of hardware. For example, NVIDIA has [CUDA](https://developer.nvidia.com/cuda-toolkit), that lets you easily do math in parallel; [cuBLAS](https://developer.nvidia.com/cublas), that uses CUDA to expose an algebra-oriented API; and also [TensorRT](https://developer.nvidia.com/tensorrt), an SDK specialized in deep learning inference, which in turn uses cuBLAS.
 
 # 2. The inference library
 
