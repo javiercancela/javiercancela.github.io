@@ -1,11 +1,13 @@
 ---
 layout: post
-title:  Requirements to run a local LLM
+title:  Local LLMs II - Requirements to run a local LLM
 subtitle: In which I try to figure out what I need to run an LLM on my computer
 date: 2025-11-08
 categories:
-  - llm
+  - local-llm
 ---
+
+The first post is [here](post_url 2025-11-01-local-llm-setup).
 
 I want to run local models on my PC, and I want to do it while learning as much as possible in the process. What do I need to do so?
 
@@ -72,4 +74,4 @@ I haven't mentioned some of the most common tools associated with the "running L
 
 But for the sake of completeness, a few mentions: [LM Studio](https://lmstudio.ai/) is a non-Open Source tool with a full-fledged UI to maximize convenience. [Open WebUI](https://openwebui.com/) is an open-source alternative to LM Studio, and so it is [Text Generation Web UI](https://openwebui.com/). One of the most popular options is [Ollama](https://ollama.com/), a command-line tool that simplifies the entire process of downloading, running, and interacting with the model.
 
-Feel free to download and test any of these tools, but if you are one of those who prefer compiling their own Linux kernel, join me in the next chapter.
+Feel free to download and test any of these tools, but if you feel adventurous and want to compile your own LLM library, join me in the next chapter.
