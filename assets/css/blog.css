@@ -138,13 +138,13 @@ main {
   font-size: 0.8rem;
 }
 
-.articles .article .categories {
+.articles .article .tags {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.articles .article .categories .category {
+.articles .article .tags .tag {
   margin: 0 0.5rem 0.3rem 0;
   display: block;
   color: var(--gray-4);

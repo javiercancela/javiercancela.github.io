@@ -1,19 +1,19 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-The site is a Jekyll setup with content under `all_collections/_posts`, drafts in `drafts/`, shared HTML snippets in `_includes/`, and layouts in `_layouts/`. Static assets live in `assets/` (`css`, `js`, `images`, `icons`). Global configuration stays in `_config.yml`; update it when adding plugins, metadata, or collection settings.
+This is a Jekyll site. Published posts live in `all_collections/_posts/`, drafts in `_drafts/`, and shared snippets in `_includes/`. Layouts are in `_layouts/`, while CSS, JavaScript, images, and icons live under `assets/`. Update `_config.yml` when you add plugins, metadata, or collection settings so the build stays consistent.
 
 ## Build, Test, and Development Commands
-Run `bundle install` once to sync Ruby gems. Use `bundle exec jekyll serve --livereload` for local preview at http://127.0.0.1:4000; it rebuilds when Markdown or layout files change. Execute `bundle exec jekyll build` before opening a PR to ensure `_site/` compiles cleanly.
+Run `bundle install` once to sync Ruby gems. Use `bundle exec jekyll serve --livereload` for local preview at `http://127.0.0.1:4000/`; the server rebuilds on Markdown or layout changes. Execute `bundle exec jekyll build` before opening a PR to verify `_site/` compiles. Spot-check links and configuration issues with `bundle exec jekyll doctor`.
 
 ## Coding Style & Naming Conventions
-Posts use Markdown with YAML front matter (2-space indentation). Follow the `YYYY-MM-DD-title.md` naming convention inside `all_collections/_posts/`; keep slugs lowercase with hyphens. Prefer short paragraphs, fenced code blocks with language hints, and meaningful alt text for images stored under `assets/images/`. Keep custom SCSS organized inside `assets/css/`, and respect existing theme partials in `_includes/`.
+Front matter uses YAML with 2-space indentation. Name posts `YYYY-MM-DD-slug.md`, keeping slugs lowercase with hyphens. Favor short paragraphs, fenced code blocks with language labels, and descriptive image alt text referencing `/assets/images/<file>`. Keep custom SCSS in `assets/css/` and respect existing theme partials in `_includes/`.
 
 ## Testing Guidelines
-Automated tests are minimal; rely on `bundle exec jekyll build` to surface Liquid or Markdown errors. For link or asset checks, run `bundle exec jekyll doctor` and spot-check the generated site locally. When a post introduces code samples, verify formatting and syntax highlighting in the browser preview.
+There is no automated test suite; rely on `bundle exec jekyll build` to catch Liquid or Markdown errors. For new code samples or embeds, preview via `bundle exec jekyll serve --livereload` and ensure syntax highlighting renders correctly. Run `bundle exec jekyll doctor` when you change URLs or assets to surface broken references early.
 
 ## Commit & Pull Request Guidelines
-Commits are concise and imperative (e.g., `Add RL overview`, `Fix pagination config`). Group related changes—content, assets, and configuration—in a single commit when possible. Pull requests should include: a short summary, any relevant issue links, screenshots or GIFs for visual changes, and confirmation that `jekyll build` ran without errors.
+Write imperative commit messages such as `Add RL overview` or `Fix pagination config`. Group related content, assets, and configuration updates together. For pull requests, include a short summary, link relevant issues, attach screenshots or GIFs for visual changes, and confirm that `bundle exec jekyll build` completed cleanly.
 
 ## Content Workflow Tips
-Draft long-form posts under `drafts/` until ready to publish; move them into `all_collections/_posts/` with the final date when launching. Keep front matter consistent (`layout`, `title`, `description`, `tags` if used) so theme components render correctly. Update `assets/images/` with optimized files and reference them via `/assets/images/<name>.<ext>` in Markdown.
+Draft long-form articles in `_drafts/` until ready to publish; move them into `all_collections/_posts/` with the launch date. Keep front matter consistent (`layout`, `title`, `description`, `tags` as needed). Optimize new media before placing it in `assets/images/`, and reference it using absolute paths such as `/assets/images/example.png`.

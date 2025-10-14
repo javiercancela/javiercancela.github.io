@@ -3,7 +3,7 @@ layout: post
 title:  Local LLMs II - Requirements to run a local LLM
 subtitle: In which I try to figure out what I need to run an LLM on my computer
 date: 2025-11-08
-categories:
+tags:
   - local-llm
 ---
 

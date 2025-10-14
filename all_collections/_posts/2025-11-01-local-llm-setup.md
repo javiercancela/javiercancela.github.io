@@ -3,7 +3,7 @@ layout: post
 title: Local LLMs I - Setting up a home computer
 subtitle: In which I try to make my NVIDIA drivers work
 date: 2025-11-01
-categories:
+tags:
   - local-llm
 ---
 

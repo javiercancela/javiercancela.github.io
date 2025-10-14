@@ -85,13 +85,13 @@ main {
   display: block;
   font-size: 0.8rem;
 }
-.categories {
+.tags {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.categories .category {
+.tags .tag {
   margin: 0 0.5rem 0 0;
   display: block;
   color: var(--gray-4);
