@@ -1,7 +1,18 @@
----
----
-
-const categories = { {% for category in site.categories %}{% capture category_name %}{{ category | first }}{% endcapture %}{{ category_name | replace: " ", "_" }}: [{% for post in site.categories[category_name] %}{ url: `{{ site.baseurl }}{{ post.url }}`, date: `{{post.date | date_to_string}}`, title: `{{post.title}}`},{% endfor %}],{% endfor %} }
+const categories = {
+  {% assign cats = site.categories %}
+  {% for cat in cats %}
+    {% assign name = cat | first %}
+    "{{ name | replace: ' ', '_' | jsonify | remove_first:'"' | remove_last:'"' }}": [
+      {% for post in site.categories[name] %}
+        {
+          "url": {{ (site.baseurl | append: post.url) | jsonify }},
+          "date": {{ post.date | date_to_xmlschema | jsonify }},
+          "title": {{ post.title | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+};
 
 console.log(categories)
 
