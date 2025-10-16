@@ -324,6 +324,29 @@ a:focus {
   margin-bottom: 1.3rem;
 }
 
+.page-content__body figure,
+.post__body figure {
+  margin: 2.5rem auto;
+  max-width: min(100%, 720px);
+  text-align: center;
+}
+
+.page-content__body figure img,
+.post__body figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 32px rgba(17, 22, 29, 0.2);
+}
+
+.page-content__body figcaption,
+.post__body figcaption {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: $color-muted;
+}
+
 hr {
   border: 0;
   border-top: 1px solid $color-border;

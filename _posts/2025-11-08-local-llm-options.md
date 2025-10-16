@@ -16,7 +16,7 @@ I want to run local models on my PC, and I want to do it while learning as much 
 To run a model, we need the model itself. This model will be a file, or a set of files, detailing the structure of the model (layers, sizes, types) as well as its values. Also, some metadata with information about the model.
 
 <figure>
-  <img src="../../assets/images/2025-11-08-local-llm-options/2025-10-09-21-12-53.png" alt="GGUF Format" />
+  <img src="/assets/images/2025-11-08-local-llm-options/2025-10-09-21-12-53.png" alt="GGUF Format" />
   <figcaption>From <a href="https://medium.com/@vimalkansal/understanding-the-gguf-format-a-comprehensive-guide-67de48848256">Understanding the GGUF Format: A Comprehensive Guide</a></figcaption>
 </figure><br/>
 
@@ -27,7 +27,7 @@ There are different formats to pack a model and distribute it: GGUF is the most 
 The size of a model is determined by its number of [trainable parameters](https://www.ibm.com/think/topics/llm-parameters). A typical open-weights model suitable to run on a personal PC has a few billion parameters. For example, [`Qwen/Qwen2.5-7B-Instruct`](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct) has 7 billion (that's the 7B part, although technically it has 7.61B). This model [uses 16-bit floating point numbers](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/blob/main/model.safetensors.index.json), so 2 bytes per parameter means the model size is 15.2GB. All this data has to be loaded in memory, ideally into the GPU VRAM. (As a reference, state-of-the-art commercial LLMs like GPT-5 likely have trillions of parameters.)
 
 <figure>
-  <img src="../../assets/images/2025-11-08-local-llm-options/2025-10-09-21-15-26.png" alt="bartowski/Qwen2.5-7B-Instruct-GGUF" />
+  <img src="/assets/images/2025-11-08-local-llm-options/2025-10-09-21-15-26.png" alt="bartowski/Qwen2.5-7B-Instruct-GGUF" />
   <figcaption>Quantizations in <a href="https://huggingface.co/bartowski/Qwen2.5-7B-Instruct-GGUF">bartowski/Qwen2.5-7B-Instruct-GGUF</a></figcaption>
 </figure><br/>
 
@@ -41,7 +41,7 @@ The GGUF format usually includes several different quantized versions inside the
 Parameters in a neural network are represented as tensors. We can think of tensors as the general term for scalars, vectors, matrices, and groups of numbers of more than 2 dimensions. So running inference with a model is just adding and multiplying tensors. Adding and multiplying tensors is [conceptually very simple](https://betterexplained.com/articles/matrix-multiplication/), but computationally very expensive. GPUs are way more capable of doing this than CPUs because they can parallelize the floating-point operations needed. Optimizing these operations is the key aspect of this setup. Generating a few tokens per second requires billions of operations per second, and any minimal improvement may be significant.
 
 <figure>
-  <img src="../../assets/images/2025-11-08-local-llm-options/2025-10-09-22-05-23.png" alt="Tensor operations are paralellizable" />
+  <img src="/assets/images/2025-11-08-local-llm-options/2025-10-09-22-05-23.png" alt="Tensor operations are paralellizable" />
   <figcaption><a href="https://rocm.blogs.amd.com/artificial-intelligence/tensor-parallelism/README.html">Tensor operations are paralellizable</a></figcaption>
 </figure><br/>
 
@@ -56,7 +56,7 @@ Different options might have different levels of abstraction. For example, we me
 Another popular option is [vLLM](https://docs.vllm.ai/en/latest/), a library-server with support for different hardware options.
 
 <figure>
-  <img src="../../assets/images/2025-11-08-local-llm-options/2025-10-09-22-12-12.png" alt="A phone-calling llama" />
+  <img src="/assets/images/2025-11-08-local-llm-options/2025-10-09-22-12-12.png" alt="A phone-calling llama" />
   <figcaption><a href="https://tvtropes.org/pmwiki/pmwiki.php/Advertising/LaLlamaQueLlama">The only llama I knew when I was young</a></figcaption>
 </figure><br/>
 
@@ -68,7 +68,7 @@ And, of course, the most basic and known library, [llama.cpp](https://github.com
 I haven't mentioned some of the most common tools associated with the "running LLMs on my PC" idea. The reason is that these options are just wrappers for accessing inference libraries conveniently. I'm focused now on understanding what is going on when running a local model, and trying to figure out what is the most performant option for me, so these tools are a distraction for that.
 
 <figure>
-  <img src="../../assets/images/2025-11-08-local-llm-options/2025-10-09-22-13-33.png" alt="LM Studio looks cool" />
+  <img src="/assets/images/2025-11-08-local-llm-options/2025-10-09-22-13-33.png" alt="LM Studio looks cool" />
   <figcaption>LM Studio looks cool</figcaption>
 </figure><br/>
 

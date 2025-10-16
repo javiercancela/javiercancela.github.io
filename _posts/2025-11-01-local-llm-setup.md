@@ -14,7 +14,7 @@ So I bought a new computer (in [PcComponentes](https://www.pccomponentes.com/), 
 To run local models and have an ok experience with games without going crazy with the budget, I went with an RTX 5060 Ti 16GB, with a Ryzen 9 7900 and 64GB CL30. No complaints so far.
 
 <figure>
-  <img src="../../assets/images/2025-11-01-local-llm-setup/2025-09-27-20-16-43.png" alt="Not bad" />
+  <img src="/assets/images/2025-11-01-local-llm-setup/2025-09-27-20-16-43.png" alt="Not bad" />
   <figcaption>Not bad</figcaption>
 </figure><br/>
 
@@ -25,7 +25,7 @@ I set up a dual boot with Windows 11 (for gaming) and Ubuntu 25.04 (for coding).
 
 The computer is very loud by default, mainly because the fans aren't configured to operate based on temperature. The BIOS has an option to configure all fans so their speed depends on the CPU temperature.
 <figure>
-  <img src="../../assets/images/2025-11-01-local-llm-setup/2025-09-27-20-34-58.png" alt="Fan curves are fun!" />
+  <img src="/assets/images/2025-11-01-local-llm-setup/2025-09-27-20-34-58.png" alt="Fan curves are fun!" />
   <figcaption>Fan curves are fun!</figcaption>
 </figure><br/>
 
@@ -34,7 +34,7 @@ The computer is very loud by default, mainly because the fans aren't configured 
 Configuring Windows is rather simple: install the drivers from the Nvidia page. That is, of course, if you manage to complete the Windows 11 installation. You see, apparently, there is a known bug where it sometimes refuses to recognize your internet connection.
 
 <figure>
-  <img src="../../assets/images/2025-11-01-local-llm-setup/2025-09-27-21-33-38.png" alt="You think you have an Internet connection? I don't think so." />
+  <img src="/assets/images/2025-11-01-local-llm-setup/2025-09-27-21-33-38.png" alt="You think you have an Internet connection? I don't think so." />
   <figcaption>You think you have an Internet connection? I don't think so.</figcaption>
 </figure><br/>
 

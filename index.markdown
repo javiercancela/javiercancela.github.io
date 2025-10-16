@@ -1,7 +1,6 @@
 ---
 layout: home
-title: Trail Notes
-hero_kicker: Field Journal
-hero_subtitle: Practical notes on crafting Jekyll sites and shipping them on GitHub Pages.
+title: Rough Notes
+hero_subtitle: Personal page of Javier Cancela.
 nav_exclude: true
 ---

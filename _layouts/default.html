@@ -17,7 +17,7 @@
     {% include navigation.html %}
     {% unless page.hero == false %}
       {% assign hero_title = page.hero_title | default: page.title | default: site.title %}
-      {% assign hero_subtitle = page.hero_subtitle %}
+      {% assign hero_subtitle = page.hero_subtitle | default: page.subtitle %}
       {% if hero_subtitle == nil or hero_subtitle == '' %}
         {% if page.layout == 'home' %}
           {% assign hero_subtitle = site.description %}
