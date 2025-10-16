@@ -1,0 +1,19 @@
+{% assign hero_image = include.image | default: page.header_image | default: site.header_image %}
+<header class="hero{% if include.compact or page.hero_compact %} hero--compact{% endif %}{% if hero_image %} hero--with-image{% endif %}">
+  <div class="hero__background"{% if hero_image %} style="--hero-image: url('{{ hero_image | relative_url }}');"{% endif %}></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__inner container">
+    {% if include.kicker or page.hero_kicker %}
+      <p class="hero__kicker">{{ include.kicker | default: page.hero_kicker }}</p>
+    {% endif %}
+    {% if include.title %}
+      <h1 class="hero__title">{{ include.title }}</h1>
+    {% endif %}
+    {% if include.subtitle %}
+      <p class="hero__subtitle">{{ include.subtitle }}</p>
+    {% endif %}
+    {% if include.meta %}
+      <p class="hero__meta">{{ include.meta }}</p>
+    {% endif %}
+  </div>
+</header>

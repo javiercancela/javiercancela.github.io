@@ -1,26 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-{% include head.html %}
-
-<body>
-  <main>
-    {% include header.html %}
-    <section class="article">
-      <div class="article-header">
-        <h2 class="article-title">{{page.title}}</h2>
-        <h3 class="article-subtitle">{{page.subtitle}}</h3>
-        <small class="date">{{page.date | date_to_string}}</small>
-        <div class="categories">
-          {% for c in page.categories %}
-          <a href="#!" class="category">{{c}}</a>
-          {% endfor %}
-        </div>
-      </div>
-      <div class="content">{{content}}</div>
-    </section>
-    {% include footer.html %}
-  </main>
-  {% include category-modal.html%} {% include cookie-consent.html %}
-</body>
-
-</html>
+---
+layout: default
+---
+<article class="post container">
+  <div class="post__body">
+    {{ content }}
+  </div>
+  {% if page.tags %}
+    <ul class="post__tags">
+      {% for tag in page.tags %}
+        <li><span class="post__tag">{{ tag }}</span></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% if page.previous or page.next %}
+    <nav class="post__pagination">
+      {% if page.previous %}
+        <a class="post__pagination-link post__pagination-link--prev" href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>
+      {% endif %}
+      {% if page.next %}
+        <a class="post__pagination-link post__pagination-link--next" href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>
+      {% endif %}
+    </nav>
+  {% endif %}
+</article>

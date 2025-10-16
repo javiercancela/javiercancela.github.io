@@ -1,0 +1,49 @@
+---
+---
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {%- seo -%}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+  </head>
+  <body class="layout-{{ page.layout | default: 'default' }}">
+    <a class="skip-link" href="#content">Skip to content</a>
+    {% include navigation.html %}
+    {% unless page.hero == false %}
+      {% assign hero_title = page.hero_title | default: page.title | default: site.title %}
+      {% assign hero_subtitle = page.hero_subtitle %}
+      {% if hero_subtitle == nil or hero_subtitle == '' %}
+        {% if page.layout == 'home' %}
+          {% assign hero_subtitle = site.description %}
+        {% elsif page.layout == 'post' %}
+          {% assign hero_subtitle = page.excerpt | strip_html | strip_newlines %}
+        {% else %}
+          {% assign hero_subtitle = page.excerpt | strip_html | strip_newlines %}
+        {% endif %}
+      {% endif %}
+      {% assign hero_meta = page.hero_meta %}
+      {% if page.layout == 'post' %}
+        {% assign published_on = page.date | date: '%B %-d, %Y' %}
+        {% assign hero_meta = hero_meta | default: published_on %}
+        {% if page.author %}
+          {% assign hero_meta = hero_meta | append: ' · ' | append: page.author %}
+        {% endif %}
+      {% endif %}
+      {% include hero.html
+        title=hero_title
+        subtitle=hero_subtitle
+        meta=hero_meta
+      %}
+    {% endunless %}
+    <main id="content" class="content {{ page.content_class }}">
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

@@ -1,7 +1,20 @@
-<footer>
-  <p>
-    &copy; {{ 'now' | date: "%Y" }} | {{site.title}} - Javier Cancela - <span class="theme">Theme by
-      <a href="https://sharadcodes.github.io/jekyll-theme-serial-programmer/">Sharad Raj</a></span>
-  </p>
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p class="site-footer__brand">{{ site.title | escape }}</p>
+    {% if site.description %}
+      <p class="site-footer__tagline">{{ site.description }}</p>
+    {% endif %}
+    <div class="site-footer__meta">
+      {% if site.email %}
+        <a class="site-footer__link" href="mailto:{{ site.email }}">{{ site.email }}</a>
+      {% endif %}
+      {% if site.github_username %}
+        <a class="site-footer__link" href="https://github.com/{{ site.github_username }}" rel="noopener">GitHub</a>
+      {% endif %}
+      {% if site.twitter_username %}
+        <a class="site-footer__link" href="https://twitter.com/{{ site.twitter_username }}" rel="noopener">Twitter</a>
+      {% endif %}
+    </div>
+    <p class="site-footer__note">Made with Jekyll &mdash; deploy on GitHub Pages.</p>
+  </div>
 </footer>
-<script src="{{site.baseurl}}/assets/js/mode.js" defer></script>

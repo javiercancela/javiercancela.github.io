@@ -1,19 +1,28 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-The site is a Jekyll setup with content under `all_collections/_posts`, drafts in `drafts/`, shared HTML snippets in `_includes/`, and layouts in `_layouts/`. Static assets live in `assets/` (`css`, `js`, `images`, `icons`). Global configuration stays in `_config.yml`; update it when adding plugins, metadata, or collection settings.
+- `_config.yml` holds the Jekyll site configuration; update defaults, navigation, and metadata here.
+- `_posts/` contains published articles using the `YYYY-MM-DD-title.md` pattern with YAML front matter; treat each file as a Markdown module.
+- `index.markdown` and `about.markdown` provide landing and bio pages; mirror their front matter when adding new static pages.
+- `_site/` is the generated output from Jekyll builds—never edit files here, and add to `.gitignore` if it ever appears untracked.
 
 ## Build, Test, and Development Commands
-Run `bundle install` once to sync Ruby gems. Use `bundle exec jekyll serve --livereload` for local preview at http://127.0.0.1:4000; it rebuilds when Markdown or layout files change. Execute `bundle exec jekyll build` before opening a PR to ensure `_site/` compiles cleanly.
+- `bundle install` ensures Ruby gems from `Gemfile` are available before local development.
+- `bundle exec jekyll serve --livereload` runs the site locally on `http://localhost:4000`, rebuilding when Markdown or assets change.
+- `bundle exec jekyll build` produces a production-ready `_site/`; pair it with `JEKYLL_ENV=production` for deploy previews.
+- `bundle exec jekyll doctor` scans for common configuration and content issues before pushing.
 
 ## Coding Style & Naming Conventions
-Posts use Markdown with YAML front matter (2-space indentation). Follow the `YYYY-MM-DD-title.md` naming convention inside `all_collections/_posts/`; keep slugs lowercase with hyphens. Prefer short paragraphs, fenced code blocks with language hints, and meaningful alt text for images stored under `assets/images/`. Keep custom SCSS organized inside `assets/css/`, and respect existing theme partials in `_includes/`.
+- Prefer Markdown with fenced code blocks and semantic headings; keep line wraps at ~100 chars for readability.
+- Use two-space indentation in YAML front matter and `_config.yml` to match existing files.
+- Name images and assets with lowercase hyphenated tokens (`assets/images/site-logo.png`) and reference them with absolute paths.
 
 ## Testing Guidelines
-Automated tests are minimal; rely on `bundle exec jekyll build` to surface Liquid or Markdown errors. For link or asset checks, run `bundle exec jekyll doctor` and spot-check the generated site locally. When a post introduces code samples, verify formatting and syntax highlighting in the browser preview.
+- Run `bundle exec jekyll build` before every commit; treat warnings as blockers.
+- For layout or styling changes, capture a local screenshot from `jekyll serve` to attach in the PR.
+- When adding liquid logic, add a throwaway draft in `_posts/` to exercise new includes or filters and verify the rendered HTML locally.
 
 ## Commit & Pull Request Guidelines
-Commits are concise and imperative (e.g., `Add RL overview`, `Fix pagination config`). Group related changes—content, assets, and configuration—in a single commit when possible. Pull requests should include: a short summary, any relevant issue links, screenshots or GIFs for visual changes, and confirmation that `jekyll build` ran without errors.
-
-## Content Workflow Tips
-Draft long-form posts under `drafts/` until ready to publish; move them into `all_collections/_posts/` with the final date when launching. Keep front matter consistent (`layout`, `title`, `description`, `tags` if used) so theme components render correctly. Update `assets/images/` with optimized files and reference them via `/assets/images/<name>.<ext>` in Markdown.
+- Use imperative, scoped commit messages (`posts: add spring recap`) and keep subjects under 72 characters.
+- In PR descriptions, summarize the change, list impacted URLs, and link tracking issues; attach screenshots or GIFs when UI shifts.
+- Confirm you ran `jekyll build` in the PR checklist and call out any follow-up tasks in bullet form.

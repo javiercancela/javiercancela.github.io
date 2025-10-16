@@ -1,0 +1,23 @@
+<nav class="site-nav">
+  <div class="container site-nav__inner">
+    <a class="site-nav__brand" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+    <input type="checkbox" id="nav-toggle" class="site-nav__toggle">
+    <label class="site-nav__toggle-label" for="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+    </label>
+    <div class="site-nav__links">
+      {% assign nav_items = site.pages | where_exp: 'page', 'page.nav_exclude != true' %}
+      {% assign nav_items = nav_items | sort: 'order' %}
+      {% for nav in nav_items %}
+        {% if nav.title and nav.url %}
+          <a
+            class="site-nav__link{% if page.url == nav.url %} is-active{% endif %}"
+            href="{{ nav.url | relative_url }}"
+          >
+            {{ nav.nav_title | default: nav.title }}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</nav>
