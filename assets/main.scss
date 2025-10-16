@@ -401,6 +401,15 @@ code {
   font-size: 0.85rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  text-decoration: none;
+  transition: background $transition-fast, transform $transition-fast, color $transition-fast;
+}
+
+.post__tag:hover,
+.post__tag:focus {
+  background: rgba($color-accent, 0.18);
+  color: $color-primary;
+  transform: translateY(-1px);
 }
 
 .post__pagination {

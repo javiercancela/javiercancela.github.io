@@ -8,7 +8,10 @@ layout: default
   {% if page.tags %}
     <ul class="post__tags">
       {% for tag in page.tags %}
-        <li><span class="post__tag">{{ tag }}</span></li>
+        {% assign tag_slug = tag | slugify: 'latin' %}
+        <li>
+          <a class="post__tag" href="{{ '/tag/' | append: tag_slug | append: '/' | relative_url }}">{{ tag }}</a>
+        </li>
       {% endfor %}
     </ul>
   {% endif %}

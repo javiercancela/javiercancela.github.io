@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<section class="post-feed tag-archive">
+  <div class="container">
+    {% if page.tag_posts and page.tag_posts.size > 0 %}
+      <ul class="post-feed__list">
+        {% for post in page.tag_posts %}
+          <li class="post-card">
+            <article>
+              <p class="post-card__meta">{{ post.date | date: '%B %-d, %Y' }}</p>
+              <h2 class="post-card__title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              </h2>
+              {% if post.subtitle %}
+                <p class="post-card__excerpt">{{ post.subtitle }}</p>
+              {% endif %}
+              <a class="post-card__cta" href="{{ post.url | relative_url }}">Continue reading →</a>
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="post-feed__empty">No posts found for this tag yet.</p>
+    {% endif %}
+  </div>
+</section>
