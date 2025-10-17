@@ -22,6 +22,7 @@ module Jekyll
         "hero_title" => tag,
         "hero_subtitle" => "#{posts.size} #{posts.size == 1 ? 'post' : 'posts'}",
         "tag_posts" => posts.sort_by { |post| post.date }.reverse,
+        "nav_exclude" => true,
       }
     end
   end
