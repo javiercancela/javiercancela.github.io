@@ -2,12 +2,12 @@
 layout: post
 title:  Local LLMs II - Requirements to run a local LLM
 subtitle: In which I try to figure out what I need to run an LLM on my computer
-date: 2025-11-08
+date: 2025-10-03
 tags:
   - local-llm
 ---
 
-The first post is [here](post_url 2025-11-01-local-llm-setup).
+The first post is [here](post_url 2025-09-19-local-llm-setup).
 
 I want to run local models on my PC, and I want to do it while learning as much as possible in the process. What do I need to do so?
 

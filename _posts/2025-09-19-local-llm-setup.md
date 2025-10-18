@@ -2,7 +2,7 @@
 layout: post
 title: Local LLMs I - Setting up a home computer
 subtitle: In which I try to make my NVIDIA drivers work
-date: 2025-11-01
+date: 2025-09-19
 tags:
   - local-llm
 ---
@@ -68,5 +68,5 @@ driver   : xserver-xorg-video-nouveau - distro free builtin
 
 I tried both `nvidia-driver-580-open` and `nvidia-driver-580`, but only the open version worked. It is the one more suited for new GPUs, so I went with it. It works with no issues (so far).
 
-Now we are ready to think about running LLMs locally. I will write about that in the [next post]({% post_url 2025-11-08-local-llm-options %}).
+Now we are ready to think about running LLMs locally. I will write about that in the [next post]({% post_url 2025-10-03-local-llm-options %}).
 
