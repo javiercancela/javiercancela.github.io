@@ -42,7 +42,7 @@ Once this was fixed (I was vibe coding, so I didn't even try to see what was wro
 
 > There is a small glitch in the UI. In the main page, the first post card overlaps slightly with the header, so the card is cut on the top. If I hover the mouse, the card raises a little and it is shown in full. Can you fix this?
 
-Despite taking a screenshot, I didn't attach it to the conversation, but Codex fixed the issue.
+Despite taking a screenshot, I didn't attach it to the conversation, but Codex fixed the issue (despite the grammatical errors, I don't use Grammarly for the prompts!).
 
 Now I wanted to add an image to the header:
 > Put an image as a header background

@@ -1,8 +1,18 @@
 ---
 ---
 @use "sass:color";
-$font-base: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-path: '{{ "/assets/fonts" | relative_url }}';
+$font-base: 'Lora', Georgia, serif;
 $font-heading: 'Lora', Georgia, serif;
+$font-heading-bold: 'NimbusSansBold', 'Open Sans', sans-serif;
+
+@font-face {
+  font-family: 'NimbusSansBold';
+  src: url('#{$font-path}/NimbusSansBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 $color-primary: #2d3a4b;
 $color-accent: #e67e22;
 $color-body: #1f252d;
@@ -25,6 +35,17 @@ body {
   line-height: 1.7;
   background-color: $color-light;
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2 {
+  font-family: $font-heading-bold;
+}
+
+h1 a,
+h2 a {
+  font-family: inherit;
+  font-weight: inherit;
 }
 
 a {
@@ -189,7 +210,7 @@ a:focus {
 }
 
 .hero__title {
-  font-family: $font-heading;
+  font-family: $font-heading-bold;
   font-weight: 600;
   font-size: clamp(2.1rem, 4vw, 3rem);
   margin: 0 0 1rem;
@@ -254,13 +275,16 @@ a:focus {
 
 .post-card__title {
   margin: 0 0 1rem;
-  font-family: $font-heading;
+  font-family: $font-heading-bold;
+  font-weight: 700;
   font-size: 1.8rem;
   color: $color-primary;
 }
 
 .post-card__title a {
   color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
 }
 
 .post-card__excerpt {
@@ -311,6 +335,7 @@ a:focus {
 
 .page-content__body h2,
 .post__body h2 {
+  font-family: $font-heading-bold;
   font-size: 2rem;
 }
 
@@ -501,7 +526,7 @@ code {
 }
 
 .not-found h2 {
-  font-family: $font-heading;
+  font-family: $font-heading-bold;
   font-size: 1.8rem;
   margin-bottom: 1.2rem;
   color: $color-primary;
