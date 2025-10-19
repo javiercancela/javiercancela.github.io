@@ -66,3 +66,10 @@ And that's it. The result is this design (in case I decide to change it in the f
 </figure><br/>
 
 I'm going to call this design "3.6 roentgen": not great, not terrible.
+
+# Update on Octuber 19
+One more change: non-serif fonts for the headers, serif fonts for the regular text:
+<figure>
+  <img src="/assets/images/2025-10-12-blog-redesign-codex/2025-10-19-17-26-52.png" alt="Fonts change" />
+  <figcaption>Fonts change</figcaption>
+</figure><br/>
