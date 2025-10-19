@@ -27,6 +27,7 @@ url: "https://javiercancela.com" # the base hostname & protocol for your site, e
 twitter_username: XavierCancela
 github_username:  javiercancela
 header_image: /assets/images/blog.png
+google_analytics: "G-GFY4FQZG3B" # set to your GA Measurement ID (e.g., G-XXXXXXXXXX) before deploying
 
 # Build settings
 theme: minima

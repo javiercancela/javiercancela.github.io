@@ -1,28 +1,33 @@
 # Repository Guidelines
 
+Maintain this Jekyll site with clear structure, consistent formatting, and repeatable workflows. Follow the practices below before opening a pull request.
+
 ## Project Structure & Module Organization
-- `_config.yml` holds the Jekyll site configuration; update defaults, navigation, and metadata here.
-- `_posts/` contains published articles using the `YYYY-MM-DD-title.md` pattern with YAML front matter; treat each file as a Markdown module.
-- `index.markdown` and `about.markdown` provide landing and bio pages; mirror their front matter when adding new static pages.
-- `_site/` is the generated output from Jekyll builds—never edit files here, and add to `.gitignore` if it ever appears untracked.
+- `_config.yml` defines global metadata, navigation, and defaults; update it when adding layouts or site-wide settings.
+- `_posts/` stores published articles in `YYYY-MM-DD-title.md` format with YAML front matter.
+- `index.markdown` and `about.markdown` act as static pages—mirror their front matter if you add new top-level pages.
+- Assets such as images live under `assets/` using lowercase hyphenated names (e.g., `assets/images/site-logo.png`).
+- `_site/` is build output; never edit or commit content from this directory.
 
 ## Build, Test, and Development Commands
-- `bundle install` ensures Ruby gems from `Gemfile` are available before local development.
-- `bundle exec jekyll serve --livereload` runs the site locally on `http://localhost:4000`, rebuilding when Markdown or assets change.
-- `bundle exec jekyll build` produces a production-ready `_site/`; pair it with `JEKYLL_ENV=production` for deploy previews.
-- `bundle exec jekyll doctor` scans for common configuration and content issues before pushing.
+- `bundle install` installs gem dependencies from `Gemfile`.
+- `bundle exec jekyll serve --livereload` starts the local server at `http://localhost:4000` with automatic rebuilds.
+- `bundle exec jekyll build` produces the production-ready `_site/`; combine with `JEKYLL_ENV=production` for deploy previews.
+- `bundle exec jekyll doctor` reports common configuration or content issues to fix before committing.
 
 ## Coding Style & Naming Conventions
-- Prefer Markdown with fenced code blocks and semantic headings; keep line wraps at ~100 chars for readability.
-- Use two-space indentation in YAML front matter and `_config.yml` to match existing files.
-- Name images and assets with lowercase hyphenated tokens (`assets/images/site-logo.png`) and reference them with absolute paths.
+- Use Markdown with semantic headings and fenced code blocks; wrap lines near 100 characters.
+- Keep YAML indentation at two spaces in front matter and `_config.yml`.
+- Reference assets with absolute paths (e.g., `/assets/images/diagram.png`) to avoid broken links.
+- Avoid adding non-ASCII characters unless the surrounding content already relies on them.
 
 ## Testing Guidelines
-- Run `bundle exec jekyll build` before every commit; treat warnings as blockers.
-- For layout or styling changes, capture a local screenshot from `jekyll serve` to attach in the PR.
-- When adding liquid logic, add a throwaway draft in `_posts/` to exercise new includes or filters and verify the rendered HTML locally.
+- Treat `bundle exec jekyll build` as the primary regression test; resolve any warnings or errors before commits.
+- For Liquid or layout updates, create a temporary draft in `_posts/` to validate new includes or filters locally.
+- Capture a screenshot from `jekyll serve` when adjusting layout, typography, or assets.
 
 ## Commit & Pull Request Guidelines
-- Use imperative, scoped commit messages (`posts: add spring recap`) and keep subjects under 72 characters.
-- In PR descriptions, summarize the change, list impacted URLs, and link tracking issues; attach screenshots or GIFs when UI shifts.
-- Confirm you ran `jekyll build` in the PR checklist and call out any follow-up tasks in bullet form.
+- Write imperative commit messages under 72 characters (`posts: add spring recap`).
+- PR descriptions should summarize changes, list affected URLs, and link tracking issues.
+- Confirm that `bundle exec jekyll build` completes successfully and note any follow-up tasks as bullets.
+- Attach relevant screenshots or GIFs when the UI changes visibly.
