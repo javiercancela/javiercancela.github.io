@@ -5,6 +5,7 @@ subtitle: In which I try to make my NVIDIA drivers work
 date: 2025-09-19
 tags:
   - local-llm
+  - my-pc
 ---
 
 # I got a new computer

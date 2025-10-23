@@ -305,6 +305,99 @@ a:focus {
   color: $color-muted;
 }
 
+.post-feed__pagination {
+  margin: 3rem auto 0;
+  padding: 1.5rem 2rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba($color-primary, 0.08), rgba($color-accent, 0.12));
+  box-shadow: 0 12px 32px rgba(45, 58, 75, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.post-feed__pagination-state {
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color.mix($color-muted, $color-primary, 60%);
+}
+
+.post-feed__pagination-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.post-feed__pagination-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  background: #fff;
+  color: $color-primary;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px rgba(45, 58, 75, 0.12);
+  transition: transform $transition-fast, box-shadow $transition-fast, color $transition-fast, background $transition-fast;
+}
+
+.post-feed__pagination-link:hover,
+.post-feed__pagination-link:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(45, 58, 75, 0.16);
+  background: color.mix(#fff, $color-accent, 88%);
+}
+
+.post-feed__pagination-link--prev::before,
+.post-feed__pagination-link--next::after {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: transform $transition-fast;
+  color: $color-accent;
+}
+
+.post-feed__pagination-link--prev::before {
+  content: "<";
+}
+
+.post-feed__pagination-link--next::after {
+  content: ">";
+}
+
+.post-feed__pagination-link--prev:hover::before,
+.post-feed__pagination-link--prev:focus::before {
+  transform: translateX(-2px);
+}
+
+.post-feed__pagination-link--next:hover::after,
+.post-feed__pagination-link--next:focus::after {
+  transform: translateX(2px);
+}
+
+@media (max-width: 640px) {
+  .post-feed__pagination {
+    padding: 1.25rem 1.5rem;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .post-feed__pagination-links {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .post-feed__pagination-link {
+    justify-content: center;
+  }
+}
+
 .page-content,
 .post {
   margin-top: -2rem;

@@ -3,9 +3,10 @@ layout: default
 ---
 <section class="post-feed">
   <div class="container">
-    {% if site.posts and site.posts.size > 0 %}
+    {% assign paginated_posts = paginator.posts | default: site.posts %}
+    {% if paginated_posts and paginated_posts.size > 0 %}
       <ul class="post-feed__list">
-        {% for post in site.posts %}
+        {% for post in paginated_posts %}
           <li class="post-card">
             <article>
               <p class="post-card__meta">{{ post.date | date: '%B %-d, %Y' }}</p>
@@ -20,6 +21,19 @@ layout: default
           </li>
         {% endfor %}
       </ul>
+      {% if paginator and paginator.total_pages > 1 %}
+        <nav class="post-feed__pagination" aria-label="Blog pagination">
+          <span class="post-feed__pagination-state">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+          <div class="post-feed__pagination-links">
+            {% if paginator.previous_page %}
+              <a class="post-feed__pagination-link post-feed__pagination-link--prev" href="{{ paginator.previous_page_path | relative_url }}">Newer posts</a>
+            {% endif %}
+            {% if paginator.next_page %}
+              <a class="post-feed__pagination-link post-feed__pagination-link--next" href="{{ paginator.next_page_path | relative_url }}">Older posts</a>
+            {% endif %}
+          </div>
+        </nav>
+      {% endif %}
     {% else %}
       <p class="post-feed__empty">No posts yet. Add a Markdown file to `_posts/` and rebuild the site.</p>
     {% endif %}
