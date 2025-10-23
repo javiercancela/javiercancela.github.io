@@ -4,9 +4,10 @@ layout: default
 <section class="post-feed">
   <div class="container">
     {% assign paginated_posts = paginator.posts | default: site.posts %}
-    {% if paginated_posts and paginated_posts.size > 0 %}
+    {% assign sorted_posts = paginated_posts | sort: 'date' | reverse %}
+    {% if sorted_posts and sorted_posts.size > 0 %}
       <ul class="post-feed__list">
-        {% for post in paginated_posts %}
+        {% for post in sorted_posts %}
           <li class="post-card">
             <article>
               <p class="post-card__meta">{{ post.date | date: '%B %-d, %Y' }}</p>
