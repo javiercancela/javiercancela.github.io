@@ -1,0 +1,116 @@
+{
+    "engine": {
+        "model": "nvidia/Qwen3-8B-FP8",
+        "model_path": "None",
+        "engine_dir": "None",
+        "version": "1.2.0rc2",
+        "backend": "Pytorch",
+        "dtype": "bfloat16",
+        "kv_cache_dtype": "FP8",
+        "quantization": "FP8"
+    },
+    "world_info": {
+        "tp_size": 1,
+        "pp_size": 1,
+        "ep_size": 1,
+        "world_size": 1,
+        "max_batch_size": 1,
+        "max_num_tokens": 2048,
+        "scheduling_policy": "GUARANTEED_NO_EVICT",
+        "kv_cache_percentage": 0.9,
+        "issue_rate": 0.0
+    },
+    "request_info": {
+        "num_requests": 1,
+        "avg_num_concurrent_requests": 1.0,
+        "avg_input_length": 1024.0,
+        "avg_output_length": 128.0
+    },
+    "performance": {
+        "total_latency_ms": 2817.67949,
+        "avg_request_latency_ms": 2817.67949,
+        "request_throughput_req_s": 0.35490196935067303,
+        "system_output_throughput_tok_s": 45.42745207688615,
+        "system_total_throughput_tok_s": 408.8470686919753,
+        "output_throughput_per_user_tok_s": 45.42745207688615,
+        "output_throughput_per_gpu_tok_s": 45.42745207688615,
+        "request_latency_percentiles_ms": {
+            "p50": 2817.67949,
+            "p90": 2817.67949,
+            "p95": 2817.67949,
+            "p99": 2817.67949,
+            "minimum": 2817.67949,
+            "maximum": 2817.67949,
+            "average": 2817.67949
+        }
+    },
+    "streaming_metrics": {
+        "token_output_speed_tok_s": 47.99034929341931,
+        "avg_ttft_ms": 171.314088,
+        "avg_tpot_ms": 20.8375228503937,
+        "tpot_percentiles": {
+            "p50": 20.8375228503937,
+            "p90": 20.8375228503937,
+            "p95": 20.8375228503937,
+            "p99": 20.8375228503937,
+            "minimum": 20.8375228503937,
+            "maximum": 20.8375228503937,
+            "average": 20.8375228503937
+        },
+        "ttft_percentiles": {
+            "p50": 171.314088,
+            "p90": 171.314088,
+            "p95": 171.314088,
+            "p99": 171.314088,
+            "minimum": 171.314088,
+            "maximum": 171.314088,
+            "average": 171.314088
+        },
+        "gen_tps_percentiles": {
+            "p50": 47.99034929341931,
+            "p90": 47.99034929341931,
+            "p95": 47.99034929341931,
+            "p99": 47.99034929341931,
+            "minimum": 47.99034929341931,
+            "maximum": 47.99034929341931,
+            "average": 47.99034929341931
+        }
+    },
+    "dataset": {
+        "isl_stats": {
+            "p50": 1024.0,
+            "p90": 1024.0,
+            "p95": 1024.0,
+            "p99": 1024.0,
+            "minimum": 1024.0,
+            "maximum": 1024.0,
+            "average": 1024.0
+        },
+        "osl_stats": {
+            "p50": 128.0,
+            "p90": 128.0,
+            "p95": 128.0,
+            "p99": 128.0,
+            "minimum": 128.0,
+            "maximum": 128.0,
+            "average": 128.0
+        },
+        "seq_len_stats": {
+            "p50": 1152.0,
+            "p90": 1152.0,
+            "p95": 1152.0,
+            "p99": 1152.0,
+            "minimum": 1152.0,
+            "maximum": 1152.0,
+            "average": 1152.0
+        },
+        "num_requests": 1,
+        "dataset_path": "/code/tensorrt_llm/qwen3_1024_128_512.txt",
+        "max_isl": 1024,
+        "max_osl": 128,
+        "max_sequence_length": 1152,
+        "avg_isl": 1024,
+        "avg_osl": 128,
+        "avg_sequence_length": 1152
+    }
+}
