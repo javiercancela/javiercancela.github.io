@@ -141,8 +141,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-The goal was to use the same model as with the Llama.cpp test. But I didn't think there is an easy way to use the GGUF model format in TensorRT-LLM. So I went with the same model with the same quantization from Nvidia. But the format is different, and important details (like the chat template) might be different too.
-
+The goal was to use the same model as with the Llama.cpp test. But I didn't think there is an easy way to use the GGUF model format in TensorRT-LLM. So I went with the same model with the same quantization from Nvidia. But the format is different, and important details (like the chat template) might be different too. You can find the results in [this file](/assets/files/tensorrt-answer.txt).
 
 
 # save_engine.py
