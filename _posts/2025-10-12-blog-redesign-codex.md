@@ -5,6 +5,7 @@ subtitle: In which I use Codex to fake my way into web design
 date: 2025-10-12
 tags:
   - codex
+image: /assets/images/2025-10-12-blog-redesign-codex/2025-11-25-22-18-12.png
 ---
 
 # I got tired of my blog design
@@ -73,3 +74,8 @@ One more change: non-serif fonts for the headers, serif fonts for the regular te
   <img src="/assets/images/2025-10-12-blog-redesign-codex/2025-10-19-17-26-52.png" alt="Fonts change" />
   <figcaption>Fonts change</figcaption>
 </figure><br/>
+
+
+# Update on November 25
+Ok, a few more changes.
+<figure><img src='/assets/images/2025-10-12-blog-redesign-codex/2025-11-25-22-23-11.png' alt='Images!' /><figcaption>Images!</figcaption></figure><br/>

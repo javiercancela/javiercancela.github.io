@@ -6,8 +6,8 @@ date: 2025-09-19
 tags:
   - local-llm
   - my-pc
+image: /assets/images/2025-09-19-local-llm-setup/2025-11-25-19-39-29.png
 ---
-
 # I got a new computer
 
 So I bought a new computer (in [PcComponentes](https://www.pccomponentes.com/), as usual) to ~~play games~~ code LLM apps. (Ok, to [play games](https://store.steampowered.com/agecheck/app/1086940/) too.)

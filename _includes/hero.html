@@ -1,4 +1,4 @@
-{% assign hero_image = include.image | default: page.header_image | default: site.header_image %}
+{% assign hero_image = include.image | default: page.header_image | default: page.image | default: site.header_image %}
 <header class="hero{% if include.compact or page.hero_compact %} hero--compact{% endif %}{% if hero_image %} hero--with-image{% endif %}">
   <div class="hero__background"{% if hero_image %} style="--hero-image: url('{{ hero_image | relative_url }}');"{% endif %}></div>
   <div class="hero__overlay"></div>

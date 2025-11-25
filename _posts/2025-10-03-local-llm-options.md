@@ -5,6 +5,7 @@ subtitle: In which I try to figure out what I need to run an LLM on my computer
 date: 2025-10-03
 tags:
   - local-llm
+image: /assets/images/2025-09-19-local-llm-setup/2025-11-25-19-39-29.png
 ---
 
 The first post is [here](post_url 2025-09-19-local-llm-setup).

@@ -9,6 +9,11 @@ layout: default
       <ul class="post-feed__list">
         {% for post in sorted_posts %}
           <li class="post-card">
+            {% if post.image %}
+              <a href="{{ post.url | relative_url }}" class="post-card__image-link" aria-hidden="true" tabindex="-1">
+                <img class="post-card__image" src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+              </a>
+            {% endif %}
             <article>
               <p class="post-card__meta">{{ post.date | date: '%B %-d, %Y' }}</p>
               <h2 class="post-card__title">

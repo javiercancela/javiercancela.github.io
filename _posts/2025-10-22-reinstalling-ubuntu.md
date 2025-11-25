@@ -5,6 +5,7 @@ subtitle: In which I go down from Ubuntu 25.04 to Ubuntu 24.04
 date: 2025-10-22
 tags:
   - my-pc
+image: /assets/images/2025-10-12-blog-redesign-codex/2025-11-25-22-16-21.png
 ---
 
 # I made a mistake
