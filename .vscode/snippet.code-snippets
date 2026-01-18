@@ -8,6 +8,15 @@
   ],
   "description": "Insert a fenced Python block"
 },
+"Bash fenced block": {
+  "prefix": "bash",
+  "body": [
+    "```bash",
+    "$0",
+    "```"
+  ],
+  "description": "Insert a fenced Python block"
+},
 "Strikethrough": {
   "prefix": "sdel",
   "body": [
