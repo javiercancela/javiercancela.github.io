@@ -46,6 +46,13 @@
       {{ content }}
     </main>
     {% include footer.html %}
+    <div class="image-modal" data-image-modal role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="image-modal__content">
+        <img src="" alt="">
+        <p class="image-modal__caption" data-image-modal-caption hidden></p>
+      </div>
+    </div>
     <script src="{{ '/assets/js/copy-code.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/image-modal.js' | relative_url }}"></script>
   </body>
 </html>
