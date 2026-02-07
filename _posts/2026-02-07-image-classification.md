@@ -2,7 +2,7 @@
 layout: post
 title: Running a multimodal embedding model for image classification
 subtitle: In which I use vibe-code something at work
-date: 2026-02-17
+date: 2026-02-07
 tags:
   - vertex-ai
 image: /assets/images/2026-02-07-image-classification/2026-02-07-20-20-22.png
