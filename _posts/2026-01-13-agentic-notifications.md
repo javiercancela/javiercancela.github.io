@@ -9,7 +9,7 @@ tags:
 image: /assets/images/2026-01-12-agentic-notifications/2026-01-13-09-32-44.webp
 ---
 
-I mentioned [before](post_url 2026-01-10-vibe-coding) that getting notifications wasn't that easy, at least in my setup. This causes me to get lost in ~~Twitter~~ and other important work while the agents are waiting for me.
+I mentioned [before]({% post_url 2026-01-10-vibe-coding %}) that getting notifications wasn't that easy, at least in my setup. This causes me to get lost in ~~Twitter~~ and other important work while the agents are waiting for me.
 
 # Claude Code
 

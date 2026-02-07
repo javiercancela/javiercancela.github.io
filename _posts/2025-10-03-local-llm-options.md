@@ -8,7 +8,7 @@ tags:
 image: /assets/images/2025-09-19-local-llm-setup/2025-11-25-19-39-29.png
 ---
 
-The first post is [here](post_url 2025-09-19-local-llm-setup).
+The first post is [here]({% post_url 2025-09-19-local-llm-setup %}).
 
 I want to run local models on my PC, and I want to do it while learning as much as possible in the process. What do I need to do so?
 
