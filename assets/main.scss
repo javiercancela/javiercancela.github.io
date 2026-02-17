@@ -1,25 +1,16 @@
 ---
 ---
 @use "sass:color";
-$font-path: '{{ "/assets/fonts" | relative_url }}';
-$font-base: 'Lora', Georgia, serif;
-$font-heading: 'Lora', Georgia, serif;
-$font-heading-bold: 'NimbusSansBold', 'Open Sans', sans-serif;
-
-@font-face {
-  font-family: 'NimbusSansBold';
-  src: url('#{$font-path}/NimbusSansBold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+$font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-heading-bold: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 $color-primary: #2d3a4b;
 $color-accent: #e67e22;
 $color-body: #1f252d;
 $color-muted: #6c7a89;
 $color-border: rgba(45, 58, 75, 0.12);
 $color-light: #f7f8fa;
-$max-width: 920px;
+$max-width: 864px;
 $transition-fast: 0.2s ease-in-out;
 
 *,
@@ -32,18 +23,25 @@ body {
   margin: 0;
   font-family: $font-base;
   color: $color-body;
-  line-height: 1.7;
+  line-height: 1.2;
   background-color: $color-light;
   -webkit-font-smoothing: antialiased;
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4 {
   font-family: $font-heading-bold;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
 }
 
 h1 a,
-h2 a {
+h2 a,
+h3 a,
+h4 a {
   font-family: inherit;
   font-weight: inherit;
 }
@@ -212,9 +210,9 @@ a:focus {
 .hero__title {
   font-family: $font-heading-bold;
   font-weight: 600;
-  font-size: clamp(2.1rem, 4vw, 3rem);
+  font-size: 2.488rem;
   margin: 0 0 1rem;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.025em;
 }
 
 .hero__subtitle {
@@ -295,7 +293,7 @@ a:focus {
 .post-card__title {
   margin: 0 0 1rem;
   font-family: $font-heading-bold;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.8rem;
   color: $color-primary;
 }
@@ -427,10 +425,11 @@ a:focus {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 14px 40px rgba(45, 58, 75, 0.1);
-  padding: clamp(2rem, 4vw, 3rem);
+  padding: 2rem;
   max-width: $max-width;
   margin: 0 auto;
-  font-size: 1.3rem;
+  font-size: 1.125rem;
+  line-height: 1.625;
 }
 
 .page-content__body h2,
@@ -440,25 +439,29 @@ a:focus {
 .post__body h3,
 .post__body h4 {
   font-family: $font-heading;
-  margin-top: 2.4rem;
-  margin-bottom: 1rem;
+  margin: 2em 0 1rem;
   color: $color-primary;
 }
 
 .page-content__body h2,
 .post__body h2 {
-  font-family: $font-heading-bold;
-  font-size: 2rem;
+  font-size: 1.953rem;
 }
 
 .page-content__body h3,
 .post__body h3 {
-  font-size: 1.5rem;
+  font-size: 1.563rem;
+}
+
+.page-content__body h4,
+.post__body h4 {
+  font-size: 1.375rem;
 }
 
 .page-content__body p,
 .post__body p {
-  margin-bottom: 1.3rem;
+  padding: 0.75rem 0;
+  margin: 0;
 }
 
 .page-content__body figure,
@@ -895,7 +898,7 @@ pre.highlight:hover .copy-code-button {
   }
 
   .hero__title {
-    font-size: clamp(2rem, 9vw, 2.6rem);
+    font-size: clamp(1.8rem, 7vw, 2.488rem);
   }
 
   .hero__subtitle {
@@ -914,6 +917,6 @@ pre.highlight:hover .copy-code-button {
 
   .page-content__body,
   .post__body {
-    padding: 1.75rem;
+    padding: 1.5rem;
   }
 }
