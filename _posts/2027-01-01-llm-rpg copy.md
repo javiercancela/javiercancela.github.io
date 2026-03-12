@@ -1,0 +1,278 @@
+---
+layout: post
+title: Writing an agentic conversational game - II
+subtitle: In which I use agents to write an agent-based game
+date: 2027-01-01
+tags:
+  - vibecoding
+  - agents
+image: /assets/images/2027-01-01-llm-rpg/2026-03-08-22-48-55.png
+---
+
+# The implementation
+
+Once [the plan]({% post_url 2026-09-19-local-llm-setup %}) is defined
+Just as a test, I used Cursor in Auto mode to add uv:
+<figure><img src='/assets/images/2027-01-01-llm-rpg/2026-03-08-16-08-01.png' alt='TODO' /><figcaption>TODO</figcaption></figure><br/>
+
+https://github.com/javiercancela/virtual-world/tree/v1
+
+```
+Night Desk
+You are locked inside a security office while rain rattles the shutters. Mara Voss, the night supervisor, is inside with you and clearly knows more than she wants to say. The exit door is locked. A steel cabinet with a keypad stands under the wall clock. A desk holds a visitor ledger.
+Commands: inspect <object>, talk to Mara, use <item> on <target>, take <item>, move <object>, inventory, look, help, quit.
+
+> Describe the desk
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> Say Hi to Mara
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> talk to Mara
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> inventory
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> help
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> quit
+Session closed.
+```
+
+Ok, now we need some actual local LLM to test. I deleted my previous llama.cpp install, so I get back to it again. After downloading, I compile everything:
+```bash
+cmake -B build -DGGML_CUDA=ON
+cmake --build build --config Release -j 16
+```
+
+As for the model, despite
+We download the model (we choose a more modern version)
+hf download unsloth/Qwen3.5-4B-GGUF --local-dir ./models/Qwen3.5-4B-GGUF
+
+<figure><img src='/assets/images/2027-01-01-llm-rpg/2026-03-08-16-50-35.png' alt='TODO' /><figcaption>TODO</figcaption></figure><br/>
+
+To Claude:
+
+
+hf download unsloth/Qwen3.5-4B-GGUF   --include "Qwen3.5-4B-UD-Q4_K_XL.gguf"   --local-dir ./models/Qwen3.5-4B
+hf download unsloth/Qwen3.5-9B-GGUF   --include "Qwen3.5-9B-UD-Q5_K_XL.gguf"   --local-dir ./models/Qwen3.5-9B
+
+```
+This application uses llama.cpp to serve local models for some uses. Right now, if there is no llama-server present it just answers
+  That does not resolve into a safe action. Rephrase it with a clear object or request
+  to any request. Change the code so it notifies the user that llama-server isn't running in the configured urls.
+```
+
+ ./llama.cpp/build/bin/llama-server  -m ./models/Qwen3.5-9B/Qwen3.5-9B-UD-Q5_K_XL.gguf   --alias Qwen3.5-9B   --port 8081
+./build/bin/llama-server -m ./models/Qwen3.5-4B/Qwen3.5-4B-UD-Q4_K_XL.gguf -ngl 0  -t 8  -c 2048  --port 8082  --jinja  --chat-template-kwargs '{"enable_thinking":false}'
+CUDA_VISIBLE_DEVICES="" ./llama.cpp/build/bin/llama-server -m ./models/Qwen3.5-4B/Qwen3.5-4B-UD-Q4_K_XL.gguf -ngl 0  -t 8  -c 2048  --port 8082  --jinja  --chat-template-kwargs '{"enable_thinking":false}'
+
+Error:
+When the user says something I get this error:
+slot update_slots: id  3 | task 780 | prompt processing done, n_tokens = 110, batch.n_tokens = 110
+slot print_timing: id  3 | task 780 |
+prompt eval time =      59.47 ms /   110 tokens (    0.54 ms per token,  1849.55 tokens per second)
+       eval time =    2228.28 ms /   128 tokens (   17.41 ms per token,    57.44 tokens per second)
+      total time =    2287.76 ms /   238 tokens
+slot      release: id  3 | task 780 | stop processing: n_tokens = 237, truncated = 0
+srv  update_slots: all slots are idle
+srv          stop: cancel task, id_task = 780
+srv  update_slots: all slots are idle
+srv    operator(): got exception: {"error":{"code":500,"message":"Failed to parse input at pos 494: ","type":"server_error"}}
+srv  log_server_r: done request: POST /v1/chat/completions 127.0.0.1 500
+srv  params_from_: Chat format: peg-native
+slot get_availabl: id  3 | task -1 | selected slot by LCP similarity, sim_best = 1.000 (> 0.100 thold), f_keep = 0.464
+srv  get_availabl: updating prompt cache
+srv   prompt_save:  - saving prompt with length 237, total state size = 57.662 MiB
+srv         alloc:  - prompt is already in the cache, skipping
+srv          load:  - looking for better prompt, base f_keep = 0.464, sim = 1.000
+srv        update:  - cache state: 2 prompts, 115.135 MiB (limits: 8192.000 MiB, 224512 tokens, 224512 est)
+srv        update:    - prompt 0x7ae7e80070b0:     231 tokens, checkpoints:  0,    57.474 MiB
+srv        update:    - prompt 0x7ae7dc006ea0:     237 tokens, checkpoints:  0,    57.662 MiB
+srv  get_availabl: prompt cache update took 0.15 ms
+parse: error parsing grammar: expecting name at "\"intent\"" ws ":" ws intent ws "," ws
+    "\"target\"" ws ":" ws nullable_string ws "," ws
+    "\"secondary_target\"" ws ":" ws nullable_string ws "," ws
+    "\"utterance\"" ws ":" ws nullable_string ws "," ws
+    "\"confidence\"" ws ":" ws number ws
+"}"
+intent ::= "\"talk\"" | "\"inspect\"" | "\"use\"" | "\"take\"" | "\"move\"" | "\"inventory\"" | "\"ask_state\"" | "\"help\"" | "\"unknown\""
+nullable_string ::= string | "null"
+string ::= "\"" chars "\""
+chars ::= "" | char chars
+char ::= [^"\\\x00-\x1F] | "\\" escape
+escape ::= ["\\/bfnrt] | "u" hex hex hex hex
+hex ::= [0-9a-fA-F]
+number ::= integer-part frac? exp?
+integer-part ::= "-"? digit1to9 digits? | "0"
+digits ::= digit digits | ""
+digit ::= [0-9]
+digit1to9 ::= [1-9]
+frac ::= "." digits1
+exp ::= [eE] [+-]? digits1
+digits1 ::= digit digits
+ws ::= [ \t\n\r]*
+
+root ::= ws object ws
+object ::= "{" ws
+    "\"intent\"" ws ":" ws intent ws "," ws
+    "\"target\"" ws ":" ws nullable_string ws "," ws
+    "\"secondary_target\"" ws ":" ws nullable_string ws "," ws
+    "\"utterance\"" ws ":" ws nullable_string ws "," ws
+    "\"confidence\"" ws ":" ws number ws
+"}"
+intent ::= "\"talk\"" | "\"inspect\"" | "\"use\"" | "\"take\"" | "\"move\"" | "\"inventory\"" | "\"ask_state\"" | "\"help\"" | "\"unknown\""
+nullable_string ::= string | "null"
+string ::= "\"" chars "\""
+chars ::= "" | char chars
+char ::= [^"\\\x00-\x1F] | "\\" escape
+escape ::= ["\\/bfnrt] | "u" hex hex hex hex
+hex ::= [0-9a-fA-F]
+number ::= integer-part frac? exp?
+integer-part ::= "-"? digit1to9 digits? | "0"
+digits ::= digit digits | ""
+digit ::= [0-9]
+digit1to9 ::= [1-9]
+frac ::= "." digits1
+exp ::= [eE] [+-]? digits1
+digits1 ::= digit digits
+ws ::= [ \t\n\r]*
+llama_grammar_init_impl: failed to parse grammar
+slot launch_slot_: id  3 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist
+slot launch_slot_: id  3 | task 910 | processing task, is_child = 0
+slot update_slots: id  3 | task 910 | new prompt, n_ctx_slot = 224512, n_keep = 0, task.n_tokens = 110
+slot update_slots: id  3 | task 910 | n_past = 110, slot.prompt.tokens.size() = 237, seq_id = 3, pos_min = 236, n_swa = 1
+slot update_slots: id  3 | task 910 | forcing full prompt re-processing due to lack of cache data (likely due to SWA or hybrid/recurrent memory, see https://github.com/ggml-org/llama.cpp/pull/13194#issuecomment-2868343055)
+slot update_slots: id  3 | task 910 | n_tokens = 0, memory_seq_rm [0, end)
+slot init_sampler: id  3 | task 910 | init sampler, took 0.01 ms, tokens: text = 110, total = 110
+slot update_slots: id  3 | task 910 | prompt processing done, n_tokens = 110, batch.n_tokens = 110
+slot print_timing: id  3 | task 910 |
+prompt eval time =      56.08 ms /   110 tokens (    0.51 ms per token,  1961.52 tokens per second)
+       eval time =    2224.34 ms /   128 tokens (   17.38 ms per token,    57.55 tokens per second)
+      total time =    2280.42 ms /   238 tokens
+slot      release: id  3 | task 910 | stop processing: n_tokens = 237, truncated = 0
+srv  update_slots: all slots are idle
+srv          stop: cancel task, id_task = 910
+srv  update_slots: all slots are idle
+srv    operator(): got exception: {"error":{"code":500,"message":"Failed to parse input at pos 494: ","type":"server_error"}}
+srv  log_server_r: done request: POST /v1/chat/completions 127.0.0.1 500
+
+Fixed version:
+https://github.com/javiercancela/virtual-world/tree/v2
+
+Night Desk
+Rain hammers against the steel shutters as Mara Voss leans over her desk, her eyes fixed on the locked exit door. The only sound is the rhythmic clatter of keys against the steel cabinet and the soft rustle of paper in the visitor ledger. She offers a knowing smile, suggesting that the storm outside is just as trapped as you are inside.
+Commands: inspect <object>, talk to Mara, use <item> on <target>, take <item>, move <object>, inventory, look, help, quit.
+
+>  What is the time according to the clock?
+Rain drums against the high windows as Mara Voss measures your story, her eyes fixed on the locked steel cabinet and the sealed exit door. The only things within reach are the visitor ledger, the coat rack, the framed photo, and the desk, all set against the cold glow of the office.
+
+> Examine the framed photo
+The photograph reveals Mara with a commendation ribbon pinned to her jacket, while the engraved plaque beneath reads: "Attention kept us alive." It feels less like sentiment and more like a test, the stark white paper contrasting with the dim, humming light of the security office.
+
+> Examine the visitor ledger
+The ledger lies open on the desk, its final entry underlined twice in stark red pencil, while the name "Silas Vale" stares back from the visitor's signature. Mara's sharp eyes are already scanning the page, waiting for you to confirm whether that name belongs in the report or the witness box.
+
+> Ask Mara about Silas Vale
+Rain drums against the high windows as Mara Voss measures your story, her gaze fixed on the locked steel cabinet and sealed exit door. The only things within reach are the visitor ledger, the framed photo, the coat rack, and the heavy steel cabinet that remains stubbornly closed.
+
+> talk to Mara
+"The ink on that ledger doesn't dry quickly when someone is watching you, so why are you still looking at me?" Mara's voice is low and steady, cutting through the rain outside as she avoids your eyes. "If you believe Silas Vale's name belongs in the witness box, then you know exactly what to do with the ledger before I say another word."
+
+> Yes, I think it begongs in the witness box
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> open the desk
+Using the desk that way does nothing useful.
+
+> open the steel cabinet
+The keypad waits for a three-digit code you do not have yet.
+
+> inventory
+Inventory: empty.
+
+> take the ledger
+You cannot take the visitor ledger.
+
+> inspect the desk
+The desk is a cluttered fortress of incident forms and a dead flashlight, the visitor ledger already open to the latest page as if waiting for an answer. The ink on the recent entries glistens under the flickering light, demanding that you look closer at who has been here.
+
+> read the ledger
+Inventory: empty.
+
+> inspect the ledger
+The ledger's final entry trembles under double red underlines, the ink stark against the white page. You trace the name Silas Vale, knowing Mara's eyes will follow the trail of that signature. The silence in the office feels heavier now, waiting for the next clue to fall into place.
+
+> help
+Commands: inspect <object>, talk to Mara, use <item> on <target>, take <item>, move <object>, inventory, look, help, quit.
+
+> move ledger
+You shift the visitor ledger, but it changes nothing useful.
+
+> inspect the coat rack
+Mara's raincoat drips onto the tiles, the metallic clink of a leather key clip hanging empty from the sleeve seam. The rack remains barren, confirming that whatever key belongs there is not on it. The silence of the office is broken only by the rhythmic tapping of water against the floor.
+
+> inspect the leather key clip
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> tak the key clip
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> take the key clip
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> inspect Mara's raincoat
+Mara Voss watches your every move with controlled impatience, her eyes scanning the room as if expecting a trap. She looks tired and suspicious, refusing to volunteer the cabinet code despite your persistent inquiries. The silence in the Security Office grows heavier with each passing second.
+
+> inspect raincoat
+The empty clip suggests the important key is stored elsewhere.
+
+> move the coat rack
+You shift the desk, but it changes nothing useful.
+
+> move coat rack
+You drag the coat rack aside, revealing only the slick sheen of wet tile and a faint trail of grit beneath it. No spare key is hidden in the shadows of the wood, and the silence of the office remains unbroken by the sound of brass or distant sirens.
+
+> move framed photo
+You straighten the framed photo, revealing a pristine, dust-free rectangle behind it that offers no hidden switch. The recent handling of the frame only deepens the room's quiet theme: notice the details, do not expect tricks. The air in the Security Office remains still, waiting for the next observation.
+
+> talk to mara
+"Careful with the coat rack, I've been testing to see if you'll notice the grit trail beneath it. If you think I'm hiding something in the office, you should be looking at the visitor ledger instead."
+
+> move visitor ledger
+You shift the visitor ledger, but it changes nothing useful.
+
+> take visitor ledger
+You cannot take the visitor ledger.
+
+> talk to Silas Vale
+The ledger you just inspected was a dead end, Silas, but it confirmed that someone else has been watching this room. If you truly want to know what I'm hiding, you need to get out here and talk to the visitor in the corner, not keep asking me.
+
+> talk to the visitor
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> talk to mara
+I know you want answers, Mara, but the visitor in the corner holds the truth I cannot give you. Go inspect the ledger again; if that's a dead end, then someone else is watching this room, and you're the only one who can see it.
+
+> inspect the corner
+That does not resolve into a safe action. Rephrase it with a clear object or request.
+
+> tell mara Silas Vale
+Silas Vale is a man of many talents, yes, but his ledger is the only place his true nature hides. Go back to the desk, open the ledger, and tell me what you find there. If the pages are blank, then someone else is watching this room, and you're the only one who can see it.
+
+> open the ledger
+Using the visitor ledger that way does nothing useful.
+
+> inspect ledger
+The ledger's final entry trembles under the red pencil, its double underlining stark against the dim light. You recognize the name Silas Vale from the visitor log, a detail Mara would likely dissect with sharp curiosity. The air in the office feels heavy with the weight of a secret waiting to be uncovered.
+
+> talk to mara
+Silence is the only thing that keeps the shadows from shifting, so stop talking and look at the ledger again. If you think you see something there, I will believe you; if not, then someone else is already watching us.
+
+> tell Mara I see something
+The red pencil on the ledger is the only thing that matters right now, yet you claim the steel cabinet holds a truth I cannot yet read. If that cabinet contains more than a key, then the shadows are already shifting, and I am no longer the only one watching us. Go back to the ledger; the answer to what you see is written there, not in the cold steel.
+
+> Silas Vale
+That does not resolve into a safe action. Rephrase it with a clear object or request.
