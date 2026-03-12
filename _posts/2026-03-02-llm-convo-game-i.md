@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Writing an agentic conversational game
+title: Writing an agentic conversational game - I
 subtitle: In which I use agents to write an agent-based game
 date: 2026-03-12
 tags:
