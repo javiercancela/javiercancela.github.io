@@ -2,18 +2,20 @@
 layout: post
 title: Writing an agentic conversational game - II
 subtitle: In which I use agents to write an agent-based game
-date: 2027-01-01
+date: 2026-03-15
 tags:
   - vibecoding
   - agents
-image: /assets/images/2027-01-01-llm-rpg/2026-03-08-22-48-55.png
+image: /assets/images/2027-01-01-generating-images/2026-03-12-22-49-43.png
 ---
 
 # The implementation
 
-Once [the plan]({% post_url 2026-09-19-local-llm-setup %}) is defined
+Once [the plan]({% post_url 2026-03-12-llm-convo-game-i %}) is defined, it's time to start coding. I just fed OpenAI Codex the prompt as ChatGPT had defined it and generated this version:
+https://github.com/javiercancela/virtual-world/tree/v1
+
 Just as a test, I used Cursor in Auto mode to add uv:
-<figure><img src='/assets/images/2027-01-01-llm-rpg/2026-03-08-16-08-01.png' alt='TODO' /><figcaption>TODO</figcaption></figure><br/>
+<figure><img src='/assets/images/2027-01-01-llm-rpg/2026-03-08-16-08-01.png' alt='Use uv, please' /><figcaption>Use uv, please</figcaption></figure><br/>
 
 https://github.com/javiercancela/virtual-world/tree/v1
 
