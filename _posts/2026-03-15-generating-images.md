@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Old man tries things, banana nano edition
+title: Old man tries things, Nano Banana edition
 subtitle: In which I use models to go back to the past
 date: 2026-03-15
 tags:
