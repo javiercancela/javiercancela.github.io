@@ -1,0 +1,259 @@
+---
+layout: post
+title: Writing an agentic conversational game - II
+subtitle: In which I use agents to write an agent-based game
+date: 2026-03-14
+tags:
+ - vibecoding
+ - agents
+image: /assets/images/2027-01-01-generating-images/2026-03-12-22-49-43.png
+---
+
+# The implementation
+
+Once [the plan]({% post_url 2026-03-12-llm-convo-game-i %}) is defined, it's time to start coding. I just fed OpenAI Codex the prompt as ChatGPT had defined it and generated this version:
+https://github.com/javiercancela/virtual-world/tree/v1
+
+Just as a test, I used Cursor in Auto mode to add `uv:
+<figure><img src='/assets/images/2027-01-01-llm-rpg/2026-03-08-16-08-01.png' alt='Use uv, please' /><figcaption>Use uv, please</figcaption></figure><br/>
+
+Running the code results in this interaction:
+
+<figure><img src='/assets/images/2026-03-15-llm-convo-game-ii/2026-03-14-19-07-44.png' alt='This image does not resolve into a safe action' /><figcaption>This image does not resolve into a safe action</figcaption></figure><br/>
+
+Ok, now we need some actual local LLM to test. I deleted my previous llama.cpp install, so I downloaded and compiled it again:
+```bash
+cmake -B build -DGGML_CUDA=ON
+cmake --build build --config Release -j 16
+```
+
+For the model, we use the Qwen3.5 family, with the Unsloth quantization:
+```bash
+hf download unsloth/Qwen3.5-4B-GGUF   --include "Qwen3.5-4B-UD-Q4_K_XL.gguf"   --local-dir ./models/Qwen3.5-4B
+hf download unsloth/Qwen3.5-9B-GGUF   --include "Qwen3.5-9B-UD-Q5_K_XL.gguf"   --local-dir ./models/Qwen3.5-9B
+```
+
+The 4B version for routing, the 9B version for the rest.
+
+We run one instance of `llama.cpp` for each, in different ports. To fit this into my system, I run the 9B model with the GPU and the 4B one with the CPU:
+
+```bash
+ ./llama.cpp/build/bin/llama-server  /
+    -m ./models/Qwen3.5-9B/Qwen3.5-9B-UD-Q5_K_XL.gguf   /
+    --alias Qwen3.5-9B   /
+    --port 8081
+
+CUDA_VISIBLE_DEVICES=""  ./llama.cpp/build/bin/llama-server  /
+    -m ./models/Qwen3.5-4B/Qwen3.5-4B-UD-Q4_K_XL.gguf /
+    -ngl 0  /
+    -t 8  /
+    -c 2048  /
+    --port 8082
+```
+
+I used CUDA_VISIBLE_DEVICES="" to force using the CPU and avoid compiling this model specifically for the CPU. But to make it work, I had to add the `-ngl 0` param too. The option `-c 2048` limits the context to use less memory, because context usage for routing is small.
+
+I found an error after trying with the llama servers running:
+```
+...
+slot update_slots: id  3 | task 910 | prompt processing done, n_tokens = 110, batch.n_tokens = 110
+slot print_timing: id  3 | task 910 |
+prompt eval time =      56.08 ms /   110 tokens (    0.51 ms per token,  1961.52 tokens per second)
+ eval time =    2224.34 ms /   128 tokens (   17.38 ms per token,    57.55 tokens per second)
+ total time =    2280.42 ms /   238 tokens
+slot      release: id  3 | task 910 | stop processing: n_tokens = 237, truncated = 0
+srv  update_slots: all slots are idle
+srv          stop: cancel task, id_task = 910
+srv  update_slots: all slots are idle
+srv    operator(): got exception: {"error":{"code":500,"message":"Failed to parse input at pos 494: ","type":"server_error"}}
+srv  log_server_r: done request: POST /v1/chat/completions 127.0.0.1 500
+
+```
+
+I just pasted the log to Claude and asked him to fix it. This is the fixed version: https://github.com/javiercancela/virtual-world/tree/v2.
+
+This is the end result for this version:
+
+```
+Night Desk
+Rain hammers against the steel shutters as Mara Voss leans over her desk, her
+eyes fixed on the locked exit door. The only sound is the rhythmic clatter of
+keys against the steel cabinet and the soft rustle of paper in the visitor
+ledger. She offers a knowing smile, suggesting that the storm outside is just
+as trapped as you are inside.
+Commands: inspect <object>, talk to Mara, use <item> on <target>, take <item>,
+move <object>, inventory, look, help, quit.
+
+>  What is the time according to the clock?
+Rain drums against the high windows as Mara Voss measures your story, her eyes
+fixed on the locked steel cabinet and the sealed exit door. The only things
+within reach are the visitor ledger, the coat rack, the framed photo, and the
+desk, all set against the cold glow of the office.
+
+> Examine the framed photo
+The photograph reveals Mara with a commendation ribbon pinned to her jacket,
+while the engraved plaque beneath reads: "Attention kept us alive." It feels
+less like sentiment and more like a test, the stark white paper contrasting
+with the dim, humming light of the security office.
+
+> Examine the visitor ledger
+The ledger lies open on the desk, its final entry underlined twice in stark
+red pencil, while the name "Silas Vale" stares back from the visitor's
+signature. Mara's sharp eyes are already scanning the page, waiting for you
+to confirm whether that name belongs in the report or the witness box.
+
+> Ask Mara about Silas Vale
+Rain drums against the high windows as Mara Voss measures your story, her gaze
+fixed on the locked steel cabinet and sealed exit door. The only things within
+reach are the visitor ledger, the framed photo, the coat rack, and the heavy
+steel cabinet that remains stubbornly closed.
+
+> talk to Mara
+"The ink on that ledger doesn't dry quickly when someone is watching you, so
+why are you still looking at me?" Mara's voice is low and steady, cutting
+through the rain outside as she avoids your eyes. "If you believe Silas Vale's
+name belongs in the witness box, then you know exactly what to do with the
+ledger before I say another word."
+
+> Yes, I think it begongs in the witness box
+That does not resolve into a safe action. Rephrase it with a clear object or
+request.
+
+> open the desk
+Using the desk that way does nothing useful.
+
+> open the steel cabinet
+The keypad waits for a three-digit code you do not have yet.
+
+> inventory
+Inventory: empty.
+
+> take the ledger
+You cannot take the visitor ledger.
+
+> inspect the desk
+The desk is a cluttered fortress of incident forms and a dead flashlight, the
+visitor ledger already open to the latest page as if waiting for an answer.
+The ink on the recent entries glistens under the flickering light, demanding
+that you look closer at who has been here.
+
+> read the ledger
+Inventory: empty.
+
+> inspect the ledger
+The ledger's final entry trembles under double red underlines, the ink stark
+against the white page. You trace the name Silas Vale, knowing Mara's eyes will
+follow the trail of that signature. The silence in the office feels heavier
+now, waiting for the next clue to fall into place.
+
+> help
+Commands: inspect <object>, talk to Mara, use <item> on <target>, take <item>,
+move <object>, inventory, look, help, quit.
+
+> move ledger
+You shift the visitor ledger, but it changes nothing useful.
+
+> inspect the coat rack
+Mara's raincoat drips onto the tiles, the metallic clink of a leather key clip
+hanging empty from the sleeve seam. The rack remains barren, confirming that
+whatever key belongs there is not on it. The silence of the office is broken
+only by the rhythmic tapping of water against the floor.
+
+> inspect the leather key clip
+That does not resolve into a safe action. Rephrase it with a clear object or
+request.
+
+> tak the key clip
+That does not resolve into a safe action. Rephrase it with a clear object or
+request.
+
+> take the key clip
+That does not resolve into a safe action. Rephrase it with a clear object or
+request.
+
+> inspect Mara's raincoat
+Mara Voss watches your every move with controlled impatience, her eyes scanning
+the room as if expecting a trap. She looks tired and suspicious, refusing to
+volunteer the cabinet code despite your persistent inquiries. The silence in
+the Security Office grows heavier with each passing second.
+
+> inspect raincoat
+The empty clip suggests the important key is stored elsewhere.
+
+> move the coat rack
+You shift the desk, but it changes nothing useful.
+
+> move coat rack
+You drag the coat rack aside, revealing only the slick sheen of wet tile and a
+faint trail of grit beneath it. No spare key is hidden in the shadows of the
+wood, and the silence of the office remains unbroken by the sound of brass or
+distant sirens.
+
+> move framed photo
+You straighten the framed photo, revealing a pristine, dust-free rectangle behind
+it that offers no hidden switch. The recent handling of the frame only deepens
+the room's quiet theme: notice the details, do not expect tricks. The air in the
+Security Office remains still, waiting for the next observation.
+
+> talk to mara
+"Careful with the coat rack, I've been testing to see if you'll notice the grit
+trail beneath it. If you think I'm hiding something in the office, you should be looking at the visitor ledger instead."
+
+> move visitor ledger
+You shift the visitor ledger, but it changes nothing useful.
+
+> take visitor ledger
+You cannot take the visitor ledger.
+
+> talk to Silas Vale
+The ledger you just inspected was a dead end, Silas, but it confirmed that
+someone else has been watching this room. If you truly want to know what I'm
+hiding, you need to get out here and talk to the visitor in the corner, not keep
+asking me.
+
+> talk to the visitor
+That does not resolve into a safe action. Rephrase it with a clear object or
+request.
+
+> talk to mara
+I know you want answers, Mara, but the visitor in the corner holds the truth I
+cannot give you. Go inspect the ledger again; if that's a dead end, then someone
+else is watching this room, and you're the only one who can see it.
+
+> inspect the corner
+That does not resolve into a safe action. Rephrase it with a clear object or
+request.
+
+> tell mara Silas Vale
+Silas Vale is a man of many talents, yes, but his ledger is the only place his
+true nature hides. Go back to the desk, open the ledger, and tell me what you
+find there. If the pages are blank, then someone else is watching this room,
+and you're the only one who can see it.
+
+> open the ledger
+Using the visitor ledger that way does nothing useful.
+
+> inspect ledger
+The ledger's final entry trembles under the red pencil, its double underlining
+stark against the dim light. You recognize the name Silas Vale from the
+visitor log, a detail Mara would likely dissect with sharp curiosity. The air
+in the office feels heavy with the weight of a secret waiting to be uncovered.
+
+> talk to mara
+Silence is the only thing that keeps the shadows from shifting, so stop talking
+and look at the ledger again. If you think you see something there, I will
+believe you; if not, then someone else is already watching us.
+
+> tell Mara I see something
+The red pencil on the ledger is the only thing that matters right now, yet you
+claim the steel cabinet holds a truth I cannot yet read. If that cabinet
+contains more than a key, then the shadows are already shifting, and I am no
+longer the only one watching us. Go back to the ledger; the answer to what
+you see is written there, not in the cold steel.
+
+> Silas Vale
+That does not resolve into a safe action. Rephrase it with a clear object or
+request.
+```
+
+Something is wrong with how the game decides that Mara should trust me. So the next step will be fixing this.

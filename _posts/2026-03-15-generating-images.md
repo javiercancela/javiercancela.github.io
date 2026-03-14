@@ -2,7 +2,7 @@
 layout: post
 title: Old man tries things, banana nano edition
 subtitle: In which I use models to go back to the past
-date: 2027-01-01
+date: 2026-03-15
 tags:
  - images
 image: /assets/images/2027-01-01-generating-images/Old-man.png
