@@ -47,19 +47,19 @@ For each set of descriptions, we calculate the normalized mean:
 
 The algorithm for the classification calculates the cosine similarity between image embeddings and description embeddings, and decides based on a score. Something like this:
 ```python
-    for img_emb in image_embeddings:
- img_categories: list[tuple[str, float]] = []
- neutral_sim = float(img_emb @ neutral_embedding)
+for img_emb in image_embeddings:
+  img_categories: list[tuple[str, float]] = []
+  neutral_sim = float(img_emb @ neutral_embedding)
 
-        for title, (pos_emb, neg_emb) in category_embeddings.items():
- pos_sim = float(img_emb @ pos_emb)
- neg_sim = float(img_emb @ neg_emb)
- score = pos_sim - neg_sim
- threshold = category_thresholds.get(title, score_threshold)
+  for title, (pos_emb, neg_emb) in category_embeddings.items():
+    pos_sim = float(img_emb @ pos_emb)
+    neg_sim = float(img_emb @ neg_emb)
+    score = pos_sim - neg_sim
+    threshold = category_thresholds.get(title, score_threshold)
 
-            # Match if score exceeds threshold and positive beats neutral by margin.
-            if score >= threshold and pos_sim >= neutral_sim + neutral_margin:
- img_categories.append((title, score))
+    # Match if score exceeds threshold and positive beats neutral by margin.
+    if score >= threshold and pos_sim >= neutral_sim + neutral_margin:
+      img_categories.append((title, score))
 ```
 
 There is a lot to improve in this exercise, but the overall results were positive. I will probably try one or two different approaches to solve this same problem, but at least I know that there is one thing that mostly works.

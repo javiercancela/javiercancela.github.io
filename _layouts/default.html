@@ -9,14 +9,14 @@
     {%- seo -%}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
     {% include google-analytics.html %}
   </head>
   <body class="layout-{{ page.layout | default: 'default' }}">
     <a class="skip-link" href="#content">Skip to content</a>
     {% include navigation.html %}
-    {% unless page.hero == false %}
+    {% unless page.hero == false or page.layout == 'home' or page.layout == 'post' %}
       {% assign hero_title = page.hero_title | default: page.title | default: site.title %}
       {% assign hero_subtitle = page.hero_subtitle | default: page.subtitle %}
       {% if hero_subtitle == nil or hero_subtitle == '' %}
