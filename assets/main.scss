@@ -250,15 +250,19 @@ a:hover {
 
 .post-card article {
   display: grid;
-  grid-template-columns: 5.5rem 1fr;
-  gap: 0 2.5rem;
+  grid-template-columns: 5rem 1fr;
+  gap: 0 2rem;
   align-items: start;
-  padding: 1.5rem 0;
+  padding: 0.65rem 0;
 }
 
 // Hide image thumbnails in the feed
 .post-card__image-link {
   display: none;
+}
+
+.post-card__left {
+  min-width: 0;
 }
 
 .post-card__body {
@@ -267,14 +271,14 @@ a:hover {
 
 .post-card__meta {
   font-family: $font-mono;
-  font-size: 0.775rem;
+  font-size: 0.675rem;
   color: $color-muted;
-  margin: 0;
+  margin: 0 0 0.3rem;
   letter-spacing: 0;
   text-transform: none;
   white-space: nowrap;
-  line-height: 1.6;
-  padding-top: 0.3rem; // optical alignment with serif title cap-height
+  line-height: 1.5;
+  padding-top: 0.1rem;
 }
 
 .post-card__date-day {
@@ -287,10 +291,10 @@ a:hover {
 
 .post-card__title {
   font-family: $font-mono;
-  font-size: 1.375rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: $color-text;
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.15rem;
   letter-spacing: -0.02em;
   line-height: 1.3;
 }
@@ -307,10 +311,10 @@ a:hover {
 }
 
 .post-card__subtitle {
-  font-size: 0.9rem;
+  font-size: 0.775rem;
   color: $color-muted;
-  margin: 0.1rem 0 0.6rem;
-  line-height: 1.5;
+  margin: 0;
+  line-height: 1.4;
 }
 
 .post-card__tags {
@@ -319,7 +323,7 @@ a:hover {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.2rem;
 }
 
 .post-card__tag-item {
@@ -329,10 +333,10 @@ a:hover {
 .post-card__tag-link {
   display: inline-block;
   font-family: $font-mono;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: $color-muted;
   border: 1px solid $color-border;
-  padding: 0.1rem 0.4rem;
+  padding: 0.05rem 0.25rem;
   border-radius: 2px;
   text-decoration: none;
   letter-spacing: 0.01em;
@@ -914,15 +918,23 @@ pre.highlight:hover .copy-code-button {
   .post-card article {
     grid-template-columns: 1fr;
     gap: 0.1rem;
-    padding: 0.75rem 0;
+    padding: 0.65rem 0;
   }
 
   .post-card__meta {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .post-card__date-day,
+  .post-card__date-year {
+    display: inline;
   }
 
   .post-card__title {
-    font-size: 0.9rem;
+    font-size: 0.875rem;
   }
 
   .site-nav__toggle-label {
