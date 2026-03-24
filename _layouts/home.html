@@ -18,9 +18,15 @@ layout: default
                 <h2 class="post-card__title">
                   <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
                 </h2>
-                {% if post.subtitle %}
-                  <p class="post-card__subtitle">{{ post.subtitle }}</p>
-                {% endif %}
+                {% assign paragraphs = post.content | split: '<p>' %}
+                {% assign first_para = '' %}
+                {% for p in paragraphs offset:1 %}
+                  {% assign text = p | split: '</p>' | first | strip_html | strip %}
+                  {% if text != '' and first_para == '' %}
+                    {% assign first_para = text %}
+                  {% endif %}
+                {% endfor %}
+                <p class="post-card__subtitle">{{ first_para | truncate: 80 }}</p>
               </div>
             </article>
           </li>
