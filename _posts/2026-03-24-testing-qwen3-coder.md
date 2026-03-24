@@ -20,8 +20,6 @@ But the way llmfit works is searching for the optimal quantized model (for examp
 
 For example, these models (or model, because they are both the same) use a [MoE architecture](https://huggingface.co/blog/moe), where instead of a big FFN, we have several different small FFNs. According to the [HF card](https://huggingface.co/Qwen/Qwen3-Coder-Next#model-overview), `Qwen3-Coder-Next` (and the FP8 variant) has 512 experts, of which only 10 are activated at the same time, with one additional shared expert. Each expert has a hidden layer of 512 dimensions.
 
-<figure><img src='/assets/images/2027-03-22-testing-qwen3-coder/2026-03-24-18-29-29.png' alt='TODO' /><figcaption>TODO</figcaption></figure><br/>
-
 So the main difference is in the number of active parameters, that is, the number of params for the active experts: for Qwen3-Coder-Next we have the 3B set in the HF card, but for Qwen3-Coder-Next-FP8 we have almost 5.5B. So this would make a better use of the GPU, while also leaving more RAM free. Maybe even allowing a better quantization.
 
 # Downloading the model

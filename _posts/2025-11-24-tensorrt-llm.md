@@ -1,12 +1,10 @@
 ---
 layout: post
 title: Local LLMs IV - Installing and running TensorRT-LLM
-subtitle: In which I try to go the NVIDIA way
 date: 2025-11-24
 tags:
   - local-llm
   - tensorrt-llm
-image: /assets/images/2025-09-19-local-llm-setup/2025-11-25-19-39-29.png
 ---
 
 

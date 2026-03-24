@@ -1,12 +1,10 @@
 ---
 layout: post
 title: Vibe coding for senior software engineers
-subtitle: In which I have to, once more, learn how to code
 date: 2026-01-10
 tags:
   - vibecoding
   - agents
-image: /assets/images/2026-01-09-openai-codex/2026-01-09-20-41-59.png
 ---
 
 All of a sudden, everybody is talking about how great vibe coding is. Well, what is actually surprising is that, this time, real experienced software engineers are talking about how GPT-5.2 and Claude 4.5 change the game.

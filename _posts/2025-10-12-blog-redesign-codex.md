@@ -1,11 +1,9 @@
 ---
 layout: post
 title: Redesigning the blog
-subtitle: In which I use Codex to fake my way into web design
 date: 2025-10-12
 tags:
   - codex
-image: /assets/images/2025-10-12-blog-redesign-codex/2025-11-25-22-18-12.png
 ---
 
 # I got tired of my blog design
