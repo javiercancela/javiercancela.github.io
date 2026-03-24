@@ -1,11 +1,9 @@
 ---
 layout: post
 title: Running a multimodal embedding model for image classification
-subtitle: In which I vibe-code something at work
 date: 2026-02-07
 tags:
   - vertex-ai
-image: /assets/images/2026-02-07-image-classification/2026-02-07-20-20-22.png
 ---
 
 I had the idea of creating an application to classify a big set of images at work. I wasn't fully convinced that it was going to work because it required processing a couple of hundred thousand images, but it was worth a try.

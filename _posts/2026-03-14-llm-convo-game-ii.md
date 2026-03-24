@@ -1,12 +1,10 @@
 ---
 layout: post
 title: Writing an agentic conversational game - II
-subtitle: In which I use agents to write an agent-based game
 date: 2026-03-14
 tags:
  - vibecoding
  - agents
-image: /assets/images/2027-01-01-generating-images/2026-03-12-22-49-43.png
 ---
 
 # The implementation

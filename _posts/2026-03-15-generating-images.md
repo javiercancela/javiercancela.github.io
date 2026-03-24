@@ -1,11 +1,9 @@
 ---
 layout: post
 title: Old man tries things, Nano Banana edition
-subtitle: In which I use models to go back to the past
 date: 2026-03-15
 tags:
  - images
-image: /assets/images/2027-01-01-generating-images/Old-man.png
 ---
 
 # ** Update **
@@ -36,5 +34,4 @@ As a check, I used the same prompt with ChatGPT Images:
 While the worst image quality is consistent with an 80s Polaroid, everything in the image is worse: the Spectrum-like computer, the generic non-game-like text in the TV, the Rubik cube with a wrong perspective...
 
 I'll stick with Nano Banana 2 for the future.
-
 

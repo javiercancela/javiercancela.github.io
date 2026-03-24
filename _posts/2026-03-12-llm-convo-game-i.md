@@ -1,12 +1,10 @@
 ---
 layout: post
 title: Writing an agentic conversational game - I
-subtitle: In which I use agents to write an agent-based game
 date: 2026-03-12
 tags:
  - vibecoding
  - agents
-image: /assets/images/2027-01-01-llm-rpg/2026-03-08-22-48-55.png
 ---
 
 # The idea
@@ -49,4 +47,3 @@ After that, he did a web search to get all the data:
 I find it interesting that he uses this sycophantic tone to recognize the mistake.
 
 We are now ready to start the coding phase.
-

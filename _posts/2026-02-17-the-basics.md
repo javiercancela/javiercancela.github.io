@@ -1,12 +1,10 @@
 ---
 layout: post
 title: Reinforcement Learning II - Basic algorithms
-subtitle: In which I take baby steps towards RL
 date: 2026-02-17
 tags:
   - reinforcement-learning
   - vibecoding
-image: /assets/images/2026-02-17-the-basics/2026-02-17-23-21-44.png
 ---
 
 
