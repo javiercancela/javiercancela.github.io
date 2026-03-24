@@ -8,6 +8,12 @@ tags:
 image: /assets/images/2027-01-01-generating-images/Old-man.png
 ---
 
+# ** Update **
+This entry was written when the blog looked like this:
+<figure><img src='/assets/images/2026-03-15-generating-images/2026-03-24-09-34-34.png' alt='This blog used to be this ugly' /><figcaption>This blog used to be this ugly</figcaption></figure><br/>
+
+# Original text
+
 I use Gemini or ChatGPT to generate images for my posts. And they are getting really good at this, especially Gemini's Nano Banana 2.
 
 I used Nano Banana 2 to generate two images. With this prompt:
