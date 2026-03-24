@@ -34,4 +34,17 @@ Now the Telegram plugin should be available, and we just have to configure the b
 /telegram:configure 123456789:AAHfiqksKZ8...
 ```
 
-<figure><img src="/assets/images/2026-03-23-11-22-58.png" alt=""/><figcaption><em></em></figcaption></figure><br/>
+Final step is to pair the bot with the Claude. For that, we DM the bot we created before:
+<figure><img src='/assets/images/2026-03-23-controling-claude-telegram/2026-03-23-19-45-52.png' alt='If you did everything ok, you only need to say Hi! once' /><figcaption>If you did everything ok, you only need to say Hi! once</figcaption></figure><br/>
+
+The bot's response include the command to pair the session inside Claude:
+```bash
+/telegram:access pair a12345
+```
+
+I said 'Hi' three times because the MCP server for the channel wasn't working. I installed `bun` but I didn't make sure the `PATH` was updated, so the MCP server was failing. You can check the MCP server status with `/mcp`:
+
+<figure><img src="/assets/images/2026-03-23-11-22-58.png" alt="Checking the mcp status"/><figcaption><em>Checking the mcp status</em></figcaption></figure><br/>
+
+And that's it. Now I can use Telegram as a front-end for an existing Claude session:
+<figure><img src='/assets/images/2026-03-23-controling-claude-telegram/2026-03-24-09-16-47.png' alt='Now I want the same for Codex' /><figcaption>Now I want the same for Codex</figcaption></figure><br/>
