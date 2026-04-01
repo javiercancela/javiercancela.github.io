@@ -14,4 +14,5 @@ Personal Jekyll site for blog posts and static pages.
 - Keep post front matter minimal and consistent
 - Do not add legacy `subtitle` or header `image` fields to posts
 - Store post assets under `/assets/` and reference them with absolute paths
+- Reference shared root assets like `/favicon.svg` with Jekyll URL helpers in layouts to avoid nested-route 404s
 - Keep `assets/images/` limited to images used by published posts or site configuration

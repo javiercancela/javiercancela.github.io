@@ -362,6 +362,16 @@ a:hover {
   padding: 2rem 0;
 }
 
+.tag-archive .post-card article {
+  grid-template-columns: 8rem minmax(0, 1fr);
+  gap: 0 3rem;
+}
+
+.tag-archive .post-card__meta {
+  margin: 0;
+  padding-top: 0.2rem;
+}
+
 .post-feed__pagination {
   margin: 2rem 0 0;
   padding: 1.5rem 0 0;

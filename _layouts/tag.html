@@ -9,13 +9,15 @@ layout: default
           <li class="post-card">
             <article>
               <p class="post-card__meta">{{ post.date | date: '%B %-d, %Y' }}</p>
-              <h2 class="post-card__title">
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-              </h2>
-              {% if post.subtitle %}
-                <p class="post-card__excerpt">{{ post.subtitle }}</p>
-              {% endif %}
-              <a class="post-card__cta" href="{{ post.url | relative_url }}">Continue reading →</a>
+              <div class="post-card__body">
+                <h2 class="post-card__title">
+                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h2>
+                {% if post.subtitle %}
+                  <p class="post-card__excerpt">{{ post.subtitle }}</p>
+                {% endif %}
+                <a class="post-card__cta" href="{{ post.url | relative_url }}">Continue reading →</a>
+              </div>
             </article>
           </li>
         {% endfor %}
