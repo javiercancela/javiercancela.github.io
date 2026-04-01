@@ -5,6 +5,7 @@ date: 2026-02-17
 tags:
   - reinforcement-learning
   - vibecoding
+  - connect-4
 ---
 
 
